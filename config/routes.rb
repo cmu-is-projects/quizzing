@@ -1,4 +1,16 @@
 Quizzing::Application.routes.draw do
+  resources :events
+
+  resources :teams
+
+  resources :coaches
+
+  resources :users
+
+  resources :organizations
+
+  resources :students
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
