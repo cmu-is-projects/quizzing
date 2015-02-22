@@ -1,9 +1,14 @@
 class Team < ActiveRecord::Base
 
   #Relationships
-  has_and_belongs_to_many :students
-  has_and_belongs_to_many :quizzes
-  has_one :coach
+  belongs_to :organization
+  belongs_to :division
+  has_many :student_teams
+  has_many :students, through: :student_teams
+  has_many :quiz_teams
+  has_many :quizzes, through: :quiz_teams
+  has_many :coaches
+
 
   #Validations
   validates_presence_of :division_id, :name

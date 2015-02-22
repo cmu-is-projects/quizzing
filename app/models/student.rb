@@ -1,9 +1,12 @@
 class Student < ActiveRecord::Base
 
   #Relationships
-  has_and_belongs_to_many :quizzes
-  has_and_belongs_to_many :teams
-  has_and_belongs_to_many :organizations
+  has_many :student_quizzes
+  has_many :quizzes, through: :student_quizzes
+  has_many :student_teams
+  has_many :teams, through: :student_teams
+  has_many :organization_students
+  has_many :organizations, through: :organization_students
 
   #Validations
   validates_presence_of :first_name, :last_name, :grade

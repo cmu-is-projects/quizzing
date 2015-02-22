@@ -1,9 +1,10 @@
 class Coach < ActiveRecord::Base
 
   #Relationships
-  belongs_to :users
-  has_and_belongs_to_many :organizations
-  has_many :teams
+  belongs_to :user  # singular relation needs to be written singular
+  belongs_to :organization
+  has_many :team_coaches
+  has_many :teams, through: :team_coaches
 
   #Validations 
   validates_presence_of :user_id, :first_name, :last_name

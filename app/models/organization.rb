@@ -1,8 +1,9 @@
 class Organization < ActiveRecord::Base
   
   #Relationships
-  has_and_belongs_to_many :coaches
-  has_and_belongs_to_many :students
+  has_many :coaches
+  has_many :organization_students
+  has_many :students, through: :organization_students
 
   #Validations
   validates_presence_of :name

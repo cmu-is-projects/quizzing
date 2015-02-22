@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216225937) do
+ActiveRecord::Schema.define(version: 20150222221526) do
 
   create_table "coaches", force: true do |t|
     t.integer  "team_id"
@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(version: 20150216225937) do
     t.datetime "updated_at"
   end
 
+  create_table "organization_students", force: true do |t|
+    t.integer "organization_id"
+    t.integer "student_id"
+    t.date    "start_date"
+    t.date    "end_date"
+  end
+
   create_table "organizations", force: true do |t|
     t.string   "name"
     t.string   "short_name"
@@ -54,6 +61,14 @@ ActiveRecord::Schema.define(version: 20150216225937) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "quiz_teams", force: true do |t|
+    t.integer "quiz_id"
+    t.integer "team_id"
+    t.integer "position"
+    t.integer "raw_score"
+    t.integer "points"
   end
 
   create_table "quizzes", force: true do |t|
@@ -75,11 +90,28 @@ ActiveRecord::Schema.define(version: 20150216225937) do
     t.datetime "updated_at"
   end
 
+  create_table "student_quizzes", force: true do |t|
+    t.integer "student_id"
+    t.integer "quiz_id"
+    t.integer "num_correct"
+    t.integer "num_attempts"
+    t.integer "num_fouls"
+    t.integer "score"
+  end
+
+  create_table "student_teams", force: true do |t|
+    t.integer "student_id"
+    t.integer "team_id"
+    t.boolean "is_captain", default: false
+    t.boolean "active",     default: true
+    t.date    "start_date"
+    t.date    "end_date"
+  end
+
   create_table "students", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "grade"
-    t.boolean  "captain"
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -91,6 +123,7 @@ ActiveRecord::Schema.define(version: 20150216225937) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   create_table "users", force: true do |t|

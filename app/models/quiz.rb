@@ -1,10 +1,12 @@
 class Quiz < ActiveRecord::Base
 
   #Relationships
-  belongs_to :events
-  has_and_belongs_to_many :students
-  has_and_belongs_to_many :teams
-  has_one :division
+  belongs_to :event
+  has_many :student_quizzes
+  has_many :students, through: :student_quizzes
+  has_many :quiz_teams
+  has_many :teams, through: :quiz_teams
+  belongs_to :division
 
   #Validations
   validates_presence_of :event_id, :division_id 
