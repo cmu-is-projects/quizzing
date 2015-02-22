@@ -4,7 +4,7 @@ class Division < ActiveRecord::Base
   has_many :quizzes
   has_many :teams
 
-  # #Validations
+  # Validations
   # validates_presence_of :name
 
   # #Scopes

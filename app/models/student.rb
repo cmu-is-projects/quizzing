@@ -1,4 +1,6 @@
 class Student < ActiveRecord::Base
+  # get module to help with some functionality
+  include QuizHelpers::Validations
 
   #Relationships
   has_many :student_quizzes

@@ -1,4 +1,6 @@
 class Coach < ActiveRecord::Base
+  # get module to help with some functionality
+  include QuizHelpers::Validations
 
   #Relationships
   belongs_to :user  # note that singular relation needs to be written as singular
@@ -30,6 +32,13 @@ class Coach < ActiveRecord::Base
   #   return "#{first_name} #{last_name}"
   # end
 
-  # private
+  private
+  def organization_is_active_in_system
+    is_active_in_system(:organization)
+  end
+
+  # def user_is_active_in_system
+  #   is_active_in_system(:user)
+  # end
 
 end
