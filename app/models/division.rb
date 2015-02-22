@@ -4,17 +4,17 @@ class Division < ActiveRecord::Base
   has_many :quizzes
   has_many :teams
 
-  #Validations
-  validates_presence_of :name
+  # #Validations
+  # validates_presence_of :name
 
-  #Scopes
-  scope :alphabetical, -> {order("name")}
+  # #Scopes
+  # scope :alphabetical, -> {order("name")}
 
-  #Callbacks
-  before_destroy Proc.new {false}
+  # #Callbacks
+  # before_destroy Proc.new {false}
 
-  #Methods
+  # #Methods
 
-  private
+  # private
 
 end

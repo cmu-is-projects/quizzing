@@ -7,8 +7,8 @@ class Team < ActiveRecord::Base
   has_many :students, through: :student_teams
   has_many :quiz_teams
   has_many :quizzes, through: :quiz_teams
-  has_many :coaches
-
+  has_many :team_coaches
+  has_many :coaches, through: :team_coaches
 
   #Validations
   validates_presence_of :division_id, :name

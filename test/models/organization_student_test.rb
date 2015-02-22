@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class OrganizationStudentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  # test relationships
+  should belong_to(:organization)
+  should belong_to(:student)
 end

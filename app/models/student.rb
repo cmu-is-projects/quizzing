@@ -9,29 +9,29 @@ class Student < ActiveRecord::Base
   has_many :organizations, through: :organization_students
 
   #Validations
-  validates_presence_of :first_name, :last_name, :grade
-  validates_numericality_of :grade, only_integer: true, greater_than: 1
+  # validates_presence_of :first_name, :last_name, :grade
+  # validates_numericality_of :grade, only_integer: true, greater_than: 1
 
-  #Scopes
-  scope :alphabetical, -> {order("last_name", "first_name")}
-  scope :active, -> {where(active: true)}
-  scope :inactive, -> {where(active: false)}
-  scope :is_captain, -> {where(captain: true)}
-  scope :is_not_captain, -> {where(captain: false)}
+  # #Scopes
+  # scope :alphabetical, -> {order("last_name", "first_name")}
+  # scope :active, -> {where(active: true)}
+  # scope :inactive, -> {where(active: false)}
+  # # scope :is_captain, -> {where(captain: true)}
+  # # scope :is_not_captain, -> {where(captain: false)}
   
-  #Callbacks
-  before_destroy Proc.new {false}
+  # #Callbacks
+  # before_destroy Proc.new {false}
 
-  #Methods
+  # #Methods
 
-  def name
-    return "#{last_name}, #{first_name}"
-  end
+  # def name
+  #   return "#{last_name}, #{first_name}"
+  # end
 
-  def proper_name
-    return "#{first_name} #{last_name}"
-  end
+  # def proper_name
+  #   return "#{first_name} #{last_name}"
+  # end
 
-  private
+  # private
 
 end

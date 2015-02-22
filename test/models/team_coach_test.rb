@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class TeamCoachTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  # test relationships
+  should belong_to(:team)
+  should belong_to(:coach)
 end
