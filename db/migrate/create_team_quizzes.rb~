@@ -1,0 +1,8 @@
+class CreateTeamQuizzes < ActiveRecord::Migration
+  def change
+    create_table :teams_quizzes do |t|
+      t.references :team
+      t.references :quiz
+    end
+  end
+end
