@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  ROLES = ["admin","area_admin","coach"]
+
   #Relationships
   has_one :coach
   

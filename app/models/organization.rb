@@ -3,6 +3,7 @@ class Organization < ActiveRecord::Base
   #Relationships
   has_and_belongs_to_many :coaches
   has_and_belongs_to_many :students
+  has_one :coach, foreign_key: 'primary_contact';
 
   #Validations
   validates_presence_of :name
