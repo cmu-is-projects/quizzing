@@ -1,23 +1,25 @@
 class Organization < ActiveRecord::Base
+  # get module to help with some functionality
+  include QuizHelpers::Validations
   
   #Relationships
-  has_and_belongs_to_many :coaches
-  has_and_belongs_to_many :students
-  has_one :coach, foreign_key: 'primary_contact';
+  has_many :coaches
+  has_many :organization_students
+  has_many :students, through: :organization_students
 
   #Validations
-  validates_presence_of :name
+  # validates_presence_of :name
 
-  #Scopes
-  scope :alphabetical, -> {order("name")}
-  scope :active, -> {where(active: true)}
-  scope :inactive, -> {where(active: false)}
+  # #Scopes
+  # scope :alphabetical, -> {order("name")}
+  # scope :active, -> {where(active: true)}
+  # scope :inactive, -> {where(active: false)}
 
-  #Callbacks
-  before_destroy Proc.new {false}
+  # #Callbacks
+  # before_destroy Proc.new {false}
 
-  #Methods
+  # #Methods
   
-  private
+  # private
 
 end

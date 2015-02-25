@@ -1,7 +1,0 @@
-class CreateStudentOrganizations < ActiveRecord::Migration
-  def change
-    create_table :students_organizations do |t|
-      t.references :student
-    end
-  end
-end

@@ -1,30 +1,44 @@
 class Coach < ActiveRecord::Base
+  # get module to help with some functionality
+  include QuizHelpers::Validations
 
   #Relationships
-  belongs_to :users
-  has_and_belongs_to_many :organizations
-  has_many :teams
+  belongs_to :user  # note that singular relation needs to be written as singular
+  belongs_to :organization
+  has_many :team_coaches
+  has_many :teams, through: :team_coaches
+
+  # Allow user to be nested within coach
+  accepts_nested_attributes_for :user, reject_if: ->(user) { user[:username].blank? }, allow_destroy: true
+
 
   #Validations 
-  validates_presence_of :user_id, :first_name, :last_name
-  validate :user_is_active_in_system
+  # validates_presence_of :user_id, :first_name, :last_name
+  # validate :user_is_active_in_system
 
-  #Scopes
-  scope :alphabetical, -> {order("last_name","first_name")}
+  # #Scopes
+  # scope :alphabetical, -> {order("last_name","first_name")}
   
-  #Callbacks
-  before_destroy Proc.new {false}
+  # #Callbacks
+  # before_destroy Proc.new {false}
 
-  #Methods
+  # #Methods
 
-  def name
-    return "#{last_name}, #{first_name}"
-  end
+  # def name
+  #   return "#{last_name}, #{first_name}"
+  # end
 
-  def proper_name
-    return "#{first_name} #{last_name}"
-  end
+  # def proper_name
+  #   return "#{first_name} #{last_name}"
+  # end
 
   private
+  def organization_is_active_in_system
+    is_active_in_system(:organization)
+  end
+
+  # def user_is_active_in_system
+  #   is_active_in_system(:user)
+  # end
 
 end

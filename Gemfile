@@ -35,13 +35,36 @@ end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
 gem 'validates_timeliness'
+
+
+# Additional gems that are very useful in Rails development
+group :development do
+  gem 'quiet_assets', '1.1.0'
+  gem 'thin', '1.6.3'
+  gem 'better_errors', '2.0.0'
+  gem 'binding_of_caller', '0.7.2'
+  gem 'meta_request', '0.3.4'
+  gem 'wirble', '0.1.3'
+  gem 'hirb', '0.7.2'
+  gem 'faker', '1.4.3'
+  gem 'capistrano', '2.15.5'
+end
+
+# Gems used only in testing
+group :test do
+  gem 'shoulda', '3.5.0'
+  gem 'shoulda-matchers', '2.7.0'
+  gem 'factory_girl_rails', '4.5.0'
+  gem 'mocha', '1.1.0', require: false
+  gem 'simplecov', '0.9.1'
+  gem 'turn', '0.9.7'
+  gem 'single_test', '0.6.0'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'capybara'
+end

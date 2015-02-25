@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class DivisionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  # test relationships
+  should have_many(:quizzes)
+  should have_many(:teams)
 end
