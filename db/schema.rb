@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20150223055000) do
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+=======
 ActiveRecord::Schema.define(version: 20150222222555) do
+>>>>>>> ca100bd51b65b5ef4e0fdf1cb9ff5e6e544ea395
 
   create_table "coaches", force: true do |t|
     t.integer  "team_id"
@@ -61,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150222222555) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "primary_contact"
   end
 
   create_table "quiz_teams", force: true do |t|

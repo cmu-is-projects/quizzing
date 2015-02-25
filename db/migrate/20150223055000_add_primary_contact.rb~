@@ -1,0 +1,4 @@
+class AddPrimaryContact < ActiveRecord::Migration
+  def change
+  end
+end
