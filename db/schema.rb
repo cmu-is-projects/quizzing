@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222222555) do
+ActiveRecord::Schema.define(version: 20150222232837) do
 
   create_table "coaches", force: true do |t|
     t.integer  "team_id"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20150222222555) do
     t.integer "position"
     t.integer "raw_score"
     t.integer "points"
+    t.integer "failed_challenges", default: 0
   end
 
   create_table "quizzes", force: true do |t|

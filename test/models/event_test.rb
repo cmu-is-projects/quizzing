@@ -4,7 +4,6 @@ class EventTest < ActiveSupport::TestCase
 
   #VALIDATONS
   should have_many(:quizzes)
-  should validate_presence_of(:event_id)
   should validate_presence_of(:start_date)
   should validate_presence_of(:start_time)
   should validate_presence_of(:num_rounds)
@@ -26,14 +25,6 @@ class EventTest < ActiveSupport::TestCase
   should_not allow_value("bad").for(:start_time)
   should_not allow_value("1:00").for(:start_time)  
   should_not allow_value(900).for(:start_time)
-  #END_TIME
-  should allow_value(nil).for(:end_time)
-  should allow_value(2.hours.from_now).for(:end_time)
-  should_not allow_value("am").for(:end_time)
-  should_not allow_value("pm").for(:end_time)
-  should_not allow_value("bad").for(:end_time)
-  should_not allow_value("1:00").for(:end_time)  
-  should_not allow_value(900).for(:end_time)
   #NUM_ROUNDS
   should validate_numericality_of(:num_rounds)
   #unsure of a realistic cap for num_rounds
