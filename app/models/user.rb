@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   # get module to help with some functionality
   include QuizHelpers::Validations
 
+  ROLES = ["admin","area_admin","coach"]
+
   #Relationships
   has_one :coach
   
