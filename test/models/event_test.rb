@@ -23,6 +23,10 @@ class EventTest < ActiveSupport::TestCase
   should_not allow_value("am").for(:start_time)
   should_not allow_value("pm").for(:start_time)
   should_not allow_value("bad").for(:start_time)
+<<<<<<< HEAD
+=======
+  #causing cryptic error
+>>>>>>> 438c4759256408893f1e72d3a425ef039220e3f5
   #should_not allow_value("1:00").for(:start_time)  
   should_not allow_value(900).for(:start_time)
   #NUM_ROUNDS

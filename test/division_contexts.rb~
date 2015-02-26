@@ -1,0 +1,15 @@
+module Contexts
+  module DivisionContexts
+    
+    def create_divisions
+      @div1 = FactoryGirl.create(:division)
+      @div2 = FactoryGirl.create(:division, name: "Senior B")
+      @div3 = FactoryGirl.create(:division, name: "Junior")
+    end
+
+    def delete_divisions
+
+    end
+
+  end
+end

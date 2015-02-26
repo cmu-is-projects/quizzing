@@ -1,51 +1,76 @@
 FactoryGirl.define do
-
-	factory :students do
-	first_name "John"
-    last_name "Smith"
-    grade 6
-    is_captain false
-    active true
-	end
-
-  factory :organizations do
-  	primary_contact 1
-  	short_name "ACAC"
-  	street_1 "5000 Forbes Avenue"
-  	street_2 "SMC 0000"
-  	city "Pittsburgh"
-  	state "Pennsylvania"
-  	zip "15213"
-  	latitude nil
-  	longitude nil
-    active true
+  factory :category do
+    name "Category One"
   end
 
-  factory :events do
+  factory :coach do
+  	team_id 1
+  	user_id 1
+  	organization_id 1
+  	first_name "Rob"
+  	last_name "Stanton"
+  	phone "0123456789"
+  	email nil
+  	active true
+  end
+
+  factory :division do
+  	name "Senior A"
+  end
+
+  factory :event do
     start_date Date.today
     end_date nil
     start_time Time.now
     num_rounds 1
   end
 
-  factory :quizzes do
-  	event_id 1
+  factory :organization_student do
+  	association :student
+  	association :organization
+  	start_date Date.today
+  	end_date nil
+  end
+
+  factory :organization do
+  	name "Org One"
+  	short_name "ACAC"	
+  	street_1 "5000 Forbes Avenue"
+  	street_2 nil
+  	city "Pittsburgh"
+  	state "Pennsylvania"
+  	zip "15213"
+  	latitude nil
+  	longitude nil
+    active true
+    primary_contact 1  
+  end
+
+  factory :quiz_team do
+  	association :quiz
+  	association :team
+  	position 1
+  	raw_score nil
+  	points nil
+  	failed_challenges 0
+  end
+
+  factory :quiz do
   	division_id 1
+  	event_id 1
   	room_num nil
   	round_num 1
   	active true
   end
 
-  factory :team_quizzes do
-  	association :team
-	association :quiz
-  	score_raw nil
-  	score_calc nil
-  	num_timeouts 0
-  	num_challenges_lost 0
+  factory :setting do
+  	roster_lock_date Date.today
+  	drop_lowest_score false
+  	roster_lock_toggle false
+  	auto_promote_students false
   end
 
-  factory :student_quizzes do
+  factory :student_quiz do
   	association :student
   	association :quiz
   	num_correct nil
@@ -53,59 +78,51 @@ FactoryGirl.define do
   	num_fouls nil
   end
 
-  factory :student_teams do
+  factory :student_team do
   	association :student
   	association :team
+  	is_captain false
+  	active true
   	start_date Date.today
   	end_date nil
   end
 
-  factory :organization_students do
-  	association :student
-  	association :organization
+  factory :student do
+    first_name "John"
+    last_name "Smith"
+    grade 9
+    active true
+  end
+
+  factory :team_coach do
+  	association :team
+  	association :coach
   	start_date Date.today
   	end_date nil
   end
 
+  factory :team do
+  	division_id 1
+  	name "Team One"
+  	active true
+  	organization_id 1  	
+  	
+  end
 
+  factory :user do
+    sequence :user_name do |n|
+      "user#{n}"
+    end
+    role "coach"
+    password_hash "secret"
+    password_salt "secret"
+    active true
+  end
+  
 end
 
-
-#   factory :student do
-#     first_name "Honey Wheat Bread"
-#     last_name "A most tasty treat from the bakers at Bread Express. Your family will love it!"
-#     grade nil
-#     category "bread"
-#     units_per_item 1
-#     weight 1.0
-#     active true
-#   end
-
-#       t.string   "first_name"
-#     t.string   "last_name"
-#     t.integer  "grade"
-#     t.boolean  "captain"
-#     t.boolean  "active"
-#     t.datetime "created_at"
-#     t.datetime "updated_at"
-
-#   factory :item_price do
-#     association :item
-#     price 1.00
-#     start_date Date.today
-#     end_date nil
-#   end
+# the below is for potential future reference
   
-#   factory :user do
-#     sequence :username do |n|
-#       "user#{n}"
-#     end
-#     password "secret"
-#     password_confirmation "secret"
-#     role "customer"
-#     active true
-#   end
-
 #   factory :customer do
 #     first_name "Ed"
 #     last_name "Gruberman"
@@ -141,3 +158,5 @@ end
 #     association :item
 #     quantity 1
 #   end
+
+#end
