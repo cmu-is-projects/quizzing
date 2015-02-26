@@ -1,4 +1,4 @@
-# FactoryGirl.define do
+FactoryGirl.define do
 #   factory :student do
 #     first_name "Honey Wheat Bread"
 #     last_name "A most tasty treat from the bakers at Bread Express. Your family will love it!"
@@ -24,15 +24,26 @@
 #     end_date nil
 #   end
   
-#   factory :user do
-#     sequence :username do |n|
-#       "user#{n}"
-#     end
-#     password "secret"
-#     password_confirmation "secret"
-#     role "customer"
-#     active true
-#   end
+  factory :division do
+    name "Senior A"
+  end
+
+  factory :student do 
+    first_name "John"
+    last_name "Smith"
+    grade 9
+    active true
+  end
+
+  factory :user do
+    sequence :user_name do |n|
+      "user#{n}"
+    end
+    password_hash "secret"
+    password_salt "secret"
+    role "coach"
+     active true
+  end
 
 #   factory :customer do
 #     first_name "Ed"
@@ -70,4 +81,4 @@
 #     quantity 1
 #   end
 
-# end
+end
