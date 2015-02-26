@@ -5,6 +5,11 @@ class OrganizationTest < ActiveSupport::TestCase
   should have_many(:organization_students)
   should have_many(:students).through(:organization_students)
   should have_many(:coaches)
+  should have_many(:teams)
+
+  # Validations
+
+
 
   set up context
   include Contexts
@@ -27,9 +32,9 @@ class OrganizationTest < ActiveSupport::TestCase
     	assert_equal ["Org Inactive"], Organization.inactive.all.map{|a| a.name}
     end
 
-    # should "show that organization's alphabetical scope works correctly" do
-    # 	assert_equal ["Agricultural Development", "Self Help Group", "Water Development"], Organization.alphabetical.all.map { |a| a.name }
-    # end
+    should "show that organization's alphabetical scope works correctly" do
+    	assert_equal ["Org Inactive", "Org One", "Org Two"], Organization.alphabetical.all.map { |a| a.name }
+    end
 
     # should "show that def find_coordinates works" do
     #   assert_in_delta(20.8365072, @juvadi.latitude, 0.00001)
