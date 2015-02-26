@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :category do
-    name "Generic Category"
+    name "Category 1"
   end
 
   factory :coach do
@@ -34,7 +34,7 @@ FactoryGirl.define do
   end
 
   factory :organization do
-  	name "Generic Organization"
+  	name "Org 1"
   	short_name "ACAC"	
   	street_1 "5000 Forbes Avenue"
   	street_2 nil
