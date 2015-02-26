@@ -2,9 +2,9 @@ module Contexts
 	def organizations
 		@org1 = FactoryGirl.create(:org)
 		sleep 1
-		@org2 = FactoryGirl.create(:org, name: "Org 2", primary_contact: 2)
+		@org2 = FactoryGirl.create(:org, name: "Org Two", primary_contact: 2)
 		sleep 1
-		@org_inactive = FactoryGirl.create(:org, active: false)
+		@org_inactive = FactoryGirl.create(:org, name: "Org Inactive", active: false)
 	end
 
 	def destroy_organizations
@@ -32,7 +32,7 @@ module Contexts
 
 	def create_teams
 		@team1 = FactoryGirl.create(:team)
-		@team2 = FactoryGirl.create(:team, name: "ACAC 2", division_id: 2, organization_id: 2)
+		@team2 = FactoryGirl.create(:team, name: "Team Two", division_id: 2, organization_id: 2)
 		@team3 = FactoryGirl.create(:team, active: false)
 	end
 
