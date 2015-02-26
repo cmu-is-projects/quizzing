@@ -1,5 +1,5 @@
 module Contexts
-	def organizations
+	def create_organizations
 		@org1 = FactoryGirl.create(:org)
 		sleep 1
 		@org2 = FactoryGirl.create(:org, name: "Org 2", primary_contact: 2)
