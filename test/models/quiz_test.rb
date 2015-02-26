@@ -2,6 +2,7 @@ require 'test_helper'
 
 class QuizTest < ActiveSupport::TestCase
   # test relationships
+  hould belong_to(:event)
   should belong_to(:division)
   should have_many(:student_quizzes)
   should have_many(:students).through(:student_quizzes)
