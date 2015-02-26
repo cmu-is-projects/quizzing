@@ -5,7 +5,7 @@ FactoryGirl.define do
 
   factory :coach do
     association :user
-    association :organization
+    # association :organization
   	first_name "Rob"
   	last_name "Stanton"
   	phone "0123456789"
@@ -19,7 +19,7 @@ FactoryGirl.define do
 
   factory :event do
     start_date Date.today
-    end_date nil
+    end_date Date.today
     start_time Time.now
     num_rounds 1
   end

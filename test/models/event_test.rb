@@ -23,10 +23,6 @@ class EventTest < ActiveSupport::TestCase
   should_not allow_value("am").for(:start_time)
   should_not allow_value("pm").for(:start_time)
   should_not allow_value("bad").for(:start_time)
-<<<<<<< HEAD
-=======
-  #causing cryptic error
->>>>>>> 438c4759256408893f1e72d3a425ef039220e3f5
   #should_not allow_value("1:00").for(:start_time)  
   should_not allow_value(900).for(:start_time)
   #NUM_ROUNDS
@@ -38,5 +34,26 @@ class EventTest < ActiveSupport::TestCase
   should_not allow_value(-20).for(:num_rounds)
   should_not allow_value(3.14159).for(:num_rounds)
 
+  #set up context
+  include Contexts::EventContexts
+  context "Creating an Event context" do
+    setup do
+      create_events
+    end
 
+    teardown do
+      delete_events
+    end
+
+    should "shows that there are three events in chronological order" do
+      assert_equal ["#{Date.today.strftime("%b %d")}", "Jun 06", "May 05"], Event.chronological.all.map{|e| "#{e.start_date.strftime("%b %d")}"}
+    end
+
+    should "shows that there are 2 upcoming events and 1 past event" do
+      @event3.update_attribute(:start_date, 7.days.ago.to_date) # update_attribute will bypass validation
+      @event3.update_attribute(:end_date, 2.days.ago.to_date)
+      assert_equal 2, Event.upcoming.size
+      assert_equal 1, Event.past.size
+    end
+  end
 end
