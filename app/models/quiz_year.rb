@@ -12,6 +12,7 @@ class QuizYear
   attr_reader :start_date, :end_date
   
   def include?(date)
+    #.cover faster is faster than .include
     (start_date..end_date).cover?(date)
   end
 

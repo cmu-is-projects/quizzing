@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150223055000) do
+ActiveRecord::Schema.define(version: 20150226023120) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20150223055000) do
   end
 
   create_table "coaches", force: true do |t|
-    t.integer  "team_id"
     t.integer  "user_id"
     t.integer  "organization_id"
     t.string   "first_name"
@@ -76,6 +75,7 @@ ActiveRecord::Schema.define(version: 20150223055000) do
     t.integer "position"
     t.integer "raw_score"
     t.integer "points"
+    t.integer "failed_challenges", default: 0
   end
 
   create_table "quizzes", force: true do |t|
