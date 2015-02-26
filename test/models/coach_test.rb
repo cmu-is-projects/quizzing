@@ -29,11 +29,43 @@ class CoachTest < ActiveSupport::TestCase
   should allow_value("412-268-3259").for(:phone)
   should allow_value("412.268.3259").for(:phone)
   should allow_value("(412) 268-3259").for(:phone)
-  
+
   should_not allow_value("2683259").for(:phone)
   should_not allow_value("4122683259x224").for(:phone)
   should_not allow_value("800-EAT-FOOD").for(:phone)
   should_not allow_value("412/268/3259").for(:phone)
   should_not allow_value("412-2683-259").for(:phone)
 
+  #set up context
+  include Contexts::CoachContexts
+  context "Creating a Coach context" do
+  	setup do
+  		create_coaches
+  	end
+
+  	teardown do
+  		delete_coaches
+  	end
+
+  	should "verify that the alphabetical scope works" do
+  		assert Coach.alphabetical.map(&:first_name) == ["Inactive","Rob","Ted"]
+  	end
+
+  	should "show that name method works" do
+  		assert_equal "Stanton, Rob", @coach1.name
+  		assert_equal "Stoe, Ted", @coach2.name
+  	end
+
+  	should "show that proper_name method works" do
+  		assert_equal "Rob Stanton", @coach1.proper_name
+  		assert_equal "Ted Stoe", @coach2.proper_name
+  	end  	  	
+
+  	# should "verify that the coach's organization is active in the system" do
+  	# 	@inactive_organization = FactoryGirl.create(:organization, active: false)
+  	# 	bad_coach = FactoryGirl.build(:coach, organization: @inactive_organization)
+  	# 	deny bad_coach.valid?
+  	# 	@inactive_organization.delete
+  	# end
+end
 end
