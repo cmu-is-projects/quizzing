@@ -25,8 +25,30 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    addressable (2.3.7)
+    ansi (1.5.0)
     arel (4.0.2)
+    better_errors (2.0.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.1.4)
+    callsite (0.0.11)
+    capistrano (2.15.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    capybara (2.4.4)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -34,12 +56,44 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.0)
+    cucumber (1.3.17)
+      builder (>= 2.1.2)
+      diff-lcs (>= 1.1.3)
+      gherkin (~> 2.12)
+      multi_json (>= 1.7.5, < 2.0)
+      multi_test (>= 0.1.1)
+    cucumber-rails (1.4.2)
+      capybara (>= 1.1.2, < 3)
+      cucumber (>= 1.3.8, < 2)
+      mime-types (>= 1.16, < 3)
+      nokogiri (~> 1.5)
+      rails (>= 3, < 5)
+    daemons (1.1.9)
+    database_cleaner (1.3.0)
+    debug_inspector (0.0.2)
+    diff-lcs (1.2.5)
+    docile (1.1.5)
     erubis (2.7.0)
+    eventmachine (1.0.7)
     execjs (2.3.0)
+<<<<<<< HEAD
     foundation-rails (5.2.2.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
+=======
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
+    faker (1.4.3)
+      i18n (~> 0.5)
+    gherkin (2.12.2)
+      multi_json (~> 1.3)
+    highline (1.6.21)
+>>>>>>> e61e16ca07fca803cacd26ae9f68d6949e342c7f
     hike (1.2.3)
+    hirb (0.7.2)
     i18n (0.7.0)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -48,13 +102,40 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.2)
+<<<<<<< HEAD
+=======
+    launchy (2.4.2)
+      addressable (~> 2.3)
+>>>>>>> e61e16ca07fca803cacd26ae9f68d6949e342c7f
     libv8 (3.16.14.7)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    meta_request (0.3.4)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.0.0)
+    metaclass (0.0.4)
     mime-types (2.4.3)
+    mini_portile (0.6.2)
     minitest (4.7.5)
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
     multi_json (1.10.1)
+    multi_test (0.1.1)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.1)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
+    nokogiri (1.6.6.2)
+      mini_portile (~> 0.6.0)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
+    rack-contrib (1.2.0)
+      rack (>= 0.9.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.0.13)
@@ -83,9 +164,25 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+<<<<<<< HEAD
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+=======
+    shoulda (3.5.0)
+      shoulda-context (~> 1.0, >= 1.0.1)
+      shoulda-matchers (>= 1.4.1, < 3.0)
+    shoulda-context (1.2.1)
+    shoulda-matchers (2.7.0)
+      activesupport (>= 3.0.0)
+    simplecov (0.9.1)
+      docile (~> 1.1.0)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
+    single_test (0.6.0)
+      rake
+>>>>>>> e61e16ca07fca803cacd26ae9f68d6949e342c7f
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -99,29 +196,74 @@ GEM
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
+<<<<<<< HEAD
+=======
+    thin (1.6.3)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0)
+      rack (~> 1.0)
+>>>>>>> e61e16ca07fca803cacd26ae9f68d6949e342c7f
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    timeliness (0.3.7)
     turbolinks (2.5.3)
       coffee-rails
+    turn (0.9.7)
+      ansi
+      minitest (~> 4)
     tzinfo (0.3.43)
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    validates_timeliness (3.0.14)
+      timeliness (~> 0.3.6)
+    wirble (0.1.3)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors (= 2.0.0)
+  binding_of_caller (= 0.7.2)
+  capistrano (= 2.15.5)
+  capybara
   coffee-rails (~> 4.0.0)
+<<<<<<< HEAD
   foundation-rails
+=======
+  cucumber-rails
+  database_cleaner
+  factory_girl_rails (= 4.5.0)
+  faker (= 1.4.3)
+  hirb (= 0.7.2)
+>>>>>>> e61e16ca07fca803cacd26ae9f68d6949e342c7f
   jbuilder (~> 1.2)
   jquery-rails
+  launchy
+  meta_request (= 0.3.4)
+  mocha (= 1.1.0)
+  quiet_assets (= 1.1.0)
   rails (= 4.0.13)
   sass-rails (~> 4.0.2)
   sdoc
+<<<<<<< HEAD
   simple_form
   sqlite3
   therubyracer
+=======
+  shoulda (= 3.5.0)
+  shoulda-matchers (= 2.7.0)
+  simplecov (= 0.9.1)
+  single_test (= 0.6.0)
+  sqlite3
+  therubyracer
+  thin (= 1.6.3)
+>>>>>>> e61e16ca07fca803cacd26ae9f68d6949e342c7f
   turbolinks
+  turn (= 0.9.7)
   uglifier (>= 1.3.0)
+  validates_timeliness
+  wirble (= 0.1.3)
