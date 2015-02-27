@@ -1,13 +1,11 @@
 FactoryGirl.define do
-
   factory :category do
     name "Category One"
   end
 
   factory :coach do
-  	team_id 1
-  	user_id 1
-  	organization_id 1
+    association :user
+    # association :organization
   	first_name "Rob"
   	last_name "Stanton"
   	phone "0123456789"
@@ -21,7 +19,7 @@ FactoryGirl.define do
 
   factory :event do
     start_date Date.today
-    end_date nil
+    end_date Date.today
     start_time Time.now
     num_rounds 1
   end
@@ -91,7 +89,7 @@ FactoryGirl.define do
   factory :student do
     first_name "John"
     last_name "Smith"
-    grade 6
+    grade 9
     active true
   end
 
@@ -115,12 +113,11 @@ FactoryGirl.define do
       "user#{n}"
     end
     role "coach"
-    password_hash nil
-    password_salt nil
+    password_hash "secret"
+    password_salt "secret"
     active true
   end
   
-
 end
 
 # the below is for potential future reference
@@ -133,3 +130,32 @@ end
 #     association :user
 #     active true
 #   end
+
+#   factory :address do
+#     recipient "Ted Gruberman"
+#     street_1 "5000 Forbes Avenue"
+#     street_2 nil
+#     city "Pittsburgh"
+#     state "PA"
+#     zip "15213"
+#     association :customer
+#     is_billing false
+#     active true
+#   end
+
+#   factory :order do
+#     date Date.today
+#     association :customer
+#     association :address
+#     grand_total 0.00
+#     payment_receipt nil
+#   end
+
+#   factory :order_item do
+#     shipped_on nil
+#     association :order
+#     association :item
+#     quantity 1
+#   end
+
+#end
