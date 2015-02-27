@@ -11,7 +11,8 @@ Quizzing::Application.routes.draw do
   # named routes
 
 
-  # root
+  # Set the root url
+  root to: 'events#index', as: :home
 
 
   # default (error_handling)
