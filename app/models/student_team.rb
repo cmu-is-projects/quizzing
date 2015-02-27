@@ -5,6 +5,9 @@ class StudentTeam < ActiveRecord::Base
   belongs_to :student
   belongs_to :team
 
+  scope :is_captain, -> {where(captain: true)}
+  scope :is_not_captain, -> {where(captain: false)}
+  
   private
   def student_is_active_in_system
     is_active_in_system(:student)
