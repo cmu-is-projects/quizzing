@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-6 columns">   
+    <!-- all teams -->
+      <%= render :partial => "show_details" %>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
+  <div class="small-1 columns">
+    &nbsp;
+  </div>
 
-<p>
-  <strong>Active:</strong>
-  <%= @team.active %>
-</p>
-
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+  <div class="small-5 columns">
+  </div>
+</div>

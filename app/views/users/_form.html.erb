@@ -1,37 +1,27 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= simple_form_for(@user) do |f| %>
+  <fieldset>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <%= f.input :user_name %><br>
+      <%= f.input :role %><br>
+      <%= f.input :password_hash %><br>
+      <%= f.input :password_salt %><br>
+      <%= f.input :active %><br>
+
+    <div class="form-actions">
+      <%= f.submit nil, class: 'button' %>
+      <%= link_to 'Cancel', users_path, :class => 'button secondary' %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :user_name %><br>
-    <%= f.text_field :user_name %>
-  </div>
-  <div class="field">
-    <%= f.label :role %><br>
-    <%= f.text_field :role %>
-  </div>
-  <div class="field">
-    <%= f.label :password_hash %><br>
-    <%= f.text_field :password_hash %>
-  </div>
-  <div class="field">
-    <%= f.label :password_salt %><br>
-    <%= f.text_field :password_salt %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br>
-    <%= f.check_box :active %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </fieldset>
 <% end %>
