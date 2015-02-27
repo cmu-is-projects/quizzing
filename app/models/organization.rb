@@ -16,11 +16,11 @@ class Organization < ActiveRecord::Base
   scope :active, -> {where(active: true)}
   scope :inactive, -> {where(active: false)}
 
-  # #Callbacks
-  # before_destroy Proc.new {false}
+  #Callbacks
+  before_destroy Proc.new {false}
 
-  # #Methods
+  #Methods
   
-  # private
+  private
 
 end
