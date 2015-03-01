@@ -18,8 +18,6 @@ class Student < ActiveRecord::Base
   scope :alphabetical, -> {order("last_name", "first_name")}
   scope :active, -> {where(active: true)}
   scope :inactive, -> {where(active: false)}
-  # scope :is_captain, -> {where(captain: true)}
-  # scope :is_not_captain, -> {where(captain: false)}
   
   #Callbacks
   before_destroy Proc.new {false}
