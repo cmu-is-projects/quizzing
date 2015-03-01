@@ -6,7 +6,7 @@ class Quiz < ActiveRecord::Base
   has_many :students, through: :student_quizzes
   has_many :quiz_teams
   has_many :teams, through: :quiz_teams
-  has_one :category
+  belongs_to :category
   belongs_to :division
 
   #Validations
