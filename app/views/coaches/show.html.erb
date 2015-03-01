@@ -1,29 +1,12 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-6 columns">
+    <%= render :partial => "show_details" %>
+  </div>
 
-<p>
-  <strong>First name:</strong>
-  <%= @coach.first_name %>
-</p>
+  <div class="small-1 columns">
+    &nbsp;
+  </div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @coach.last_name %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @coach.phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @coach.email %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @coach.active %>
-</p>
-
-<%= link_to 'Edit', edit_coach_path(@coach) %> |
-<%= link_to 'Back', coaches_path %>
+  <div class="small-5 columns">
+  </div>
+</div>
