@@ -15,6 +15,9 @@ class Team < ActiveRecord::Base
   #Validations
   validates_presence_of :division_id, :name, :organization_id
   validates_uniqueness_of :name, case_sensitive: false
+
+  #custom validations
+  validate :organization_is_active_in_system
   
   #Scopes
   scope :alphabetical, -> {order("name")}
@@ -27,12 +30,13 @@ class Team < ActiveRecord::Base
   #Methods
 
   private
+  #division currently does not have an active field
   # def division_is_active_in_system
   #   is_active_in_system(:division)
   # end
 
-  # def organization_is_active_in_system
-  #   is_active_in_system(:organization)
-  # end
+  def organization_is_active_in_system
+    is_active_in_system(:organization)
+  end
 
 end

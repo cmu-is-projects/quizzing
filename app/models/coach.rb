@@ -21,8 +21,8 @@ class Coach < ActiveRecord::Base
   #Scopes
   scope :alphabetical, -> {order("last_name","first_name")}
   
-  # #Callbacks
-  # before_destroy Proc.new {false}
+  #Callbacks
+  before_destroy Proc.new {false}
 
   # #Methods
 

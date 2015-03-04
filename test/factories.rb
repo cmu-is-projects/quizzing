@@ -104,7 +104,7 @@ FactoryGirl.define do
   	division_id 1
   	name "Team One"
   	active true
-  	organization_id 1  	
+  	association :organization 	
   	
   end
 

@@ -35,7 +35,8 @@ class QuizTest < ActiveSupport::TestCase
     	assert_equal [5], Quiz.inactive.all.map{|q| q.round_num}
     end
 
-    #need to ensure quiz can't be assigned to inactive division/event
+    #need to ensure quiz can't be assigned to past event
+    
 
 
   end # contexts
