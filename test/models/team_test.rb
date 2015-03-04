@@ -11,6 +11,7 @@ class TeamTest < ActiveSupport::TestCase
 
   #validations
   should validate_presence_of(:name)
+  should validate_uniqueness_of(:name).case_insensitive
   should validate_presence_of(:division_id)
   should validate_presence_of(:organization_id)
 
@@ -37,6 +38,8 @@ class TeamTest < ActiveSupport::TestCase
     should "show that team's alphabetical scope works correctly" do
       assert_equal ["Team Inactive", "Team One", "Team Two"], Team.alphabetical.all.map { |t| t.name }
     end
+
+    #ensure that team can't be assigned to inactive division and vice versa
 
   end #context
 

@@ -27,7 +27,7 @@ class QuizTest < ActiveSupport::TestCase
 
     should "Show that that quiz's active scope works" do
     	assert_equal 4, Quiz.active.size
-    	assert_equal [1,2,3,4,5], Quiz.active.all.map{|q| q.round_num}
+    	assert_equal [1,2,3,4], Quiz.active.all.map{|q| q.round_num}
     end
 
     should "show that quiz's inactive scope works" do

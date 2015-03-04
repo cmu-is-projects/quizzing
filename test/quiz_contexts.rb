@@ -10,12 +10,12 @@ module Contexts
       
     end
     
-    def destroy_quizzes
-      @quiz1.destroy
-      @quiz2.destroy
-      @quiz3.destroy
-      @quiz4.destroy
-      @quiz_inactive.destroy
+    def delete_quizzes
+      @quiz1.delete
+      @quiz2.delete
+      @quiz3.delete
+      @quiz4.delete
+      @quiz_inactive.delete
     end
   
   end
