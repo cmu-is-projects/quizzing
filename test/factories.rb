@@ -9,7 +9,7 @@ FactoryGirl.define do
   	first_name "Rob"
   	last_name "Stanton"
   	phone "0123456789"
-  	email nil
+  	email "coach@cma.org"
   	active true
   end
 

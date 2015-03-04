@@ -3,8 +3,8 @@ module Contexts
 
 		def create_coaches
 			@coach1 = FactoryGirl.create(:coach)
-			@coach2 = FactoryGirl.create(:coach, first_name: "Ted", last_name: "Stoe")
-			@coach_inactive = FactoryGirl.create(:coach, first_name: "Inactive", active: false)
+			@coach2 = FactoryGirl.create(:coach, first_name: "Ted", last_name: "Stoe", email: "tstoe@cma.org")
+			@coach_inactive = FactoryGirl.create(:coach, first_name: "Inactive", email: "inactive@cma.org", active: false)
 		end
 
 		def delete_coaches
