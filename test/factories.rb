@@ -32,12 +32,12 @@ FactoryGirl.define do
   end
 
   factory :organization do
-  	name "Org One"
+  	name "Organization One"
   	short_name "ACAC"	
   	street_1 "5000 Forbes Avenue"
   	street_2 nil
   	city "Pittsburgh"
-  	state "Pennsylvania"
+  	state "PA"
   	zip "15213"
   	latitude nil
   	longitude nil

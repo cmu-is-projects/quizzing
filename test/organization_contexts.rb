@@ -4,9 +4,9 @@ module Contexts
     def create_organizations
       @org1 = FactoryGirl.create(:organization)
       sleep 1
-      @org2 = FactoryGirl.create(:organization, name: "Org Two", primary_contact: 2)
+      @org2 = FactoryGirl.create(:organization, name: "Organization Two", primary_contact: 2)
       sleep 1
-      @org_inactive = FactoryGirl.create(:organization, name: "Org Inactive", active: false)
+      @org_inactive = FactoryGirl.create(:organization, name: "Organization Inactive", active: false)
       sleep 1
     end
     
