@@ -4,6 +4,7 @@ class EventTest < ActiveSupport::TestCase
 
   #VALIDATONS
   should have_many(:quizzes)
+  should belong_to(:organization)
   should validate_presence_of(:start_date)
   should validate_presence_of(:start_time)
   should validate_presence_of(:num_rounds)

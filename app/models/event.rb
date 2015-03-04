@@ -2,7 +2,8 @@ class Event < ActiveRecord::Base
 
   #Relationships
   has_many :quizzes
-
+  belongs_to :organization
+  
   #Validations
   validates_presence_of :start_date, :end_date, :start_time, :num_rounds
   validates_time :start_time
