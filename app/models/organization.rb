@@ -11,6 +11,7 @@ class Organization < ActiveRecord::Base
 
   #Validations
   validates_presence_of :name
+  validates_presence_of :primary_contact
 
   #Scopes
   scope :alphabetical, -> {order("name")}
@@ -20,7 +21,7 @@ class Organization < ActiveRecord::Base
   #Callbacks
   before_destroy Proc.new {false}
   before_save :find_coordinates
-  
+
   #Methods
   private
   def find_coordinates

@@ -10,6 +10,7 @@ class OrganizationTest < ActiveSupport::TestCase
 
   # Validations
   should validate_presence_of(:name)
+  should validate_presence_of(:primary_contact)
 
 
   include Contexts::OrganizationContexts
@@ -24,16 +25,16 @@ class OrganizationTest < ActiveSupport::TestCase
 
     should "Show that that organization's active scope works" do
     	assert_equal 2, Organization.active.size
-    	assert_equal ["Org One", "Org Two"], Organization.active.all.map{|a| a.name}
+    	assert_equal ["Org One", "Org Two"], Organization.active.all.map{|o| o.name}
     end
 
     should "show that organization's inactive scope works" do
     	assert_equal 1, Organization.inactive.size
-    	assert_equal ["Org Inactive"], Organization.inactive.all.map{|a| a.name}
+    	assert_equal ["Org Inactive"], Organization.inactive.all.map{|o| o.name}
     end
 
     should "show that organization's alphabetical scope works correctly" do
-    	assert_equal ["Org Inactive", "Org One", "Org Two"], Organization.alphabetical.all.map { |a| a.name }
+    	assert_equal ["Org Inactive", "Org One", "Org Two"], Organization.alphabetical.all.map { |o| o.name }
     end
 
     should "show that def find_coordinates works" do
