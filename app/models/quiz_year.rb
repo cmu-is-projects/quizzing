@@ -19,7 +19,7 @@ class QuizYear #refers to academic bible quizzing year
   def this_yr_events
     # return an array of all events scheduled for this academic bible quizzing year
     #untested
-    Event.map {|e| e.start_date >= @start_date && e.start_date <= @end_date}
+    Event.chronological.to_a.select{|e| e.start_date >= @start_date && e.start_date <= @end_date}
   end
 
   def completed_events
