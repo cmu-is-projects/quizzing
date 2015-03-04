@@ -24,6 +24,7 @@ class QuizYear #refers to academic bible quizzing year
 
   def completed_events
     # returns an array of events that essentially have scores associated with them
+  
   end
 
   private
