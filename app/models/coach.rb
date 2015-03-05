@@ -18,9 +18,13 @@ class Coach < ActiveRecord::Base
   validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, allow_nil: :false, message: "is not a valid format"
   validate :organization_is_active_in_system
   validate :user_is_active_in_system
+  # validate :primary_contact_is_active_in_system
 
   #Scopes
   scope :alphabetical, -> {order("last_name","first_name")}
+  scope :active, -> {where(active: true)}
+  scope :inactive, -> {where(active: false)}
+
   
   #Callbacks
   before_destroy Proc.new {false}

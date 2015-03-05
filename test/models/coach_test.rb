@@ -63,7 +63,17 @@ class CoachTest < ActiveSupport::TestCase
   	should "show that proper_name method works" do
   		assert_equal "Rob Stanton", @coach1.proper_name
   		assert_equal "Ted Stoe", @coach2.proper_name
-  	end  	  	
+  	end
+
+    should "Show that that coach's active scope works" do
+      assert_equal 2, Coach.active.size
+      assert_equal ["Rob", "Ted"], Coach.active.all.map{|c| c.first_name}.sort
+    end
+
+    should "show that team's inactive scope works" do
+      assert_equal 1, Coach.inactive.size
+      assert_equal ["Inactive"], Coach.inactive.all.map{|c| c.first_name}.sort
+    end
 
   	should "verify that the coach's organization is active in the system" do
       @inactive_organization = FactoryGirl.build(:organization, active: false)

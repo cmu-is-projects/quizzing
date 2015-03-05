@@ -44,9 +44,14 @@ class Organization < ActiveRecord::Base
     coords
   end
 
-  #unsure of how to do
   # def primary_contact_is_active_in_system
-  #   is_active_in_system(:)
+  #   if self.primary_contact not in Coach.active.all.map(&:id)
+  #     errors.add(:base, "The primary contact is not active in the system")
+  #     return false
+  #   else
+  #     return true
+  #   end # if else
   # end
 
-end
+
+end #class

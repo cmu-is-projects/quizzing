@@ -50,12 +50,12 @@ class OrganizationTest < ActiveSupport::TestCase
 
     should "Show that that organization's active scope works" do
     	assert_equal 2, Organization.active.size
-    	assert_equal ["Organization One", "Organization Two"], Organization.active.all.map{|o| o.name}
+    	assert_equal ["Organization One", "Organization Two"], Organization.active.all.map{|o| o.name}.sort
     end
 
     should "show that organization's inactive scope works" do
     	assert_equal 1, Organization.inactive.size
-    	assert_equal ["Organization Inactive"], Organization.inactive.all.map{|o| o.name}
+    	assert_equal ["Organization Inactive"], Organization.inactive.all.map{|o| o.name}.sort
     end
 
     should "show that organization's alphabetical scope works correctly" do

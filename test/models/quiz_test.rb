@@ -27,12 +27,12 @@ class QuizTest < ActiveSupport::TestCase
 
     should "Show that that quiz's active scope works" do
     	assert_equal 4, Quiz.active.size
-    	assert_equal [1,2,3,4], Quiz.active.all.map{|q| q.round_num}
+    	assert_equal [1,2,3,4], Quiz.active.all.map{|q| q.round_num}.sort
     end
 
     should "show that quiz's inactive scope works" do
     	assert_equal 1, Quiz.inactive.size
-    	assert_equal [5], Quiz.inactive.all.map{|q| q.round_num}
+    	assert_equal [5], Quiz.inactive.all.map{|q| q.round_num}.sort
     end
 
     #need to ensure quiz can't be assigned to past event

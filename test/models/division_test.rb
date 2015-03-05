@@ -10,7 +10,6 @@ class DivisionTest < ActiveSupport::TestCase
   should validate_uniqueness_of(:name).case_insensitive
 
   #set up a context
-  include Contexts::DivisionContexts
   context "Creating a Division context" do
     
     setup do

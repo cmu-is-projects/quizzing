@@ -30,12 +30,12 @@ class TeamTest < ActiveSupport::TestCase
 
     should "Show that that team's active scope works" do
       assert_equal 2, Team.active.size
-      assert_equal ["Team One", "Team Two"], Team.active.all.map{|t| t.name}
+      assert_equal ["Team One", "Team Two"], Team.active.all.map{|t| t.name}.sort
     end
 
     should "show that team's inactive scope works" do
       assert_equal 1, Team.inactive.size
-      assert_equal ["Team Inactive"], Team.inactive.all.map{|t| t.name}
+      assert_equal ["Team Inactive"], Team.inactive.all.map{|t| t.name}.sort
     end
 
     should "show that team's alphabetical scope works correctly" do
