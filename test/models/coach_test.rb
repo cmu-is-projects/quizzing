@@ -42,7 +42,7 @@ class CoachTest < ActiveSupport::TestCase
   	setup do
       create_users
       create_organizations
-  		create_coaches
+      create_coaches
   	end
 
   	teardown do
@@ -67,10 +67,19 @@ class CoachTest < ActiveSupport::TestCase
 
   	should "verify that the coach's organization is active in the system" do
       @inactive_organization = FactoryGirl.build(:organization, active: false)
-  		bad_coach = FactoryGirl.build(:coach, organization: @inactive_organization, user: @user_1)
+  		bad_coach = FactoryGirl.build(:coach, organization: @inactive_organization, user: @user1)
   		deny bad_coach.valid?
       @inactive_organization.delete
   	end
+
+    should "verify that the coach's user is active in the system" do
+      @inactive_user = FactoryGirl.build(:user, active: false)
+      bad_coach = FactoryGirl.build(:coach, organization: @organization1, user: @inactive_user)
+      deny bad_coach.valid?
+      @inactive_user.delete
+    end
+
+
   
   end #contexts
 end #class
