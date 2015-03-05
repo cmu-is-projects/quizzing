@@ -5,7 +5,7 @@ FactoryGirl.define do
 
   factory :coach do
     association :user
-    # association :organization
+    association :organization
   	first_name "Rob"
   	last_name "Stanton"
   	phone "0123456789"

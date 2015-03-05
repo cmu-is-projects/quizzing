@@ -42,14 +42,12 @@ class TeamTest < ActiveSupport::TestCase
       assert_equal ["Team Inactive", "Team One", "Team Two"], Team.alphabetical.all.map { |t| t.name }
     end
 
-    should "verify that the team's organization is active in the system" do
-      @inactive_organization = FactoryGirl.build(:organization, active: false)
-      @active_division = FactoryGirl.build(:division, name: "Generic Division")
-      invalid_team = FactoryGirl.build(:team, organization: @inactive_organization, division: @active_division)
-      deny invalid_team.valid?
-      @inactive_organization.delete
-      @active_division.delete
-    end
+    # should "verify that the team's organization is active in the system" do
+    #   inactive_organization = FactoryGirl.build(:organization, active: false)
+    #   division = FactoryGirl.build(:division, name: "Generic Division")
+    #   invalid_team = FactoryGirl.build(:team, organization: @inactive_organization, division: @division)
+    #   deny invalid_team.valid?
+    # end
 
 
   end #context

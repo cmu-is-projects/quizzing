@@ -2,9 +2,9 @@ module Contexts
 	module CoachContexts
 
 		def create_coaches
-			@coach1 = FactoryGirl.create(:coach)
-			@coach2 = FactoryGirl.create(:coach, first_name: "Ted", last_name: "Stoe", email: "tstoe@cma.org")
-			@coach_inactive = FactoryGirl.create(:coach, first_name: "Inactive", email: "inactive@cma.org", active: false)
+			@coach1 = FactoryGirl.create(:coach, organization: @organization_1, user: @user1)
+			@coach2 = FactoryGirl.create(:coach, organization: @organization_2, user: @user2, first_name: "Ted", last_name: "Stoe", email: "tstoe@cma.org")
+			@coach_inactive = FactoryGirl.create(:coach, organization: @organization_1, user: @user1, first_name: "Inactive", email: "inactive@cma.org", active: false)
 		end
 
 		def delete_coaches

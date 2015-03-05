@@ -38,14 +38,17 @@ class CoachTest < ActiveSupport::TestCase
   should_not allow_value("412-2683-259").for(:phone)
 
   #set up context
-  include Contexts::CoachContexts
   context "Creating a Coach context" do
   	setup do
+      create_users
+      create_organizations
   		create_coaches
   	end
 
   	teardown do
   		delete_coaches
+      delete_users
+      delete_organizations
   	end
 
   	should "verify that the alphabetical scope works" do
@@ -63,10 +66,9 @@ class CoachTest < ActiveSupport::TestCase
   	end  	  	
 
   	# should "verify that the coach's organization is active in the system" do
-  	# 	@inactive_organization = FactoryGirl.create(:organization, active: false)
-  	# 	bad_coach = FactoryGirl.build(:coach, organization: @inactive_organization)
+  	# 	bad_coach = FactoryGirl.build(:coach, organization: @organization_inactive, user: @user_1)
   	# 	deny bad_coach.valid?
-  	# 	@inactive_organization.delete
   	# end
-end
-end
+  
+  end #contexts
+end #class

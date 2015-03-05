@@ -10,7 +10,7 @@ module Contexts
     def delete_teams
       @team1.delete unless @team1.nil?
       @team2.delete unless @team2.nil?
-      delete_organizations
+      @team3.delete unless @team3.nil?
     end
     
   end

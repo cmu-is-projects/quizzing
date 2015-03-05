@@ -6,7 +6,7 @@ module Contexts
       sleep 1
       @organization2 = FactoryGirl.create(:organization, name: "Organization Two", primary_contact: 2)
       sleep 1
-      @organization_inactive = FactoryGirl.create(:organization, name: "Organization Inactive", active: false)
+      @organization_inactive = FactoryGirl.create(:organization, name: "Organization Inactive", primary_contact: 3, active: false)
       sleep 1
     end
     

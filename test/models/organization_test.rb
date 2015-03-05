@@ -39,7 +39,6 @@ class OrganizationTest < ActiveSupport::TestCase
   should_not allow_value("bad").for(:primary_contact)
 
 
-  include Contexts::OrganizationContexts
   context "Creating an organization context" do
     setup do 
       create_organizations
@@ -67,6 +66,14 @@ class OrganizationTest < ActiveSupport::TestCase
       assert_in_delta(40.4411659, @organization1.latitude, 0.00001)
       assert_in_delta(-79.9421425, @organization1.longitude, 0.00001)
     end
+
+    #unsure of if need and how to actually code
+    # should "verify that an organization's primary_contact is active in the system" do
+    #   @inactive_contact = FactoryGirl.create(:coach, organization: @organization1, user: @user1, active: false)
+    #   invalid_organization = FactoryGirl.build(:organization, primary_contact: @inactive_contact.id)
+    #   deny invalid_team.valid?
+    #   @inactive_contact.delete
+    # end
 
   end # contexts
 end
