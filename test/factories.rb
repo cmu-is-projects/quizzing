@@ -5,11 +5,11 @@ FactoryGirl.define do
 
   factory :coach do
     association :user
-    # association :organization
+    association :organization
   	first_name "Rob"
   	last_name "Stanton"
   	phone "0123456789"
-  	email nil
+  	email "coach@cma.org"
   	active true
   end
 
@@ -32,12 +32,12 @@ FactoryGirl.define do
   end
 
   factory :organization do
-  	name "Org One"
+  	name "Organization One"
   	short_name "ACAC"	
   	street_1 "5000 Forbes Avenue"
   	street_2 nil
   	city "Pittsburgh"
-  	state "Pennsylvania"
+  	state "PA"
   	zip "15213"
   	latitude nil
   	longitude nil
@@ -104,8 +104,8 @@ FactoryGirl.define do
   	division_id 1
   	name "Team One"
   	active true
-  	organization_id 1  	
-  	
+  	association :organization 	
+  	association :division
   end
 
   factory :user do

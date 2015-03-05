@@ -6,7 +6,7 @@ class Division < ActiveRecord::Base
 
   # Validations
   validates_presence_of :name
-  validates :name, uniqueness: true
+  validates_uniqueness_of :name, case_sensitive: false
 
   #Scopes
   scope :alphabetical, -> {order("name")}

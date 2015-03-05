@@ -13,22 +13,27 @@ class Team < ActiveRecord::Base
   has_many :coaches, through: :team_coaches
 
   #Validations
-  # validates_presence_of :division_id, :name
+  validates_presence_of :division_id, :name, :organization_id
+  validates_uniqueness_of :name, case_sensitive: false
+
+  #custom validations
+  validate :organization_is_active_in_system
   
-  # #Scopes
-  # scope :alphabetical, -> {order("name")}
-  # scope :active, -> {where(active: true)}
-  # scope :inactive, -> {where(active: false)}
+  #Scopes
+  scope :alphabetical, -> {order("name")}
+  scope :active, -> {where(active: true)}
+  scope :inactive, -> {where(active: false)}
 
-  # #Callbacks
-  # before_destroy Proc.new {false}
+  #Callbacks
+  before_destroy Proc.new {false}
 
-  # #Methods
+  #Methods
 
   private
-  def division_is_active_in_system
-    is_active_in_system(:division)
-  end
+  #division currently does not have an active field
+  # def division_is_active_in_system
+  #   is_active_in_system(:division)
+  # end
 
   def organization_is_active_in_system
     is_active_in_system(:organization)

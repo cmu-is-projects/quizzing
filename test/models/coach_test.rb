@@ -12,6 +12,7 @@ class CoachTest < ActiveSupport::TestCase
   should validate_presence_of(:user_id)
   should validate_presence_of(:first_name)
   should validate_presence_of(:last_name)
+  should validate_presence_of(:email)
 
   should allow_value("fred@fred.com").for(:email)
   should allow_value("fred@andrew.cmu.edu").for(:email)
@@ -37,14 +38,17 @@ class CoachTest < ActiveSupport::TestCase
   should_not allow_value("412-2683-259").for(:phone)
 
   #set up context
-  include Contexts::CoachContexts
   context "Creating a Coach context" do
   	setup do
-  		create_coaches
+      create_users
+      create_organizations
+      create_coaches
   	end
 
   	teardown do
   		delete_coaches
+      delete_users
+      delete_organizations
   	end
 
   	should "verify that the alphabetical scope works" do
@@ -61,11 +65,21 @@ class CoachTest < ActiveSupport::TestCase
   		assert_equal "Ted Stoe", @coach2.proper_name
   	end  	  	
 
-  	# should "verify that the coach's organization is active in the system" do
-  	# 	@inactive_organization = FactoryGirl.create(:organization, active: false)
-  	# 	bad_coach = FactoryGirl.build(:coach, organization: @inactive_organization)
-  	# 	deny bad_coach.valid?
-  	# 	@inactive_organization.delete
-  	# end
-end
-end
+  	should "verify that the coach's organization is active in the system" do
+      @inactive_organization = FactoryGirl.build(:organization, active: false)
+  		bad_coach = FactoryGirl.build(:coach, organization: @inactive_organization, user: @user1)
+  		deny bad_coach.valid?
+      @inactive_organization.delete
+  	end
+
+    should "verify that the coach's user is active in the system" do
+      @inactive_user = FactoryGirl.build(:user, active: false)
+      bad_coach = FactoryGirl.build(:coach, organization: @organization1, user: @inactive_user)
+      deny bad_coach.valid?
+      @inactive_user.delete
+    end
+
+
+  
+  end #contexts
+end #class
