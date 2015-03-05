@@ -11,7 +11,7 @@ class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
   # Add more helper methods to be used by all tests here...
   # start by including the Contexts module
-  # include Contexts
+  include Contexts
 
   def deny(condition, msg="")
     # a simple transformation to increase readability IMO
