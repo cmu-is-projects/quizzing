@@ -64,8 +64,8 @@ class OrganizationTest < ActiveSupport::TestCase
     end
 
     should "show that def find_coordinates works" do
-      assert_in_delta(40.4411659, @org1.latitude, 0.00001)
-      assert_in_delta(-79.9421425, @org1.longitude, 0.00001)
+      assert_in_delta(40.4411659, @organization1.latitude, 0.00001)
+      assert_in_delta(-79.9421425, @organization1.longitude, 0.00001)
     end
 
   end # contexts

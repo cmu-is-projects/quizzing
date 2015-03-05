@@ -15,14 +15,17 @@ class TeamTest < ActiveSupport::TestCase
   should validate_presence_of(:division_id)
   should validate_presence_of(:organization_id)
 
-  include Contexts::TeamContexts
   context "Creating a team context" do
-    setup do 
+    setup do
+      create_organizations
+      create_divisions
       create_teams
     end
     
     teardown do
       delete_teams
+      delete_organizations
+      delete_divisions
     end
 
     should "Show that that team's active scope works" do
@@ -40,10 +43,12 @@ class TeamTest < ActiveSupport::TestCase
     end
 
     should "verify that the team's organization is active in the system" do
-      @inactive_organization = FactoryGirl.create(:organization, active: false)
-      invalid_team = FactoryGirl.build(:team, organization: @inactive_organization)
+      @inactive_organization = FactoryGirl.build(:organization, active: false)
+      @active_division = FactoryGirl.build(:division, name: "Generic Division")
+      invalid_team = FactoryGirl.build(:team, organization: @inactive_organization, division: @active_division)
       deny invalid_team.valid?
       @inactive_organization.delete
+      @active_division.delete
     end
 
 

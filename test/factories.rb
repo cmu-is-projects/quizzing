@@ -105,7 +105,7 @@ FactoryGirl.define do
   	name "Team One"
   	active true
   	association :organization 	
-  	
+  	association :division
   end
 
   factory :user do

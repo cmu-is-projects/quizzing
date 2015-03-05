@@ -10,11 +10,12 @@ require './test/event_contexts'
 module Contexts
   # explicitly include all sets of contexts used for testing 
   include Contexts::UserContexts
-  include Contexts::DivisionContexts
   include Contexts::StudentContexts
   include Contexts::OrganizationContexts
-  include Contexts::QuizContexts
+  include Contexts::EventContexts
+  include Contexts::DivisionContexts
   include Contexts::TeamContexts
   include Contexts::CoachContexts
-  include Contexts::EventContexts
+  include Contexts::QuizContexts
+  
 end
