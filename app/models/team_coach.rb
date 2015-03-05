@@ -5,6 +5,9 @@ class TeamCoach < ActiveRecord::Base
   belongs_to :team
   belongs_to :coach
 
+  validate :coach_is_active_in_system
+  validate :team_is_active_in_system
+
   private
   def coach_is_active_in_system
     is_active_in_system(:coach)

@@ -8,9 +8,9 @@ module Contexts
     end
 
     def delete_divisions
-      @div1.delete
-      @div2.delete
-      @div3.delete
+      @div1.delete unless @div1.nil?
+      @div2.delete unless @div2.nil?
+      @div3.delete unless @div3.nil?
     end
 
   end
