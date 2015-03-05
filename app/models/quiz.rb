@@ -22,6 +22,7 @@ class Quiz < ActiveRecord::Base
   before_destroy Proc.new {false}
 
   #need method to ensure uniqueness of event, division, round uniqueness
+  #need to ensure quiz can't be assigned to past event
 
   #Methods
 

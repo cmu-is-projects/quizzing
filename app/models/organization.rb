@@ -45,7 +45,7 @@ class Organization < ActiveRecord::Base
   end
 
   # def primary_contact_is_active_in_system
-  #   if self.primary_contact not in Coach.active.all.map(&:id)
+  #   if not Coach.active.all.map(&:id).include?(self.primary_contact)
   #     errors.add(:base, "The primary contact is not active in the system")
   #     return false
   #   else

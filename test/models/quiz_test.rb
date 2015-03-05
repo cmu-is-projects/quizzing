@@ -36,6 +36,9 @@ class QuizTest < ActiveSupport::TestCase
     end
 
     #need to ensure quiz can't be assigned to past event
+    #test scope by_round
+    #need method to ensure uniqueness of event, division, round uniqueness
+    #ensure event and division are active in system
     
 
 
