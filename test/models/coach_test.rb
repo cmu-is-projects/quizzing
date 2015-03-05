@@ -65,10 +65,12 @@ class CoachTest < ActiveSupport::TestCase
   		assert_equal "Ted Stoe", @coach2.proper_name
   	end  	  	
 
-  	# should "verify that the coach's organization is active in the system" do
-  	# 	bad_coach = FactoryGirl.build(:coach, organization: @organization_inactive, user: @user_1)
-  	# 	deny bad_coach.valid?
-  	# end
+  	should "verify that the coach's organization is active in the system" do
+      @inactive_organization = FactoryGirl.build(:organization, active: false)
+  		bad_coach = FactoryGirl.build(:coach, organization: @inactive_organization, user: @user_1)
+  		deny bad_coach.valid?
+      @inactive_organization.delete
+  	end
   
   end #contexts
 end #class
