@@ -18,7 +18,7 @@ class QuizTest < ActiveSupport::TestCase
   include Contexts::QuizContexts
   context "Creating an quiz context" do
     setup do
-      #create_categories
+      create_categories
       create_divisions
       create_organizations
       create_events
@@ -26,7 +26,7 @@ class QuizTest < ActiveSupport::TestCase
     end
     
     teardown do
-      #delete_categories
+      delete_categories
       delete_quizzes
       delete_events
       delete_organizations
@@ -45,14 +45,18 @@ class QuizTest < ActiveSupport::TestCase
 
     should "show that quiz can't be assigned to past event" do
       @past_event = FactoryGirl.build(:event, start_time: Time.now, start_date: Date.tomorrow, end_date: Date.tomorrow, num_rounds: 2)
-      bad_quiz = FactoryGirl.build(:quiz, division: @division1, event: @past_event)
+      bad_quiz = FactoryGirl.build(:quiz, division: @division1, event: @past_event, category: @category1)
       deny bad_quiz.valid?
     end
 
 
     #test scope by_round
     #need method to ensure uniqueness of event, division, round uniqueness
-    #ensure event and division are active in system
+    
+    #ensure division is active in system
+    # should "ensure that division is active in system" do 
+    # @bad_quiz = FactoryGirl.build(:quiz)
+    # end
     
 
 
