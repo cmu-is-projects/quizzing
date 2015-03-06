@@ -38,12 +38,5 @@ class QuizYearTest < ActiveSupport::TestCase
       # should have at least 1 in the context
     	assert_equal 3, yr.this_yr_events.size
     end
-
-    #unable to test this
-    #should "shows that there are three events for this academic quizzing year" do
-    	#@quizyr = FactoryGirl.create(:quizyear)
-    	#assert_equal 3, QuizYear.this_yr_events.size
-    #end
-
   end
 end
