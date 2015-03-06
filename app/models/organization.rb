@@ -19,10 +19,6 @@ class Organization < ActiveRecord::Base
   #discern allow_blank for below after connecting it with street_1
   validates :zip, format: { with: /\A\d{5}\z/, message: "should be five digits long", allow_blank: true }
 
-  #custom validations
-  #not sure if need
-  # validate :primary_contact_is_active_in_system
-
   #Scopes
   scope :alphabetical, -> {order("name")}
   scope :active, -> {where(active: true)}

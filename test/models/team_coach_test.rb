@@ -23,8 +23,8 @@ class TeamCoachTest < ActiveSupport::TestCase
   	end
 
   	should "verify that coach is active in the system" do
-  		bad_coach = FactoryGirl.build(:team_coach, coach: @coach_inactive, team: @team1)
-  		deny bad_coach.valid?
+  		bad_team_coach = FactoryGirl.build(:team_coach, coach: @coach_inactive, team: @team1)
+  		deny bad_team_coach.valid?, "#{bad_team_coach.to_yaml}"
   	end
 
   	should "verify that team is active in the system" do
