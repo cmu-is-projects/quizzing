@@ -55,8 +55,8 @@ FactoryGirl.define do
   end
 
   factory :quiz do
-  	division_id 1
-  	event_id 1
+  	association :division
+  	association :event
   	room_num nil
   	round_num 1
   	active true
