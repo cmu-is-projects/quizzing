@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  def index
+  def home
   	# all events for right now
   	@events = Event.all 
     @upcoming_events = Event.upcoming.chronological.to_a
