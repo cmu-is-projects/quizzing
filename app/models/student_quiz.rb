@@ -5,6 +5,9 @@ class StudentQuiz < ActiveRecord::Base
   belongs_to :student
   belongs_to :quiz
 
+  validate :student_is_active_in_system
+  validate :quiz_is_active_in_system
+
   private
   def student_is_active_in_system
     is_active_in_system(:student)

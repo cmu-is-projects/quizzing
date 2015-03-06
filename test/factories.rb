@@ -73,7 +73,7 @@ FactoryGirl.define do
   	association :student
   	association :quiz
   	num_correct nil
-  	num_answered nil
+  	num_attempts nil
   	num_fouls nil
   end
 
