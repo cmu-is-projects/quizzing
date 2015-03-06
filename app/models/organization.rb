@@ -20,9 +20,7 @@ class Organization < ActiveRecord::Base
   validates :zip, format: { with: /\A\d{5}\z/, message: "should be five digits long", allow_blank: true }
 
   #custom validations
-  #not sure if need
-  # validate :primary_contact_is_active_in_system
-
+  
   #Scopes
   scope :alphabetical, -> {order("name")}
   scope :active, -> {where(active: true)}
@@ -43,15 +41,6 @@ class Organization < ActiveRecord::Base
     self.longitude = coords[1]
     coords
   end
-
-  # def primary_contact_is_active_in_system
-  #   if not Coach.active.all.map(&:id).include?(self.primary_contact)
-  #     errors.add(:base, "The primary contact is not active in the system")
-  #     return false
-  #   else
-  #     return true
-  #   end # if else
-  # end
 
 
 end #class

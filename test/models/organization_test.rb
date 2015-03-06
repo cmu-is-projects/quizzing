@@ -67,13 +67,5 @@ class OrganizationTest < ActiveSupport::TestCase
       assert_in_delta(-79.9421425, @organization1.longitude, 0.00001)
     end
 
-    #unsure of if need and how to actually code
-    # should "verify that an organization's primary_contact is active in the system" do
-    #   @inactive_contact = FactoryGirl.create(:coach, organization: @organization1, user: @user1, active: false)
-    #   invalid_organization = FactoryGirl.build(:organization, primary_contact: @inactive_contact.id)
-    #   deny invalid_team.valid?
-    #   @inactive_contact.delete
-    # end
-
   end # contexts
 end

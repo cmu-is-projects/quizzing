@@ -36,7 +36,6 @@ class EventTest < ActiveSupport::TestCase
   should_not allow_value(3.14159).for(:num_rounds)
 
   #set up context
-  include Contexts::EventContexts
   context "Creating an Event context" do
     setup do
       create_events
