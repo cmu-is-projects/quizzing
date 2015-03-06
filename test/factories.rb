@@ -15,6 +15,7 @@ FactoryGirl.define do
 
   factory :division do
   	name "Senior A"
+    active true
   end
 
   factory :event do
