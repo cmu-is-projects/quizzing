@@ -3,9 +3,12 @@ module Contexts
 
   	def create_events
   		@event1 = FactoryGirl.create(:event)
-  		@event2 = FactoryGirl.create(:event, start_date: Date.new(2016,5,5), end_date: Date.new(2016,5,5))
-  		@event3 = FactoryGirl.create(:event, start_date: Date.new(2015,7,31), end_date: Date.new(2015,7,31))
-      @event4 = FactoryGirl.create(:event, start_date: Date.new(2016,8,1), end_date: Date.new(2016,8,1))
+  		@event2 = FactoryGirl.create(:event, start_date: 1.year.from_now.to_date, end_date: 1.year.from_now.to_date)
+  		@event3 = FactoryGirl.create(:event, start_date: 2.weeks.from_now.to_date, end_date: 2.weeks.from_now.to_date)
+      @event3.update_attribute(start_date: 2.weeks.ago.to_date) 
+      @event3.update_attribute(end_date: 2.weeks.ago.to_date)
+      @event4 = FactoryGirl.create(:event, start_date: Date.new(Date.today.year,8,1), end_date: Date.new(Date.today.year,8,1))
+      @event5 = FactoryGirl.create(:event)
   	end
 
   	def delete_events

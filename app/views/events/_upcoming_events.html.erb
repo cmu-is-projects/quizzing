@@ -1,0 +1,23 @@
+<h1>Upcoming events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Start time</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @upcoming_events.each do |event| %>
+      <tr>
+        <td><%= event.start_date %></td>
+        <td><%= event.end_date %></td>
+        <td><%= event.start_time %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
