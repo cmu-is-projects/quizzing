@@ -6,7 +6,8 @@ module Contexts
       sleep 1
       @organization2 = FactoryGirl.create(:organization, name: "Organization Two", primary_contact: 1)
       sleep 1
-      @organization_inactive = FactoryGirl.create(:organization, name: "Organization Inactive", primary_contact: 1, active: false)
+      #I think coach of id 3 (primary contact for next organization) should be inactive
+      @organization_inactive = FactoryGirl.create(:organization, name: "Organization Inactive", primary_contact: 3, active: false)
       sleep 1
     end
     
