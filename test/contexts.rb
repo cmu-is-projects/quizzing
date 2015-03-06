@@ -6,7 +6,7 @@ require './test/quiz_contexts'
 require './test/team_contexts'
 require './test/coach_contexts'
 require './test/event_contexts'
-require '.test/category_contexts'
+require './test/category_contexts'
 
 module Contexts
   # explicitly include all sets of contexts used for testing 
