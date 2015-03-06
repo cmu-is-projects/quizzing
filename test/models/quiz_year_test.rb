@@ -27,24 +27,16 @@ class QuizYearTest < ActiveSupport::TestCase
       deny old_year.include?(Date.new(2010,10,1))
     end
 
-    should "show that there are zero past event in total" do
-    	yr = QuizYear.new
-      #should have at least 1 in the context
-      
-      assert_equal 2, yr.completed_events.size
-    end
-
-    should "show that there are four upcoming events in total" do
-    	yr = QuizYear.new
+    should "show that there are two past event in total" do
+      yr = QuizYear.new
       # should have at least 1 in the context
-      assert_equal 3, yr.this_yr_events.size
+    	assert_equal 2, yr.completed_events.size
     end
 
-    #unable to test this
-    #should "shows that there are three events for this academic quizzing year" do
-    	#@quizyr = FactoryGirl.create(:quizyear)
-    	#assert_equal 3, QuizYear.this_yr_events.size
-    #end
-
+    should "show that there are two events in total" do
+      yr = QuizYear.new
+      # should have at least 1 in the context
+    	assert_equal 3, yr.this_yr_events.size
+    end
   end
 end

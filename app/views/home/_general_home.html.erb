@@ -3,14 +3,10 @@
   <div class="small-7 columns">
   	<!-- Welcome message for general public -->
     <%= render partial: 'welcome_general' %>
-    <!-- locals: {events: @upcoming_events } --> 
     <br />
+
     <!-- Upcoming Events Partial -->
-    <!-- Broken partial right now -->
-    <%#= render partial: 'events/events'%> 
-    <div class="panel clearfix">
-    <%= render :partial => "events/upcoming_events" %>
-    </div>   
+    <%= render partial: 'events/upcoming_events', locals: {upcoming_events: upcoming_events} %>    
   </div>
 
   <div class="small-1 columns">
