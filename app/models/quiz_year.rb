@@ -1,6 +1,6 @@
 class QuizYear #refers to academic bible quizzing year
   def initialize(start_year=nil,end_year=nil)
-    if start_date.nil? && end_date.nil? 
+    if start_year.nil? && end_year.nil? 
       find_default_dates 
     else
       end_year ||= start_year + 1
@@ -18,14 +18,12 @@ class QuizYear #refers to academic bible quizzing year
 
   def this_yr_events
     # return an array of all events scheduled for this academic bible quizzing year
-    #untested
-    Event.chronological.to_a.select{|e| e.start_date >= @start_date && e.start_date <= @end_date}
+    Event.all.select {|e| e.start_date >= @start_date && e.start_date <= @end_date}
   end
 
   def completed_events
     # returns an array of events that essentially have scores associated with them
-  
-  end
+    Event.all.select {|e| e.start_date >= @start_date && e.start_date <= Date.today}
 
   private
   def find_default_dates
