@@ -46,7 +46,7 @@ class QuizTest < ActiveSupport::TestCase
     #need to ensure quiz can't be assigned to past event
     should "show that quiz can't be assigned to past event" do
       @past_event = FactoryGirl.build(:event, start_time: Time.now, start_date: Date.tomorrow, end_date: Date.tomorrow, num_rounds: 2)
-      bad_quiz = FactoryGirl.build(:quiz, division: @div1, event: @past_event)
+      bad_quiz = FactoryGirl.build(:quiz, division: @division1, event: @past_event)
       deny bad_quiz.valid?
     end
 
