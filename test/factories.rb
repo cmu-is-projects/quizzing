@@ -55,9 +55,9 @@ FactoryGirl.define do
   end
 
   factory :quiz do
-  	division_id 1
-  	event_id 1
-  	room_num nil
+  	association :division
+  	association :event
+  	room_num 1
   	round_num 1
   	active true
   end
@@ -73,7 +73,7 @@ FactoryGirl.define do
   	association :student
   	association :quiz
   	num_correct nil
-  	num_answered nil
+  	num_attempts nil
   	num_fouls nil
   end
 
