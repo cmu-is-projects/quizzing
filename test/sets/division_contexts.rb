@@ -1,17 +1,28 @@
 module Contexts
   module DivisionContexts
     
+    # used for setting up other contexts 
+    def create_one_division
+      @senior_a = FactoryGirl.create(:division)
+    end
+
+    def delete_one_division
+      @senior_a.delete
+    end
+    
     def create_divisions
-      @div1 = FactoryGirl.create(:division)
-      @div2 = FactoryGirl.create(:division, name: "Senior B")
-      @div3 = FactoryGirl.create(:division, name: "Junior")
+      create_one_division
+      @senior_b = FactoryGirl.create(:division, name: "Senior B", active: false)
+      @junior   = FactoryGirl.create(:division, name: "Junior", start_grade: 3, end_grade: 6)
     end
 
     def delete_divisions
-      @div1.delete
-      @div2.delete
-      @div3.delete
+      delete_one_division
+      @senior_b.delete
+      @junior.delete
     end
+
+
 
   end
 end

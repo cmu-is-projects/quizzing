@@ -1,14 +1,17 @@
 require 'test_helper'
 
 class EventQuizzerTest < ActiveSupport::TestCase
-  include Contexts::EventQuizzerContexts
   context "Creating a context" do
     setup do
-      build_context
+      create_one_event
+      create_one_division
+      # build_context
     end
 
     teardown do
-      destroy_context
+      delete_one_event
+      delete_one_division
+      # destroy_context
     end
 
     

@@ -6,7 +6,7 @@ class CreateSettings < ActiveRecord::Migration
       t.boolean :roster_lock_toggle
       t.boolean :auto_promote_students
 
-      t.timestamps
+      # t.timestamps
     end
   end
 end

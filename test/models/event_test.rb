@@ -2,8 +2,11 @@ require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
 
-  #VALIDATONS
+  # Relationships
   should have_many(:quizzes)
+  should belong_to(:organization)
+
+  #VALIDATONS
   should validate_presence_of(:start_date)
   should validate_presence_of(:start_time)
   should validate_presence_of(:num_rounds)
@@ -35,25 +38,41 @@ class EventTest < ActiveSupport::TestCase
   should_not allow_value(3.14159).for(:num_rounds)
 
   #set up context
-  include Contexts::EventContexts
   context "Creating an Event context" do
     setup do
+      create_one_organization
       create_events
     end
 
     teardown do
+      delete_one_organization
       delete_events
     end
 
-    should "shows that there are three events in chronological order" do
-      assert_equal ["#{Date.today.strftime("%b %d")}", "Jun 06", "May 05"], Event.chronological.all.map{|e| "#{e.start_date.strftime("%b %d")}"}
+    should "shows that there are four events in chronological order" do
+      assert_equal ["#{2.weeks.ago.to_date.strftime("%b %d")}", "#{Date.today.strftime("%b %d")}", "#{4.weeks.from_now.to_date.strftime("%b %d")}", "#{1.year.from_now.to_date.strftime("%b %d")}"], Event.chronological.all.map{|e| "#{e.start_date.strftime("%b %d")}"}
     end
 
-    should "shows that there are 2 upcoming events and 1 past event" do
-      @event3.update_attribute(:start_date, 7.days.ago.to_date) # update_attribute will bypass validation
-      @event3.update_attribute(:end_date, 2.days.ago.to_date)
-      assert_equal 2, Event.upcoming.size
+    should "shows that there are 3 upcoming events and 1 past events" do
+      assert_equal 3, Event.upcoming.size
       assert_equal 1, Event.past.size
+    end
+
+    should "verify that the organization is active in the system" do
+      # test the inactive organization first
+      grove_city = FactoryGirl.create(:organization, name: "Grove City Church", short_name: "Grove City", active: false)
+      bad_event = FactoryGirl.build(:event, organization: grove_city)
+      deny bad_event.valid?
+      grove_city.delete
+      # test the nonexistent organization
+      grove_city = FactoryGirl.build(:organization, name: "Grove City Church", short_name: "Grove City", active: true)
+      bad_event = FactoryGirl.build(:event, organization: grove_city)
+      deny bad_event.valid?
+    end 
+
+    should "not allow end dates that precede start dates" do
+      @event.end_date = 3.weeks.ago.to_date
+      deny @event.valid?
     end
   end
 end

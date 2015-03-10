@@ -1,6 +1,7 @@
 class Team < ActiveRecord::Base
-  # get module to help with some functionality
+  # get modules to help with some functionality
   include QuizHelpers::Validations
+  include Activeable
 
   #Relationships
   belongs_to :organization
@@ -13,17 +14,26 @@ class Team < ActiveRecord::Base
   has_many :coaches, through: :team_coaches
 
   #Validations
-  # validates_presence_of :division_id, :name
+  validates_presence_of :division_id, :organization_id, :name
+  validate :division_is_active_in_system
+  validate :organization_is_active_in_system
   
-  # #Scopes
-  # scope :alphabetical, -> {order("name")}
-  # scope :active, -> {where(active: true)}
-  # scope :inactive, -> {where(active: false)}
+  # Scopes
+  scope :alphabetical, -> {order("name")}
 
-  # #Callbacks
-  # before_destroy Proc.new {false}
+  # Callbacks
+  before_destroy :verify_that_there_are_no_scored_quizzes_for_team_this_year
 
-  # #Methods
+  # Methods
+  def scored_quizzes_this_year
+    quizzes = Array.new
+    scored_events = QuizYear.new.completed_events
+    scored_events.each do |event|
+      tmp = event.quizzes.select{|q| q.teams.include?(self)}
+      quizzes << tmp
+    end
+    quizzes.flatten!
+  end
 
   private
   def division_is_active_in_system
@@ -32,6 +42,14 @@ class Team < ActiveRecord::Base
 
   def organization_is_active_in_system
     is_active_in_system(:organization)
+  end
+
+  def verify_that_there_are_no_scored_quizzes_for_team_this_year
+    unless self.scored_quizzes_this_year.empty?
+      errors.add(:base, "Team cannot be deleted because it has participated in scored quizzes.")
+      return false
+    end
+    return true
   end
 
 end

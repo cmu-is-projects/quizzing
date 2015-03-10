@@ -1,11 +1,19 @@
 class StudentTeam < ActiveRecord::Base
-  # get module to help with some functionality
+  # get modules to help with some functionality
   include QuizHelpers::Validations
+  include Activeable
 
   belongs_to :student
   belongs_to :team
 
-  scope :is_captain, -> {where(captain: true)}
+  scope :is_captain, -> { where(is_captain: true) }
+  scope :current, -> { where(end_date: nil) }
+
+  validates_presence_of :student_id, :team_id
+  validate :student_is_active_in_system
+  validate :team_is_active_in_system
+
+  before_create :remove_student_from_previous_team_assignment
 
   private
   def student_is_active_in_system
@@ -14,5 +22,13 @@ class StudentTeam < ActiveRecord::Base
 
   def team_is_active_in_system
     is_active_in_system(:team)
+  end
+
+  def remove_student_from_previous_team_assignment
+    previous_assignment = self.student.student_teams.where(end_date: nil).first
+    return true if previous_assignment.nil?
+    previous_assignment.end_date = Date.today
+    previous_assignment.save!
+    true
   end
 end

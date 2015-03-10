@@ -1,4 +1,7 @@
 class Quiz < ActiveRecord::Base
+  # get modules to help with some functionality
+  include QuizHelpers::Validations
+  include Activeable
 
   #Relationships
   belongs_to :event
@@ -10,17 +13,16 @@ class Quiz < ActiveRecord::Base
   belongs_to :division
 
   #Validations
-  # validates_presence_of :event_id, :division_id 
-  # validates_numericality_of :round_num, only_integer: true, greater_than: 0
+  validates_presence_of :event_id, :division_id 
+  validates_numericality_of :round_num, only_integer: true, greater_than: 0
+  validates_numericality_of :room_num, only_integer: true, greater_than: 0
+  validate :event_is_active_in_system
+  validate :division_is_active_in_system
 
-  # #Scopes
-  # scope :active, -> {where(active: true)}
-  # scope :inactive, -> {where(active: false)}
+  # Callbacks
+  # before_destroy :verify_that_the_quiz_has_no_scores
 
-  # #Callbacks
-  # before_destroy Proc.new {false}
-
-  # #Methods
+  # Methods
 
   private
   def event_is_active_in_system
@@ -30,5 +32,9 @@ class Quiz < ActiveRecord::Base
   def division_is_active_in_system
     is_active_in_system(:division)
   end
+
+  # def verify_that_the_quiz_has_no_scores
+     
+  # end
 
 end
