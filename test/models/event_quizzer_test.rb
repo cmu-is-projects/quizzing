@@ -34,6 +34,12 @@ class EventQuizzerTest < ActiveSupport::TestCase
       @event_quizzer_3 = nil
     end
 
+    should "provide essential information a view would want to display" do
+      assert_equal "Mark Heimann", @event_quizzer_1.name
+      assert_equal "ACAC 1", @event_quizzer_1.team_name
+      assert_equal "Allegheny Center Alliance Church", @event_quizzer_1.event_host
+    end
+
     should "get all quizzes for a student in this event" do
       quizzes = @event_quizzer_1.get_all_quizzes_for_student_in_this_event
       assert_equal 6, quizzes.size
@@ -56,6 +62,20 @@ class EventQuizzerTest < ActiveSupport::TestCase
       assert_equal 1.000, @event_quizzer_1.accuracy
       assert_equal 0.696, @event_quizzer_2.accuracy
       assert_equal 0.182, @event_quizzer_3.accuracy
+    end
+
+    should "be able to get event quizzers for event sorted by average pts" do
+      event_quizzers = EventQuizzer.get_all_quizzers_for_event(@event)
+      assert_equal 3, event_quizzers.size
+      assert_equal "Mark Heimann", event_quizzers.first.name
+    end
+
+    should "be able to get event quizzers for event and division" do
+      sra = EventQuizzer.get_all_quizzers_for_event_and_division(@event, @senior_a)
+      # jr = EventQuizzer.get_all_quizzers_for_event_and_division(@event, @senior_a)
+      assert_equal 3, sra.size
+      # assert_equal 0, jr.size
+      assert_equal "Mark Heimann", sra.first.name
     end
 
   end
