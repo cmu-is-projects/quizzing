@@ -7,7 +7,8 @@ class StudentTeam < ActiveRecord::Base
   belongs_to :team
 
   scope :is_captain, -> { where(is_captain: true) }
-  scope :current, -> { where(end_date: nil) }
+  scope :current,    -> { where(end_date: nil) }
+  scope :for_date,   ->(date) { where("start_date <= ? AND (end_date >= ? OR end_date IS NULL)", date, date) }
 
   validates_presence_of :student_id, :team_id
   validate :student_is_active_in_system

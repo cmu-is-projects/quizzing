@@ -87,5 +87,15 @@ class StudentTeamTest < ActiveSupport::TestCase
       assert @acac_sr2, @mark.current_team
     end
 
+    should "have scope to filter student_teams for a particular day" do
+      assert_equal 5, StudentTeam.all.size
+      assert_equal 2, StudentTeam.for_date(35.months.ago.to_date).size
+      assert_equal 3, StudentTeam.for_date(30.months.ago.to_date).size
+      assert_equal 4, StudentTeam.for_date(2.years.ago.to_date).size
+      assert_equal 3, StudentTeam.for_date(1.year.ago.to_date).size
+      assert_equal 0, StudentTeam.for_date(5.years.ago.to_date).size
+      assert_equal 4, StudentTeam.for_date(Date.today).size
+    end
+
   end
 end
