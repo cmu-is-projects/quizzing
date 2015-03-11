@@ -4,9 +4,9 @@ module Contexts
     def create_acac_student_teams
       @mark_acac_sr1     = FactoryGirl.create(:student_team, student: @mark, team: @acac_sr1, is_captain: true, start_date: 3.years.ago.to_date)
       @alex_acac_sr1     = FactoryGirl.create(:student_team, student: @alex, team: @acac_sr1, start_date: 3.years.ago.to_date)
-      @quincy_acac_sr1   = FactoryGirl.create(:student_team, student: @quincy, team: @acac_sr1, start_date: 3.years.ago.to_date, end_date: 1.year.ago.to_date)
+      @quincy_acac_sr1   = FactoryGirl.create(:student_team, student: @quincy, team: @acac_sr1, start_date: 34.months.ago.to_date, end_date: 13.months.ago.to_date)
       @amanda_acac_sr2   = FactoryGirl.create(:student_team, student: @amanda, team: @acac_sr2, is_captain: true, start_date: 2.years.ago.to_date)
-      @jonathan_acac_jr1 = FactoryGirl.create(:student_team, student: @jonathan, team: @acac_jr1, start_date: 1.year.ago.to_date)
+      @jonathan_acac_jr1 = FactoryGirl.create(:student_team, student: @jonathan, team: @acac_jr1, start_date: 11.months.ago.to_date)
     end
 
     def delete_acac_student_teams
