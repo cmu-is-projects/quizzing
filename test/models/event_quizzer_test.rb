@@ -16,6 +16,7 @@ class EventQuizzerTest < ActiveSupport::TestCase
       @event_quizzer_1 = EventQuizzer.new(@mark, @event)
       @event_quizzer_2 = EventQuizzer.new(@alex, @event)
       @event_quizzer_3 = EventQuizzer.new(@jimmy, @event)
+      @event_quizzer_4 = EventQuizzer.new(@jonathan, @event)
     end
 
     teardown do
@@ -32,6 +33,7 @@ class EventQuizzerTest < ActiveSupport::TestCase
       @event_quizzer_1 = nil
       @event_quizzer_2 = nil
       @event_quizzer_3 = nil
+      @event_quizzer_4 = nil
     end
 
     should "provide essential information a view would want to display" do
@@ -50,18 +52,21 @@ class EventQuizzerTest < ActiveSupport::TestCase
       assert_equal 540, @event_quizzer_1.total_points
       assert_equal 300, @event_quizzer_2.total_points
       assert_equal -20, @event_quizzer_3.total_points
+      assert_equal   0, @event_quizzer_4.total_points
     end
 
     should "correctly calculate average points" do
       assert_equal 90.00, @event_quizzer_1.average_points
       assert_equal 50.00, @event_quizzer_2.average_points
-      assert_equal -3.33, @event_quizzer_3.average_points      
+      assert_equal -3.33, @event_quizzer_3.average_points
+      assert_equal  0.0,  @event_quizzer_4.average_points      
     end
     
     should "correctly calculate accuracy rate" do
       assert_equal 1.000, @event_quizzer_1.accuracy
       assert_equal 0.696, @event_quizzer_2.accuracy
       assert_equal 0.182, @event_quizzer_3.accuracy
+      assert_equal  0.0,  @event_quizzer_4.accuracy 
     end
 
     should "be able to get event quizzers for event sorted by average pts" do

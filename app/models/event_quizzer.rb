@@ -19,14 +19,22 @@ class EventQuizzer
 
   def average_points
     # round points to 2 decimal places
-    (total_points.to_f / student_quizzes.size).round(2)
+    if student_quizzes.empty?
+      avg_pts = 0.0
+    else
+      avg_pts = (total_points.to_f / student_quizzes.size).round(2)
+    end
   end
 
   def accuracy
     # round accuracy to 3 decimal places
     total_correct = student_quizzes.inject(0){|sum, quiz| sum += quiz.num_correct}
     total_attempts = student_quizzes.inject(0){|sum, quiz| sum += quiz.num_attempts}
-    acc_rate = (total_correct.to_f / total_attempts).round(3)
+    if total_attempts.zero?
+      acc_rate = 0.0
+    else
+      acc_rate = (total_correct.to_f / total_attempts).round(3)
+    end
   end
 
   def get_all_quizzes_for_student_in_this_event
