@@ -53,7 +53,7 @@ class EventQuizzer
       in_division << event_quizzer if event_quizzer.division == division
     end
     # resort just to be safe...
-    final = in_division.sort_by{|eq| eq.average_points}.reverse
+    final = in_division.sort_by{|eq| eq.average_points}.reverse 
   end
   
   

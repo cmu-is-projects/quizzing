@@ -72,9 +72,9 @@ class EventQuizzerTest < ActiveSupport::TestCase
 
     should "be able to get event quizzers for event and division" do
       sra = EventQuizzer.get_all_quizzers_for_event_and_division(@event, @senior_a)
-      # jr = EventQuizzer.get_all_quizzers_for_event_and_division(@event, @senior_a)
+      jr = EventQuizzer.get_all_quizzers_for_event_and_division(@event, @junior)
       assert_equal 3, sra.size
-      # assert_equal 0, jr.size
+      assert_equal 0, jr.size
       assert_equal "Mark Heimann", sra.first.name
     end
 
