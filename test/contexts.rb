@@ -10,6 +10,7 @@ require 'sets/organization_student_contexts'
 require 'sets/student_quiz_contexts'
 require 'sets/student_team_contexts'
 require 'sets/quiz_team_contexts'
+require './test/sets/team_coach_contexts'
 
 module Contexts
   include Contexts::CoachContexts
@@ -24,4 +25,5 @@ module Contexts
   include Contexts::StudentQuizContexts
   include Contexts::StudentTeamContexts
   include Contexts::QuizTeamContexts
+  include Contexts::TeamCoachContexts
 end

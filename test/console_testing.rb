@@ -12,6 +12,7 @@ require './test/sets/organization_student_contexts'
 require './test/sets/student_quiz_contexts'
 require './test/sets/student_team_contexts'
 require './test/sets/quiz_team_contexts'
+require './test/sets/team_coach_contexts'
 
 module Contexts
   include Contexts::CoachContexts
@@ -24,8 +25,9 @@ module Contexts
   include Contexts::UserContexts
   include Contexts::OrganizationStudentContexts
   include Contexts::StudentQuizContexts
-  # include Contexts::StudentTeamContexts
+  include Contexts::StudentTeamContexts
   include Contexts::QuizTeamContexts
+  include Contexts::TeamCoachContexts
 
   def create_all
     create_divisions
@@ -36,12 +38,14 @@ module Contexts
     create_coaches
     create_teams
     create_organization_students
-    # create_student_teams
+    create_student_teams
     create_quizzes_for_past_event
     create_quizzes_for_future_event
     create_quiz_teams_for_past_event
     create_quiz_teams_for_future_event
     create_student_quizzes
+    create_student_quizzes_with_no_score_yet
+    create_team_coaches
   end
 
   def delete_all
@@ -52,8 +56,8 @@ module Contexts
     Coach.delete_all
     Team.delete_all
     OrganizationStudent.delete_all
-    # StudentTeam.delete_all
-    # TeamQuiz.delete_all
+    StudentTeam.delete_all
+    TeamQuiz.delete_all
     StudentQuiz.delete_all    
   end
 end

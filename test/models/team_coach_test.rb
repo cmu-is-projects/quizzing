@@ -7,11 +7,21 @@ class TeamCoachTest < ActiveSupport::TestCase
 
   context "Creating a context" do
     setup do
-      # build_context
+      create_one_organization
+      create_divisions
+      create_users
+      create_coaches
+      create_acac_teams
+      create_team_coaches
     end
 
     teardown do
-      # destroy_context
+      delete_one_organization
+      delete_divisions
+      delete_users
+      delete_coaches
+      delete_acac_teams
+      delete_team_coaches
     end
 
     should "verify that the team is active in the system" do
