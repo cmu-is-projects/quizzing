@@ -11,6 +11,7 @@ require 'sets/student_quiz_contexts'
 require 'sets/student_team_contexts'
 require 'sets/quiz_team_contexts'
 require 'sets/team_coach_contexts'
+require 'sets/extended_quizzes_contexts'
 
 module Contexts
   include Contexts::CoachContexts
