@@ -14,7 +14,7 @@ module Contexts
 
   	def create_events
       create_one_event  # creates a past event that can have scores, etc.
-  		@event1 = FactoryGirl.create(:event, organization: @acac)
+  		@event1 = FactoryGirl.create(:event, organization: @acac, start_date: 1.day.from_now.to_date, end_date: 1.day.from_now.to_date)
   		@event2 = FactoryGirl.create(:event, organization: @acac, start_date: 1.year.from_now.to_date, end_date: 1.year.from_now.to_date)
   		@event3 = FactoryGirl.create(:event, organization: @acac, start_date: 4.weeks.from_now.to_date, end_date: 4.weeks.from_now.to_date)
   	end
