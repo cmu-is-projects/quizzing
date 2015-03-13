@@ -58,6 +58,22 @@ class StudentTeamTest < ActiveSupport::TestCase
       assert_equal 4, StudentTeam.current.all.size
     end
 
+    should "have scope to find all assignments this year" do
+      butch = FactoryGirl.create(:student, first_name: "Butch")
+      butch_acac = FactoryGirl.create(:organization_student, student: butch, organization: @acac, start_date: 4.years.ago.to_date)
+      old_assignment = FactoryGirl.create(:student_team, student: butch, team: @acac_sr1, is_captain: true, start_date: 38.months.ago.to_date, end_date: 37.months.ago.to_date)
+      assert_equal 6, StudentTeam.all.size
+      assert_equal 4, StudentTeam.for_quiz_year(QuizYear.new).all.size
+      old_assignment.delete
+      assert_equal 5, StudentTeam.all.size
+      new_assignment = FactoryGirl.create(:student_team, student: butch, team: @acac_sr1, is_captain: true, start_date: 2.years.from_now.to_date, end_date: nil)
+      assert_equal 6, StudentTeam.all.size
+      assert_equal 4, StudentTeam.for_quiz_year(QuizYear.new).all.size  
+      new_assignment.delete    
+      butch_acac.delete
+      butch.delete
+    end
+
     should "have methods to make active or inactive" do
       @mark_acac_sr1.make_inactive
       deny @mark_acac_sr1.active
