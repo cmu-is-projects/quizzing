@@ -30,5 +30,13 @@ class NullCoach
   def teams
     [NullTeam.new]
   end
+
+  def name
+    return "Coach, Unknown"
+  end
+
+  def proper_name
+    return "Unknown Coach"
+  end
 end
  

@@ -27,4 +27,20 @@ class NullStudent
     [NullQuiz.new]
   end
 
+  def name
+    return "Student, Unknown"
+  end
+
+  def proper_name
+    return "Unknown Student"
+  end
+
+  def current_organization
+    NullOrganization.new
+  end
+
+  def current_team
+    NullTeam.new
+  end
+
 end
