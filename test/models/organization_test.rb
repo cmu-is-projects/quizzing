@@ -72,6 +72,14 @@ class OrganizationTest < ActiveSupport::TestCase
       delete_organization_students
     end
 
+    should "have method to find current students in organization" do
+      create_students
+      create_organization_students
+      assert_equal 4, @acac.current_students.size
+      assert_equal %w[Alex Amanda Jonathan Mark], @acac.current_students.map{|s| s.first_name}.sort
+      delete_students
+      delete_organization_students
+    end
 
   end # contexts
 end

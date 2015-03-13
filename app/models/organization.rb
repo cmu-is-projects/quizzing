@@ -17,12 +17,15 @@ class Organization < ActiveRecord::Base
   #Scopes
   scope :alphabetical, -> {order("name")}
 
-  # #Callbacks
-  before_save :get_organization_coordinates
+  # Callbacks
+  # before_save :get_organization_coordinates
   before_destroy :is_never_destroyable
   before_update :end_student_tenure_if_organization_made_inactive
 
-  # #Methods
+  # Methods
+  def current_students
+    self.organization_students.current.map{|st| st.student}
+  end
   
   private
   def end_student_tenure_if_organization_made_inactive
