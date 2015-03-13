@@ -94,6 +94,15 @@ class TeamTest < ActiveSupport::TestCase
       assert @acac_sr1.active
     end
 
+    should "have a method to return students currently on the team" do
+      create_students
+      create_acac_student_teams
+      assert_equal 2, @acac_sr1.current_students.size
+      assert_equal %w[Alex Mark], @acac_sr1.current_students.map{|s| s.first_name}.sort
+      delete_acac_student_teams
+      delete_students
+    end
+
   end
 
 end

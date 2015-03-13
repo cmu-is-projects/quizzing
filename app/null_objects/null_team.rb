@@ -26,4 +26,8 @@ class NullTeam
   def coaches
     [NullCoach.new]
   end
+
+  def current_students
+    [NullStudent.new]
+  end
 end

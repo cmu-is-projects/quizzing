@@ -35,6 +35,10 @@ class Team < ActiveRecord::Base
     quizzes.flatten!
   end
 
+  def current_students
+    self.student_teams.current.map{|st| st.student}
+  end
+
   private
   def division_is_active_in_system
     is_active_in_system(:division)
