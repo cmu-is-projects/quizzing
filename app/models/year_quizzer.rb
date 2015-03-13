@@ -5,14 +5,15 @@ class YearQuizzer
     @name = quizzer.proper_name
     @results = get_results_for_each_quiz_this_year    # i.e., event_quizzes for this year
     @team = get_final_team_this_year
-    @division = get_division_this_year
+    @division = team.division
   end
 
   attr_reader :quizzer, :year
-  attr_reader :name, :results, :team, :division
+  attr_reader :name, :results 
+  attr_reader :team, :division
 
   def total_points
-    results.inject(0){|sum, event_quizzer| sum += event_quizzer.total_points}
+    self.results.inject(0){|sum, event_quizzer| sum += event_quizzer.total_points}
   end
 
   def lowest_points
@@ -52,14 +53,22 @@ class YearQuizzer
     quizzers = Array.new
     students_this_year.each do |stu_id|
       year_quizzer = YearQuizzer.new(Student.find(stu_id), quiz_year)
-      quizzers << year_quizzer
+      quizzers << year_quizzer if year_quizzer.division == division
     end
-    refined_by_division = self.filter_out_results_for_division(quizzers, division)
-    sorted = refined_by_division.sort_by{|yq| yq.adjusted_points}.reverse
+    sorted = quizzers.sort_by{|yq| yq.adjusted_points}.reverse
   end
 
 #################################
-  # private
+  private
+  def get_final_team_this_year
+    # the team last on is the team we credit student being on...
+    if quizzer.student_teams.empty? || quizzer.student_teams.for_quiz_year(self.year).empty?
+      NullTeam.new
+    else
+      quizzer.student_teams.for_quiz_year(year).last.team
+    end
+  end
+
   def self.find_scored_events_for_year(quiz_year)
     if Date.today > quiz_year.end_date
       events = Event.where("start_date >= ? and end_date <= ?", quiz_year.start_date, quiz_year.end_date)
@@ -71,7 +80,7 @@ class YearQuizzer
 
   def get_results_for_each_quiz_this_year
     event_quizzes = Array.new
-    YearQuizzer.find_scored_events_for_year(year).each do |event|
+    YearQuizzer.find_scored_events_for_year(self.year).each do |event|
       event_quizzes << EventQuizzer.new(quizzer, event)
     end
     # sort chronologically by start_date
@@ -85,33 +94,6 @@ class YearQuizzer
       tmp << StudentQuiz.for_event(event).map(&:student_id).uniq
     end
     students_this_year = tmp.flatten.compact.uniq
-  end
-
-  def self.filter_out_results_for_division(quizzers, division)
-    first_pass = Array.new
-    refined = Array.new
-    # on first pass, remove any event_quiz results from another division
-    quizzers.each do |year_quizzer|
-      first_pass << year_quizzer if !year_quizzer.results.select{|r| !r.student_quizzes.empty?}.empty?
-      # year_quizzer.results.delete_if{|r| r.student_quizzes.empty? || r.student_quizzes.first.quiz.division != division}
-
-    end
-    # on second pass, add any quizzers who have results in this division
-    quizzers.each do |year_quizzer|
-      refined << year_quizzer unless year_quizzer.results.empty?
-    end
-    # return the revised quizzer results
-    refined
-  end
-  
-  def get_final_team_this_year
-    # the team last on is the team we credit student being on...
-    teams_for_this_year = StudentTeam.where(student_id: quizzer.id).
-    if teams_for_this_year.nil? || teams_for_this_year.empty?
-      "N/A"
-    else
-      teams_for_this_year.last.team.name
-    end
   end
 
 end

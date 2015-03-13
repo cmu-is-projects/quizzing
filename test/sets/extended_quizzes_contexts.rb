@@ -1,6 +1,20 @@
 module Contexts
   module ExtendedQuizzesContexts
 
+    def create_year_quizzers
+      @year_quizzer_1 = YearQuizzer.new(@mark)
+      @year_quizzer_2 = YearQuizzer.new(@alex)
+      @year_quizzer_3 = YearQuizzer.new(@jimmy)
+      @year_quizzer_4 = YearQuizzer.new(@jonathan)
+    end
+
+    def remove_year_quizzers
+      @year_quizzer_1 = nil
+      @year_quizzer_2 = nil
+      @year_quizzer_3 = nil
+      @year_quizzer_4 = nil      
+    end
+
     # assumes create_students, create_one_event (and related) already run
     def create_three_more_complete_quiz_contexts
       create_three_more_past_events
