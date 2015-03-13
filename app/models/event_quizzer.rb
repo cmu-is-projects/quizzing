@@ -2,15 +2,15 @@ class EventQuizzer
   def initialize(quizzer, event)
     @event = event
     @quizzer = quizzer
-    @division = quizzer.student_teams.for_date(event.start_date).first.team.division
+    @team = get_team_for_event
+    @division = team.division
     @name = quizzer.proper_name
     @event_host = event.organization.name
-    @team_name = quizzer.current_team.name
     @student_quizzes = get_all_quizzes_for_student_in_this_event
   end
 
-  attr_reader :event, :quizzer, :division
-  attr_reader :name, :event_host, :team_name
+  attr_reader :event, :quizzer, :team, :division
+  attr_reader :name, :event_host
   attr_reader :student_quizzes
 
   def total_points
@@ -39,7 +39,7 @@ class EventQuizzer
 
   def get_all_quizzes_for_student_in_this_event
     # gets student_quiz objects for a student during a particular event
-    student_quizzes = StudentQuiz.for_student(quizzer).for_event(event)
+    student_quizzes = StudentQuiz.for_student(quizzer).for_event(event).to_a
   end
 
   def self.get_all_quizzers_for_event(event)
@@ -63,6 +63,14 @@ class EventQuizzer
     # resort just to be safe...
     final = in_division.sort_by{|eq| eq.average_points}.reverse 
   end
-  
+
+  private
+  def get_team_for_event
+    if quizzer.student_teams.empty? || quizzer.student_teams.for_date(event.start_date).empty?
+      NullTeam.new
+    else
+      quizzer.student_teams.for_date(event.start_date).first.team
+    end
+  end
   
 end

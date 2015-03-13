@@ -38,7 +38,7 @@ class EventQuizzerTest < ActiveSupport::TestCase
 
     should "provide essential information a view would want to display" do
       assert_equal "Mark Heimann", @event_quizzer_1.name
-      assert_equal "ACAC 1", @event_quizzer_1.team_name
+      assert_equal "ACAC 1", @event_quizzer_1.team.name
       assert_equal "Allegheny Center Alliance Church", @event_quizzer_1.event_host
     end
 

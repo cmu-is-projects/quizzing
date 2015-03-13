@@ -72,7 +72,7 @@ class StudentTest < ActiveSupport::TestCase
       create_one_organization
       create_acac_students
       assert @acac, @mark.current_organization
-      assert_nil @quincy.current_organization
+      assert_equal NullOrganization.new.name, @quincy.current_organization.name
       delete_one_organization
       delete_acac_students      
     end
@@ -85,7 +85,7 @@ class StudentTest < ActiveSupport::TestCase
       create_acac_student_teams
       assert @acac_sr1, @mark.current_team
       assert_not_equal @acac_sr2, @mark.current_team
-      assert_nil @quincy.current_team
+      assert_equal NullTeam.new.name, @quincy.current_team.name
       delete_one_organization
       delete_divisions
       delete_acac_students
