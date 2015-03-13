@@ -34,7 +34,7 @@ class Student < ActiveRecord::Base
   def current_organization
     latest = self.organization_students.where(end_date: nil)
     if latest.empty? || latest.nil?
-      return nil
+      return NullOrganization.new
     else
       return latest.first.organization
     end
@@ -43,7 +43,7 @@ class Student < ActiveRecord::Base
   def current_team
     latest = self.student_teams.where(end_date: nil)
     if latest.empty? || latest.nil?
-      return nil
+      return NullTeam.new
     else
       return latest.first.team
     end
