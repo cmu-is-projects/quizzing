@@ -16,7 +16,7 @@ class Student < ActiveRecord::Base
   validates_numericality_of :grade, only_integer: true, greater_than: 1, less_than: 13
 
   # Scopes
-  scope :alphabetical, -> {order("last_name", "first_name")}
+  scope :alphabetical, -> {order("last_name, first_name")}
 
   
   # Callbacks
