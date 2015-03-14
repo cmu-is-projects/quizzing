@@ -33,6 +33,7 @@ class Quiz < ActiveRecord::Base
     is_active_in_system(:division)
   end
 
+  # TODO: write this method and test
   # def verify_that_the_quiz_has_no_scores
      
   # end
