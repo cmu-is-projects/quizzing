@@ -3,11 +3,10 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :user_name
       t.string :role
-      t.string :password_hash
-      t.string :password_salt
-      t.boolean :active
+      t.string :password_digest
+      t.boolean :active, default: true
 
-      t.timestamps
+      # t.timestamps
     end
   end
 end

@@ -14,36 +14,32 @@
 ActiveRecord::Schema.define(version: 20150226023120) do
 
   create_table "categories", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name"
   end
 
   create_table "coaches", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "organization_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "phone"
-    t.string   "email"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "user_id"
+    t.integer "organization_id"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "phone"
+    t.string  "email"
+    t.boolean "active",          default: true
   end
 
   create_table "divisions", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name"
+    t.integer "start_grade"
+    t.integer "end_grade"
+    t.boolean "active",      default: true
   end
 
   create_table "events", force: true do |t|
-    t.date     "start_date"
-    t.date     "end_date"
-    t.time     "start_time"
-    t.integer  "num_rounds"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.time    "start_time"
+    t.integer "num_rounds"
+    t.integer "organization_id"
   end
 
   create_table "organization_students", force: true do |t|
@@ -54,19 +50,17 @@ ActiveRecord::Schema.define(version: 20150226023120) do
   end
 
   create_table "organizations", force: true do |t|
-    t.string   "name"
-    t.string   "short_name"
-    t.string   "street_1"
-    t.string   "street_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.decimal  "latitutde"
-    t.decimal  "longitude"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "primary_contact"
+    t.string  "name"
+    t.string  "short_name"
+    t.string  "street_1"
+    t.string  "street_2"
+    t.string  "city"
+    t.string  "state"
+    t.string  "zip"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.boolean "active",          default: true
+    t.integer "primary_contact"
   end
 
   create_table "quiz_teams", force: true do |t|
@@ -79,22 +73,18 @@ ActiveRecord::Schema.define(version: 20150226023120) do
   end
 
   create_table "quizzes", force: true do |t|
-    t.integer  "division_id"
-    t.integer  "event_id"
-    t.string   "room_num"
-    t.integer  "round_num"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "division_id"
+    t.integer "event_id"
+    t.string  "room_num"
+    t.integer "round_num"
+    t.boolean "active",      default: true
   end
 
   create_table "settings", force: true do |t|
-    t.date     "roster_lock_date"
-    t.boolean  "drop_lowest_score"
-    t.boolean  "roster_lock_toggle"
-    t.boolean  "auto_promote_students"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.date    "roster_lock_date"
+    t.boolean "drop_lowest_score"
+    t.boolean "roster_lock_toggle"
+    t.boolean "auto_promote_students"
   end
 
   create_table "student_quizzes", force: true do |t|
@@ -116,12 +106,10 @@ ActiveRecord::Schema.define(version: 20150226023120) do
   end
 
   create_table "students", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "grade"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.integer "grade"
+    t.boolean "active",     default: true
   end
 
   create_table "team_coaches", force: true do |t|
@@ -132,22 +120,17 @@ ActiveRecord::Schema.define(version: 20150226023120) do
   end
 
   create_table "teams", force: true do |t|
-    t.integer  "division_id"
-    t.string   "name"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.integer "division_id"
+    t.string  "name"
+    t.boolean "active",          default: true
+    t.integer "organization_id"
   end
 
   create_table "users", force: true do |t|
-    t.string   "user_name"
-    t.string   "role"
-    t.string   "password_hash"
-    t.string   "password_salt"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "user_name"
+    t.string  "role"
+    t.string  "password_digest"
+    t.boolean "active",          default: true
   end
 
 end

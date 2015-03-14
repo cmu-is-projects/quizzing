@@ -2,13 +2,14 @@ require 'test_helper'
 
 class QuizYearTest < ActiveSupport::TestCase
 #set up context
-  include Contexts::QuizYearContexts
   context "Creating a Quiz Year context" do
     setup do
+      create_organizations
       create_events
     end
 
     teardown do
+      delete_organizations
       delete_events
     end
 
@@ -27,15 +28,13 @@ class QuizYearTest < ActiveSupport::TestCase
       deny old_year.include?(Date.new(2010,10,1))
     end
 
-    should "show that there are two past event in total" do
+    should "show that there is one past event in total" do
       yr = QuizYear.new
-      # should have at least 1 in the context
-    	assert_equal 2, yr.completed_events.size
+    	assert_equal 1, yr.completed_events.size
     end
 
-    should "show that there are two events in total" do
+    should "show that there are three events in total this year" do
       yr = QuizYear.new
-      # should have at least 1 in the context
     	assert_equal 3, yr.this_yr_events.size
     end
   end

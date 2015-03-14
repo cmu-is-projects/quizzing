@@ -5,9 +5,9 @@ class CreateQuizzes < ActiveRecord::Migration
       t.references :event
       t.string :room_num
       t.integer :round_num
-      t.boolean :active
+      t.boolean :active, default: true
 
-      t.timestamps
+      # t.timestamps
     end
   end
 end

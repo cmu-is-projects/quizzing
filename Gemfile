@@ -16,7 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -32,15 +32,30 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'foundation-rails'
+# Use a gem for handling pagination
+gem 'will_paginate'
+
+# Use a gem for handling date validation
+gem 'validates_timeliness'
+
+# Use simple_form to clean up form views
 gem 'simple_form'
+
+# Use foundation for base CSS
+gem 'foundation-rails'
+
+# Use geocoder to get latitude and longitude data
+gem 'geocoder'
+
+# Use gem to handle Canadian postal codes too
+# gem 'validates_as_postal_code'
+# gem 'going_postal'
+
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-gem 'validates_timeliness'
 
 
 # Additional gems that are very useful in Rails development

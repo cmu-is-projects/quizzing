@@ -8,11 +8,11 @@ class CreateOrganizations < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.string :zip
-      t.decimal :latitutde
+      t.decimal :latitude
       t.decimal :longitude
-      t.boolean :active
+      t.boolean :active, default: true
 
-      t.timestamps
+      # t.timestamps
     end
   end
 end

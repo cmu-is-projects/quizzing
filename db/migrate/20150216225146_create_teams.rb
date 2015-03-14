@@ -3,9 +3,10 @@ class CreateTeams < ActiveRecord::Migration
     create_table :teams do |t|
       t.references :division
       t.string :name
-      t.boolean :active
+      t.boolean :active, default: true
+      t.integer :organization_id
 
-      t.timestamps
+      # t.timestamps
     end
   end
 end

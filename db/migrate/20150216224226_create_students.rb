@@ -4,10 +4,9 @@ class CreateStudents < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.integer :grade
-      t.boolean :captain
-      t.boolean :active
+      t.boolean :active, default: true
 
-      t.timestamps
+      # t.timestamps
     end
   end
 end

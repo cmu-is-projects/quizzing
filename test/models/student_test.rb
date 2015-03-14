@@ -13,6 +13,7 @@ class StudentTest < ActiveSupport::TestCase
   should validate_presence_of(:first_name)
   should validate_presence_of(:last_name)
   should validate_presence_of(:grade)
+  should validate_numericality_of(:grade).only_integer.is_greater_than(1).is_less_than(13)
 
   should allow_value("String").for(:first_name)
   should allow_value("String").for(:last_name)
@@ -24,7 +25,6 @@ class StudentTest < ActiveSupport::TestCase
   should_not allow_value("String").for(:grade)
 
   #set up a context
-  include Contexts::StudentContexts
   context "Creating a Student Context" do
     
     setup do
@@ -35,28 +35,62 @@ class StudentTest < ActiveSupport::TestCase
       delete_students
     end
 
-    should "verify that the alphabetical scope works" do
-      assert Student.alphabetical.map(&:first_name) == ["Long","Jane","John"]
-    end
-
-    should "verify that the active scope works" do
-      assert Student.active.alphabetical.map(&:first_name) == ["Jane","John"]
-    end
-
-    should "verify that the inactive scope works" do
-      assert Student.inactive.alphabetical.map(&:first_name) == ["Long"]
-    end
-
     should "verify that the name method works" do
-      assert @stud1.name == "Smith, John"
-      assert @stud2.name == "Smith, Jane"
-      assert @stud3.name == "Gone, Long"
+      assert @mark.name == "Heimann, Mark"
     end
     
     should "verify that the proper_name method works" do
-      assert @stud1.proper_name == "John Smith"
-      assert @stud2.proper_name == "Jane Smith"
-      assert @stud3.proper_name == "Long Gone"
+      assert @mark.proper_name == "Mark Heimann"
+    end
+
+    should "verify that the alphabetical scope works" do
+      assert_equal %w[Cranston Douglas Gone Heimann Heimann Mix Olbeter Olson], Student.alphabetical.map(&:last_name)
+    end
+
+    should "Show that that the active scope works" do
+      assert_equal 7, Student.active.size
+      assert_equal %w[Cranston Douglas Heimann Heimann Mix Olbeter Olson], Student.active.all.map{|a| a.last_name}.sort
+    end
+
+    should "show that the inactive scope works" do
+      assert_equal 1, Student.inactive.size
+      assert_equal ["Gone"], Student.inactive.all.map{|a| a.last_name}.sort
+    end
+
+    should "have methods to make active or inactive" do
+      @mark.make_inactive
+      deny @mark.active
+      @mark.make_active
+      assert @mark.active
+    end
+
+    should "correctly assess that a student is not destroyable" do
+      deny @mark.destroy
+    end
+
+    should "identify the student's current organization" do
+      create_one_organization
+      create_acac_students
+      assert @acac, @mark.current_organization
+      assert_equal NullOrganization.new.name, @quincy.current_organization.name
+      delete_one_organization
+      delete_acac_students      
+    end
+
+    should "identify the student's current team" do
+      create_one_organization
+      create_divisions
+      create_acac_students
+      create_acac_teams
+      create_acac_student_teams
+      assert @acac_sr1, @mark.current_team
+      assert_not_equal @acac_sr2, @mark.current_team
+      assert_equal NullTeam.new.name, @quincy.current_team.name
+      delete_one_organization
+      delete_divisions
+      delete_acac_students
+      delete_acac_teams
+      delete_acac_student_teams      
     end
 
   end
