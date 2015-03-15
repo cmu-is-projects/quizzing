@@ -2,11 +2,11 @@ module QuizHelpers
   module IndividualScoring
     def calculate_student_quiz_score(num_correct, num_attempts, num_fouls=0)
       base_score = num_correct * 20
-      
+      # find adjustments to base score
       error_points = calculate_error_points(num_correct, num_attempts)
       foul_points = calculate_foul_penalty(num_fouls)
       bonus_points = calculate_bonus_points(num_correct, num_attempts)
-
+      # apply adjustments to base score
       student_score = base_score - error_points - foul_points + bonus_points
       return student_score
     end
