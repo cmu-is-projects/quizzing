@@ -13,12 +13,11 @@ class Quiz < ActiveRecord::Base
   belongs_to :division
 
   #Validations
-<<<<<<< HEAD
   validates_presence_of :event_id, :division_id, :round_num
-  validates_numericality_of :event_id, :division_id, :round_num, only_integer: true, greater_than: 0
+  validates_numericality_of :event_id, :division_id, :round_num, :room_num, only_integer: true, greater_than: 0
 
   #custom validation
-  # validate :ensure_quiz_is_for_past_event
+  # validate :ensure_quiz_is_for_current_event
 
   #Scopes
   scope :active, -> {where(active: true)}
@@ -27,31 +26,24 @@ class Quiz < ActiveRecord::Base
 
   #Callbacks
   before_destroy Proc.new {false}
-=======
-  validates_presence_of :event_id, :division_id 
-  validates_numericality_of :round_num, only_integer: true, greater_than: 0
-  validates_numericality_of :room_num, only_integer: true, greater_than: 0
   validate :event_is_active_in_system
   validate :division_is_active_in_system
 
   # Callbacks
   # before_destroy :verify_that_the_quiz_has_no_scores
 
-  # Methods
->>>>>>> 6c1307ffdff834231cf1e170562df2bdffafd92c
-
   #need method to ensure uniqueness of event, division, round uniqueness
   
   #Methods
 
   private
-  # def event_is_active_in_system
-  #   is_active_in_system(:event)
-  # end
+  def event_is_active_in_system
+    is_active_in_system(:event)
+  end
 
-  # def division_is_active_in_system
-  #   is_active_in_system(:division)
-  # end
+  def division_is_active_in_system
+    is_active_in_system(:division)
+  end
 
   #need to ensure quiz can't be assigned to past event
   # def ensure_quiz_is_for_past_event
