@@ -28,27 +28,14 @@ ActiveRecord::Schema.define(version: 20150306162027) do
   end
 
   create_table "divisions", force: true do |t|
-<<<<<<< HEAD
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "active"
-  end
-
-  create_table "events", force: true do |t|
-    t.date     "start_date"
-    t.date     "end_date"
-    t.time     "start_time"
-    t.integer  "num_rounds"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "organization_id"
-=======
     t.string  "name"
     t.integer "start_grade"
     t.integer "end_grade"
     t.boolean "active",      default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+    
 
   create_table "events", force: true do |t|
     t.date    "start_date"
@@ -56,7 +43,6 @@ ActiveRecord::Schema.define(version: 20150306162027) do
     t.time    "start_time"
     t.integer "num_rounds"
     t.integer "organization_id"
->>>>>>> 6c1307ffdff834231cf1e170562df2bdffafd92c
   end
 
   create_table "organization_students", force: true do |t|
@@ -67,21 +53,6 @@ ActiveRecord::Schema.define(version: 20150306162027) do
   end
 
   create_table "organizations", force: true do |t|
-<<<<<<< HEAD
-    t.string   "name"
-    t.string   "short_name"
-    t.string   "street_1"
-    t.string   "street_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.decimal  "longitude"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "primary_contact"
-    t.decimal  "latitude"
-=======
     t.string  "name"
     t.string  "short_name"
     t.string  "street_1"
@@ -93,7 +64,6 @@ ActiveRecord::Schema.define(version: 20150306162027) do
     t.decimal "longitude"
     t.boolean "active",          default: true
     t.integer "primary_contact"
->>>>>>> 6c1307ffdff834231cf1e170562df2bdffafd92c
   end
 
   create_table "quiz_teams", force: true do |t|
@@ -106,7 +76,6 @@ ActiveRecord::Schema.define(version: 20150306162027) do
   end
 
   create_table "quizzes", force: true do |t|
-<<<<<<< HEAD
     t.integer  "division_id"
     t.integer  "event_id"
     t.string   "room_num"
@@ -115,13 +84,7 @@ ActiveRecord::Schema.define(version: 20150306162027) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
-=======
-    t.integer "division_id"
-    t.integer "event_id"
-    t.string  "room_num"
-    t.integer "round_num"
     t.boolean "active",      default: true
->>>>>>> 6c1307ffdff834231cf1e170562df2bdffafd92c
   end
 
   create_table "settings", force: true do |t|
