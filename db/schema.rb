@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150226023120) do
+ActiveRecord::Schema.define(version: 20150304045910) do
 
   create_table "categories", force: true do |t|
     t.string "name"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20150226023120) do
     t.string  "room_num"
     t.integer "round_num"
     t.boolean "active",      default: true
+    t.integer "category_id"
   end
 
   create_table "settings", force: true do |t|

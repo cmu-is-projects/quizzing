@@ -7,6 +7,7 @@ class DivisionTest < ActiveSupport::TestCase
 
   #test validations
   should validate_presence_of(:name)
+  should validate_uniqueness_of(:name).case_insensitive
   should validate_numericality_of(:start_grade).only_integer.is_greater_than(1).is_less_than(13)
   should validate_numericality_of(:end_grade).only_integer.is_greater_than(1).is_less_than(13)
 
