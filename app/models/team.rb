@@ -40,9 +40,10 @@ class Team < ActiveRecord::Base
   end
 
   private
-  def division_is_active_in_system
-    is_active_in_system(:division)
-  end
+  #division currently does not have an active field
+  # def division_is_active_in_system
+  #   is_active_in_system(:division)
+  # end
 
   def organization_is_active_in_system
     is_active_in_system(:organization)

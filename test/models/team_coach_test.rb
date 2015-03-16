@@ -5,6 +5,7 @@ class TeamCoachTest < ActiveSupport::TestCase
   should belong_to(:team)
   should belong_to(:coach)
 
+
   context "Creating a context" do
     setup do
       create_one_organization
@@ -45,4 +46,6 @@ class TeamCoachTest < ActiveSupport::TestCase
     end
 
   end
+
 end
+

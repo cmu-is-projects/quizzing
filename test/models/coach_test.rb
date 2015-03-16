@@ -12,6 +12,7 @@ class CoachTest < ActiveSupport::TestCase
   should validate_presence_of(:user_id)
   should validate_presence_of(:first_name)
   should validate_presence_of(:last_name)
+  should validate_presence_of(:email)
 
   should allow_value("fred@fred.com").for(:email)
   should allow_value("fred@andrew.cmu.edu").for(:email)
@@ -48,6 +49,8 @@ class CoachTest < ActiveSupport::TestCase
       delete_one_organization
       delete_users
   		delete_coaches
+      delete_users
+      delete_organizations
   	end
 
   	should "verify that the alphabetical scope works" do
@@ -108,3 +111,4 @@ class CoachTest < ActiveSupport::TestCase
 
   end
 end
+
