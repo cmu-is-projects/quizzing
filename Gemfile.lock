@@ -86,11 +86,7 @@ GEM
       i18n (~> 0.5)
     foundation-rails (5.5.0.0)
       railties (>= 3.1.0)
-<<<<<<< HEAD
-      sass (>= 3.2.0)
-=======
       sass (>= 3.2.0, < 3.4)
->>>>>>> 6c1307ffdff834231cf1e170562df2bdffafd92c
     geocoder (1.1.9)
     gherkin (2.12.2)
       multi_json (~> 1.3)
