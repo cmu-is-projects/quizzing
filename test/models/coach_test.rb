@@ -40,20 +40,37 @@ class CoachTest < ActiveSupport::TestCase
   #set up context
   context "Creating a Coach context" do
   	setup do
+      create_one_organization
       create_users
-      create_organizations
-      create_coaches
+  		create_coaches
   	end
 
   	teardown do
-  		delete_coaches
+      delete_one_organization
       delete_users
-      delete_organizations
+  		delete_coaches
   	end
 
   	should "verify that the alphabetical scope works" do
-  		assert Coach.alphabetical.map(&:first_name) == ["Inactive","Rob","Ted"]
+  		assert_equal ["Inactive","Rob","Ted"], Coach.alphabetical.map(&:first_name)
   	end
+
+    should "Show that that the active scope works" do
+      assert_equal 2, Coach.active.size
+      assert_equal ["Rob","Ted"], Coach.active.all.map{|a| a.first_name}.sort
+    end
+
+    should "show that the inactive scope works" do
+      assert_equal 1, Coach.inactive.size
+      assert_equal ["Inactive"], Coach.inactive.all.map{|a| a.first_name}.sort
+    end
+
+    should "have methods to make active or inactive" do
+      @coach1.make_inactive
+      deny @coach1.active
+      @coach1.make_active
+      assert @coach1.active
+    end
 
   	should "show that name method works" do
   		assert_equal "Stanton, Rob", @coach1.name
@@ -65,31 +82,38 @@ class CoachTest < ActiveSupport::TestCase
   		assert_equal "Ted Stoe", @coach2.proper_name
   	end
 
-    should "Show that that coach's active scope works" do
-      assert_equal 2, Coach.active.size
-      assert_equal ["Rob", "Ted"], Coach.active.all.map{|c| c.first_name}.sort
-    end
-
-    should "show that team's inactive scope works" do
-      assert_equal 1, Coach.inactive.size
-      assert_equal ["Inactive"], Coach.inactive.all.map{|c| c.first_name}.sort
-    end
-
-  	should "verify that the coach's organization is active in the system" do
-      @inactive_organization = FactoryGirl.build(:organization, active: false)
-  		bad_coach = FactoryGirl.build(:coach, organization: @inactive_organization, user: @user1)
-  		deny bad_coach.valid?
-      @inactive_organization.delete
-  	end
 
     should "verify that the coach's user is active in the system" do
       @inactive_user = FactoryGirl.build(:user, active: false)
       bad_coach = FactoryGirl.build(:coach, organization: @organization1, user: @inactive_user)
       deny bad_coach.valid?
       @inactive_user.delete
+    end	  	
+
+    should "verify that the organization is active in the system" do
+      # test the inactive organization first
+      grove_city = FactoryGirl.create(:organization, name: "Grove City Church", short_name: "Grove City", active: false)
+      bad_coach = FactoryGirl.build(:coach, organization: grove_city)
+      deny bad_coach.valid?
+      grove_city.delete
+      # test the nonexistent organization
+      grove_city = FactoryGirl.build(:organization, name: "Grove City Church", short_name: "Grove City", active: true)
+      bad_coach = FactoryGirl.build(:coach, organization: grove_city)
+      deny bad_coach.valid?
+    end 
+
+    should "correctly assess that a coach is not destroyable" do
+      deny @coach1.destroy
     end
 
+    should "deactivate the user if the coach is made inactive" do
+      @coach1.make_inactive
+      deny @coach1.user.active
+    end
 
-  
+    should "reformat phone number before saving" do
+      assert_equal "4122682323", @coach2.phone
+    end
+
   end #contexts
 end #class

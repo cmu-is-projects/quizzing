@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
-  # get module to help with some functionality
+  # get modules to help with some functionality
   include QuizHelpers::Validations
+  include Activeable
+
+  # Use built-in rails support for password protection
+  has_secure_password
 
   ROLES = ["admin","area_admin","coach"]
 
@@ -8,36 +12,58 @@ class User < ActiveRecord::Base
   has_one :coach
   
   #Validations
-  validates_presence_of :user_name, :role, :password_hash, :password_salt
-  validates :user_name, uniqueness: true
-
-  #This validation will not work until the method is created 
+  validates_presence_of :user_name, :role
+  validates :user_name, uniqueness: { case_sensitive: false}
+  validates_presence_of :password, on: :create 
+  validates_presence_of :password_confirmation, on: :create 
+  validates_confirmation_of :password, on: :create, message: "does not match"
+  validates_length_of :password, minimum: 4, message: "must be at least 4 characters long", allow_blank: true
   validate :role_is_valid
-  validates :user_name, uniqueness: true, on: :create
 
   #Scopes
   scope :alphabetical, -> {order("user_name")}
-  scope :active, -> { where(active: true) }
-  scope :inactive, -> { where(active: false) }
 
   #Callbacks
-  before_destroy Proc.new {false}
+  before_destroy :is_never_destroyable
 
   #Methods
 
+  def role?(authorized_role)
+    return false if role.nil?
+    role.downcase.to_sym == authorized_role
+  end
+
+  def humanize_role
+    case self.role
+    when "admin"
+      "Administrator"
+    when "area_admin"
+      "Area Administrator"
+    else
+      "Coach"
+    end
+  end
+
+  def is_admin?
+    return true if self.role == 'admin'
+    false
+  end
+
+  def is_area_admin?
+    return true if self.role == 'area_admin'
+    false
+  end
+
+  def is_coach?
+    return true if self.role == 'coach'
+    false
+  end
+
+  private
   def role_is_valid
     if(!ROLES.include?(self.role))
       errors.add(:role, "is an invalid role");
     end
   end
-  
-  private
-
-#  def user_is_active_in_system
-#    all_usr_ids = User.active.map(&:id)
-#    unless all_usr_ids.include?(self.user_id)
-#      errors.add(:user, "is not an active user in the system");
-#    end
-#  end
 
 end

@@ -34,5 +34,12 @@ module QuizHelpers
     def is_never_destroyable
       return false
     end
+
+    # Since reformatting phone after validation might used by other 
+    # models down the line (organization?), we are pulling it out
+    # here so it can be used whenever needed
+    def reformat_phone
+      self.phone = self.phone.to_s.gsub(/[^0-9]/,"")
+    end
   end
 end

@@ -1,3 +1,17 @@
 == README
 
 This is the code for the biblequizstats.net project.  More information to come.
+
+Note on testing: The test data can be loaded into the development database quite 
+easily.  To do this, first drop the development database and re-migrate to get a 
+clean version.  Then start up rails console and in the terminal type:
+
+- require './test/console_testing'
+
+After that (which will require factory_girl_rails, etc.), type:
+
+- include Contexts
+
+This should return 'Object'.  After that just call the 'create_all' method to 
+build a copy of the testing context in the development database. (Could be useful 
+in interface building as well.)

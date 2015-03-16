@@ -1,4 +1,7 @@
 class Quiz < ActiveRecord::Base
+  # get modules to help with some functionality
+  include QuizHelpers::Validations
+  include Activeable
 
   #Relationships
   belongs_to :event
@@ -10,6 +13,7 @@ class Quiz < ActiveRecord::Base
   belongs_to :division
 
   #Validations
+<<<<<<< HEAD
   validates_presence_of :event_id, :division_id, :round_num
   validates_numericality_of :event_id, :division_id, :round_num, only_integer: true, greater_than: 0
 
@@ -23,6 +27,18 @@ class Quiz < ActiveRecord::Base
 
   #Callbacks
   before_destroy Proc.new {false}
+=======
+  validates_presence_of :event_id, :division_id 
+  validates_numericality_of :round_num, only_integer: true, greater_than: 0
+  validates_numericality_of :room_num, only_integer: true, greater_than: 0
+  validate :event_is_active_in_system
+  validate :division_is_active_in_system
+
+  # Callbacks
+  # before_destroy :verify_that_the_quiz_has_no_scores
+
+  # Methods
+>>>>>>> 6c1307ffdff834231cf1e170562df2bdffafd92c
 
   #need method to ensure uniqueness of event, division, round uniqueness
   
@@ -41,6 +57,11 @@ class Quiz < ActiveRecord::Base
   # def ensure_quiz_is_for_past_event
   #   return false if self.event.start_date < Date.today
   #   return true       
+  # end
+
+  # TODO: write this method and test
+  # def verify_that_the_quiz_has_no_scores
+     
   # end
 
 end
