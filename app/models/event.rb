@@ -4,11 +4,7 @@ class Event < ActiveRecord::Base
   #Relationships
   has_many :quizzes
   belongs_to :organization
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> 6c1307ffdff834231cf1e170562df2bdffafd92c
   #Validations
   validates_presence_of :start_date, :end_date, :start_time, :num_rounds
   validates_time :start_time
@@ -24,7 +20,7 @@ class Event < ActiveRecord::Base
   
   #Callbacks
   # anonymous function returning false
-  # before_destroy Proc.new {false}
+  before_destroy Proc.new {false}
 
   #Methods
 
