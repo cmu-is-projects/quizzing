@@ -40,16 +40,14 @@ class CoachTest < ActiveSupport::TestCase
   #set up context
   context "Creating a Coach context" do
   	setup do
-      create_one_organization
+      create_organizations
       create_users
   		create_coaches
   	end
 
   	teardown do
-      delete_one_organization
       delete_users
   		delete_coaches
-      delete_users
       delete_organizations
   	end
 
