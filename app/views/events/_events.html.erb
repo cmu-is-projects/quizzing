@@ -1,13 +1,11 @@
-<!-- Leave for now -->
+<!-- List of events-->
 <h1>Listing events</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Start time</th>
-      <th>Num rounds</th>
+      <th width="140">Start date</th>
+      <th width="280">Location</th>
       <th></th>
       <th></th>
       <th></th>
@@ -17,10 +15,8 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.start_date.strftime('%B %d, %Y') %></td>
-        <td><%= event.end_date.strftime('%B %d, %Y') %></td>
-        <td><%= event.start_time.strftime('%I:%M %p') %></td>
-        <td><%= event.num_rounds %></td>
+        <td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event) %></td>
+        <td><%= link_to event.organization.name, organization_path(event.organization) %></td> 
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
