@@ -37,6 +37,5 @@ class QuizYearTest < ActiveSupport::TestCase
       yr = QuizYear.new
     	assert_equal 3, yr.this_yr_events.size
     end
-
   end
 end

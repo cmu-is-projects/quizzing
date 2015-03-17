@@ -4,15 +4,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Short name</th>
-      <th>Street 1</th>
-      <th>Street 2</th>
       <th>City</th>
       <th>State</th>
-      <th>Zip</th>
-      <th>Latitutde</th>
-      <th>Longitude</th>
-      <th>Active</th>
       <th></th>
       <th></th>
       <th></th>
@@ -22,16 +15,9 @@
   <tbody>
     <% @organizations.each do |organization| %>
       <tr>
-        <td><%= organization.name %></td>
-        <td><%= organization.short_name %></td>
-        <td><%= organization.street_1 %></td>
-        <td><%= organization.street_2 %></td>
+        <td><%= link_to organization.name, organization_path(organization) %></td>
         <td><%= organization.city %></td>
         <td><%= organization.state %></td>
-        <td><%= organization.zip %></td>
-        <td><%= organization.latitutde %></td>
-        <td><%= organization.longitude %></td>
-        <td><%= organization.active %></td>
         <td><%= link_to 'Show', organization %></td>
         <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
         <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
