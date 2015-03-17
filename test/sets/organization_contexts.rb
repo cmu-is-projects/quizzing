@@ -4,7 +4,7 @@ module Contexts
     # for use with other contexts/tests
     def create_one_organization
       @acac = FactoryGirl.create(:organization)
-      sleep 1
+      #sleep 1
     end
 
     def delete_one_organization
