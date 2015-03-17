@@ -17,9 +17,9 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.start_date %></td>
-        <td><%= event.end_date %></td>
-        <td><%= event.start_time %></td>
+        <td><%= event.start_date.strftime('%B %d, %Y') %></td>
+        <td><%= event.end_date.strftime('%B %d, %Y') %></td>
+        <td><%= event.start_time.strftime('%I:%M %p') %></td>
         <td><%= event.num_rounds %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>

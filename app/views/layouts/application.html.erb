@@ -12,7 +12,9 @@
   </head>
 
   <body>
-    <%= image_tag 'banner_6.png' , class: "banner" %>
+    <%#= image_tag 'banner_6.png' , class: "banner" %>
+    <!-- set banner as link to home -->
+    <%= link_to image_tag('banner_6.png'), home_path %> 
     <%= render :partial => "partials/nav" %>
     <div class="row">
       <div class="small-8 columns">

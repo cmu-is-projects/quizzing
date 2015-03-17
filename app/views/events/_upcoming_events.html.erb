@@ -1,22 +1,23 @@
+<!-- upcoming events partial just for home page -->
 <h1>Upcoming events</h1>
 
 <table>
   <thead>
     <tr>
       <th>Start date</th>
-      <th>End date</th>
-      <th>Start time</th>
+      <th>Location</th>
     </tr>
   </thead>
 
   <tbody>
+
     <% upcoming_events.each do |event| %>
       <tr>
-        <td><%= event.start_date %></td>
-        <td><%= event.end_date %></td>
-        <td><%= event.start_time %></td>
+        <td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event)  %></td>
+        <td><%= event.organization.name %></td>
       </tr>
     <% end %>
+    
   </tbody>
 </table>
 
