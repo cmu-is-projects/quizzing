@@ -109,7 +109,6 @@ FactoryGirl.define do
     association :organization
   	name "Team One"
   	active true
-  	
   end
 
   factory :user do
