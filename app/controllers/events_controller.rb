@@ -4,9 +4,10 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    @upcoming_events = Event.upcoming.chronological.to_a
     @quiz_year = QuizYear.new
     @events = @quiz_year.this_yr_events
-
+    @past_events = Event.past.chronological.to_a
   end
 
   # GET /events/1
