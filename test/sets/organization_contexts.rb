@@ -22,8 +22,8 @@ module Contexts
     
     def delete_organizations
       delete_one_organization
-      @somerset.destroy
-      @grove_city.destroy
+      @somerset.delete
+      @grove_city.delete
     end
 
   end

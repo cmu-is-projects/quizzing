@@ -1,4 +1,4 @@
-class Team < ActiveRecord::Base
+  class Team < ActiveRecord::Base
   # get modules to help with some functionality
   include QuizHelpers::Validations
   include Activeable
@@ -40,10 +40,10 @@ class Team < ActiveRecord::Base
   end
 
   private
-  #division currently does not have an active field
-  # def division_is_active_in_system
-  #   is_active_in_system(:division)
-  # end
+
+  def division_is_active_in_system
+    is_active_in_system(:division)
+  end
 
   def organization_is_active_in_system
     is_active_in_system(:organization)

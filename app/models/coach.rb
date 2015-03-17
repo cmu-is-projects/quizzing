@@ -24,7 +24,6 @@ class Coach < ActiveRecord::Base
   scope :alphabetical, -> {order("last_name","first_name")}
   
   #Callbacks
-<<<<<<< HEAD
   before_save :reformat_phone
   before_destroy :is_never_destroyable
   before_update :deactive_user_if_coach_made_inactive
@@ -43,7 +42,6 @@ class Coach < ActiveRecord::Base
     is_active_in_system(:organization)
   end
 
-<<<<<<< HEAD
   def deactive_user_if_coach_made_inactive
     if !self.active && !self.user.nil?
       self.user.active = false

@@ -25,13 +25,13 @@ class Quiz < ActiveRecord::Base
   # Methods
 
   private
-  # def event_is_active_in_system
-  #   is_active_in_system(:event)
-  # end
+  def event_is_active_in_system
+    is_active_in_system(:event)
+  end
 
-  # def division_is_active_in_system
-  #   is_active_in_system(:division)
-  # end
+  def division_is_active_in_system
+    is_active_in_system(:division)
+  end
 
   # TODO: write this method and test
   # def verify_that_the_quiz_has_no_scores

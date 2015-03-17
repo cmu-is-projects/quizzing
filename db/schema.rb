@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304050031) do
+ActiveRecord::Schema.define(version: 20150227065845) do
 
   create_table "categories", force: true do |t|
     t.string "name"
@@ -35,11 +35,11 @@ ActiveRecord::Schema.define(version: 20150304050031) do
   end
 
   create_table "events", force: true do |t|
-    t.date     "start_date"
-    t.date     "end_date"
-    t.time     "start_time"
-    t.integer  "num_rounds"
-    t.integer  "organization_id"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.time    "start_time"
+    t.integer "num_rounds"
+    t.integer "organization_id"
   end
 
   create_table "organization_students", force: true do |t|
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20150304050031) do
   end
 
   create_table "organizations", force: true do |t|
-<<<<<<< HEAD
     t.string  "name"
     t.string  "short_name"
     t.string  "street_1"
@@ -62,21 +61,6 @@ ActiveRecord::Schema.define(version: 20150304050031) do
     t.decimal "longitude"
     t.boolean "active",          default: true
     t.integer "primary_contact"
-=======
-    t.string   "name"
-    t.string   "short_name"
-    t.string   "street_1"
-    t.string   "street_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.decimal  "longitude"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "primary_contact"
-    t.decimal  "latitude"
->>>>>>> 23d620e8859fffd7dad46891a1556db338124a2e
   end
 
   create_table "quiz_teams", force: true do |t|
@@ -89,22 +73,12 @@ ActiveRecord::Schema.define(version: 20150304050031) do
   end
 
   create_table "quizzes", force: true do |t|
-<<<<<<< HEAD
     t.integer "division_id"
     t.integer "event_id"
     t.string  "room_num"
     t.integer "round_num"
     t.boolean "active",      default: true
-=======
-    t.integer  "division_id"
-    t.integer  "event_id"
-    t.string   "room_num"
-    t.integer  "round_num"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "category_id"
->>>>>>> 23d620e8859fffd7dad46891a1556db338124a2e
+    t.integer "category_id"
   end
 
   create_table "settings", force: true do |t|
