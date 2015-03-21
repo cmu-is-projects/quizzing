@@ -1,0 +1,19 @@
+<!-- Previous years' events -->
+<h3>Previous years' events</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @past_events.each do |event| %>
+      <tr>
+        <td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

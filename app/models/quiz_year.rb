@@ -26,6 +26,11 @@ class QuizYear #refers to academic bible quizzing year
     Event.all.select {|e| e.start_date >= @start_date && e.start_date <= Date.today}
   end
 
+  def prev_events
+    # returns an array of events for previous academic bible quizing years
+    Event.all.select {|e| e.start_date <= @start_date && e.end_date <= @end_date}
+  end
+
   private
   def find_default_dates
     year  = Date.today.year

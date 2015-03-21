@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     @upcoming_events = Event.upcoming.chronological.to_a
     @quiz_year = QuizYear.new
     @events = @quiz_year.this_yr_events
-    @past_events = Event.past.chronological.to_a
+    @past_events = @quiz_year.prev_events
   end
 
   # GET /events/1
