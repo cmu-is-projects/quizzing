@@ -1,19 +1,18 @@
 <!-- General Home Page for the Public -->
 <div class="row">
-  <div class="small-7 columns">
+  <div class="small-8 columns">
   	<!-- Welcome message for general public -->
     <%= render partial: 'welcome_general' %>
-    <!-- locals: {events: @upcoming_events } --> 
     <br />
+
     <!-- Upcoming Events Partial -->
-    <!-- Broken partial right now -->
-    <%#= render partial: 'events/events'%>    
+    <%= render partial: 'events/upcoming_events', locals: {upcoming_events: upcoming_events} %>    
   </div>
 
   <div class="small-1 columns">
     &nbsp;
   </div>
 
-  <div class="small-4 columns">
+  <div class="small-3 columns">
   </div>
 </div>
