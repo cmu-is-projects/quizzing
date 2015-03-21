@@ -7,8 +7,6 @@
       <th>City</th>
       <th>State</th>
       <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -18,9 +16,8 @@
         <td><%= link_to organization.name, organization_path(organization) %></td>
         <td><%= organization.city %></td>
         <td><%= organization.state %></td>
-        <td><%= link_to 'Show', organization %></td>
-        <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
-        <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_organization_path(organization), class: "button tiny radius" %></td>
+        <!--<td><%#= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>
