@@ -20,7 +20,7 @@ class Quiz < ActiveRecord::Base
   validate :division_is_active_in_system
 
   # Callbacks
-  # before_destroy :verify_that_the_quiz_has_no_scores
+  before_destroy :verify_that_the_quiz_has_no_scores
 
   # Methods
 
@@ -33,9 +33,14 @@ class Quiz < ActiveRecord::Base
     is_active_in_system(:division)
   end
 
-  # TODO: write this method and test
-  # def verify_that_the_quiz_has_no_scores
-     
-  # end
+  def verify_that_the_quiz_has_no_scores
+    student_quizzes.each do |sq| 
+      if sq.score != 0
+        return false;
+      end
+    end
+    
+    return true;
+  end
 
 end
