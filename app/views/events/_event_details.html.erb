@@ -15,5 +15,5 @@
   <strong>Location:</strong>
   <%= @event.organization.name %> <br /><br />
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Edit', edit_event_path(@event), class: "button tiny radius" %>
+<%= link_to 'Back', events_path, class: 'button tiny secondary radius' %>
