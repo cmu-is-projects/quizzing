@@ -17,3 +17,8 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+//from datatables
+// $(document).ready( function () {
+//     $('#table_id').DataTable();
+// } );

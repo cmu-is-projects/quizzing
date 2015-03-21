@@ -1,0 +1,24 @@
+<!-- upcoming events partial just for home page -->
+<h1>Upcoming events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th width="140">Start date</th>
+      <th width="280">Location</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% upcoming_events.each do |event| %>
+      <tr>
+        <td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event)  %></td>
+        <td><%= event.organization.name %></td>
+      </tr>
+    <% end %>
+    
+  </tbody>
+</table>
+
+<br>
