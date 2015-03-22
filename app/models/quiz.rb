@@ -25,7 +25,6 @@ class Quiz < ActiveRecord::Base
   #consider scope "by_round"
 
   #Callbacks
-  before_destroy Proc.new {false}
   validate :event_is_active_in_system
   validate :division_is_active_in_system
 

@@ -23,9 +23,6 @@ class Team < ActiveRecord::Base
   scope :active, -> {where(active: true)}
   scope :inactive, -> {where(active: false)}
 
-  #Callbacks
-  before_destroy Proc.new {false}
-
   #Methods
   validate :division_is_active_in_system
   validate :organization_is_active_in_system
