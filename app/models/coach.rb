@@ -27,7 +27,6 @@ class Coach < ActiveRecord::Base
 
   
   #Callbacks
-  before_destroy Proc.new {false}
   before_save :reformat_phone
   before_destroy :is_never_destroyable
   before_update :deactive_user_if_coach_made_inactive
