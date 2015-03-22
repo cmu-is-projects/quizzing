@@ -12,7 +12,6 @@ class OrganizationTest < ActiveSupport::TestCase
   # Validations
   should validate_presence_of(:name)
   should validate_uniqueness_of(:name).case_insensitive
-  should validate_presence_of(:primary_contact)
   # should allow_value("03431").for(:zip)
   # should allow_value("15217").for(:zip)
   # should allow_value("15090").for(:zip)
@@ -33,16 +32,9 @@ class OrganizationTest < ActiveSupport::TestCase
   should allow_value("WV").for(:state)
   should allow_value("OH").for(:state)
   should allow_value("CA").for(:state)
+  should allow_value("Texas").for(:state)
   should_not allow_value("bad").for(:state)
   should_not allow_value(10).for(:state)
-  
-  should allow_value(8).for(:primary_contact)
-  should allow_value(100).for(:primary_contact)
-  should allow_value(28).for(:primary_contact)
-  should_not allow_value(0).for(:primary_contact)
-  should_not allow_value(-1).for(:primary_contact)
-  should_not allow_value(50.5).for(:primary_contact)
-  should_not allow_value("bad").for(:primary_contact)
 
 
   # set up context
@@ -69,10 +61,10 @@ class OrganizationTest < ActiveSupport::TestCase
     	assert_equal ["ACAC", "Grove City", "Somerset"], Organization.alphabetical.all.map { |a| a.short_name }
     end
 
-    should "properly identify the coordinates of the organizations" do
-      assert_in_delta(40.4533665, @acac.latitude, 0.0001)
-      assert_in_delta(-80.0030653, @acac.longitude, 0.0001)
-    end
+    # should "properly identify the coordinates of the organizations" do
+    #   assert_in_delta(40.4533665, @acac.latitude, 0.0001)
+    #   assert_in_delta(-80.0030653, @acac.longitude, 0.0001)
+    # end
 
     should "have methods to make active or inactive" do
       @acac.make_inactive

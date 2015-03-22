@@ -32,6 +32,7 @@ module Contexts
   include Contexts::ExtendedQuizzesContexts
 
   def create_all
+    create_categories
     create_divisions
     create_organizations
     create_events
@@ -52,15 +53,17 @@ module Contexts
   end
 
   def delete_all
+    Category.create_all
     Division.delete_all
     Organization.delete_all
     Event.delete_all
     Student.delete_all
+    User.delete_all
     Coach.delete_all
     Team.delete_all
     OrganizationStudent.delete_all
     StudentTeam.delete_all
-    TeamQuiz.delete_all
+    QuizTeam.delete_all
     StudentQuiz.delete_all  
     TeamCoach.delete_all  
   end
