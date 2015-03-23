@@ -15,12 +15,14 @@ class Organization < ActiveRecord::Base
   belongs_to :primary_contact, class_name: "Coach", foreign_key: "primary_contact"
 
   #Validations
-  #will next turn street_1 and zip into dependent conditionals 
-  validates_presence_of :name #,:street_1, :zip
+  #TODO: turn street_1 and zip into dependent conditionals 
+  validates :name, presence: true
+  #validates :street_1, presence: true, unless: "zip.nil?"
   validates_uniqueness_of :name, case_sensitive: false
   validates :state, inclusion: { in: (STATES_LIST.map{|a,b| a} + STATES_LIST.map { |a,b| b }), message: "is not valid state", allow_blank: true }
   #discern allow_blank for below after connecting it with street_1
   validates :zip, format: { with: /\A\d{5}\z/, message: "should be five digits long", allow_blank: true }
+  #validates :zip, presence: true, unless: "street_1.nil?"
   
 
   # TODO: validating zip/postal codes (handling Canada is the trick...)
