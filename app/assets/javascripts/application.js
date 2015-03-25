@@ -15,6 +15,8 @@
 //= require foundation
 //= require turbolinks
 //= require_tree .
+//= require jquery-ui
+
 
 $(function(){ $(document).foundation(); });
 
@@ -22,3 +24,10 @@ $(function(){ $(document).foundation(); });
 // $(document).ready( function () {
 //     $('#table_id').DataTable();
 // } );
+
+// Datepicker code
+$(function() {
+$(".datepicker").datepicker({
+format: 'mm/dd/YYYY'
+});
+});
