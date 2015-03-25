@@ -12,11 +12,11 @@
       </div>
     <% end %>
 
-      <%= f.input :start_date, :as => :date_picker %>
+      <%= f.input :start_date, label: "Start Date", as: :string, :input_html => {:class => "datepicker"} %>
       <br>
-      <%= f.input :end_date, :as => :date_picker %>
+      <%= f.input :end_date, label: "End Date", as: :string, :input_html => {:class => "datepicker"} %>
       <br>
-      <%= f.input :start_time, :as => :time_picker %>
+      <%= f.input :start_time %>
       <br>
       <%= f.input :num_rounds %>
 

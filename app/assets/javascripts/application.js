@@ -15,12 +15,8 @@
 //= require foundation
 //= require turbolinks
 //= require_tree .
-= require moment
-= require bootstrap-datetimepicker
-= require pickers
+//= require jquery-ui
 
-// You may include any languages (optional)
-//= require moment/<your locale>
 
 $(function(){ $(document).foundation(); });
 
@@ -28,3 +24,10 @@ $(function(){ $(document).foundation(); });
 // $(document).ready( function () {
 //     $('#table_id').DataTable();
 // } );
+
+// Datepicker code
+$(function() {
+$(".datepicker").datepicker({
+format: 'mm/dd/YYYY'
+});
+});
