@@ -22,6 +22,8 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @event.start_date.strftime("%m/%d/%Y")
+    @event.end_date.strftime("%m/%d/%Y")
   end
 
   # POST /events
