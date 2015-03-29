@@ -16,13 +16,9 @@ class Quiz < ActiveRecord::Base
   validates_presence_of :event_id, :division_id, :round_num
   validates_numericality_of :event_id, :division_id, :round_num, :room_num, only_integer: true, greater_than: 0
 
-  #custom validation
-  # validate :ensure_quiz_is_for_current_event
-
   #Scopes
   scope :active, -> {where(active: true)}
   scope :inactive, -> {where(active: false)}
-  #consider scope "by_round"
 
   #Callbacks
   validate :event_is_active_in_system
@@ -43,12 +39,6 @@ class Quiz < ActiveRecord::Base
   def division_is_active_in_system
     is_active_in_system(:division)
   end
-
-  #need to ensure quiz can't be assigned to past event
-  # def ensure_quiz_is_for_past_event
-  #   return false if self.event.start_date < Date.today
-  #   return true       
-  # end
 
   # TODO: write this method and test
   # def verify_that_the_quiz_has_no_scores
