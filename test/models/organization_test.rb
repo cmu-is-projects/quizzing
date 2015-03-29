@@ -66,10 +66,8 @@ class OrganizationTest < ActiveSupport::TestCase
     # end
 
     should "show that conditional zip and street_1 is working" do
-      @street_1_and_zip = FactoryGirl.create(:organization, name: "s&z", street_1: "1 st", zip: 15213)
-      assert @street_1_and_zip.valid?
-      @street_1_and_zip.delete
-
+      street_1_and_zip = FactoryGirl.build(:organization, name: "s&z", street_1: "1 st", zip: 15213)
+      assert street_1_and_zip.valid?
       street_1_wo_zip = FactoryGirl.build(:organization, name: "org", street_1: "1 street", zip: nil)
       deny street_1_wo_zip.valid?
       zip_wo_street_1 = FactoryGirl.build(:organization, name: "org", street_1: nil, zip: 12345)
