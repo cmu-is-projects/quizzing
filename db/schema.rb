@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316221056) do
+ActiveRecord::Schema.define(version: 20150226023120) do
 
   create_table "categories", force: true do |t|
     t.string "name"
@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(version: 20150316221056) do
     t.string  "room_num"
     t.integer "round_num"
     t.boolean "active",      default: true
-    t.integer "category_id"
   end
 
   create_table "settings", force: true do |t|
@@ -86,7 +85,6 @@ ActiveRecord::Schema.define(version: 20150316221056) do
     t.boolean "drop_lowest_score"
     t.boolean "roster_lock_toggle"
     t.boolean "auto_promote_students"
-    t.boolean "ties_must_be_broken"
   end
 
   create_table "student_quizzes", force: true do |t|

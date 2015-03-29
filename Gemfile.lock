@@ -1,3 +1,19 @@
+GIT
+  remote: git://github.com/derekprior/momentjs-rails.git
+  revision: 4b1b0a64bca3eb5ab8741eb4a4d2c1c5a6fdf04b
+  specs:
+    momentjs-rails (2.9.0)
+      railties (>= 3.1)
+
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: c5405f3486b57a52416caf93b79fc09d56930a82
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.7.15)
+      momentjs-rails (>= 2.9.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -226,6 +242,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   cucumber-rails
   database_cleaner
+  datetimepicker-rails!
   factory_girl_rails (= 4.5.0)
   faker (= 1.4.3)
   foundation-rails
@@ -236,6 +253,7 @@ DEPENDENCIES
   launchy
   meta_request (= 0.3.4)
   mocha (= 1.1.0)
+  momentjs-rails (~> 2.9)!
   quiet_assets (= 1.1.0)
   rails (= 4.0.13)
   sass-rails (~> 5.0.0)
