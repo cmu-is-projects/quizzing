@@ -31,7 +31,7 @@ class Organization < ActiveRecord::Base
   scope :alphabetical, -> {order("name")}
   
   #Callbacks
-  # before_save :get_organization_coordinates
+  before_save :get_organization_coordinates
   before_destroy :is_never_destroyable
   before_update :end_student_tenure_if_organization_made_inactive
 

@@ -61,10 +61,10 @@ class OrganizationTest < ActiveSupport::TestCase
     	assert_equal ["ACAC", "Grove City", "Somerset"], Organization.alphabetical.all.map { |a| a.short_name }
     end
 
-    # should "properly identify the coordinates of the organizations" do
-    #   assert_in_delta(40.4533665, @acac.latitude, 0.0001)
-    #   assert_in_delta(-80.0030653, @acac.longitude, 0.0001)
-    # end
+    should "properly identify the coordinates of the organizations" do
+      assert_in_delta(40.4533665, @acac.latitude, 0.0001)
+      assert_in_delta(-80.0030653, @acac.longitude, 0.0001)
+    end
 
     should "have methods to make active or inactive" do
       @acac.make_inactive
@@ -96,6 +96,7 @@ class OrganizationTest < ActiveSupport::TestCase
       delete_students
       delete_organization_students
     end
+
 
     #Theophilus' old stuff
 
