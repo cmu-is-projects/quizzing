@@ -9,20 +9,27 @@ class Quiz < ActiveRecord::Base
   has_many :students, through: :student_quizzes
   has_many :quiz_teams
   has_many :teams, through: :quiz_teams
-  has_one :category
+  belongs_to :category
   belongs_to :division
 
   #Validations
-  validates_presence_of :event_id, :division_id 
-  validates_numericality_of :round_num, only_integer: true, greater_than: 0
-  validates_numericality_of :room_num, only_integer: true, greater_than: 0
+  validates_presence_of :event_id, :division_id, :round_num
+  validates_numericality_of :event_id, :division_id, :round_num, :room_num, only_integer: true, greater_than: 0
+
+  #Scopes
+  scope :active, -> {where(active: true)}
+  scope :inactive, -> {where(active: false)}
+
+  #Callbacks
   validate :event_is_active_in_system
   validate :division_is_active_in_system
 
   # Callbacks
   before_destroy :verify_that_the_quiz_has_no_scores
 
-  # Methods
+  #need method to ensure uniqueness of event, division, round uniqueness
+  
+  #Methods
 
   private
   def event_is_active_in_system
