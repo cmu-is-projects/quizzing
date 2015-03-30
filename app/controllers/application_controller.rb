@@ -39,4 +39,10 @@ class ApplicationController < ActionController::Base
   #   redirect_to root_url(:host => request.domain)
   # end
 
+  def logged_in?
+    true
+  end
+
+  helper_method :logged_in?
+
 end

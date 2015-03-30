@@ -1,7 +1,12 @@
-<div class="row">
+<%= render partial: "partials/structure_1", locals: {model_name: "team", 
+                                                         primary: "teams", 
+                                                         secondary: nil,
+                                                         sidebar: nil,
+                                                         options: "partials/new_options"} %>
+
+<!-- <div class="row">
   <div class="small-7 columns">   
-    <!-- all teams -->
-      <%= render :partial => "teams" %>
+      <%# render :partial => "teams" %>
   </div>
 
   <div class="small-1 columns">
@@ -10,4 +15,4 @@
 
   <div class="small-4 columns">
   </div>
-</div>
+</div> -->
