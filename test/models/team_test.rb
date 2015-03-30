@@ -9,6 +9,7 @@ class TeamTest < ActiveSupport::TestCase
   should have_many(:team_coaches)
   should have_many(:coaches).through(:team_coaches)
 
+
   # test validations
   should validate_presence_of(:division_id)
   should validate_presence_of(:organization_id)

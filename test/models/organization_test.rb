@@ -6,6 +6,7 @@ class OrganizationTest < ActiveSupport::TestCase
   should have_many(:students).through(:organization_students)
   should have_many(:coaches)
   should have_many(:teams)
+  should have_many(:events)
   should belong_to(:primary_contact)
 
   # Validations
@@ -20,8 +21,27 @@ class OrganizationTest < ActiveSupport::TestCase
   # should_not allow_value("12345-001").for(:zip)
   # should_not allow_value("1234I").for(:zip)
 
+  # should_not allow_value("3431").for(:zip)
+  # should_not allow_value("152179").for(:zip)
+  # should_not allow_value("profh").for(:zip)
+
+  # should allow_value("PA").for(:state)
+  # should allow_value("WV").for(:state)
+  # should allow_value("OH").for(:state)
+  # should allow_value("CA").for(:state)
+  # should_not allow_value("bad").for(:state)
+  # should_not allow_value(10).for(:state)
+  
+  # should allow_value(8).for(:primary_contact)
+  # should allow_value(100).for(:primary_contact)
+  # should allow_value(28).for(:primary_contact)
+  # should_not allow_value(0).for(:primary_contact)
+  # should_not allow_value(-1).for(:primary_contact)
+  # should_not allow_value(50.5).for(:primary_contact)
+  # should_not allow_value("bad").for(:primary_contact)
 
   # set up context
+
   context "Creating an organization context" do
     setup do 
       create_organizations
