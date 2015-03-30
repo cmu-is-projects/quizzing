@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Quizzing::Application.config.secret_key_base = '621d878119cb93a899add5f4deb404f071097256bb0ba9376c351f54ca19b3a7eb40629f3bb760be1d931ff05a5903d9f43ba3796de990b6558d560e4b81df61'
+Quizzing::Application.config.secret_key_base = SETTINGS[:secret_key_base]
