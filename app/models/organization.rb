@@ -15,13 +15,23 @@ class Organization < ActiveRecord::Base
   belongs_to :primary_contact, class_name: "Coach", foreign_key: "primary_contact"
 
   #Validations
-  #TODO: turn street_1 and zip into dependent conditionals 
   validates :name, presence: true
-  validates :street_1, presence: true, unless: "zip.nil?"
   validates :state, inclusion: { in: (STATES_LIST.map{|a,b| a} + STATES_LIST.map { |a,b| b }), message: "is not valid state", allow_blank: true }
-  #discern allow_blank for below after connecting it with street_1
-  validates :zip, format: { with: /\A\d{5}\z/, message: "should be five digits long", allow_blank: true }
+  #case 1 - if street_1 entered, need a zip to geocode
   validates :zip, presence: true, unless: "street_1.nil?"
+  #case 2 - if zip entered, need street 1 to geocode
+  validates :street_1, presence: true, unless: "zip.nil?"
+  #case 3 - if state is entered - if a zip is entered with it - the zip needs to be 5 digits 
+  #and continue to discern the allow_blank...
+  validates :zip, format: { with: /\A\d{5}\z/, message: "should be five digits long because an American state was provided", allow_blank: true }, if: :zip_and_state_entered?
+  #case 4 - if zip is entered without a state, the zip should then be of Canadian format
+  #fiddling with method taken from online
+  #validates_as_postal_code :zip, country: "CA", allow_blank: true, message: "The zip you entered should be of Canadian format because you did not enter a US state", if: :zip_is_entered_without_a_state?
+  validates :zip, format: { with: /\A[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1}[ -]?\d{1}[A-Z]{1}\d{1}\z/, message: "The zip you entered should be of Canadian format because you did not enter a US state", allow_blank: true }, if: :zip_is_entered_without_a_state?
+
+
+  
+
   
 
   # TODO: validating zip/postal codes (handling Canada is the trick...)
@@ -40,6 +50,15 @@ class Organization < ActiveRecord::Base
   end
   
   private
+  #TODO - test
+  def zip_and_state_entered?
+    return ( !self.zip.nil? && !self.state.nil? )
+  end
+
+  def zip_is_entered_without_a_state?
+    return ( !self.zip.nil? && self.state.nil? )
+  end
+
   def end_student_tenure_if_organization_made_inactive
     if !self.active && !self.organization_students.empty?
       current_students = self.organization_students.current.all

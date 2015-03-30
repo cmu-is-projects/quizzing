@@ -65,14 +65,56 @@ class OrganizationTest < ActiveSupport::TestCase
       assert_in_delta(-80.0030653, @acac.longitude, 0.0001)
     end
 
+    should "show that a US state must have an exactly 5 digit zip" do
+      bad_org = FactoryGirl.build(:organization, name: "bad org", short_name: "bo", zip: "123456")
+      deny bad_org.valid?
+      good_org = FactoryGirl.build(:organization, name: "generic org", short_name: "go")
+      assert good_org.valid?
+    end
+
     should "show that conditional zip and street_1 is working" do
-      street_1_and_zip = FactoryGirl.build(:organization, name: "s&z", street_1: "1 st", zip: 15213)
+      #state is provided in Factory, so zip will be 5 digit American format here
+      #testing validations cases 1 and 2
+      street_1_and_zip = FactoryGirl.build(:organization, name: "s&z", street_1: "1 st", zip: "15213")
       assert street_1_and_zip.valid?
       street_1_wo_zip = FactoryGirl.build(:organization, name: "org", street_1: "1 street", zip: nil)
       deny street_1_wo_zip.valid?
-      zip_wo_street_1 = FactoryGirl.build(:organization, name: "org", street_1: nil, zip: 12345)
+      zip_wo_street_1 = FactoryGirl.build(:organization, name: "org", street_1: nil, zip: "12345")
       deny zip_wo_street_1.valid?
     end
+
+    should "indirectly test zip_and_state_entered? private method" do
+      generic_org = FactoryGirl.build(:organization, name: "generic org", short_name: "go")
+      assert ( !generic_org.zip.nil? && !generic_org.state.nil? )
+    end
+
+    should "indirectly test zip_is_entered_without_a_state? private method" do
+      generic_org = FactoryGirl.build(:organization, name: "generic org", short_name: "go", state: nil)
+      assert ( !generic_org.zip.nil? && generic_org.state.nil? )
+    end
+
+    should "show that it is ok to enter a state with no zip AND no street_1" do
+      generic_org = FactoryGirl.build(:organization, name: "generic org", short_name: "go", zip: nil, street_1: nil)
+      assert generic_org.valid?
+    end
+
+  
+    should "show that if state is entered - if a zip is entered with it - the zip needs to be 5 digits" do
+      generic_us_org = FactoryGirl.build(:organization, name: "generic org", short_name: "go")
+      assert generic_us_org.valid?
+      try_canadian_zip_with_state = FactoryGirl.build(:organization, name: "generic org", short_name: "go", zip: "X1X 1X1")
+      deny try_canadian_zip_with_state.valid?
+    end
+
+    should "show that if zip is entered without a state, the zip should then be of Canadian format" do
+      us_zip_wo_state = FactoryGirl.build(:organization, name: "generic org", short_name: "go", state: nil)
+      deny us_zip_wo_state.valid?
+      no_state_so_canadian_zip = FactoryGirl.build(:organization, name: "generic org", short_name: "go", state: nil, zip: "X1X 1X1")
+      assert no_state_so_canadian_zip.valid?
+      no_state_but_random_wrong_zip = FactoryGirl.build(:organization, name: "generic org", short_name: "go", state: nil, zip: "X1X 1X1 lalala")
+      deny no_state_but_random_wrong_zip.valid?
+    end
+
 
     should "have methods to make active or inactive" do
       @acac.make_inactive
