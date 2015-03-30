@@ -50,12 +50,14 @@ class EventTest < ActiveSupport::TestCase
     end
 
     should "shows that there are four events in chronological order" do
-      assert_equal ["#{2.weeks.ago.to_date.strftime("%b %d")}", "#{Date.tomorrow.strftime("%b %d")}", "#{4.weeks.from_now.to_date.strftime("%b %d")}", "#{1.year.from_now.to_date.strftime("%b %d")}"], Event.chronological.all.map{|e| "#{e.start_date.strftime("%b %d")}"}
+      assert_equal ["#{2.years.ago.to_date.strftime("%b %d %y")}","#{1.year.ago.to_date.strftime("%b %d %y")}","#{2.weeks.ago.to_date.strftime("%b %d %y")}", "#{Date.tomorrow.strftime("%b %d %y")}", 
+        "#{4.weeks.from_now.to_date.strftime("%b %d %y")}", "#{1.year.from_now.to_date.strftime("%b %d %y")}"], 
+        Event.chronological.all.map{|e| "#{e.start_date.strftime("%b %d %y")}"}
     end
 
     should "shows that there are 3 upcoming events and 1 past events" do
       assert_equal 3, Event.upcoming.size
-      assert_equal 1, Event.past.size
+      assert_equal 3, Event.past.size
     end
 
     should "verify that the organization is active in the system" do

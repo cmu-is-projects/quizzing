@@ -1,15 +1,6 @@
-<div class="row">
-  <div class="small-8 columns">   
-    <!-- this year's events -->
-      <%= render :partial => "events" %>
-      <%= link_to 'New Event', new_event_path, class: "button tiny radius" %>
-  </div>
+<%= render partial: "partials/structure_1", locals: {model_name: "event", 
+                                                         primary: "events", 
+                                                         secondary: nil,
+                                                         sidebar: nil,
+                                                         options: "partials/new_options"} %>
 
-  <div class="small-1 columns">
-    &nbsp;
-  </div>
-
-  <div class="small-3 columns">
-    <!-- previous years' events -->
-  </div>
-</div>
