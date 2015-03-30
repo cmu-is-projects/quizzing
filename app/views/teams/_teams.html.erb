@@ -4,9 +4,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Active</th>
-      <th></th>
-      <th></th>
+      <th>Organization</th>
+      <th>Division</th>
       <th></th>
     </tr>
   </thead>
@@ -14,16 +13,13 @@
   <tbody>
     <% @teams.each do |team| %>
       <tr>
-        <td><%= team.name %></td>
-        <td><%= team.active %></td>
-        <td><%= link_to 'Show', team %></td>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to team.name, team_path(team) %></td>
+        <td><%= team.organization.name %></td>
+        <td><%= team.division.name %></td>
+        <td><%= link_to 'Edit', edit_team_path(team),class: "button tiny radius" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Team', new_team_path %>

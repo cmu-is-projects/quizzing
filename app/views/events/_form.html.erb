@@ -1,5 +1,5 @@
 <%= simple_form_for @event, html: { class: 'form-horizontal' } do |f| %>
-  <fieldset>
+  <div class ="row">
     <% if @event.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -11,7 +11,7 @@
         </ul>
       </div>
     <% end %>
-
+  <div class ="small-6 columns">
       <%= f.input :start_date, as: :date %>
       <br>
       <%= f.input :end_date, as: :date %>
@@ -20,9 +20,14 @@
       <br>
       <%= f.input :num_rounds %>
 
-    <div class="form-actions">
-      <%= f.submit nil, class: 'button' %>
-      <%= link_to 'Cancel', events_path, :class => 'button secondary' %>
-    </div>
-  </fieldset>
+      <div class="form-actions">
+      <%= f.submit nil, class: 'button radius' %>
+      <%= link_to 'Cancel', events_path, class: 'button secondary radius' %>
+      </div>
+  </div>
+
+  <div class="small-1 columns"></div>
+
+  <div class="small-5 columns"></div>
+  </div>
 <% end %>
