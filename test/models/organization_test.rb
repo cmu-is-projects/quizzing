@@ -106,14 +106,14 @@ class OrganizationTest < ActiveSupport::TestCase
       deny try_canadian_zip_with_state.valid?
     end
 
-    # should "show that if zip is entered without a state, the zip should then be of Canadian format" do
-    #   us_zip_wo_state = FactoryGirl.build(:organization, name: "generic org", short_name: "go", state: nil)
-    #   deny us_zip_wo_state.valid?
-    #   no_state_so_canadian_zip = FactoryGirl.build(:organization, name: "generic org", short_name: "go", state: nil, zip: "X1X 1X1")
-    #   assert no_state_so_canadian_zip.valid?
-    #   no_state_but_random_wrong_zip = FactoryGirl.build(:organization, name: "generic org", short_name: "go", state: nil, zip: "X1X 1X1 lalala")
-    #   deny no_state_but_random_wrong_zip.valid?
-    # end
+    should "show that if zip is entered without a state, the zip should then be of Canadian format" do
+      us_zip_wo_state = FactoryGirl.build(:organization, name: "generic org", short_name: "go", state: nil)
+      deny us_zip_wo_state.valid?
+      no_state_so_canadian_zip = FactoryGirl.build(:organization, name: "generic org", short_name: "go", state: nil, zip: "X1X 1X1")
+      assert no_state_so_canadian_zip.valid?
+      no_state_but_random_wrong_zip = FactoryGirl.build(:organization, name: "generic org", short_name: "go", state: nil, zip: "X1X 1X1 lalala")
+      deny no_state_but_random_wrong_zip.valid?
+    end
 
 
     should "have methods to make active or inactive" do
