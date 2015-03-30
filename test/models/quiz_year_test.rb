@@ -37,5 +37,11 @@ class QuizYearTest < ActiveSupport::TestCase
       yr = QuizYear.new
     	assert_equal 3, yr.this_yr_events.size
     end
+
+    should "show that there are 2 events in the previous years" do
+      yr = QuizYear.new
+      assert_equal 2, yr.prev_events.size
+    end
+
   end
 end
