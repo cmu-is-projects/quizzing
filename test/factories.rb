@@ -36,7 +36,7 @@ FactoryGirl.define do
   end
 
   factory :organization do
-  	name "Allegheny Center Alliance Church"
+   	name "Allegheny Center Alliance Church"
   	short_name "ACAC"	
   	street_1 "250 East Ohio Street"
   	street_2 nil
@@ -109,7 +109,6 @@ FactoryGirl.define do
     association :organization
   	name "Team One"
   	active true
-  	
   end
 
   factory :user do

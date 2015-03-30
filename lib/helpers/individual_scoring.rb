@@ -12,16 +12,13 @@ module QuizHelpers
     end
 
     def calculate_error_points(num_correct, num_attempts)
+      #Scoring rule 2B1:
+      #When a quizzer makes a second error within a quiz 10 points are deducted
+      #from his individual score. An additional 10 points are deducted for his 
+      #third error.
       errors = num_attempts - num_correct
-      case errors
-      when 2
-        penalty = 10
-      when 3
-        penalty = 20
-      else
-        penalty = 0
-      end
-      return penalty
+      
+      return errors > 1 ? (errors - 1) * 10 : 0
     end
 
     def calculate_foul_penalty(num_fouls)
