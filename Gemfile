@@ -60,6 +60,10 @@ gem 'jquery-ui-rails'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#date converting
+gem 'chronic'
+gem 'time_date_helpers', '0.0.2'
+
 
 # Additional gems that are very useful in Rails development
 group :development do

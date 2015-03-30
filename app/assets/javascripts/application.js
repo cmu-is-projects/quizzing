@@ -27,7 +27,7 @@ $(function(){ $(document).foundation(); });
 
 // Datepicker code
 $(function() {
-$(".datepicker").datepicker({
-format: 'mm/dd/YYYY'
-});
+	$(".datepicker").datepicker({
+		format: 'mm/dd/YYYY'
+	});
 });
