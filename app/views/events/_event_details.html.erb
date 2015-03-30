@@ -3,19 +3,19 @@
   <strong>Date:</strong>
   <%= @event.start_date.strftime('%B %d, %Y') %> <%= "- #{@event.end_date.strftime('%B %d, %Y')}" %> <br /><br />
 
-  <strong>Address:</strong>
+  <strong>Address:</strong><br /><br />
   <!-- how to concat -->
 
   <strong>Contact Person:</strong>
-  <%= @event.organization.primary_contact  %> <br /><br />
+  <%#= @event.organization.primary_contact  %> <br /><br />
 
   <strong>Teams:</strong>
   
-  <% @quizzes.each do |quiz| %>
-      <% quiz.teams.each do |team| %>
-        <li><%= team.name %></li>
-      <% end %>
-  <% end %>
+  <%# @quizzes.each do |quiz| %>
+      <%# quiz.teams.each do |team| %>
+        <!--<li><%#= team.name %></li>-->
+      <%# end %>
+  <%# end %> <br /><br />
 
 
 
