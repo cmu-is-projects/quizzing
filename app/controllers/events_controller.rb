@@ -18,6 +18,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @quizzes = @event.quizzes
+    #@teams = @event.quizzes.teams
   end
 
   # GET /events/new
