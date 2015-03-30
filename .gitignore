@@ -25,3 +25,6 @@
 /app/assets/.DS_Store
 /public/.DS_Store
 /lib/.DS_Store
+
+# Ignore the settings.yml file (security reasons)
+/config/settings.yml

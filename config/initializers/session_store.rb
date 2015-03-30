@@ -1,3 +1,3 @@
 # Be sure to restart your server when you modify this file.
 
-Quizzing::Application.config.session_store :cookie_store, key: '_quizzing_session'
+Quizzing::Application.config.session_store :cookie_store, key: SETTINGS[:session_name]
