@@ -11,7 +11,6 @@ class OrganizationTest < ActiveSupport::TestCase
 
   # Validations
   should validate_presence_of(:name)
-  should validate_uniqueness_of(:name).case_insensitive
   # should allow_value("03431").for(:zip)
   # should allow_value("15217").for(:zip)
   # should allow_value("15090").for(:zip)
@@ -64,6 +63,15 @@ class OrganizationTest < ActiveSupport::TestCase
     should "properly identify the coordinates of the organizations" do
       assert_in_delta(40.4533665, @acac.latitude, 0.0001)
       assert_in_delta(-80.0030653, @acac.longitude, 0.0001)
+    end
+
+    should "show that conditional zip and street_1 is working" do
+      street_1_and_zip = FactoryGirl.build(:organization, name: "s&z", street_1: "1 st", zip: 15213)
+      assert street_1_and_zip.valid?
+      street_1_wo_zip = FactoryGirl.build(:organization, name: "org", street_1: "1 street", zip: nil)
+      deny street_1_wo_zip.valid?
+      zip_wo_street_1 = FactoryGirl.build(:organization, name: "org", street_1: nil, zip: 12345)
+      deny zip_wo_street_1.valid?
     end
 
     should "have methods to make active or inactive" do

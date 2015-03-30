@@ -18,7 +18,6 @@ class Organization < ActiveRecord::Base
   #TODO: turn street_1 and zip into dependent conditionals 
   validates :name, presence: true
   validates :street_1, presence: true, unless: "zip.nil?"
-  validates_uniqueness_of :name, case_sensitive: false
   validates :state, inclusion: { in: (STATES_LIST.map{|a,b| a} + STATES_LIST.map { |a,b| b }), message: "is not valid state", allow_blank: true }
   #discern allow_blank for below after connecting it with street_1
   validates :zip, format: { with: /\A\d{5}\z/, message: "should be five digits long", allow_blank: true }
