@@ -25,16 +25,7 @@ class Organization < ActiveRecord::Base
   #and continue to discern the allow_blank...
   validates :zip, format: { with: /\A\d{5}\z/, message: "should be five digits long because an American state was provided", allow_blank: true }, if: :zip_and_state_entered?
   #case 4 - if zip is entered without a state, the zip should then be of Canadian format
-  #fiddling with method taken from online
-  #validates_as_postal_code :zip, country: "CA", allow_blank: true, message: "The zip you entered should be of Canadian format because you did not enter a US state", if: :zip_is_entered_without_a_state?
   validates :zip, format: { with: /\A[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1}[ -]?\d{1}[A-Z]{1}\d{1}\z/, message: "The zip you entered should be of Canadian format because you did not enter a US state", allow_blank: true }, if: :zip_is_entered_without_a_state?
-
-
-  
-
-  
-
-  # TODO: validating zip/postal codes (handling Canada is the trick...)
   
   #Scopes
   scope :alphabetical, -> {order("name")}
