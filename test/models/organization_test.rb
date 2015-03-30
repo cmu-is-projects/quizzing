@@ -66,13 +66,38 @@ class OrganizationTest < ActiveSupport::TestCase
     # end
 
     should "show that conditional zip and street_1 is working" do
-      street_1_and_zip = FactoryGirl.build(:organization, name: "s&z", street_1: "1 st", zip: 15213)
+      #state is provided in Factory, so zip will be 5 digit American format here
+      street_1_and_zip = FactoryGirl.build(:organization, name: "s&z", street_1: "1 st", zip: "15213")
       assert street_1_and_zip.valid?
       street_1_wo_zip = FactoryGirl.build(:organization, name: "org", street_1: "1 street", zip: nil)
       deny street_1_wo_zip.valid?
-      zip_wo_street_1 = FactoryGirl.build(:organization, name: "org", street_1: nil, zip: 12345)
+      zip_wo_street_1 = FactoryGirl.build(:organization, name: "org", street_1: nil, zip: "12345")
       deny zip_wo_street_1.valid?
     end
+
+    # should "indirectly test zip_and_state_entered? private method" do
+    #   generic_org = FactoryGirl.build(:organization, name: "generic org", short_name: "go")
+    #   assert ( !zip.nil? && !state.nil? )
+    # end
+
+    # should "indirectly test zip_is_entered_without_a_state? private method" do
+    #   generic_org = FactoryGirl.build(:organization, name: "generic org", short_name: "go", state: nil)
+    #   assert ( !zip.nil? && state.nil? )
+    # end
+
+    # should "show that it is ok to enter a state with no zip AND no street_1" do
+    #   generic_org = FactoryGirl.build(:organization, name: "generic org", short_name: "go", zip: nil, street_1: nil)
+    #   assert generic_org.valid?
+    # end
+
+  
+    # should "show that if state is entered, if a zip is entered with it, the zip needs to be 5 digits" do
+    #   generic_org = FactoryGirl.build(:organization, name: "generic org", short_name: "go")
+    #   assert generic_org.valid?
+    #   try_canadian_zip_with_state = FactoryGirl.build(:organization, name: "generic org", short_name: "go", zip: "X1X 1X1")
+    #   deny try_canadian_zip_with_state.valid?
+    # end
+
 
     should "have methods to make active or inactive" do
       @acac.make_inactive
