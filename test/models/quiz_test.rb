@@ -2,6 +2,7 @@ require 'test_helper'
 
 class QuizTest < ActiveSupport::TestCase
   # test relationships
+  should belong_to(:category)
   should belong_to(:event)
   should belong_to(:division)
   should have_many(:student_quizzes)
@@ -62,5 +63,49 @@ class QuizTest < ActiveSupport::TestCase
       assert @quiz1.active
     end
 
-  end
-end
+  # Theophilus' old stuff
+  # context "Creating an quiz context" do
+  #   setup do
+  #     create_categories
+  #     create_divisions
+  #     create_organizations
+  #     create_events
+  #     create_quizzes
+  #   end
+    
+  #   teardown do
+  #     delete_categories
+  #     delete_quizzes
+  #     delete_events
+  #     delete_organizations
+  #     delete_divisions
+  #   end
+
+  #   should "Show that that quiz's active scope works" do
+  #     assert_equal 4, Quiz.active.size
+  #     assert_equal [1,2,3,4], Quiz.active.all.map{|q| q.round_num}.sort
+  #   end
+
+  #   should "show that quiz's inactive scope works" do
+  #     assert_equal 1, Quiz.inactive.size
+  #     assert_equal [5], Quiz.inactive.all.map{|q| q.round_num}.sort
+  #   end
+
+  #   should "show that quiz can't be assigned to past event" do
+  #     @past_event = FactoryGirl.build(:event, start_time: Time.now, start_date: Date.tomorrow, end_date: Date.tomorrow, num_rounds: 2)
+  #     bad_quiz = FactoryGirl.build(:quiz, division: @division1, event: @past_event, category: @category1)
+  #     deny bad_quiz.valid?
+  #   end
+
+
+    #test scope by_round
+    #need method to ensure uniqueness of event, division, round uniqueness
+    
+    #ensure division is active in system
+    # should "ensure that division is active in system" do 
+    # @bad_quiz = FactoryGirl.build(:quiz)
+    # end
+    
+
+  end #contexts
+end #class

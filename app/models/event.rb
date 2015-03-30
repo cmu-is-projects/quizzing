@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
   
   #Callbacks
   # anonymous function returning false
-  # before_destroy Proc.new {false}
+  before_destroy Proc.new {false}
 
   #Methods
 
