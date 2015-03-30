@@ -5,6 +5,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations.json
   def index
     @organizations = Organization.all
+    
   end
 
   # GET /organizations/1
@@ -69,6 +70,6 @@ class OrganizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:name, :short_name, :street_1, :street_2, :city, :state, :zip, :latitutde, :longitude, :active)
+      params.require(:organization).permit(:name, :short_name, :street_1, :street_2, :city, :state, :zip, :latitutde, :longitude, :active, :coach_ids => [])
     end
 end

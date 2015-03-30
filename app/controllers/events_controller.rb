@@ -4,15 +4,22 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    # all upcoming events
     @upcoming_events = Event.upcoming.chronological.to_a
+
+    # all events for this quiz year
     @quiz_year = QuizYear.new
     @events = @quiz_year.this_yr_events
-    @past_events = Event.past.chronological.to_a
+
+    # events that happened in previous quiz years
+    @past_events = @quiz_year.prev_events
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    @quizzes = @event.quizzes
+    #@teams = @event.quizzes.teams
   end
 
   # GET /events/new
