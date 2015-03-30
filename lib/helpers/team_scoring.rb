@@ -18,6 +18,10 @@ module QuizHelpers
       return num_failed > 1 ? (num_failed-1) * 10 : 0
     end
 
+    def calculate_team_points_from_score(points)
+      return points > 100 ? ((int)((points)/10)) : 10  
+    end
+
     # This method will be used to determine the total scoring for an entire
     # team. A team must be passed in, so we can differentiate students from
     # the other team. This method will also take into account total quizzer
@@ -63,10 +67,6 @@ module QuizHelpers
       team_score -= challenge
       
       return team_score
-    end
-
-    def calculate_team_points_from_score(points)
-      return points > 100 ? ((int)((points)/10)) : 10  
     end
 
   end #module TeamScoring
