@@ -1,3 +1,4 @@
+<!-- TODO: add organization to event, change dates to american style mm/dd/yyyy -->
 <%= simple_form_for @event, html: { class: 'form-horizontal' } do |f| %>
   <div class ="row">
     <% if @event.errors.any? %>
@@ -11,12 +12,13 @@
         </ul>
       </div>
     <% end %>
+
   <div class ="small-6 columns">
-      <%= f.input :start_date, as: :date %>
+      <%= f.input :start_date, label: "Start Date", as: :string, :input_html => {:class => "datepicker"} %>
       <br>
-      <%= f.input :end_date, as: :date %>
+      <%= f.input :end_date, label: "End Date", as: :string, :input_html => {:class => "datepicker"} %>
       <br>
-      <%= f.input :start_time, as: :time %>
+      <%= f.input :start_time %>
       <br>
       <%= f.input :num_rounds %>
 

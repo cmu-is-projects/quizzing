@@ -27,9 +27,7 @@ class Quiz < ActiveRecord::Base
   # Callbacks
   before_destroy :verify_that_the_quiz_has_no_scores
 
-  #need method to ensure uniqueness of event, division, round uniqueness
-  
-  #Methods
+  # Methods
 
   private
   def event_is_active_in_system
@@ -46,8 +44,7 @@ class Quiz < ActiveRecord::Base
         return false;
       end
     end
-    
     return true;
   end
 
-end
+end #class

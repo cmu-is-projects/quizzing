@@ -56,5 +56,4 @@ class Coach < ActiveRecord::Base
     end
   end
 
-
 end
