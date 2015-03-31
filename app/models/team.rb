@@ -1,4 +1,4 @@
-class Team < ActiveRecord::Base
+  class Team < ActiveRecord::Base
   # get modules to help with some functionality
   include QuizHelpers::Validations
   include Activeable
