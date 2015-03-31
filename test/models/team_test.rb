@@ -103,4 +103,6 @@ class TeamTest < ActiveSupport::TestCase
       delete_students
     end
 
+  end #context
+
 end # class
