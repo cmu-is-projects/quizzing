@@ -46,9 +46,9 @@ class CoachTest < ActiveSupport::TestCase
   	end
 
   	teardown do
-      delete_one_organization
       delete_users
   		delete_coaches
+      delete_one_organization
   	end
 
   	should "verify that the alphabetical scope works" do
@@ -88,7 +88,7 @@ class CoachTest < ActiveSupport::TestCase
       bad_coach = FactoryGirl.build(:coach, organization: @organization1, user: @inactive_user)
       deny bad_coach.valid?
       @inactive_user.delete
-    end	  	
+    end
 
     should "verify that the organization is active in the system" do
       # test the inactive organization first
@@ -114,6 +114,6 @@ class CoachTest < ActiveSupport::TestCase
     should "reformat phone number before saving" do
       assert_equal "4122682323", @coach2.phone
     end
-
+    
   end #contexts
 end #class
