@@ -1,0 +1,13 @@
+<%= simple_form_for(@student) do |f| %>
+  <h5>Organization</h5>
+  <fieldset>
+      <%= f.input :organization_id, collection: Organization.active.alphabetical, prompt: "Organization" %><br />
+      <%= f.input :team_ids, label: "", collection: @organization.teams.active.alphabetical, as: :check_boxes %><br />
+
+    <div class="form-actions">
+      <%= f.submit nil, class: 'button' %>
+      <%= link_to 'Cancel', students_path, :class => 'button secondary' %>
+    </div>
+
+  </fieldset>
+<% end %>

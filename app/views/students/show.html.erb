@@ -1,13 +1,6 @@
-<div class="row">
-  <div class="small-6 columns">   
-    <!-- all students -->
-      <%= render :partial => "show_details" %>
-  </div>
+<%= render partial: "partials/structure_1", locals: {model_name: "student", 
+                                                         primary: "student_details", 
+                                                         secondary: nil,
+                                                         sidebar: nil,
+                                                         options: "partials/object_options", object: @student} %>
 
-  <div class="small-1 columns">
-    &nbsp;
-  </div>
-
-  <div class="small-5 columns">
-  </div>
-</div>

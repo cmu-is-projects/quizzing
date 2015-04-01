@@ -12,6 +12,7 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
+    @student_teams = StudentTeam.all
   end
 
   # GET /students/new

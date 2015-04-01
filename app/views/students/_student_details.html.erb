@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+<h3>Student Information for <%= @student.proper_name %> </h3>
+
+<p>
+  <strong>Student Name:</strong>
+  <%= @student.proper_name %>
+</p>
+
+<p>
+  <strong>Current Team:</strong>
+  <%= @student.current_team.name %>
+</p>
+
+<p>
+  <strong>Grade - Division:</strong>
+  <%= "#{@student.grade}" " - #{@student.current_team.division.name}" %>
+</p>
+
+<p>
+  <strong>Captain:</strong>
+  <%= @student.student_teams.is_captain %>
+</p>
+
+
+<p>
+  <strong>Active:</strong>
+  <%= @student.active? ? "Yes" : "No" %>
+</p>
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>
