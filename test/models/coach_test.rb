@@ -12,6 +12,7 @@ class CoachTest < ActiveSupport::TestCase
   should validate_presence_of(:user_id)
   should validate_presence_of(:first_name)
   should validate_presence_of(:last_name)
+  should validate_presence_of(:email)
 
   should allow_value("fred@fred.com").for(:email)
   should allow_value("fred@andrew.cmu.edu").for(:email)
@@ -45,9 +46,9 @@ class CoachTest < ActiveSupport::TestCase
   	end
 
   	teardown do
-      delete_one_organization
       delete_users
   		delete_coaches
+      delete_one_organization
   	end
 
   	should "verify that the alphabetical scope works" do
@@ -79,7 +80,15 @@ class CoachTest < ActiveSupport::TestCase
   	should "show that proper_name method works" do
   		assert_equal "Rob Stanton", @coach1.proper_name
   		assert_equal "Ted Stoe", @coach2.proper_name
-  	end  	  	
+  	end
+
+
+    should "verify that the coach's user is active in the system" do
+      @inactive_user = FactoryGirl.build(:user, active: false)
+      bad_coach = FactoryGirl.build(:coach, organization: @organization1, user: @inactive_user)
+      deny bad_coach.valid?
+      @inactive_user.delete
+    end
 
     should "verify that the organization is active in the system" do
       # test the inactive organization first
@@ -105,6 +114,6 @@ class CoachTest < ActiveSupport::TestCase
     should "reformat phone number before saving" do
       assert_equal "4122682323", @coach2.phone
     end
-
-  end
-end
+    
+  end #contexts
+end #class

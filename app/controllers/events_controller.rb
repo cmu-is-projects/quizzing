@@ -4,15 +4,22 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    # all upcoming events
     @upcoming_events = Event.upcoming.chronological.to_a
+
+    # all events for this quiz year
     @quiz_year = QuizYear.new
     @events = @quiz_year.this_yr_events
-    @past_events = Event.past.chronological.to_a
+
+    # events that happened in previous quiz years
+    @past_events = @quiz_year.prev_events
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    @quizzes = @event.quizzes
+    #@teams = @event.quizzes.teams
   end
 
   # GET /events/new
@@ -22,6 +29,8 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @event.start_date.strftime("%m/%d/%Y")
+    @event.end_date.strftime("%m/%d/%Y")
   end
 
   # POST /events
@@ -70,8 +79,14 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+    def convert_start_and_end_dates
+      params[:event][:start_date] = convert_to_date(params[:event][:start_date]) unless params[:event][:start_date].blank?
+      params[:event][:end_date] = convert_to_date(params[:event][:end_date]) unless params[:event][:end_date].blank?
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
+      convert_start_and_end_dates
       params.require(:event).permit(:start_date, :end_date, :start_time, :num_rounds)
     end
 end

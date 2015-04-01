@@ -95,4 +95,5 @@ class StudentQuizTest < ActiveSupport::TestCase
     end
 
   end
+
 end
