@@ -5,6 +5,7 @@
     <tr>
       <th>Name</th>
       <th>Team</th>
+      <th>Division</th>
       <th></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
       <tr>
         <td><%= student.proper_name %></td>
         <td><%= student.current_team.name %></td>
+        <td><%= student.current_team.division.name %></td>
         <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
       </tr>
     <% end %>
