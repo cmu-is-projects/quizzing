@@ -8,6 +8,7 @@ class UserTest < ActiveSupport::TestCase
   #test validations
   should validate_presence_of(:user_name)
   should validate_presence_of(:role)
+  should validate_uniqueness_of(:user_name).case_insensitive
 
 
   should allow_value("Lankly").for(:user_name)

@@ -7,7 +7,7 @@ gem 'rails', '4.0.13'
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '5.0.1'
+gem 'sass-rails', '~> 5.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -54,8 +54,19 @@ gem 'geocoder'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Date Picker for simple form
+gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+
+# Use jquery for datepicker
+gem 'jquery-ui-rails'
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+#date converting
+gem 'chronic'
+gem 'time_date_helpers', '0.0.2'
 
 
 # Additional gems that are very useful in Rails development
@@ -85,4 +96,3 @@ group :test do
   gem 'launchy'
   gem 'capybara'
 end
-

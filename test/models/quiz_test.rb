@@ -2,6 +2,7 @@ require 'test_helper'
 
 class QuizTest < ActiveSupport::TestCase
   # test relationships
+  should belong_to(:category)
   should belong_to(:event)
   should belong_to(:division)
   should have_many(:student_quizzes)
@@ -62,5 +63,5 @@ class QuizTest < ActiveSupport::TestCase
       assert @quiz1.active
     end
 
-  end
-end
+  end #contexts
+end #class
