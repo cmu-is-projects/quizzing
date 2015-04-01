@@ -11,7 +11,7 @@ module QuizHelpers
     end
 
     def calculate_team_fouls(total_fouls)
-      return ((int)(total_fouls/3)) * 10
+      return ((total_fouls/3)) * 10
     end
 
     def calculate_failed_challenge_deduction(num_failed)
@@ -19,7 +19,7 @@ module QuizHelpers
     end
 
     def calculate_team_points_from_score(points)
-      return points > 100 ? ((int)((points)/10)) : 10  
+      return points > 100 ? (((points)/10)) : 10  
     end
 
     # This method will be used to determine the total scoring for an entire
