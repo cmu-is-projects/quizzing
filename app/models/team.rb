@@ -20,6 +20,7 @@
   
   # Scopes
   scope :alphabetical, -> {order("name")}
+  scope :for_division, -> (division) { where(division_id: division.id)}
 
   # Callbacks
   before_destroy :verify_that_there_are_no_scored_quizzes_for_team_this_year
