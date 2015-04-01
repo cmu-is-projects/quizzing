@@ -3,9 +3,7 @@ secret_key_base: 'SECRET TOKEN GOES HERE'
 session_name: 'SESSION NAME GOES HERE'
 
 # database configurations
-dev_database: 'DB NAME GOES HERE'
-test_database: 'DB NAME GOES HERE'
-production_database: 'DB NAME GOES HERE'
+production_database: 'PROD DB NAME GOES HERE'
 db_user: 'DB USER GOES HERE'
 db_password: 'DB PSWD GOES HERE'
 
