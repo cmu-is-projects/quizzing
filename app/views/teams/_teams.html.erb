@@ -1,25 +1,44 @@
 <h1>Listing teams</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Organization</th>
-      <th>Division</th>
-      <th></th>
-    </tr>
-  </thead>
+<!-- TODO: Division Picker & AJAX-->
 
-  <tbody>
-    <% @teams.each do |team| %>
-      <tr>
-        <td><%= link_to team.name, team_path(team) %></td>
-        <td><%= team.organization.name %></td>
-        <td><%= team.division.name %></td>
-        <td><%= link_to 'Edit', edit_team_path(team),class: "button tiny radius" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @divisions.each do |d| %>
+  <div style="background-color: #61b6d9; width:100%; text-align:center; border-top-left-radius: 50px; border-top-right-radius: 50px; margin-top: 2px; padding-top: 2px;">
+    <b style="color:white; width:600px;"><%= d.name %></b>
+  </div>
+  <div>
+    <table style="width:100%;">
+      <thead>
+	<tr>
+	  <th>Name</th>
+	  <th>Points</th>
+	  <th>Organization</th>
+	  <th></th>
+	</tr>
+      </thead>
 
-
+      <tbody>
+	<% @teams.each do |team| %>
+	<% if team.division == d%>
+	<tr>
+          <td><%= link_to team.name, team_path(team) %></td>
+          <td>
+	    <% score = 0 %>
+	    <% team.quizzes.each do |q| %>
+	      <% q.quiz_teams.each do |qt| %>
+	        <% if qt.team == team && !qt.points.nil? %>
+		  <% score += qt.points %>
+		<% end %>
+	      <% end %>
+	    <% end %>
+	  <%= score %>
+	  </td>
+          <td><%= team.organization.name %></td>
+          <td><%= link_to 'Edit', edit_team_path(team),class: "button tiny radius" %></td>
+	</tr>
+	<% end %>
+	<% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

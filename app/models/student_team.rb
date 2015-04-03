@@ -4,6 +4,7 @@ class StudentTeam < ActiveRecord::Base
   include Activeable
 
   belongs_to :student
+  accepts_nested_attributes_for :student
   belongs_to :team
 
   scope :is_captain,    -> { where(is_captain: true) }

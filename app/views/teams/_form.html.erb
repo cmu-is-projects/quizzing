@@ -12,7 +12,27 @@
       </div>
     <% end %>
 
-    <%= f.input :name %><br>
+    <%= f.input :name, label:"Team Name", label_html: {style: 'font-weight: bold; font-size: 16px;'} %>
+
+    <b>Division:</b>
+    <%= f.select :division, @divisions.alphabetical.map(&:name) %>
+
+    <% (0..(4-@team.student_teams.active.size)).each do %>
+      <% @team.student_teams.build %>
+    <% end %>
+    <b>Students in roster:</b>
+    <%= f.fields_for :student_teams do |builder| %>
+      <%= builder.select :student, @students.alphabetical.map{|s| s.last_name+", "+s.first_name} %>
+    <% end %>
+
+    <% (0..(0-@team.team_coaches.where(end_date: nil).size)).each do %>
+      <% @team.team_coaches.build %>
+    <% end %>
+    <b>Team coach:</b>
+    <%= f.fields_for :team_coaches do |builder| %>
+      <%= builder.select :coach, @coaches.alphabetical.map{|s| s.last_name+", "+s.first_name} %>
+    <% end %>
+
     <%= f.input :active %><br>
 
     <div class="form-actions">

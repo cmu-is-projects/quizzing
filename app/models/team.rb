@@ -1,16 +1,20 @@
-  class Team < ActiveRecord::Base
+class Team < ActiveRecord::Base
   # get modules to help with some functionality
   include QuizHelpers::Validations
   include Activeable
-
+  
   #Relationships
   belongs_to :organization
   belongs_to :division
   has_many :student_teams
+  accepts_nested_attributes_for :student_teams
+
   has_many :students, through: :student_teams
+
   has_many :quiz_teams
   has_many :quizzes, through: :quiz_teams
   has_many :team_coaches
+  accepts_nested_attributes_for :team_coaches
   has_many :coaches, through: :team_coaches
 
   #Validations

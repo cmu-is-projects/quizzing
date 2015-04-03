@@ -5,6 +5,7 @@ class TeamsController < ApplicationController
   # GET /teams.json
   def index
     @teams = Team.all
+    @divisions = Division.all
   end
 
   # GET /teams/1
@@ -17,10 +18,16 @@ class TeamsController < ApplicationController
   # GET /teams/new
   def new
     @team = Team.new
+    @students = Student.all
+    @coaches = Coach.all
+    @divisions = Division.all
   end
 
   # GET /teams/1/edit
   def edit
+    @students = Student.all
+    @coaches = Coach.all
+    @divisions = Division.all
   end
 
   # POST /teams
