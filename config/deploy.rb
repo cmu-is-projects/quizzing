@@ -3,7 +3,7 @@ require 'bundler/capistrano'
 server 'cmuisprojects.org', :web, :app, :db, primary: true
 
 set :application, 'quizzing'
-set :user, 'deploy'
+set :user, 'quizzing'
 set :group, 'admin'
 set :deploy_to, "/home/#{user}/apps/#{application}"
 
@@ -36,7 +36,7 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
   task :symlink_shared do
-    run "ln -s /home/deploy/apps/quizzing/shared/settings.yml /home/deploy/apps/quizzing/releases/#{release_name}/config/"
+    run "ln -s /home/quizzing/apps/quizzing/shared/settings.yml /home/quizzing/apps/quizzing/releases/#{release_name}/config/"
   end
 end
 
