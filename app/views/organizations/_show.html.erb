@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
-&nbsp;
+
+<h3><%="#{@organization.name} (Organization)"%></h3>
 
 <p>
   <strong>Name:</strong>
@@ -12,29 +13,15 @@
 </p>
 
 <p>
-  <strong>Street 1:</strong>
-  <%= @organization.street_1 %>
+  <strong>Address:</strong>
+  <%= "#{@organization.street_1}, #{@organization.street_2}, #{@organization.city}, #{@organization.state}, #{@organization.zip}" %>
 </p>
 
-<p>
-  <strong>Street 2:</strong>
-  <%= @organization.street_2 %>
-</p>
 
-<p>
-  <strong>City:</strong>
-  <%= @organization.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @organization.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @organization.zip %>
-</p>
+<!-- <p>
+  <strong>Address:</strong>
+  <%# if !@organization.street_1.nil? ? "#{@organization.street_1}, " %>
+</p> -->
 
 <p>
   <strong>Latitude:</strong>
@@ -47,8 +34,8 @@
 </p>
 
 <p>
-  <strong>Active:</strong>
-  <%= @organization.active %>
+  <strong>Active?:</strong>
+  <%= @organization.active ? "Yes" : "No" %>
 </p>
 
 <%= link_to 'Edit', edit_organization_path(@organization) %> |
