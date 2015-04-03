@@ -1,14 +1,105 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
+<% score = 0 %>
+<div id="container" style="width:800px; align-self:center">      
+<div class="row" style="width: 450px; border-style: groove; padding-left: 10px; margin-left: 6px;float: left;">
+  <p>
+    <strong>Name:</strong>
+    <%= @team.name %>
+  </p>
+  
+  <p>
+    <strong>Points:</strong>
 
-<p>
-  <strong>Active:</strong>
-  <%= @team.active %>
-</p>
+    <% @team.quizzes.each do |p| -%>
+      <% p.quiz_teams.each do |qt| %>
+        <% if qt.team == @team && !qt.points.nil? %>
+	  <% score += qt.points  %>
+	<% end %>
+      <% end %>
+    <% end %>
+    <%= score > 0 ? score : "This team has not been involved in any quizzes" %>
+  </p>
+  
+  <p>
+    <strong>Division:</strong>
+    <%= @team.division.name %>
+  </p>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+  <% if @team.active==true%>
+  <p>
+    <strong>Standing:</strong>
+    <% standing = 1 %>
+    <% @teams.each do |t| %>
+      <% t_score = 0 %>
+
+      <% #Quick check that we should be comparing this team %>
+      <% if t.active==true && t.division_id == @team.division_id && t != @team %>
+      
+        <% t.quizzes.each do |p| -%>
+          <% p.quiz_teams.each do |qt| %>
+
+	    <% if qt.team == t && !qt.points.nil? %>
+	      <% t_score += qt.points %>
+	    <% end %>
+
+	  <% end %>
+        <% end %>
+
+        <% if t_score > score %>
+          <% standing += 1 %>
+        <% end %>
+
+      <% end #team check %> 
+
+    <% end #list of all teams %>
+    <%= standing %>
+  </p>
+  <% end %>
+
+  <p>
+    <strong>Active:</strong>
+    <%= @team.active==true ? "Yes" : "No" %>
+    <!-- TODO: Add a toggle button here-->
+  </p>
+  
+  <%= link_to 'Edit', edit_team_path(@team) %> |
+  <%= link_to 'Back', teams_path %>
+</div>
+
+<div style="width: 300px; border-style: groove; padding-left: 10px; padding-right:10px; margin-left: 6px; margin-right: 6px; float: right; text-align:center;">
+  <p>
+    <strong>Members:</strong>
+  </p>
+  <hr>
+  <% if @team.students.size == 0 %>
+    This team has no students
+  <% end %>
+
+  <% @team.students.each do |s| %>
+
+    <%= link_to s.proper_name, student_path(s) %>
+
+  <% end %>
+
+  <hr>
+  <strong>Coach:</strong>
+  <% cur_coach = @team.team_coaches.where(end_date: nil).first %>
+
+  <% if cur_coach == nil %>
+    N/A
+  <% else %>
+    <% cur_coach = cur_coach.coach%>
+
+    <% if cur_coach.email != nil && !cur_coach.email.blank? %>
+
+    <%= mail_to cur_coach.email, cur_coach.proper_name, encode:"javascript" %>
+    
+    <% else %>
+
+      <%= cur_coach.coach.proper_name %>
+    
+    <% end %>
+  <% end %>
+</div>
+<div>
