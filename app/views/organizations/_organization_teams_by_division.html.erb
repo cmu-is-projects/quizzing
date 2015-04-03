@@ -6,18 +6,23 @@
 
 <% @divisions.each do |division| %>
   <div class="panel clearfix">
-    <h5><% "This organization's #{division.name} teams" %> </h5>
+    <h5><%= "#{@organization.name}'s #{division.name} teams" %> </h5>
     <ul class="side-nav">
-      <% @organization_teams.for_division(division).sort.each do |team| %>
-        <li><%= link_to team.name, team_path(team) %></li>
-      <% end %>
+
+      <% unless @organization_teams.for_division(division).empty? %>
+        <% @organization_teams.for_division(division).sort.each do |team| %>
+          <li><%= link_to team.name, team_path(team) %></li>
+      <%else%>
+        <h5><%="#{@organization.name} currently has no #{division.name} teams"%></h5>
+      <% end %><!--no divisional teams-->
+
     </ul>
   </div>
 
 <%else%>
 
   <div class="panel clearfix">
-    <h5>Organization currently has no teams</h5>
+    <h5><%="#{@organization.name} currently has no teams"%></h5>
   </div>
 
-<% end %>
+<% end %> <!--no organizational teams-->

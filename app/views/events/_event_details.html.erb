@@ -3,11 +3,11 @@
   <strong>Date:</strong>
   <%= @event.start_date.strftime('%B %d, %Y') %> <%= "- #{@event.end_date.strftime('%B %d, %Y')}" %> <br /><br />
 
-  <strong>Address:</strong><br /><br />
-  <!-- how to concat -->
+  <strong>Address:</strong>
+  <%= "#{@event.organization.street_1}, #{@event.organization.city}, #{@event.organization.state}, #{@event.organization.zip}" %><br /><br />
 
-  <strong>Contact Person:</strong>
-  <%#= @event.organization.primary_contact  %> <br /><br />
+  <strong>Contact Person:</strong><br /><br />
+  <!-- TODO: how to do this? put code in model or controller -->
 
   <strong>Teams:</strong>
   
