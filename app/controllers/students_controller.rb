@@ -5,11 +5,14 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     @students = Student.all
+    @active_students = Student.active.alphabetical
+    @inactive_students = Student.inactive.alphabetical
   end
 
   # GET /students/1
   # GET /students/1.json
   def show
+    @student_teams = StudentTeam.all
   end
 
   # GET /students/new

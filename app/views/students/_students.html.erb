@@ -5,18 +5,21 @@
     <tr>
       <th>Name</th>
       <th>Team</th>
+      <th>Division</th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @students.each do |student| %>
+    <% @active_students.each do |student| %>
       <tr>
-        <td><%= student.proper_name %></td>
+        <td><%= link_to student.name, student_path(student) %></td>
         <td><%= student.current_team.name %></td>
+        <td><%= student.current_team.division.name %></td>
         <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<!-- TODO: add Ajax for adding new student and toggle inactive -->
