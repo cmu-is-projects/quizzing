@@ -14,6 +14,7 @@ class OrganizationsController < ApplicationController
     @organization_active_students = @organization.students.active.alphabetical
     @organization_inactive_students = @organization.students.inactive.alphabetical
     @divisions = Division.all.alphabetical
+    @organization_teams = @organization.teams
   end
 
   # GET /organizations/new
