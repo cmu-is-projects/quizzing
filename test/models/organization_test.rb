@@ -45,15 +45,15 @@ class OrganizationTest < ActiveSupport::TestCase
     	assert_equal ["ACAC", "Grove City", "Somerset"], Organization.alphabetical.all.map { |a| a.short_name }
     end
 
-    # commented-out in dev branch to save testing time
-    # should "properly identify the coordinates of the organizations" do
-    #   assert_in_delta(40.4533665, @somerset.latitude, 0.0001)
-    #   assert_in_delta(-80.0030653, @somerset.longitude, 0.0001)
-    #   assert_in_delta(40.4533665, @grove_city.latitude, 0.0001)
-    #   assert_in_delta(-80.0030653, @grove_city.longitude, 0.0001)
-    #   deny @acac.latitude.nil?
-    #   deny @acac.longitude.nil?
-    # end
+    commented-out in dev branch to save testing time
+    should "properly identify the coordinates of the organizations" do
+      assert_in_delta(40.4533665, @somerset.latitude, 0.0001)
+      assert_in_delta(-80.0030653, @somerset.longitude, 0.0001)
+      assert_in_delta(40.4533665, @grove_city.latitude, 0.0001)
+      assert_in_delta(-80.0030653, @grove_city.longitude, 0.0001)
+      deny @acac.latitude.nil?
+      deny @acac.longitude.nil?
+    end
 
     should "show that a US state must have an exactly 5 digit zip" do
       bad_org = FactoryGirl.build(:organization, name: "bad org", short_name: "bo", zip: "123456")
