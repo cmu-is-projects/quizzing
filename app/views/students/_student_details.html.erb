@@ -12,13 +12,15 @@
 </p>
 
 <p>
+  <!-- TODO: does an inactive student have a division? -->
   <strong>Grade - Division:</strong>
   <%= "#{@student.grade}" " - #{@student.current_team.division.name}" %>
 </p>
 
 <p>
   <strong>Captain:</strong>
-  <%= @student.student_teams.is_captain %>
+  <!-- TODO: figure out how to determine student is captain -->
+  <%#= @student.student_teams.is_captain %>
 </p>
 
 
@@ -27,5 +29,3 @@
   <%= @student.active? ? "Yes" : "No" %>
 </p>
 
-<%#= link_to 'Edit', edit_student_path(@student) %> |
-<%#= link_to 'Back', students_path %>
