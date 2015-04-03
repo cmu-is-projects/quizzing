@@ -30,6 +30,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event_teams = Team.all.active
+    # @senior_a_teams = Team.all.for_division(@senior_a)
     @event.start_date = humanize_date @event.start_date
     @event.end_date = humanize_date @event.end_date
   end
