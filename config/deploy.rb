@@ -3,7 +3,7 @@ require 'bundler/capistrano'
 server 'cmuisprojects.org', :web, :app, :db, primary: true
 
 set :application, 'quizzing'
-set :user, 'deploy'
+set :user, 'quizzing'
 set :group, 'admin'
 set :deploy_to, "/home/#{user}/apps/#{application}"
 
