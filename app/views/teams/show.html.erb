@@ -2,6 +2,7 @@
   <div class="small-6 columns">   
     <!-- all teams -->
       <%= render :partial => "show_details" %>
+      <%= render :partial => "partials/object_options", locals: {model_name: "team", object: @team} %>
   </div>
 
   <div class="small-1 columns">
