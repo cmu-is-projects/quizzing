@@ -1,0 +1,36 @@
+&nbsp;
+<% unless @organization_active_students.empty? %>
+  <div class="panel clearfix">
+    <h5>Active Students</h5>
+    <ul class="side-nav">
+      <% @organization_active_students.each do |student| %>
+        <li><%= link_to student.name, student_path(student) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+<%else%>
+
+  <div class="panel clearfix">
+    <h5>No Active Students</h5>
+  </div>
+
+<% end %>
+
+<% unless @organization_inactive_students.empty? %>
+  <div class="panel clearfix">
+    <h5>Inactive Students</h5>
+    <ul class="side-nav">
+      <% @organization_inactive_students.each do |student| %>
+        <li><%= link_to student.name, student_path(student) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+<%else%>
+
+  <div class="panel clearfix">
+    <h5>No Inactive Students</h5>
+  </div>
+
+<% end %>

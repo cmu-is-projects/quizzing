@@ -11,6 +11,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+    @organization_active_students = @organization.students.active.alphabetical
+    @organization_inactive_students = @organization.students.inactive.alphabetical
   end
 
   # GET /organizations/new
