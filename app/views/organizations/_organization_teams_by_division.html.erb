@@ -1,0 +1,23 @@
+&nbsp;
+<!--List organization's teams by division-->
+<!--Show nothing if there are no teams to display-->
+<% unless @organization_teams.empty? %>
+
+
+<% @divisions.each do |division| %>
+  <div class="panel clearfix">
+    <h5><% "This organization's #{division.name} teams" %> </h5>
+    <ul class="side-nav">
+      <% @organization_teams.for_division(division).sort.each do |team| %>
+        <li><%= link_to team.name, team_path(team) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+<%else%>
+
+  <div class="panel clearfix">
+    <h5>Organization currently has no teams</h5>
+  </div>
+
+<% end %>

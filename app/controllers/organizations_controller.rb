@@ -13,6 +13,7 @@ class OrganizationsController < ApplicationController
   def show
     @organization_active_students = @organization.students.active.alphabetical
     @organization_inactive_students = @organization.students.inactive.alphabetical
+    @divisions = Division.all.alphabetical
   end
 
   # GET /organizations/new
