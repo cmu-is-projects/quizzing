@@ -1,13 +1,22 @@
-<div class="row">
+<!-- <div class="row">
   <div class="small-6 columns">
-      <%= render :partial => "show" %>
+      <%# render :partial => "show" %>
   </div>
 
   <div class="small-6 columns">
-      <%= render :partial => "organization_students" %>
+      <%# render :partial => "organization_organizations" %>
   </div>
 
   <div class="small-6 columns">   
-      <%= render :partial => "organization_teams_by_division" %>
+      <%# render :partial => "organization_teams_by_division" %>
   </div>
 </div>
+ -->
+
+ <%= render partial: "partials/structure_1", locals: {model_name: "organization", 
+                                                         primary: "organization_details", 
+                                                         secondary: "organization_active_students",
+                                                         tertiary: "organization_inactive_students",
+                                                         sidebar: "organization_teams_by_division",
+                                                         options: "partials/object_options", object: @organization} %>
+

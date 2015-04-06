@@ -11,8 +11,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
-    @organization_active_students = @organization.students.active.alphabetical
-    @organization_inactive_students = @organization.students.inactive.alphabetical
+    @organization_active_students = @organization.students.active.alphabetical.paginate(:page => params[:page]).per_page(10)
+    @organization_inactive_students = @organization.students.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
     @divisions = Division.all.alphabetical
     @organization_teams = @organization.teams
   end
