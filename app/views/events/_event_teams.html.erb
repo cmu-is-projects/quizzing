@@ -1,16 +1,22 @@
-<table>
-	<thead>Senior A Teams
-		<tr>
-			<th>Attending</th>
-			<th>Team Name</th>
-		</tr>
-	</thead>
-	<!-- <tbody>
-		<%# @senior_a_teams.each do |team| %>
+<% unless @event_teams.empty? %>
+	<% @divisions.each do |division| %>
+	 	<% unless @event_teams.for_division(division).empty? %>
+	<table>
+		<thead><%=division.name%>
+			<tr>
+				<th>Attending</th>
+				<th>Team Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @event_teams.for_division(division).each do |team| %>
 			<tr>
 				<td></td>
-				<td>team.name</td>
+				<td><%=team.name%></td>
 			</tr>
-		<%# end %>
-	</tbody> -->
+			<%end%>
+	</tbody>
 </table>
+<% end %>
+<% end %>
+<% end %>
