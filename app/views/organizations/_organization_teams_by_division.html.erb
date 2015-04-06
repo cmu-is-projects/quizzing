@@ -13,12 +13,12 @@
             <%end%><!--loop-->
           </ul>
         <% else %><!--no divisional teams-->
-          <h4><%="#{@organization.name} currently has no #{division.name} teams"%></h4>
+          <h4><%= !@organization.short_name.nil? ? "No #{division.name} teams for #{@organization.short_name}" : "No #{division.name} teams for #{@organization.name}" %></h4>
         <%end%><!--divisional teams-->
       </div>
   <%end%><!--divisions-->
 <%else%><!--no organizational teams period-->
   <div class="panel clearfix"><!--one big panel saying no teams (and thus no divisional listings)-->
-    <h4><%= !@organization.short_name.nil? ? "#{@organization.short_name} currently has no teams" : "#{@organization.name} currently has no teams" %></h4>
+    <h4><%= !@organization.short_name.nil? ? "No teams for #{@organization.short_name}" : "No teams for #{@organization.name}" %></h4>
   </div>
 <% end %> <!--no organizational teams-->
