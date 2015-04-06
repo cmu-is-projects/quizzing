@@ -1,0 +1,14 @@
+<%= simple_form_for(@student) do |f| %>
+  <h5>Organization</h5>
+  <fieldset>
+      <!-- TODO: Ajax for selecting switching between organizations and organizations' teams -->
+      <%#= f.input :organization_id, collection: Organization.active.alphabetical, prompt: "Organization" %><br />
+      <%= f.input :team_ids, label: "", collection: Team.active.alphabetical, as: :check_boxes %><br />
+
+    <div class="form-actions">
+      <%= f.submit nil, class: 'button' %>
+      <%= link_to 'Cancel', students_path, :class => 'button secondary' %>
+    </div>
+
+  </fieldset>
+<% end %>

@@ -1,6 +1,9 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require_relative '../lib/helpers/team_scoring.rb'
+require_relative '../lib/helpers/individual_scoring.rb'
+require_relative '../lib/helpers/validations.rb'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -26,5 +29,6 @@ module Quizzing
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.i18n.enforce_available_locales = true
+
   end
 end

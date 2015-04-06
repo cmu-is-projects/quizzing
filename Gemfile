@@ -51,6 +51,10 @@ gem 'geocoder'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Date Picker for simple form
+gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+
 # Use jquery for datepicker
 gem 'jquery-ui-rails'
 
@@ -90,3 +94,6 @@ group :test do
   gem 'capybara'
 end
 
+group :production do
+  gem 'pg'
+end

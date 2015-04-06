@@ -14,13 +14,19 @@
   has_many :coaches, through: :team_coaches
 
   #Validations
-  validates_presence_of :division_id, :organization_id, :name
-  validate :division_is_active_in_system
-  validate :organization_is_active_in_system
+  validates_presence_of :division_id, :name, :organization_id
+  validates_uniqueness_of :name, case_sensitive: false
+
   
-  # Scopes
+  #Scopes
   scope :alphabetical, -> {order("name")}
   scope :for_division, -> (division) { where(division_id: division.id)}
+  scope :active, -> {where(active: true)}
+  scope :inactive, -> {where(active: false)}
+
+  #Methods
+  validate :division_is_active_in_system
+  validate :organization_is_active_in_system
 
   # Callbacks
   before_destroy :verify_that_there_are_no_scored_quizzes_for_team_this_year
@@ -41,7 +47,6 @@
   end
 
   private
-
   def division_is_active_in_system
     is_active_in_system(:division)
   end

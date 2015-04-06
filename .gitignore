@@ -28,3 +28,6 @@
 
 # Ignore the settings.yml file (security reasons)
 /config/settings.yml
+
+# Ignore DB NAME GOES HERE file
+"DB NAME GOES HERE"

@@ -1,17 +1,19 @@
-require './test/sets/user_contexts'
-require './test/sets/division_contexts'
-require './test/sets/student_contexts'
-require './test/sets/organization_contexts'
-require './test/sets/quiz_contexts'
-require './test/sets/team_contexts'
-require './test/sets/coach_contexts'
-require './test/sets/event_contexts'
-require './test/sets/organization_student_contexts'
-require './test/sets/student_quiz_contexts'
-require './test/sets/student_team_contexts'
-require './test/sets/quiz_team_contexts'
-require './test/sets/team_coach_contexts'
-require './test/sets/extended_quizzes_contexts'
+
+require 'sets/user_contexts'
+require 'sets/division_contexts'
+require 'sets/student_contexts'
+require 'sets/organization_contexts'
+require 'sets/quiz_contexts'
+require 'sets/team_contexts'
+require 'sets/coach_contexts'
+require 'sets/event_contexts'
+require 'sets/organization_student_contexts'
+require 'sets/student_quiz_contexts'
+require 'sets/student_team_contexts'
+require 'sets/quiz_team_contexts'
+require 'sets/team_coach_contexts'
+require 'sets/extended_quizzes_contexts'
+require 'sets/category_contexts'
 
 module Contexts
   include Contexts::CoachContexts
@@ -28,5 +30,5 @@ module Contexts
   include Contexts::QuizTeamContexts
   include Contexts::TeamCoachContexts
   include Contexts::ExtendedQuizzesContexts
+  include Contexts::CategoryContexts
 end
-

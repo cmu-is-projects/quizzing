@@ -63,5 +63,5 @@ class QuizTest < ActiveSupport::TestCase
       assert @quiz1.active
     end
 
-  end
-end
+  end #contexts
+end #class
