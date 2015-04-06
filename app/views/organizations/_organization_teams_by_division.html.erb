@@ -5,7 +5,7 @@
       <div class="panel clearfix">
         <% unless @organization_teams.for_division(division).empty? %>
           <!--use organization's short name if possible-->
-          <h5><%= !@organization.short_name.nil? ? "#{@organization.short_name}'s #{division.name} teams" : "#{@organization.name}'s #{division.name} teams" %></h5>
+          <h4><%= !@organization.short_name.nil? ? "#{@organization.short_name}'s #{division.name} teams" : "#{@organization.name}'s #{division.name} teams" %></h4>
           <ul class="side-nav">
           <!--does the org have teams associated with this respective division-->
             <% @organization_teams.for_division(division).sort.each do |team| %>
@@ -13,12 +13,12 @@
             <%end%><!--loop-->
           </ul>
         <% else %><!--no divisional teams-->
-          <h5><%="#{@organization.name} currently has no #{division.name} teams"%></h5>
+          <h4><%="#{@organization.name} currently has no #{division.name} teams"%></h4>
         <%end%><!--divisional teams-->
       </div>
   <%end%><!--divisions-->
 <%else%><!--no organizational teams period-->
   <div class="panel clearfix"><!--one big panel saying no teams (and thus no divisional listings)-->
-    <h5><%= !@organization.short_name.nil? ? "#{@organization.short_name} currently has no teams" : "#{@organization.name} currently has no teams" %></h5>
+    <h4><%= !@organization.short_name.nil? ? "#{@organization.short_name} currently has no teams" : "#{@organization.name} currently has no teams" %></h4>
   </div>
 <% end %> <!--no organizational teams-->
