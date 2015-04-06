@@ -1,0 +1,47 @@
+<% unless @organization_inactive_students.empty? %>
+
+  <h3>Listing Inactive Students</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Team</th>
+        <th>Division</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @organization_inactive_students.each do |student| %>
+        <tr>
+          <td><%= link_to student.name, student_path(student) %></td>
+          <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<%else%>
+
+  <div class="panel clearfix">
+    <h5>No Inactive Students</h5>
+  </div>
+
+<% end %>
+
+<!--will use if Tom prefers-->
+<%# unless @organization_inactive_students.empty? %>
+  <!-- <div class="panel clearfix">
+    <h5>Inactive Students</h5>
+    <ul class="side-nav">
+      <%# @organization_inactive_students.each do |student| %>
+        <li><%= link_to student.name, student_path(student) %></li>
+      <%# end %>
+    </ul>
+  </div>
+<%#else%>
+  <div class="panel clearfix">
+    <h5>No Inactive Students</h5>
+  </div> -->
+<%# end %>
