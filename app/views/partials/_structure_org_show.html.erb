@@ -1,0 +1,30 @@
+<!-- this partial struct is primary for the organization show page -->
+<div class="row">
+  <div class="small-8 columns">
+    <!-- primary partial gets displayed here in main div -->
+    <%= render partial: "#{primary}" %>
+    <!-- partial for active students -->
+    <% unless secondary.nil? %>
+      <p>&nbsp;</p>
+      <%= render partial: "#{secondary}" %>
+    <% end %>
+    <!-- partial for inactive students -->
+    <% unless tertiary.nil? %>
+      <p>&nbsp;</p>
+      <%= render partial: "#{tertiary}" %>
+    <% end %>
+    
+  </div>
+  <div class="small-4 columns">
+    <!-- render the sidebar, if it exists -->
+    <%= render partial: "#{sidebar_primary}" unless sidebar_primary.blank? %>
+    <%= render partial: "#{sidebar_secondary}" unless sidebar_secondary.blank? %>
+    <%= render partial: "#{sidebar_tertiary}" unless sidebar_tertiary.blank? %>
+    <%= render partial: "#{sidebar_quaternary}" unless sidebar_quaternary.blank? %>
+  </div>
+</div>
+
+<div class="row">
+  <!-- render a set of options, if they exist -->
+  <%= render partial: "#{options}", locals: {model_name: model_name, object: object} unless options.blank? %>
+</div>
