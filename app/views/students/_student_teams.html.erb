@@ -2,7 +2,10 @@
   <h5>Organization</h5>
   <fieldset>
       <!-- TODO: Ajax for selecting switching between organizations and organizations' teams -->
+      <!-- TODO: Figure out with Prof H how to do pre-selected radio boxes -->
+      <!-- TODO: Create a partial with a separate form for organization that uses form_tag that defaults to curr_org -->
       <%#= f.input :organization_id, collection: Organization.active.alphabetical, prompt: "Organization" %><br />
+      <!-- teams should be appropriate to student's division -->
       <%= f.input :team_ids, label: "", collection: Team.active.alphabetical, as: :check_boxes %><br />
 
     <div class="form-actions">
