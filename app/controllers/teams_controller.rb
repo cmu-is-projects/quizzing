@@ -11,28 +11,34 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    @teams = Team.all
     @divisions = Division.all
+    @teams = Team.all
   end
 
   # GET /teams/new
   def new
-    @team = Team.new
-    @students = Student.all
     @coaches = Coach.all
     @divisions = Division.all
+    @organizations = Organization.all
+    @students = Student.all
+    @team = Team.new
   end
 
   # GET /teams/1/edit
   def edit
-    @students = Student.all
     @coaches = Coach.all
     @divisions = Division.all
+    @organizations = Organization.all
+    @students = Student.all
   end
 
   # POST /teams
   # POST /teams.json
   def create
+    @coaches = Coach.all
+    @divisions = Division.all
+    @organizations = Organization.all
+    @students = Student.all
     @team = Team.new(team_params)
 
     respond_to do |format|
@@ -78,6 +84,15 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name, :active)
+      params.require(:team).permit(:name,
+                                   :active,
+                                   #:division,
+                                   #:organization,
+                                   :student_teams,
+                                   :team_coaches, 
+                                   :student_ids => [], 
+                                   :division_ids => [], 
+                                   :student_team_ids => [], 
+                                   :organization_ids => [])
     end
 end

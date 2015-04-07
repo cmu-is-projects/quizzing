@@ -122,9 +122,9 @@ ActiveRecord::Schema.define(version: 20150330222533) do
 
   create_table "teams", force: true do |t|
     t.integer "division_id"
+    t.integer "organization_id"
     t.string  "name"
     t.boolean "active",          default: true
-    t.integer "organization_id"
   end
 
   create_table "users", force: true do |t|

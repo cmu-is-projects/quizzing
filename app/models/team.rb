@@ -7,15 +7,15 @@ class Team < ActiveRecord::Base
   belongs_to :organization
   belongs_to :division
   has_many :student_teams
-  accepts_nested_attributes_for :student_teams
-
   has_many :students, through: :student_teams
-
   has_many :quiz_teams
   has_many :quizzes, through: :quiz_teams
   has_many :team_coaches
-  accepts_nested_attributes_for :team_coaches
   has_many :coaches, through: :team_coaches
+
+  accepts_nested_attributes_for :team_coaches
+  accepts_nested_attributes_for :student_teams
+  accepts_nested_attributes_for :organization
 
   #Validations
   validates_presence_of :division_id, :name, :organization_id
@@ -51,6 +51,9 @@ class Team < ActiveRecord::Base
 
   private
   def division_is_active_in_system
+    if(:division.nil? || :division.blank?)
+      self.division = Division.all.where(:id => self.division_id)
+    end
     is_active_in_system(:division)
   end
 

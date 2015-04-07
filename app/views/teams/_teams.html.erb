@@ -1,10 +1,10 @@
 <h1>Listing teams</h1>
 
-<!-- TODO: Division Picker & AJAX-->
+<!-- TODO: Organization Picker & AJAX-->
 
-<% @divisions.each do |d| %>
-  <div style="background-color: #61b6d9; width:100%; text-align:center; border-top-left-radius: 50px; border-top-right-radius: 50px; margin-top: 2px; padding-top: 2px;">
-    <b style="color:white; width:600px;"><%= d.name %></b>
+<% @divisions.active.alphabetical.each do |d| %>
+  <div style="background-color: #61b6d9; width:100%; text-align:center; border-top-left-radius: 50px; border-top-right-radius: 50px;">
+    <b style="color:white; width:100%;"><%= d.name %></b>
   </div>
   <div>
     <table style="width:100%;">
