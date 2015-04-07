@@ -68,6 +68,22 @@ class StudentTest < ActiveSupport::TestCase
       deny @mark.destroy
     end
 
+    should "remove student from current team if student made inactive" do
+      create_one_organization
+      create_divisions
+      create_acac_students
+      create_acac_teams
+      create_acac_student_teams
+      assert_equal @acac_sr1, @mark.current_team
+      @mark.make_inactive
+      assert_equal NullTeam.new.name, @mark.current_team.name
+      delete_one_organization
+      delete_divisions
+      delete_acac_students
+      delete_acac_teams
+      delete_acac_student_teams 
+    end
+
     should "identify the student's current organization" do
       create_one_organization
       create_acac_students
