@@ -18,10 +18,7 @@ class Student < ActiveRecord::Base
   #validates :rating, inclusion: { in: junior_array } 
 
   # Scopes
-  scope :alphabetical, -> {order("last_name, first_name")}
-  #TODO: Check accuracy of this
-  #scope :new_student, -> { where(current_team: NullTeam.new) }
-
+  scope :alphabetical, -> {order("last_name, first_name")}  
   
   # Callbacks
   before_destroy :is_never_destroyable
@@ -53,8 +50,24 @@ class Student < ActiveRecord::Base
     end
   end
 
-  #def possible_teams
-    #Team.where(camp_id: camp.id).map{ |ci| ci.instructor }
-
+  def self.new_students(organization=nil)
+    tmp = Array.new
+    #if organization
+      #newstudents = Organization.students.select{|st| st.current_team == NullTeam.new} 
+    #else
+      #newstudents = Student.select{|st| st.current_team == NullTeam.new}
+    #end
+    #tmp << newstudents
+    #tmp.flatten!
+    if organization
+      newstudents = Organization.students.active
+    else
+      newstudents = Student.active
+    end
+    newstudents.each do |st|
+      tmp << st if st.current_team.is_a?(NullTeam)
+    end
+    tmp
+  end
 
 end

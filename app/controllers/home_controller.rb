@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @upcoming_events = Event.upcoming.chronological.to_a
 
     # new students without a team
-    @new_students = Student.new_student.alphabetical
+    @new_students = Student.new_student.alphabetical.to_a
 
     # all possible active teams that are division and size appropriate
     #@possible_teams = @student.
