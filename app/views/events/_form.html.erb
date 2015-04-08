@@ -24,7 +24,7 @@
       <%= f.input :start_time, collection: options_for_time_select, selected: f.object.start_time.strftime("%H:%M:%S")  %>
       <% end %>
       <br>
-      <%= f.input :num_rounds %>
+      <%= f.input :num_rounds, as: :string %>
       <br>
       <%= f.association :organization %>
 
