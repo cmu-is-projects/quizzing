@@ -14,9 +14,13 @@ class Student < ActiveRecord::Base
   # Validations
   validates_presence_of :first_name, :last_name, :grade
   validates_numericality_of :grade, only_integer: true, greater_than: 1, less_than: 13
+  #junior_array = (2..6).to_a
+  #validates :rating, inclusion: { in: junior_array } 
 
   # Scopes
   scope :alphabetical, -> {order("last_name, first_name")}
+  #TODO: Check accuracy of this
+  #scope :new_student, -> { where(current_team: NullTeam.new) }
 
   
   # Callbacks
@@ -48,5 +52,9 @@ class Student < ActiveRecord::Base
       return latest.first.team
     end
   end
+
+  #def possible_teams
+    #Team.where(camp_id: camp.id).map{ |ci| ci.instructor }
+
 
 end

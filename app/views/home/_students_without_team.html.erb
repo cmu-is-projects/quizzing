@@ -1,0 +1,23 @@
+<!-- button to add a new student -->
+
+<h3>New Students Without a Team</h3><br />
+<table>
+   	<thead>
+   		<tr>
+			<th>Name</th>
+			<th>Grade</th>
+			<th>Team</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @new_students.each do |student| %>
+			<tr>
+				<td><%= student.name %></td>
+				<td><%= student.grade %></td>
+				<td><!-- button to pick team --></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<!-- add new team -->
