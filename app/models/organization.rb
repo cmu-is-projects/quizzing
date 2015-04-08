@@ -29,6 +29,8 @@ class Organization < ActiveRecord::Base
   
   #Scopes
   scope :alphabetical, -> {order("name")}
+  scope :active, -> {where(active: true)}
+  scope :inactive, -> {where(active: false)}
   
   #Callbacks
   before_save :get_organization_coordinates

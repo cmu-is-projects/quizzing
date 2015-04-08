@@ -25,6 +25,8 @@
       <% end %>
       <br>
       <%= f.input :num_rounds %>
+      <br>
+      <%= f.association :organization %>
 
       <div class="form-actions">
       <%= f.submit nil, class: 'button radius' %>
