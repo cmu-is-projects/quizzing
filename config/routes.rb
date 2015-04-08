@@ -10,7 +10,7 @@ Quizzing::Application.routes.draw do
   resources :quizzes
 
   # named routes
-  get "standings/individual/:id" => "standings#individual", as: :indiv_standings
+  get "standings/individual" => "standings#individual", as: :indiv_standings
 
 
   # Set the root url

@@ -1,2 +1,6 @@
-<h1>Standings#individual</h1>
-<p>Find me in app/views/standings/individual.html.erb</p>
+<%= form_tag(indiv_standings_path, method: :get, remote: true) do %>
+	<%= select_tag("id", options_from_collection_for_select(Division.alphabetical.all, "id", "name"), onchange: "this.form.submit()") %>
+<% end %>
+
+<%= render partial: "individual_standings_data" %>
+

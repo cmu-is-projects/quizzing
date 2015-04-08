@@ -1,0 +1,40 @@
+<% unless @quizzers.empty? %>
+
+  <h3>Individual Divisional Standings</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Team</th>
+        <th>Points</th>
+        <th>Low</th>
+        <th>Adjusted Points</th>
+        <th>Accuracy</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @quizzers.each do |quizzer| %>
+        <tr>
+          <td><%= link_to quizzer.name, student_path(quizzer) %></td>
+          <td><%= quizzer.team.name %></td>
+          <td><%= quizzer.total_points %></td>
+          <td><%= quizzer.lowest_points %></td>
+          <td><%= quizzer.total_accuracy %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<%else%>
+
+  <div class="panel clearfix">
+    <h4>No Individual Divisional Standings</h4>
+  </div>
+
+<% end %>
+
+
+
+<!-- TODO: add Ajax for adding new organization and toggle inactive -->
