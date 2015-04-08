@@ -7,9 +7,9 @@ class StandingsController < ApplicationController
   		div_id = params[:id]
   		
   	end
-  	division = Division.find(div_id)
+  	@division = Division.find(div_id)
   	#TODO: adjust this to ultimately take a QuizYear parameter (probably NOT during CMU  67-373 Spring 2015)
-  	@quizzers = YearQuizzer.get_all_quizzers_for_division_for_year(division)
+  	@quizzers = YearQuizzer.get_all_quizzers_for_division_for_year(@division)
   end #end individual method
 
   def team

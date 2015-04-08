@@ -1,10 +1,11 @@
 <% unless @quizzers.empty? %>
 
-  <h3>Individual Divisional Standings</h3>
+  <h3><%= "#{@division.name} Division Individual Standings" %></h3>
 
   <table>
     <thead>
       <tr>
+        <!--TODO: rank logic-->
         <th>Name</th>
         <th>Team</th>
         <th>Points</th>
@@ -18,7 +19,7 @@
       <% @quizzers.each do |quizzer| %>
         <tr>
           <td><%= link_to quizzer.name, student_path(quizzer) %></td>
-          <td><%= quizzer.team.name %></td>
+          <td><%= link_to quizzer.team.name, team_path(quizzer.team) %></td>
           <td><%= quizzer.total_points %></td>
           <td><%= quizzer.lowest_points %></td>
           <td><%= quizzer.total_accuracy %></td>
@@ -30,11 +31,7 @@
 <%else%>
 
   <div class="panel clearfix">
-    <h4>No Individual Divisional Standings</h4>
+    <h3><%= "No #{@division.name} Division Individual Standings" %></h3>
   </div>
 
 <% end %>
-
-
-
-<!-- TODO: add Ajax for adding new organization and toggle inactive -->
