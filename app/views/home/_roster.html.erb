@@ -1,5 +1,5 @@
 <h3>Active Teams</h3>
-<% @teams.each do |team| %>
+<% @active_teams.each do |team| %>
 <% unless team.students.empty? %>
 	<table> [<%= team.division.name %>] <%= team.name %> 
 		<thead>
@@ -9,15 +9,15 @@
 		</thead>
 		<% team.students.each do |student| %>
 		<tbody>
-			<td><%= student.proper_name %></td>
+			<td><%= link_to student.proper_name, student_path(student) %></td>
 			<td></td>
 			<td><%= student.active %></td>
 		</tbody>
 		<% end %>
 	</table>
 	<div class="form-actions">
-		<%= link_to 'Add existing Student to Team', edit_team_path(team), class: 'button secondary radius' %>
-		<%= link_to 'Add new Student to Team', new_student_path, class: 'button secondary radius' %>
+		<%= link_to 'Add existing Student to Team', edit_team_path(team), class: 'tiny button radius' %>
+		<%= link_to 'Add new Student to Team', new_student_path, class: 'tiny button radius' %>
 	</div>
 	<% end %>
 <% end %>
