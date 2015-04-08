@@ -18,9 +18,15 @@
       <br>
       <%= f.input :end_date, label: "End Date", as: :string, :input_html => {:class => "datepicker"} %>
       <br>
-      <%= f.input :start_time %>
+      <% if @event.start_time.nil? %>
+      <%= f.input :start_time, collection: options_for_time_select %>
+      <% elsif !@event.start_time.nil? %>
+      <%= f.input :start_time, collection: options_for_time_select, selected: f.object.start_time.strftime("%H:%M:%S")  %>
+      <% end %>
       <br>
       <%= f.input :num_rounds %>
+      <br>
+      <%= f.association :organization %>
 
       <div class="form-actions">
       <%= f.submit nil, class: 'button radius' %>
@@ -30,6 +36,8 @@
 
   <div class="small-1 columns"></div>
 
-  <div class="small-5 columns"></div>
+  <div class="small-5 columns">
+    <%= render :partial => "event_teams" unless @event_teams.nil? || @event_teams.empty? %>
+  </div>
   </div>
 <% end %>

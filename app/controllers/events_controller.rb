@@ -29,8 +29,11 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event.start_date.strftime("%m/%d/%Y")
-    @event.end_date.strftime("%m/%d/%Y")
+    @event_teams = Team.all
+    @divisions = Division.all
+    # @senior_a_teams = Team.all.for_division(@senior_a)
+    @event.start_date = humanize_date @event.start_date
+    @event.end_date = humanize_date @event.end_date
   end
 
   # POST /events
@@ -87,6 +90,6 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       convert_start_and_end_dates
-      params.require(:event).permit(:start_date, :end_date, :start_time, :num_rounds)
+      params.require(:event).permit(:start_date, :end_date, :start_time, :num_rounds, :organization_id)
     end
 end
