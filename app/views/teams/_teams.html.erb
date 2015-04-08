@@ -13,7 +13,6 @@
 	  <th>Name</th>
 	  <th>Points</th>
 	  <th>Organization</th>
-	  <th></th>
 	</tr>
       </thead>
 
@@ -34,7 +33,13 @@
 	  <%= score %>
 	  </td>
           <td><%= team.organization.name %></td>
-          <td><%= link_to 'Edit', edit_team_path(team),class: "button tiny radius" %></td>
+	  <% if can? :update, team %>
+            <td>
+	      <%= link_to 'Edit', 
+		  edit_team_path(team),
+		  class: "button tiny radius" %>
+	    </td>
+	  <% end %>
 	</tr>
 	<% end %>
 	<% end %>

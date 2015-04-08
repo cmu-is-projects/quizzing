@@ -3,25 +3,31 @@
 
   <div class="form-actions" style="float:left;">
     <!-- made button smaller -->
-    <%= link_to(eval("#{model_name.pluralize}_path"), class: 'small button radius') do %>
+    <%= link_to(eval("#{model_name.pluralize}_path"), 
+	class: 'small button radius') do %>
       <!-- <i class="fa fa-list"></i> -->
       &nbsp;Display All <%= model_name.pluralize.capitalize %>
     <% end %>
     &nbsp;&nbsp;
     
-    <%# if current_user.can?(:update, object) %>
-      <%= link_to(eval("edit_#{model_name}_path(object)"), class: 'small button radius') do %>
+    <% if current_user.can?(:update, object) %>
+      <%= link_to(eval("edit_#{model_name}_path(object)"), 
+	  class: 'small button radius') do %>
         <!-- <i class="fa fa-pencil"></i> -->
         &nbsp;<%= "Edit #{opt}" %>
       <% end %>
       &nbsp;&nbsp;
-    <%# end %>
+    <% end %>
     
-    <%# if current_user.role?(:admin) %>
-      <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'small button radius alert') do %>
+    <% if current_user.role?(:admin) %>
+      <%= link_to(eval("#{model_name}_path(object)"), 
+	  method: 'delete', 
+	  data: {
+	  confirm: "Are you sure you want to permanently delete #{opt}"}, 
+	  class: 'small button radius alert') do %>
         <!-- <i class="fa fa-trash-o"></i> -->
         &nbsp;<%= "Delete #{opt}" %>
       <% end %>
-    <%# end %>
+    <% end %>
   </div>
 <% end %>
