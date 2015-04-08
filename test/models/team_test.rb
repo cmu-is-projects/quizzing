@@ -103,6 +103,11 @@ class TeamTest < ActiveSupport::TestCase
       delete_students
     end
 
+    should "show that the not_at_capacity method works" do
+      assert_equal 3, Team.active.size
+      assert_equal 3, Team.not_at_capacity.size
+    end
+
   end #context
 
 end # class

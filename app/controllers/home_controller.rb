@@ -6,6 +6,8 @@ class HomeController < ApplicationController
 
     # new students without a team
     @new_students = Student.new_student.alphabetical
+
+    # all possible active teams that are division and size appropriate
     #@possible_teams = @student.
   end
 
