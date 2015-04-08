@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h3><%="#{@organization.name} (Organization)"%></h3>
+<h1><%="#{@organization.name} (Organization)"%></h1>
 
 <p>
   <strong>Name:</strong>
@@ -37,6 +37,3 @@
   <strong>Active?:</strong>
   <%= @organization.active ? "Yes" : "No" %>
 </p>
-
-<%# link_to 'Edit', edit_organization_path(@organization) %> |
-<%# link_to 'Back', organizations_path %>

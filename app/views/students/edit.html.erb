@@ -1,6 +1,5 @@
-<h1>Editing student</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @student %> |
-<%= link_to 'Back', students_path %>
+<%= render partial: "partials/structure_1", locals: {model_name: "student", 
+                                                         primary: "form", 
+                                                         secondary: nil,
+                                                         sidebar: "student_teams",
+                                                         options: nil } %>

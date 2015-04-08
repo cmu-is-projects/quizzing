@@ -13,6 +13,7 @@ class StudentsController < ApplicationController
   # GET /students/1.json
   def show
     @student_teams = StudentTeam.all
+    @organization_students = OrganizationStudent.all
   end
 
   # GET /students/new
@@ -22,6 +23,7 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
+    @organizations = Organization.active.all
   end
 
   # POST /students
@@ -72,6 +74,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :grade, :captain, :active)
+      params.require(:student).permit(:first_name, :last_name, :grade, :captain, :active, :organization_id)
     end
 end
