@@ -13,8 +13,8 @@
 
 <p>
   <!-- TODO: does an inactive student have a division? -->
-  <strong>Grade - Division:</strong>
-  <%= "#{@student.grade}" " - #{@student.current_team.division.name}" %>
+  <strong>Grade | Division:</strong>
+  <%= "#{@student.grade}" " | #{@student.current_team.division.name}" %>
 </p>
 
 <p>
@@ -28,6 +28,12 @@
   <%= @quizzer.total_points %>
 </p>
 
+<p>
+  <strong>Average Accuracy</strong>
+  <!--TODO: make use of the below from the controller; format it correctly-->
+  <%#= "#{@accuracy_percentage}%" %>
+  <%= "#{@quizzer.total_accuracy}" %>
+</p>
 
 <p>
   <strong>Active:</strong>

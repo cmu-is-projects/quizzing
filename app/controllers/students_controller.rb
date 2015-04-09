@@ -15,6 +15,7 @@ class StudentsController < ApplicationController
     @student_teams = StudentTeam.all
     @organization_students = OrganizationStudent.all
     @quizzer = YearQuizzer.new(@student)
+    @accuracy_percentage = @quizzer.total_accuracy*100.0
   end
 
   # GET /students/new
