@@ -14,6 +14,7 @@ class StudentsController < ApplicationController
   def show
     @student_teams = StudentTeam.all
     @organization_students = OrganizationStudent.all
+    @quizzer = YearQuizzer.new(@student)
   end
 
   # GET /students/new
