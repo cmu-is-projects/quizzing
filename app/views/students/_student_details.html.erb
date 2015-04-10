@@ -40,3 +40,48 @@
   <%= @student.active? ? "Yes" : "No" %>
 </p>
 
+
+
+<!--Copied and pasted-->
+
+<% unless @all_student_quizzes.empty? %>
+
+  <h3>
+    <p>
+    Breakdown of Scores for <%= @student.proper_name %> 
+    </p>
+  </h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <!--TODO: logic-->
+        <th>Round</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @events.each do |event| %>
+        <tr><!--each row is the quizzes of one event-->
+          <!--TODO link to event standings-->
+          <td><%= event.start_date %></td>
+          <!--@student or @event below?-->
+          <% @student_quizzes = EventQuizzer.new(@student,event).student_quizzes %>
+          <% @student_quizzes.each do |student_quiz| %>
+            <td><%= student_quiz.score %></td>
+          <% end %><!--end student_quiz-->
+        </tr>
+      <% end %><!--end events-->
+    </tbody>
+  </table>
+
+<%else%>
+
+  <div class="panel clearfix">
+    <h4><p>No Competition</p></h4>
+  </div>
+
+<% end %>
+
+

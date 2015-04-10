@@ -8,6 +8,10 @@ class StudentQuiz < ActiveRecord::Base
 
   validate :student_is_active_in_system
   validate :quiz_is_active_in_system
+
+  #Scopes
+  #TODO: test
+  scope :by_round_num, -> { joins(:quiz).order('round_num') }
   
 
   before_save :calculate_score
