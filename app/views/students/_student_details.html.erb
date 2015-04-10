@@ -46,18 +46,22 @@
 
 <% unless @all_student_quizzes.empty? %>
 
-  <h3>
-    <p>
-    Breakdown of Scores for <%= @student.proper_name %> 
-    </p>
-  </h3>
+  <h4>
+    Breakdown of Scores for <%= @student.proper_name %>
+  </h4>
 
   <table>
     <thead>
       <tr>
         <th>Date</th>
-        <!--TODO: logic-->
-        <th>Round</th>
+        <!--TODO: proper loop logic-->
+        <th>Round 1</th>
+        <th>Round 2</th>
+        <th>Round 3</th>
+        <th>Round 4</th>
+        <th>Round 5</th>
+        <th>Round 6</th>
+        <th>Total Points</th>
       </tr>
     </thead>
 
@@ -66,11 +70,12 @@
         <tr><!--each row is the quizzes of one event-->
           <!--TODO link to event standings-->
           <td><%= event.start_date %></td>
-          <!--@student or @event below?-->
+          <!--@student or @quizzer below?-->
           <% @student_quizzes = EventQuizzer.new(@student,event).student_quizzes %>
           <% @student_quizzes.each do |student_quiz| %>
             <td><%= student_quiz.score %></td>
           <% end %><!--end student_quiz-->
+          <td><%= EventQuizzer.new(@student,event).total_points %></td>
         </tr>
       <% end %><!--end events-->
     </tbody>
@@ -79,7 +84,7 @@
 <%else%>
 
   <div class="panel clearfix">
-    <h4><p>No Competition</p></h4>
+    <h4>No Competition</h4>
   </div>
 
 <% end %>

@@ -41,7 +41,7 @@ class EventQuizzer
   #I (Theophilus) had to append the parameters to the method name
   def get_all_student_quizzes_for_student_in_this_event(quizzer, event)
     # gets student_quiz objects for a student during a particular event
-    student_quizzes = StudentQuiz.for_student(quizzer).for_event(event).to_a
+    student_quizzes = StudentQuiz.for_student(quizzer).for_event(event).by_round_num.to_a
   end
 
   def self.get_all_quizzers_for_event(event)
