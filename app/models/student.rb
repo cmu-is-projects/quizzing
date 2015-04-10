@@ -52,13 +52,6 @@ class Student < ActiveRecord::Base
 
   def self.new_students(organization=nil)
     tmp = Array.new
-    #if organization
-      #newstudents = Organization.students.select{|st| st.current_team == NullTeam.new} 
-    #else
-      #newstudents = Student.select{|st| st.current_team == NullTeam.new}
-    #end
-    #tmp << newstudents
-    #tmp.flatten!
     if organization
       newstudents = Organization.students.active
     else
