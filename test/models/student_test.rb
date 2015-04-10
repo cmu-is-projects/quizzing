@@ -100,8 +100,9 @@ class StudentTest < ActiveSupport::TestCase
       create_acac_teams
       create_acac_student_teams
       assert_equal NullTeam.new.name, @quincy.current_team.name
-      #assert_equal 1, Student.new_students.size
-      assert_equal @quincy, Student.new_students.first
+      assert_equal NullTeam.new.name, @jimmy.current_team.name
+      assert_equal NullTeam.new.name, @mindy.current_team.name
+      assert_equal 3, Student.new_students.size
       delete_one_organization
       delete_divisions
       delete_acac_students
