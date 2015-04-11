@@ -53,14 +53,24 @@ class Student < ActiveRecord::Base
   def self.new_students(organization=nil)
     tmp = Array.new
     if organization
-      newstudents = Organization.students.active
+      newstudents = Organization.students.active.alphabetical
     else
-      newstudents = Student.active
+      newstudents = Student.active.alphabetical
     end
     newstudents.each do |st|
       tmp << st if st.current_team.is_a?(NullTeam)
     end
     tmp
   end
+
+  #returns what division a student should be, according to his/her grade
+  def div
+    if (3..6).include?(self.grade)
+      return 3 #division id for juniors
+    else
+      return 2 #division id for senior b
+    end
+  end
+
 
 end

@@ -1,4 +1,4 @@
-<!-- button to add a new student -->
+<!-- TODO: button to add a new student -->
 
 <h3>New Students Without a Team</h3><br />
 <table>
@@ -6,6 +6,7 @@
    		<tr>
 			<th>Name</th>
 			<th>Grade</th>
+			<th>Organization</th>
 			<th>Team</th>
 		</tr>
 	</thead>
@@ -15,9 +16,21 @@
 			<tr>
 				<td><%= student.name %></td>
 				<td><%= student.grade %></td>
-				<td><!-- button to pick team --></td>
+				<td><%= student.current_organization.name %></td>
+				<%= simple_form_for(@student) do |f| %>
+						<!-- Drop down menu to pick division -->
+						<!--<td><%#= f.input :Division.division_id, collection: [['Junior', 3],['Senior A',1], ['Senior B', 2]], prompt: "Select division" %></td>-->
+						<!--<td><%#= f.input :division_id, collection: @divisions, prompt: "Select division" %></td>-->
+
+						<!-- Add new team -->
+						<!-- TODO: Find a way to incorporate division name into the drop down menu -->
+						<td><%= f.input :team_ids, collection: Team.not_at_capacity(student.current_organization), prompt: "Select team" %></td>
 			</tr>
-		<% end %>
 	</tbody>
 </table>
-<!-- add new team -->
+			<!-- doesn't work -->
+					<div class="form-actions">
+						<%= f.submit nil, class: 'button' %>
+					</div>
+				<% end %>
+    	<% end %>

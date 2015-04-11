@@ -36,8 +36,10 @@
   # Returns active teams that are not at capacity
   def self.not_at_capacity(organization=nil, division=nil)
     tmp = Array.new
-    if organization && division
+    if organization && division #if organization and division are provided
       teams = organization.teams.alphabetical.for_division(division)
+    elsif organization && !division #if only organization is provided
+      teams = organization.teams.alphabetical
     else
       teams = Team.active.alphabetical.all
     end
