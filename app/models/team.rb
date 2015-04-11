@@ -13,8 +13,9 @@ class Team < ActiveRecord::Base
   has_many :team_coaches
   has_many :coaches, through: :team_coaches
 
-  accepts_nested_attributes_for :team_coaches
-  accepts_nested_attributes_for :student_teams
+  accepts_nested_attributes_for :coaches
+  accepts_nested_attributes_for :student_teams,
+  reject_if: proc {|attr| attr['student_id'].blank?}
   accepts_nested_attributes_for :organization
 
   #Validations

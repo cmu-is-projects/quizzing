@@ -1,15 +1,21 @@
 Quizzing::Application.routes.draw do
+  get "sessions/new"
   # generated routes
-  resources :events
-  resources :teams
   resources :coaches
-  resources :users
+  resources :events
   resources :organizations
-  resources :students
   resources :quizzes
+  resources :sessions
+  resources :students
+  resources :teams
+  resources :users
 
   # named routes
-
+  get 'user/edit' => 'users#edit', as: :edit_current_user
+  get 'login' => 'sessions#new', as: :login
+  get 'logout' => 'sessions#destroy', as: :logout
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
 
   # Set the root url
   root to: 'home#home', as: :home

@@ -22,24 +22,31 @@
 
     <b>Division:</b>
     <%= f.select :division_id,
-	@divisions.active.alphabetical.map(&:name) %>
+	@divisions.active.alphabetical.map{|d| [d.name, d.id]} %>
 
-    <% (0..(4-@team.student_teams.active.size)).each do %>
+    <% (0..(4-@team.student_teams.size)).each do %>
       <% @team.student_teams.build %>
     <% end %>
     <b>Students in roster:</b>
-    <%= f.fields_for :student_teams do |builder| %>
-      <%= builder.select :student, 
-	  @students.alphabetical.map{|s| s.last_name+", "+s.first_name},
+    <%= f.simple_fields_for :student_teams do |builder| %>
+      <%= builder.select :student_id, 
+	  @students.active.alphabetical.map{|s| 
+	    [s.last_name+", "+s.first_name,
+	    s.id]},
 	  include_blank: true%>
+      <%= builder.input :team_id, 
+	  as: :hidden, 
+	  input_html: {value: @team.id}%>
     <% end %>
 
-    <% (0..(0-@team.team_coaches.where(end_date: nil).size)).each do %>
-      <% @team.team_coaches.build %>
+    <% (0..(0-@team.coaches.size)).each do %>
+      <% @team.coaches.build %>
     <% end %>
     <b>Team coach:</b>
-    <%= f.fields_for :team_coaches do |builder| %>
-      <%= builder.select :coach, @coaches.alphabetical.map{|s| s.last_name+", "+s.first_name} %>
+    <%= f.fields_for :coaches do |builder| %>
+      <%= builder.select :id, 
+	  @coaches.alphabetical.map{|c| [c.last_name+", "+c.first_name,
+	                                 c.id]} %>
     <% end %>
 
     <%= f.input :active %><br>

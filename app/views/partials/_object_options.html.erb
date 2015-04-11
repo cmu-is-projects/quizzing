@@ -10,14 +10,14 @@
     <% end %>
     &nbsp;&nbsp;
     
-    <% if current_user.can?(:update, object) %>
+    <%# if current_user.can?(:update, object) %>
       <%= link_to(eval("edit_#{model_name}_path(object)"), 
 	  class: 'small button radius') do %>
         <!-- <i class="fa fa-pencil"></i> -->
         &nbsp;<%= "Edit #{opt}" %>
       <% end %>
       &nbsp;&nbsp;
-    <% end %>
+    <%# end %>
     
     <% if current_user.role?(:admin) %>
       <%= link_to(eval("#{model_name}_path(object)"), 

@@ -55,9 +55,37 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
   def update
+    @coaches = Coach.all
+    @divisions = Division.all
+    @organizations = Organization.all
+    @students = Student.all
+
+    # We will remove any students that are no longer on the team. To find these
+    # students, we subtract OLD - NEW. We then need to use that to remove them 
+    # from the original array.
+    team_ps = []
+    team_params.each{|p|
+      if(p == :student_teams_attributes)
+        team_ps << p;
+      end
+    }
+
+    unless @team.students.nil?
+      @team.students = @team.students 
+      - (@team.students - team_ps)
+    end
+
+    # To make sure we don't wind up with the same team member twice, we find 
+    # all the members currently on the team and subtract them from the ones 
+    # that we are trying to add.
+    @old_members = @team.students
+    team_ps[:students] = team_ps[:students]-@team.students
+
+
     respond_to do |format|
       if @team.update(team_params)
-        format.html { redirect_to @team, notice: 'Team was successfully updated.' }
+        format.html { redirect_to @team, 
+          notice: 'Team was successfully updated.'}
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -86,13 +114,11 @@ class TeamsController < ApplicationController
     def team_params
       params.require(:team).permit(:name,
                                    :active,
-                                   #:division,
-                                   #:organization,
-                                   :student_teams,
-                                   :team_coaches, 
-                                   :student_ids => [], 
-                                   :division_ids => [], 
-                                   :student_team_ids => [], 
-                                   :organization_ids => [])
+                                   :division_id,
+                                   :organization_id,
+                                   :students,
+                                   :team_coaches,
+                                    student_teams_attributes: [:student_id]
+                                   )
     end
 end

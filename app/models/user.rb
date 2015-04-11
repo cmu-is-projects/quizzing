@@ -28,6 +28,9 @@ class User < ActiveRecord::Base
   before_destroy :is_never_destroyable
 
   #Methods
+  def self.authenticate(user_name,password)
+    find_by_user_name(user_name).try(:authenticate, password)
+  end
 
   def role?(authorized_role)
     return false if role.nil?
