@@ -1,23 +1,27 @@
 <h3>Active Students</h3>
 <% @active_teams.each do |team| %>
 <% unless team.students.empty? %>
-	<table> [<%= team.division.name %>] <%= team.name %> 
+	<table class="table table-striped" id="roster"> [<%= team.division.name %>] <%= team.name %> 
 		<thead>
 			<th>Student Name</th>
 			<th>[switch to team]</th>
 			<th>Deactivate</th>
 		</thead>
-		<% team.students.each do |student| %>
+		<% team.students.each do |student| unless student.active == false %>
 		<tbody>
 			<td><%= link_to student.proper_name, student_path(student) %></td>
 			<td></td>
-			<td><%= student.active %></td>
+			<td class="centered"><%= link_to(image_tag("icons/check_green.gif"), toggle_path(student, status: 'inactive'), remote: true, method: 'patch') %></td>
 		</tbody>
+		<% end %>
 		<% end %>
 	</table>
 	<div class="form-actions">
 		<%= link_to 'Add existing Student to Team', edit_team_path(team), class: 'tiny button radius' %>
-		<%= link_to 'Add new Student to Team', new_student_path, class: 'tiny button radius' %>
+		<%= link_to(new_student_path(team_id: team.id), id: 'new_student_link', class: 'button tiny radius', remote: true) do %>
+  <!-- <i class="fa fa-clipboard"></i> -->
+  &nbsp;Add New Student
+<% end %>
 	</div>
 	<% end %>
 <% end %>

@@ -5,12 +5,15 @@ class HomeController < ApplicationController
     @upcoming_events = Event.upcoming.chronological.to_a
     @active_teams = Team.all.active
     @inactive_students = Student.all.inactive
+
+    respond_to do |format|
+      format.html
+      format.js { render partial: '_inactive_roster' }
+    end
   end
 
   def display
-    respond_to do |format|
-      format.js { render partial: '_inactive_roster' }
-    end
+    
   end
 
   def about

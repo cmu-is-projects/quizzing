@@ -1,4 +1,3 @@
-$(#display).html(
 <h3>Inactive Students</h3>
 <% @inactive_students.each do |student| %>
 	<table>
@@ -16,4 +15,4 @@ $(#display).html(
 		<%= link_to 'Add new Student', new_student_path, class: 'tiny button radius' %>
 	</div>
 	<% end %>
-<% end %>);
+<% end %>

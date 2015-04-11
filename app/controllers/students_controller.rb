@@ -19,6 +19,7 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
+    @student.team_id = params[:team_id] unless params[:team_id].nil?
   end
 
   # GET /students/1/edit
@@ -33,8 +34,13 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
-        format.html { redirect_to @student, notice: 'Student was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @student }
+        respond_to do |format|
+          format.html { redirect_to @student, notice: "#{@student.name} has been created." }
+          @active_teams = Team.all.active
+          format.js
+        # format.html { redirect_to @student, notice: 'Student was successfully created.' }
+        # format.json { render action: 'show', status: :created, location: @student }
+      end
       else
         format.html { render action: 'new' }
         format.json { render json: @student.errors, status: :unprocessable_entity }
@@ -54,6 +60,17 @@ class StudentsController < ApplicationController
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def toggle
+    if params[:status] == 'inactive'
+      @student.active = false
+      #TODO: do we end student_team relationship when student is inactived
+    else
+      @student.active = true
+    end
+    @student.save!
+    @active_teams = Team.all.active
   end
 
   # DELETE /students/1
