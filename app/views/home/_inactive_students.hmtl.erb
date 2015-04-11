@@ -1,0 +1,19 @@
+$(#display).html(
+<h3>Inactive Students</h3>
+<% @inactive_students.each do |student| %>
+	<table>
+		<thead>
+			<th>Student Name</th>
+			<th>Add to Team</th>
+		</thead>
+		<tbody>
+			<td><%= link_to student.proper_name, student_path(student) %></td>
+			<td>Somehow activate student and then show their page where they can be added to a team</td>
+		</tbody>
+		<% end %>
+	</table>
+	<div class="form-actions">
+		<%= link_to 'Add new Student', new_student_path, class: 'tiny button radius' %>
+	</div>
+	<% end %>
+<% end %>);
