@@ -6,7 +6,6 @@ class EventQuizzer
     @division = team.division
     @name = quizzer.proper_name
     @event_host = event.organization.name
-    #TODO: order by_round_num
     @student_quizzes = get_all_student_quizzes_for_student_in_this_event(@quizzer, @event)
   end
 

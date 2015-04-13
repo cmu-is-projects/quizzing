@@ -10,7 +10,7 @@ class StudentQuiz < ActiveRecord::Base
   validate :quiz_is_active_in_system
 
   #Scopes
-  #TODO: test
+  #TODO: test by_round_num
   scope :by_round_num, -> { joins(:quiz).order('round_num') }
   
 

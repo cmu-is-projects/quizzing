@@ -13,8 +13,8 @@
 
 <p>
   <!-- TODO: does an inactive student have a division? -->
-  <strong>Grade | Division:</strong>
-  <%= "#{@student.grade}" " | #{@student.current_team.division.name}" %>
+  <strong>Grade - Division:</strong>
+  <%= "#{@student.grade}" " - #{@student.current_team.division.name}" %>
 </p>
 
 <p>
@@ -70,10 +70,14 @@
         <tr><!--each row is the quizzes of one event-->
           <!--TODO link to event standings-->
           <td><%= event.start_date %></td>
-          <!--@student or @quizzer below?-->
           <% @student_quizzes = EventQuizzer.new(@student,event).student_quizzes %>
-          <% @student_quizzes.each do |student_quiz| %>
-            <td><%= student_quiz.score %></td>
+          <% unless @student_quizzes.empty? %>
+            <% @student_quizzes.each do |student_quiz| %>
+              <td><%= student_quiz.score %></td>
+            <% end %>
+          <% else %>
+            <!--make an appropriate loop-->
+              <td><%= "--" %></td>
           <% end %><!--end student_quiz-->
           <td><%= EventQuizzer.new(@student,event).total_points %></td>
         </tr>

@@ -8,7 +8,7 @@ class StandingsController < ApplicationController
   		
   	end
   	@division = Division.find(div_id)
-  	#TODO: adjust this to ultimately take a QuizYear parameter (probably NOT during CMU  67-373 Spring 2015)
+  	#TODO (probably NOT during CMU 67-373 Spring 2015): adjust this to ultimately take a QuizYear parameter
   	@quizzers = YearQuizzer.get_all_quizzers_for_division_for_year(@division)
   end #end individual method
 
