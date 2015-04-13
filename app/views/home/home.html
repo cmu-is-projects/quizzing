@@ -1,7 +1,8 @@
 <!-- For now, everyone can see the general home. Login restrictions will be added in later -->
 <%# render :partial => 'general_home', locals: {upcoming_events: @upcoming_events} %>
 <div class="row">
-  <div class="small-6 columns">   
+  <div class="small-6 columns">
+  <!-- Active | <%# link_to 'Inactive', display_inactive_path, remote: true %>  -->
   	<%= render :partial => 'roster' %>
   </div>
 
