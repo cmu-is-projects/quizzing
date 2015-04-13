@@ -17,6 +17,14 @@
     <%= link_to image_tag('banner_6.png'), home_path %> 
     <%#= render :partial => "partials/nav" %>
     <%= render :partial => "partials/coach_nav" %>
+
+    <div class="row">
+      <div class="small-12 columns" id="main_content">
+        <%= render :partial => "partials/flash" %>
+        <%= yield %>
+      </div>
+    </div>
+    
     <div class="row">
       <div class="small-8 columns">
         <!-- MAIN CONTENT GOES HERE -->

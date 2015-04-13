@@ -20,16 +20,8 @@
 				<td><%= student.grade %></td>
 				<td><%= student.current_organization.name %></td>
 				<%= simple_form_for(@student) do |f| %>
-						<!-- Drop down menu to pick division -->
-
-						<!-- TODO1: Fix divisions dropdown box or add division name to team dropdown box -->
-						<!--<td><%#= f.input :Division.division_id, collection: [['Junior', 3],['Senior A',1], ['Senior B', 2]], prompt: "Select division" %></td>-->
-						<!--<td><%#= f.input :division_id, collection: @divisions, prompt: "Select division" %></td>-->
-
 						<!-- Add new team -->
-						<!-- TODO1: Find a way to incorporate division name into the drop down menu -->
-						<!-- TODO1: Get rid of the lable, team_ids -->
-						<td><%= f.input :team_ids, label: "",collection: Team.not_at_capacity(student.current_organization), prompt: "Select team" %></td>
+						<td><%= f.input :team_ids, label: false, collection: get_team_options(student), prompt: "Select team" %></td> 
 			</tr>
 	</tbody>
 </table>

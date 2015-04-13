@@ -110,5 +110,22 @@ class StudentTest < ActiveSupport::TestCase
       delete_acac_student_teams
     end  
 
+    should "return students for an organization who do not have a team" do
+      create_one_organization
+      create_divisions
+      create_acac_students
+      create_acac_teams
+      create_quincy_has_a_team
+      assert_equal @acac_sr1.name, @quincy.current_team.name
+      assert_equal NullTeam.new.name, @jimmy.current_team.name
+      assert_equal NullTeam.new.name, @mindy.current_team.name
+      assert_equal 0, Student.new_students(@acac).size
+      delete_one_organization
+      delete_divisions
+      delete_acac_students
+      delete_acac_teams
+      delete_quincy_has_a_team
+    end  
+
   end
 end

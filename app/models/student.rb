@@ -14,8 +14,6 @@ class Student < ActiveRecord::Base
   # Validations
   validates_presence_of :first_name, :last_name, :grade
   validates_numericality_of :grade, only_integer: true, greater_than: 1, less_than: 13
-  #junior_array = (2..6).to_a
-  #validates :rating, inclusion: { in: junior_array } 
 
   # Scopes
   scope :alphabetical, -> {order("last_name, first_name")}  
@@ -53,7 +51,7 @@ class Student < ActiveRecord::Base
   def self.new_students(organization=nil)
     tmp = Array.new
     if organization
-      newstudents = Organization.students.active.alphabetical
+      newstudents = organization.students.active.alphabetical #how to install it
     else
       newstudents = Student.active.alphabetical
     end
@@ -64,13 +62,14 @@ class Student < ActiveRecord::Base
   end
 
   #returns what division a student should be, according to his/her grade
-  def div
-    if (3..6).include?(self.grade)
-      return 3 #division id for juniors
-    else
-      return 2 #division id for senior b
-    end
-  end
+  #TODO2: Figure out if this is necessary
+  #def div
+    #if (3..6).include?(self.grade)
+      #return 3 #division id for juniors
+    #else
+      #return 2 #division id for senior b
+    #end
+  #end
 
 
 end
