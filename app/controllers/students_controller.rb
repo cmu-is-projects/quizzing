@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_student, only: [:show, :edit, :update, :destroy, :toggle]
 
   # GET /students
   # GET /students.json
@@ -19,7 +19,7 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
-    @student.team_id = params[:team_id] unless params[:team_id].nil?
+    @student.student_teams[0].team_id = params[:team_id] unless params[:team_id].nil?
   end
 
   # GET /students/1/edit
