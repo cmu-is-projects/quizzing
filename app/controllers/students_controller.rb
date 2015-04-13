@@ -19,7 +19,7 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
-    @student.student_teams[0].team_id = params[:team_id] unless params[:team_id].nil?
+    @inactive_students = Student.inactive.alphabetical
   end
 
   # GET /students/1/edit
@@ -64,11 +64,12 @@ class StudentsController < ApplicationController
 
   def toggle
     if params[:status] == 'inactive'
-      @student.active = false
+      @student.current_student_team.active = false
       #TODO: do we end student_team relationship when student is inactived
     else
-      @student.active = true
+      @student.current_student_team.active = true
     end
+    @student.current_student_team.save!
     @student.save!
     @active_teams = Team.all.active
   end

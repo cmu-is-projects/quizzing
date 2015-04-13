@@ -49,4 +49,13 @@ class Student < ActiveRecord::Base
     end
   end
 
+  def current_student_team
+    latest = self.student_teams.where(end_date: nil)
+    if latest.empty? || latest.nil?
+      return NullStudentTeam.new
+    else
+      return latest.first
+    end
+  end
+
 end
