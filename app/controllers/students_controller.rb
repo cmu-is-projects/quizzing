@@ -63,14 +63,14 @@ class StudentsController < ApplicationController
   end
 
   def toggle
+    @student_team = @student.current_student_team
     if params[:status] == 'inactive'
-      @student.current_student_team.active = false
-      #TODO: do we end student_team relationship when student is inactived
+      @student_team.active = false
     else
-      @student.current_student_team.active = true
+      @student_team.active = true
     end
-    @student.current_student_team.save!
-    @student.save!
+    @student_team.save!
+    @student_team = nil
     @active_teams = Team.all.active
   end
 

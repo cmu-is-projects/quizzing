@@ -15,7 +15,8 @@
 			<% team.students.each do |student| unless student.active == false %>
 			<tbody>
 				<td><%= link_to student.proper_name, student_path(student) %></td>
-				<% if student.current_student_team.active? %>
+				<% student_team = student.current_student_team %>
+				<% if student_team.active? %>
 				<td class="centered"><%= link_to(image_tag("icons/check_green.gif"), toggle_path(student, status: 'inactive'), remote: true, method: 'patch') %></td>
 				<% else %>
 				<td class="centered"><%= link_to(image_tag("icons/check_black.gif"), toggle_path(student, status: 'active'), remote: true, method: 'patch') %></td>
