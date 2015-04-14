@@ -70,7 +70,7 @@
       <% @event_quizzer = EventQuizzer.new(@student,event) %>
         <tr><!--each row is the quizzes of one event-->
           <!--TODO link to event standings-->
-          <td><%= event.start_date %></td>
+          <td><%= event.start_date.strftime('%B %d, %Y') %></td>
           <% @student_quizzes = @event_quizzer.student_quizzes %>
           <% unless @student_quizzes.empty? %>
             <% @student_quizzes.each do |student_quiz| %>
