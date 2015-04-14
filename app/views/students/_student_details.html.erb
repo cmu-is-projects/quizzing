@@ -54,13 +54,15 @@
     <thead>
       <tr>
         <th>Date</th>
-        <!--TODO: proper loop logic-->
-        <th>Round 1</th>
-        <th>Round 2</th>
-        <th>Round 3</th>
-        <th>Round 4</th>
-        <th>Round 5</th>
-        <th>Round 6</th>
+        <!--TODO (not 373 Spring '15): make dynamic -->
+        <%declared_num_rounds = 6%>
+        <%round_counter = 1%>
+
+        <% while round_counter <= declared_num_rounds do%>
+          <th><%= "Round #{round_counter}" %></th>
+          <%round_counter+=1%>
+        <% end %>
+
         <th>Total Points</th>
       </tr>
     </thead>
@@ -71,21 +73,35 @@
           <!--TODO link to event standings-->
           <td><%= event.start_date %></td>
           <% @student_quizzes = EventQuizzer.new(@student,event).student_quizzes %>
+
           <% unless @student_quizzes.empty? %>
             <% @student_quizzes.each do |student_quiz| %>
               <td><%= student_quiz.score %></td>
-            <% end %>
-          <% else %>
-            <!--make an appropriate loop-->
-              <td><%= "--" %></td>
-          <% end %><!--end student_quiz-->
-          <td><%= EventQuizzer.new(@student,event).total_points %></td>
+            <% end %><!--student_quizzes.each-->
+
+          <% else %><!--student_quizzes are empty-->
+            <!--Resetting the global round_counter-->
+            <%round_counter = 1%>
+            <% while round_counter <= declared_num_rounds do%>
+              <td> -- </td>
+              <%round_counter+=1%>
+            <% end %> <!--while-->
+
+            <!--tests that multiple td is working at all-->
+            <!-- <td>--1</td>
+            <td>--2</td>
+            <td>--3</td> -->
+
+
+          <% end %><!--student_quizzes-->
+
+          <td><%= "(TP) #{EventQuizzer.new(@student,event).total_points}" %></td>
         </tr>
       <% end %><!--end events-->
     </tbody>
   </table>
 
-<%else%>
+<%else%><!--this person has student_quizzes-->
 
   <div class="panel clearfix">
     <h4>No Competition</h4>

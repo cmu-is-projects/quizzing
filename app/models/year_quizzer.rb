@@ -3,7 +3,7 @@ class YearQuizzer
     @year = quiz_year
     @quizzer = quizzer
     @name = quizzer.proper_name
-    @results = get_results_for_each_quiz_this_year    # i.e., event_quizzes for this year
+    @results = get_results_for_each_quiz_this_year(@quizzer)    # i.e., event_quizzes for this year
     @team = get_final_team_this_year
     @division = team.division
   end
@@ -78,7 +78,8 @@ class YearQuizzer
     events
   end
 
-  def get_results_for_each_quiz_this_year
+  #I (Theophilus) had to add the quizzer parameter
+  def get_results_for_each_quiz_this_year(quizzer)
     event_quizzes = Array.new
     YearQuizzer.find_scored_events_for_year(self.year).each do |event|
       event_quizzes << EventQuizzer.new(quizzer, event)
