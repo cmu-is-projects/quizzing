@@ -53,58 +53,50 @@
   <table>
     <thead>
       <tr>
-        <th>Date</th>
+        <th>Date</th>        
         <!--TODO (not 373 Spring '15): make dynamic -->
         <%declared_num_rounds = 6%>
         <%round_counter = 1%>
-
         <% while round_counter <= declared_num_rounds do%>
           <th><%= "Round #{round_counter}" %></th>
           <%round_counter+=1%>
         <% end %>
-
         <th>Total Points</th>
       </tr>
     </thead>
 
     <tbody>
       <% @events.each do |event| %>
+      <% @event_quizzer = EventQuizzer.new(@student,event) %>
         <tr><!--each row is the quizzes of one event-->
           <!--TODO link to event standings-->
           <td><%= event.start_date %></td>
-          <% @student_quizzes = EventQuizzer.new(@student,event).student_quizzes %>
-
+          <% @student_quizzes = @event_quizzer.student_quizzes %>
           <% unless @student_quizzes.empty? %>
             <% @student_quizzes.each do |student_quiz| %>
               <td><%= student_quiz.score %></td>
-            <% end %><!--student_quizzes.each-->
+            <% end %><!--end student_quizzes.each-->
+            <td><%= "#{@event_quizzer.total_points}" %></td><!--for Total Points column-->
 
-          <% else %><!--student_quizzes are empty-->
-            <!--Resetting the global round_counter-->
-            <%round_counter = 1%>
+          <% else %><!--student_quizzes are empty so output dashes-->
+
+            <%round_counter = 1%><!--Resetting the global round_counter!-->
             <% while round_counter <= declared_num_rounds do%>
               <td> -- </td>
               <%round_counter+=1%>
-            <% end %> <!--while-->
+            <% end %> <!--end while-->
+            <td> -- </td><!--for Total Points column-->
 
-            <!--tests that multiple td is working at all-->
-            <!-- <td>--1</td>
-            <td>--2</td>
-            <td>--3</td> -->
-
-
-          <% end %><!--student_quizzes-->
-
-          <td><%= "(TP) #{EventQuizzer.new(@student,event).total_points}" %></td>
+          <% end %><!--end student_quizzes unless-->
         </tr>
-      <% end %><!--end events-->
+      <% end %><!--end events.each-->
     </tbody>
   </table>
 
-<%else%><!--this person has student_quizzes-->
+<%else%><!--this person has no student_quizzes at all-->
 
   <div class="panel clearfix">
-    <h4>No Competition</h4>
+    <h4>No Competition <%= @student.proper_name %></h4>
   </div>
 
 <% end %>
