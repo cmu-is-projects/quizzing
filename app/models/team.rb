@@ -34,6 +34,7 @@
   # Methods
 
   # Returns active teams that are not at capacity
+  # TODO: error if the db is empty
   def self.not_at_capacity(organization=nil, division=nil)
     tmp = Array.new
     if organization && division #if organization and division are provided
