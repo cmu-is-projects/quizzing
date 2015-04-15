@@ -13,8 +13,7 @@
 
 <p>
   <strong>Captain:</strong>
-  <!-- TODO: figure out how to determine student is captain -->
-  <%#= @student.student_teams.is_captain %>
+  <%= @student.is_captain? ? "Yes" : "No" %>
 </p>
 
 
