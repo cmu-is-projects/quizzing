@@ -5,6 +5,7 @@ class HomeController < ApplicationController
     @upcoming_events = Event.upcoming.chronological.to_a
     @active_teams = Team.all.active
     @inactive_students = Student.all.inactive
+    @new_students = Student.new_students
   end
 
   def display

@@ -19,6 +19,7 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
+    # authorize! :new, @student
     @inactive_students = Student.inactive.alphabetical
   end
 
@@ -31,7 +32,7 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
-
+    # authorize! :create, @student
     respond_to do |format|
       if @student.save
         respond_to do |format|

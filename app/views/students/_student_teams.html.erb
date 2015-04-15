@@ -1,3 +1,4 @@
+<div id = 'new_student' >
 <%= simple_form_for(@student) do |f| %>
   <h5>Organization</h5>
   <fieldset>
@@ -9,9 +10,11 @@
       <%= f.input :team_ids, label: "Team:", collection: @student.current_organization.teams.active.alphabetical.for_division(@student.current_team.division), as: :radio_buttons, :checked => true %><br />
 
     <div class="form-actions">
+      <!-- submit button is working, but the form doesn't close -->
       <%= f.submit nil, class: 'button' %>
       <%= link_to 'Cancel', students_path, :class => 'button secondary' %>
     </div>
 
   </fieldset>
 <% end %>
+</div>

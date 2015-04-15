@@ -58,7 +58,7 @@ class Student < ActiveRecord::Base
     end
   end
 
-
+#TODO: this method doesn't work if db is empty
   def self.new_students(organization=nil)
     tmp = Array.new
     if organization
