@@ -34,6 +34,7 @@ class Organization < ActiveRecord::Base
   
   #Callbacks
   before_save :get_organization_coordinates
+
   before_destroy :is_never_destroyable
   before_update :end_student_tenure_if_organization_made_inactive
 
