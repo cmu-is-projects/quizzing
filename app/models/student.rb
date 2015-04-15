@@ -3,6 +3,8 @@ class Student < ActiveRecord::Base
   include QuizHelpers::Validations
   include Activeable
 
+  attr_accessor :team_id
+
   # Relationships
   has_many :student_quizzes
   has_many :quizzes, through: :student_quizzes
@@ -69,21 +71,5 @@ class Student < ActiveRecord::Base
       return latest.to_a.first.is_captain
     end
   end
-
-
-  #returns what division a student should be, according to his/her grade
-  #TODO2: Figure out if this is necessary
-  #def div
-    #if (3..6).include?(self.grade)
-      #return 3 #division id for juniors
-    #else
-      #return 2 #division id for senior b
-    #end
-  #end
-
-  #Student.first.student_teams.to_a[1].is_captain
-
-
-
 
 end
