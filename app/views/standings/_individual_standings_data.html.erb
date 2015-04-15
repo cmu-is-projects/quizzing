@@ -23,6 +23,8 @@
           <td><%= link_to quizzer.team.name, team_path(quizzer.team) %></td>
           <td><%= quizzer.total_points %></td>
           <td><%= quizzer.lowest_points %></td>
+          <td><%= quizzer.adjusted_points %></td>
+          <!--TODO: turn accuracy into percentage-->
           <td><%= quizzer.total_accuracy %></td>
         </tr>
       <% end %>
