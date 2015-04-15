@@ -6,7 +6,9 @@ class EventQuizzer
     @division = team.division
     @name = quizzer.proper_name
     @event_host = event.organization.name
-    @student_quizzes = get_all_student_quizzes_for_student_in_this_event(@quizzer, @event)
+    @student_quizzes = get_all_student_quizzes_for_student_in_this_event
+    #TODO: get rid of my attempt below
+    #@student_quizzes = get_all_student_quizzes_for_student_in_this_event(@quizzer, @event)
   end
 
   attr_reader :event, :quizzer, :team, :division
@@ -37,8 +39,9 @@ class EventQuizzer
     end
   end
 
-  #I (Theophilus) had to append the parameters to the method name
-  def get_all_student_quizzes_for_student_in_this_event(quizzer, event)
+  def get_all_student_quizzes_for_student_in_this_event
+  #TODO: get rid of my attempt below
+  #def get_all_student_quizzes_for_student_in_this_event(quizzer, event)
     # gets student_quiz objects for a student during a particular event
     student_quizzes = StudentQuiz.for_student(quizzer).for_event(event).by_round_num.to_a
   end
