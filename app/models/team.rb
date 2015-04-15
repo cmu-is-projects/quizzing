@@ -23,6 +23,7 @@
   scope :for_division, -> (division) { where(division_id: division.id)}
   scope :active, -> {where(active: true)}
   scope :inactive, -> {where(active: false)}
+  scope :for_division, -> (division) { where(division_id: division.id)}
 
   #Methods
   validate :division_is_active_in_system
@@ -32,6 +33,24 @@
   before_destroy :verify_that_there_are_no_scored_quizzes_for_team_this_year
 
   # Methods
+
+  # Returns active teams that are not at capacity
+  # TODO: error if the db is empty
+  def self.not_at_capacity(organization=nil, division=nil)
+    tmp = Array.new
+    if organization && division #if organization and division are provided
+      teams = organization.teams.alphabetical.for_division(division)
+    elsif organization && !division #if only organization is provided
+      teams = organization.teams.alphabetical
+    else
+      teams = Team.active.alphabetical.all
+    end
+    teams.each do |team|
+      tmp << team if team.current_students.size < 5
+    end
+    tmp
+  end
+
   def scored_quizzes_this_year
     quizzes = Array.new
     scored_events = QuizYear.new.completed_events

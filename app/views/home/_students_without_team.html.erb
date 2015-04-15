@@ -1,0 +1,33 @@
+<!-- Partial for students without a team -->
+
+<!-- TODOA: Ajax button to add a new student -->
+
+<h3>New Students Without a Team</h3><br />
+<table>
+   	<thead>
+   		<tr>
+			<th>Name</th>
+			<th>Grade</th>
+			<th>Organization</th>
+			<th>Add to Team</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @new_students.each do |student| %>
+			<tr>
+				<td><%= student.name %></td>
+				<td><%= student.grade %></td>
+				<td><%= student.current_organization.name %></td>
+				<%= simple_form_for(@student) do |f| %>
+						<!-- Add new team -->
+						<td><%= f.input :team_ids, label: false, collection: get_team_options(student), prompt: "Select team" %></td> 
+			</tr>
+	</tbody>
+</table>
+			<!-- doesn't work -->
+					<div class="form-actions">
+						<%= f.submit nil, class: 'button' %>
+					</div>
+				<% end %>
+    	<% end %>

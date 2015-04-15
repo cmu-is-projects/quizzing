@@ -17,6 +17,23 @@ module Contexts
       @jonathan_acac_jr1.delete
     end
 
+    # created for the sake of testing quincy having a team
+    def create_quincy_has_a_team
+      @mark_acac_sr1     = FactoryGirl.create(:student_team, student: @mark, team: @acac_sr1, is_captain: true, start_date: 3.years.ago.to_date)
+      @alex_acac_sr1     = FactoryGirl.create(:student_team, student: @alex, team: @acac_sr1, start_date: 3.years.ago.to_date)
+      @quincy_acac_sr1   = FactoryGirl.create(:student_team, student: @quincy, team: @acac_sr1, start_date: 34.months.ago.to_date)
+      @amanda_acac_sr2   = FactoryGirl.create(:student_team, student: @amanda, team: @acac_sr2, is_captain: true, start_date: 2.years.ago.to_date)
+      @jonathan_acac_jr1 = FactoryGirl.create(:student_team, student: @jonathan, team: @acac_jr1, start_date: 11.months.ago.to_date)
+    end
+
+    def delete_quincy_has_a_team
+      @mark_acac_sr1.delete
+      @alex_acac_sr1.delete
+      @quincy_acac_sr1.delete
+      @amanda_acac_sr2.delete
+      @jonathan_acac_jr1.delete
+    end
+
     def create_student_teams
       create_acac_student_teams
       @jimmy_somerset_sr1  = FactoryGirl.create(:student_team, student: @jimmy, team: @somerset_sr1, is_captain: true, start_date: 3.years.ago.to_date)
