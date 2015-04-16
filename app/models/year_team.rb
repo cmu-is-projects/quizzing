@@ -1,5 +1,5 @@
 #written based on YearQuizzer
-#TODO: test this whole thing
+#TODO: test this whole thing; do not use until tested
 class YearTeam
   def initialize(team, quiz_year=QuizYear.new)
     @year = quiz_year
