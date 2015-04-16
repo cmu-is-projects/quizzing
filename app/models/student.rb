@@ -63,6 +63,14 @@ class Student < ActiveRecord::Base
     tmp
   end
 
+  def add_to_organization(organization)
+    os = OrganizationStudent.new
+    os.student_id = self.id
+    os.organization_id = organization.id
+    os.start_date = Date.today
+    os.save!
+  end
+
   def is_captain?
     latest = self.student_teams.where(end_date: nil)
     if latest.empty? || latest.nil?

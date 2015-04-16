@@ -24,7 +24,7 @@ class StudentsController < ApplicationController
   # GET /students/1/edit
   def edit
     #@organizations = Organization.active.all
-    #@student_team = @student.student_teams.where(end_date: nil).first
+    @student_team = @student.student_teams.where(end_date: nil).first
   end
 
   # POST /students
@@ -34,6 +34,7 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
+        @student.add_to_organization(current_user.organization)
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render action: 'show', status: :created, location: @student }
       else
