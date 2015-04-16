@@ -3,9 +3,7 @@ class YearQuizzer
     @year = quiz_year
     @quizzer = quizzer
     @name = quizzer.proper_name
-    @results = get_results_for_each_quiz_this_year
-    #TODO: get rid of my attempt below
-    #@results = get_results_for_each_quiz_this_year(@quizzer)    # i.e., event_quizzes for this year
+    @results = get_results_for_each_quiz_this_year # i.e., event_quizzes for this year
     @team = get_final_team_this_year
     @division = team.division
   end

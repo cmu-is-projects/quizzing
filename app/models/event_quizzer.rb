@@ -6,9 +6,7 @@ class EventQuizzer
     @division = team.division
     @name = quizzer.proper_name
     @event_host = event.organization.name
-    @student_quizzes = get_all_student_quizzes_for_student_in_this_event
-    #TODO: get rid of my attempt below
-    #@student_quizzes = get_all_student_quizzes_for_student_in_this_event(@quizzer, @event)
+    @student_quizzes = get_all_student_quizzes_for_student_in_this_event  
   end
 
   attr_reader :event, :quizzer, :team, :division

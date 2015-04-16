@@ -6,7 +6,7 @@
   <table>
     <thead>
       <tr>
-        <!--TODO: rank logic-->
+        <th>Rank</th>
         <th>Name</th>
         <th>Team</th>
         <th>Points</th>
@@ -19,6 +19,8 @@
     <tbody>
       <% @quizzers.each do |quizzer| %>
         <tr>
+          <!--TODO: rank logic using a simple counter-->
+          <td>Rank</td>
           <td><%= link_to quizzer.name, student_path(quizzer) %></td>
           <td><%= link_to quizzer.team.name, team_path(quizzer.team) %></td>
           <td><%= quizzer.total_points %></td>

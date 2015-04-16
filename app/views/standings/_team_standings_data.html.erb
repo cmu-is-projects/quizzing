@@ -1,0 +1,38 @@
+<!--first copied and pasted from individual standings-->
+
+<% @divisions.each do |division| %>
+  <% @division_teams = @teams.for_division(division) %><!--declaring here in the view-->
+
+<% unless @division_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
+
+  <h3><%= "#{division.name} Division Team Standings" %></h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!--@division teams declared above Spring '15-->
+      <% @division_teams.each do |dt| %>
+        <tr>          
+          <!--TODO: rank logic using a simple counter-->
+          <td>Rank</td>
+          <td><%= link_to dt.name, team_path(dt) %></td>
+          <td><%= dt.score %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<%else%><!--No teams for this division-->
+
+  <div class="panel clearfix">
+    <h3><%= "No #{division.name} Team Standings" %></h3>
+  </div>
+
+<% end %>
