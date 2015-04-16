@@ -4,7 +4,7 @@
       <!-- TODO: Figure out with Prof H how to do pre-selected radio boxes -->
       <%= f.input :team_id, label: "Team:", collection: @student.current_organization.teams.active.alphabetical.for_division(@student.current_team.division), as: :radio_buttons, :checked => @student.current_team.id %><br />
 
-      <%= f.input :is_captain, label: 'Captain?', collection: [ ['Yes', 'true' ], ['No', 'false'] ], as: :radio_buttons, label_method: :last, value_method: :first, checked: @student.student_teams.where(end_date: nil).to_a.first.is_captain, item_wrapper_class: 'inline'%>
+      <%= f.input :is_captain, label: 'Captain?', collection: [ ['Yes', 'true' ], ['No', 'false'] ], as: :radio_buttons, label_method: :last, value_method: :first, :checked => @student_team.is_captain, item_wrapper_class: 'inline'%>
 
     <div class="form-actions">
       <%= f.submit nil, class: 'button' %>
