@@ -7,6 +7,7 @@
     <thead>
       <tr>
         <th>Rank</th>
+        <% rank_counter = 0 %>
         <th>Name</th>
         <th>Team</th>
         <th>Points</th>
@@ -20,13 +21,13 @@
       <% @quizzers.each do |quizzer| %>
         <tr>
           <!--TODO: rank logic using a simple counter-->
-          <td>Rank</td>
+          <% rank_counter+=1 %><!--first quizzer's rank outputted as 1-->
+          <td><%= rank_counter %></td>
           <td><%= link_to quizzer.name, student_path(quizzer) %></td>
           <td><%= link_to quizzer.team.name, team_path(quizzer.team) %></td>
           <td><%= quizzer.total_points %></td>
           <td><%= quizzer.lowest_points %></td>
           <td><%= quizzer.adjusted_points %></td>
-          <!--TODO: turn accuracy into percentage-->
           <td><%= quizzer.total_accuracy %></td>
         </tr>
       <% end %>

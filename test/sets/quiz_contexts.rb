@@ -41,6 +41,7 @@ module Contexts
     end
 
     def create_quizzes_for_future_event
+      #causes student_quizzes with nil fields
       @quiz1f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 1)
       @quiz2f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 2)
       @quiz3f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 3)

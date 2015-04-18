@@ -14,11 +14,12 @@ class StudentsController < ApplicationController
   def show
     @student_teams = StudentTeam.all
     @organization_students = OrganizationStudent.all
-    @quizzer = YearQuizzer.new(@student)
+    @year_quizzer = YearQuizzer.new(@student)
     @all_student_quizzes = @student.student_quizzes
     @events = Event.all.chronological
     #@num_rounds = @organization_students.to_a.first.quiz.num_rounds
-    #@accuracy_percentage = @quizzer.total_accuracy*100.0
+    #@accuracy_percentage = number_to_percentage(@quizzer.total_accuracy*100.0, precision: 1)
+    @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)
   end
 
   # GET /students/new

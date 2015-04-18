@@ -30,6 +30,7 @@ module Contexts
 
     # not sure if this is needed yet...
     def create_student_quizzes_with_no_score_yet
+      #the student_quiz fields are nil
       @alex1 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz1f)
       @alex2 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz2f)
       @alex3 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz3f)

@@ -13,7 +13,7 @@ class StandingsController < ApplicationController
   end #end individual method
 
   def team
-    #TODO: write; top-down design
+    #TODO: write YearTeam; top-down design
     #@teams = YearTeam.get_all_teams
     #@divisions = Division.all
   end
