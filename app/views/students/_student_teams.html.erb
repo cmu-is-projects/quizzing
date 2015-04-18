@@ -3,7 +3,13 @@
       <!-- TODOA: Ajax for selecting switching between organizations and organizations' teams -->
       <%= f.input :team_id, label: "Team:", collection: @student.current_organization.teams.active.alphabetical.for_division(@student.current_team.division), as: :radio_buttons, :checked => @student.current_team.id %><br />
 
-      <%= f.collection_radio_buttons :is_captain, [ [true, 'Yes' ], [false, 'No'] ], :first,:last, label: 'Captain:',  :checked => @student_team.is_captain %>
+      <!-- using this for now because label method doesn't work -->
+      <!-- TODO: Figure out which way is clearer -->
+
+      <%= f.input :is_captain, label: "Captain" %>
+
+      <%#= f.collection_radio_buttons :is_captain, [ [true, 'Yes' ], [false, 'No'] ], :first,:last, :label => "Captain",  :checked => @student_team.is_captain %>
+
 
     <div class="form-actions">
       <%= f.submit nil, class: 'button' %>
