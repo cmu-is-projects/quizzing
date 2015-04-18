@@ -1,6 +1,5 @@
-<h1>Editing organization</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @organization %> |
-<%= link_to 'Back', organizations_path %>
+<%= render partial: "partials/structure_1", locals: {model_name: "organization", 
+                                                         primary: "form", 
+                                                         secondary: nil,
+                                                         sidebar: nil,
+                                                         options: nil } %>

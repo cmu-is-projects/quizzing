@@ -1,0 +1,37 @@
+<% unless @organization_active_students.empty? %>
+
+  <h3>Listing Active Students</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Team</th>
+        <th>Division</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @organization_active_students.each do |student| %>
+        <tr>
+          <td><%= link_to student.name, student_path(student) %></td>
+          <td><%= student.current_team.name %></td>
+          <td><%= student.current_team.division.name %></td>
+          <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<%else%>
+
+  <div class="panel clearfix">
+    <h4>No Active Students</h4>
+  </div>
+
+<% end %>
+
+
+
+<!-- TODO: add Ajax for adding new organization and toggle inactive -->
