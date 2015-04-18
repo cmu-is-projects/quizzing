@@ -1,0 +1,43 @@
+<!--uses standings_controller which uses year_quizzer model-->
+<% unless @quizzers.empty? %>
+
+  <h3><%= "#{@division.name} Division Individual Standings" %></h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <% rank_counter = 0 %>
+        <th>Name</th>
+        <th>Team</th>
+        <th>Points</th>
+        <th>Low</th>
+        <th>Adjusted Points</th>
+        <th>Accuracy</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @quizzers.each do |quizzer| %>
+        <tr>
+          <!--TODO: rank logic using a simple counter-->
+          <% rank_counter+=1 %><!--first quizzer's rank outputted as 1-->
+          <td><%= rank_counter %></td>
+          <td><%= link_to quizzer.name, student_path(quizzer) %></td>
+          <td><%= link_to quizzer.team.name, team_path(quizzer.team) %></td>
+          <td><%= quizzer.total_points %></td>
+          <td><%= quizzer.lowest_points %></td>
+          <td><%= quizzer.adjusted_points %></td>
+          <td><%= quizzer.total_accuracy %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<%else%>
+
+  <div class="panel clearfix">
+    <h3><%= "No #{@division.name} Division Individual Standings" %></h3>
+  </div>
+
+<% end %>
