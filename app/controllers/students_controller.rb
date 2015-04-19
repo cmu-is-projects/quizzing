@@ -14,6 +14,12 @@ class StudentsController < ApplicationController
   def show
     @student_teams = StudentTeam.all
     @organization_students = OrganizationStudent.all
+    @year_quizzer = YearQuizzer.new(@student)
+    @all_student_quizzes = @student.student_quizzes
+    @events = Event.all.chronological
+    #@num_rounds = @organization_students.to_a.first.quiz.num_rounds
+    #@accuracy_percentage = number_to_percentage(@quizzer.total_accuracy*100.0, precision: 1)
+    @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)
   end
 
   # GET /students/new
@@ -23,7 +29,8 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
-    @organizations = Organization.active.all
+    #@organizations = Organization.active.all
+    @student_team = @student.student_teams.where(end_date: nil).first
   end
 
   # POST /students
@@ -33,6 +40,7 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
+        @student.add_to_organization(current_user.organization)
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render action: 'show', status: :created, location: @student }
       else
@@ -74,6 +82,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :grade, :captain, :active, :team_id, :organization_id)
+      params.require(:student).permit(:first_name, :last_name, :grade, :is_captain, :active, :organization_ids, :team_id)
     end
 end

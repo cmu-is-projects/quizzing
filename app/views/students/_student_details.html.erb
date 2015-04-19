@@ -8,18 +8,88 @@
 
 <p>
   <strong>Grade - Division:</strong>
-  <%= "#{@student.grade}" " - #{@student.current_team.division.name}" %>
+  <%= "#{@student.grade} - #{@student.current_team.division.name}" %>
 </p>
 
 <p>
   <strong>Captain:</strong>
-  <!-- TODO: figure out how to determine student is captain -->
-  <%#= @student.student_teams.is_captain %>
+  <%= @student.is_captain? ? "Yes" : "No" %>
 </p>
 
+<p>
+  <strong>Cumulative Points</strong>
+  <%= @year_quizzer.total_points %>
+</p>
+
+<p>
+  <strong>Average Accuracy</strong>
+  <!--TODO: make use of the below from the controller; format it correctly-->
+  <%= "#{@accuracy_percentage}%" %>
+</p>
 
 <p>
   <strong>Active:</strong>
   <%= @student.active? ? "Yes" : "No" %>
 </p>
+
+
+
+<!--Copied and pasted-->
+
+<% unless @all_student_quizzes.empty? %>
+
+  <h4>Breakdown of Scores for <%= @student.proper_name %></h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>        
+        <!--TODO (not 373 Spring '15): make dynamic -->
+        <%declared_num_rounds = 6%>
+        <%round_counter = 1%>
+        <% while round_counter <= declared_num_rounds do%>
+          <th><%= "Round #{round_counter}" %></th>
+          <%round_counter+=1%>
+        <% end %>
+        <th>Total Points</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @events.each do |event| %>
+      <% @event_quizzer = EventQuizzer.new(@student,event) %>
+        <tr><!--each row is the quizzes of one event-->
+          <!--TODO link to event standings-->
+          <td><%= event.start_date.strftime('%B %d, %Y') %></td>
+          <% @student_quizzes = @event_quizzer.student_quizzes %>
+          <!--empty student_quizzes or future-created ones (they nil scores)-->
+          <% unless @student_quizzes.empty? || @student_quizzes.first.score.nil? %>
+            <% @student_quizzes.each do |student_quiz| %>
+              <td><%= student_quiz.score %></td>
+            <% end %><!--end student_quizzes.each-->
+            <td><%= @event_quizzer.total_points %></td><!--for Total Points column-->
+
+          <% else %><!--student_quizzes are empty so output dashes-->
+
+            <%round_counter = 1%><!--Resetting the global round_counter!-->
+            <% while round_counter <= declared_num_rounds do%>
+              <td> -- </td>
+              <%round_counter+=1%>
+            <% end %> <!--end while-->
+            <td> -- </td><!--for Total Points column-->
+
+          <% end %><!--end student_quizzes unless-->
+        </tr>
+      <% end %><!--end events.each-->
+    </tbody>
+  </table>
+
+<%else%><!--this person has no student_quizzes at all-->
+
+  <div class="panel clearfix">
+    <h4>No Competition for <%= @student.proper_name %></h4>
+  </div>
+
+<% end %>
+
 

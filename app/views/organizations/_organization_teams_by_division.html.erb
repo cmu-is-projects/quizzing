@@ -1,0 +1,24 @@
+<!--List organization's teams by division-->
+<!--Show nothing if there are no teams to display-->
+<% unless @organization_teams.empty? %>
+  <% @divisions.each do |division| %>
+      <div class="panel clearfix">
+        <% unless @organization_teams.for_division(division).empty? %>
+          <!--use organization's short name if possible-->
+          <h4><%= !@organization.short_name.nil? ? "#{@organization.short_name}'s #{division.name} teams" : "#{@organization.name}'s #{division.name} teams" %></h4>
+          <ul class="side-nav">
+          <!--does the org have teams associated with this respective division-->
+            <% @organization_teams.for_division(division).sort.each do |team| %>
+              <li><%= link_to team.name, team_path(team) %></li>
+            <%end%><!--loop-->
+          </ul>
+        <% else %><!--no divisional teams-->
+          <h4><%= !@organization.short_name.nil? ? "No #{division.name} teams for #{@organization.short_name}" : "No #{division.name} teams for #{@organization.name}" %></h4>
+        <%end%><!--divisional teams-->
+      </div>
+  <%end%><!--divisions-->
+<%else%><!--no organizational teams period-->
+  <div class="panel clearfix"><!--one big panel saying no teams (and thus no divisional listings)-->
+    <h4><%= !@organization.short_name.nil? ? "No teams for #{@organization.short_name}" : "No teams for #{@organization.name}" %></h4>
+  </div>
+<% end %> <!--no organizational teams-->

@@ -29,8 +29,9 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event.start_date.strftime("%m/%d/%Y")
-    @event.end_date.strftime("%m/%d/%Y")
+    @event_teams = Team.all.active
+    @event.start_date = humanize_date @event.start_date
+    @event.end_date = humanize_date @event.end_date
   end
 
   # POST /events
