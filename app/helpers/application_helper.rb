@@ -1,4 +1,5 @@
 module ApplicationHelper
+
 	def options_for_time_select
 		start_time = Array.new
 		for $h in 7..11 do
@@ -15,6 +16,7 @@ module ApplicationHelper
   def get_team_options(student)
     Team.not_at_capacity(student.current_organization).map{|t| ["#{t.name} - (#{t.division.name})", t.id] }
   end
+
 end
 
 

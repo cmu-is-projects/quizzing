@@ -105,7 +105,15 @@ class OrganizationTest < ActiveSupport::TestCase
       deny no_state_but_random_wrong_zip.valid?
     end
 
-
+    # should "show that if a street_2 is entered, a street_1 should be present" do
+    #   incorrect_org_wo_street_1 = FactoryGirl.build(:organization, name: "generic org", short_name: "go", zip: "20878", street_1: nil, street_2: "Apartment 2F")
+    #   deny incorrect_org_wo_street_1.valid?
+    #   street_2_so_street_1 = FactoryGirl.build(:organization, name: "generic org", short_name: "go", zip: "20878", street_1: "4705 Fifth Avenue", street_2: "Apartment 2F")
+    #   assert street_2_so_street_1.valid?
+    #   incorrect_org_wo_zip = FactoryGirl.build(:organization, name: "generic org", short_name: "go", zip: nil, street_1: nil, street_2: "Apartment 2F")
+    #   deny incorrect_org_wo_zip.valid?
+    # end
+    
     should "have methods to make active or inactive" do
       @acac.make_inactive
       deny @acac.active

@@ -20,7 +20,6 @@
   
   #Scopes
   scope :alphabetical, -> {order("name")}
-  scope :for_division, -> (division) { where(division_id: division.id)}
   scope :active, -> {where(active: true)}
   scope :inactive, -> {where(active: false)}
   scope :for_division, -> (division) { where(division_id: division.id)}
@@ -28,6 +27,7 @@
   #Methods
   validate :division_is_active_in_system
   validate :organization_is_active_in_system
+
 
   # Callbacks
   before_destroy :verify_that_there_are_no_scored_quizzes_for_team_this_year
