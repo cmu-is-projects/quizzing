@@ -50,15 +50,21 @@ class QuizTeamTest < ActiveSupport::TestCase
       deny bad_quiz_team.valid?
     end
 
-    # should "have class method to get all team_quizzes for an event" do
-    #   assert_equal 12, QuizTeam.all.size
-    #   assert_equal 18, QuizTeam.for_event(@event).all.size
-    # end
+    should "have class method to get all team_quizzes for an event" do
+    #TODO: Seek to know why the commented-out below gives Quiz is not active in system error
+    # create_quiz_teams_for_future_event
+      # assert_equal 18, QuizTeam.all.size
+      # assert_equal 6, QuizTeam.for_event(@event3).all.size
+    # delete_quiz_teams_for_future_event
+      assert_equal 12, QuizTeam.all.size
+      assert_equal 12, QuizTeam.for_event(@event).all.size
+      assert_equal 0, QuizTeam.for_event(@event5).all.size
+    end
 
-    # should "have class method to get all student_quizzes for a student" do
-    #   assert_equal 18, StudentQuiz.all.size
-    #   assert_equal 6, StudentQuiz.for_student(@mark).all.size
-    # end
+    should "have class method to get all team quizzes for a team" do
+      assert_equal 12, QuizTeam.all.size
+      assert_equal 6, QuizTeam.for_team(@acac_sr1).all.size
+    end
 
     should "order team quizzes by round_num" do
       #with only create_quiz_teams_for_past_event (which includes create_acac_quiz_teams_for_past_event) according to context atop
