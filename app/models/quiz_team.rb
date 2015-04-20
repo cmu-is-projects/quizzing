@@ -9,6 +9,15 @@ class QuizTeam < ActiveRecord::Base
   validate :team_is_active_in_system
 
   # TODO: Need to calculate points from raw scores, challenges, and fouls
+  scope :by_round_num, -> { joins(:quiz).order('round_num') }
+
+  def self.for_event(event)
+    QuizTeam.joins(:quiz).where('quizzes.event_id = ?', event.id)
+  end
+
+  def self.for_team(team)
+    QuizTeam.where(team_id: team.id)
+  end
 
   private
   def quiz_is_active_in_system

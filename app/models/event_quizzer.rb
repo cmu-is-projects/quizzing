@@ -38,7 +38,6 @@ class EventQuizzer
   end
 
   def get_all_student_quizzes_for_student_in_this_event
-  #TODO: test by_round_num
     student_quizzes = StudentQuiz.for_student(quizzer).for_event(event).by_round_num.to_a
   end
 
