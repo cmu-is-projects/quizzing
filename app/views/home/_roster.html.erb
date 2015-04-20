@@ -1,3 +1,4 @@
+<!-- TODO1: If nothing in database exists, a form should show up for admin to add divisions, set up website -->
 <ul class = "tabs" data-tab>
 	<li class = "tab-title active"><a href="#activeroster">Active</a></li>
 	<li class = "tab-title"><a href="#inactiveroster">Inactive</a></li>
@@ -16,7 +17,7 @@
 			<tbody>
 				<td><%= link_to student.proper_name, student_path(student) %></td>
 				<% student_team = student.current_student_team %>
-				<% if student_team.active? %>
+				<% if student_team.active? %> <!-- TODOA: If student is absent, label should change? how clear is it?-->
 				<td class="centered"><%= link_to(image_tag("icons/check_green.gif"), toggle_path(student, status: 'inactive'), remote: true, method: 'patch') %></td>
 				<% else %>
 				<td class="centered"><%= link_to(image_tag("icons/check_black.gif"), toggle_path(student, status: 'active'), remote: true, method: 'patch') %></td>
