@@ -1,14 +1,25 @@
-<%= simple_form_for(@student) do |f| %>
-  <h5>Organization</h5>
+<%= simple_form_for(@student_team) do |f| %>
   <fieldset>
-      <!-- TODO: Ajax for selecting switching between organizations and organizations' teams -->
-      <%#= f.input :organization_id, collection: Organization.active.alphabetical, prompt: "Organization" %><br />
-      <%= f.input :team_ids, label: "", collection: Team.active.alphabetical, as: :check_boxes %><br />
+      <!-- TODOA: Ajax for selecting switching between organizations and organizations' teams -->
+      <%= f.input :team_id, label: "Team:", collection: @student.current_organization.teams.active.alphabetical.for_division(@student.current_team.division), as: :radio_buttons, :checked => @student.current_team.id %><br />
+
+      <!-- using this for now because label method doesn't work -->
+      <!-- TODO: Figure out which way is clearer -->
+
+      <%= f.input :is_captain, label: "Captain" %>
+
+      <%#= f.collection_radio_buttons :is_captain, [ [true, 'Yes' ], [false, 'No'] ], :first,:last, :label => "Captain",  :checked => @student_team.is_captain %>
+
 
     <div class="form-actions">
+      <!-- submit button is working, but the form doesn't close -->
       <%= f.submit nil, class: 'button' %>
       <%= link_to 'Cancel', students_path, :class => 'button secondary' %>
     </div>
 
   </fieldset>
 <% end %>
+
+<%#= form_tag do %>
+  <%#= radio_button_tag(:team_id, "Team") %>
+
