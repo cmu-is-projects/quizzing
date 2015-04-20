@@ -94,6 +94,10 @@ class StudentQuizTest < ActiveSupport::TestCase
       assert_equal 6, StudentQuiz.for_student(@mark).all.size
     end
 
+    should "order student_quizzes by round_num" do
+      assert_equal [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6], StudentQuiz.by_round_num.map { |sq| sq.quiz.round_num }
+    end
+
   end
 
 end
