@@ -1,0 +1,57 @@
+<!-- TODO1: If nothing in database exists, a form should show up for admin to add divisions, set up website -->
+<ul class = "tabs" data-tab>
+	<li class = "tab-title active"><a href="#activeroster">Active</a></li>
+	<li class = "tab-title"><a href="#inactiveroster">Inactive</a></li>
+</ul>
+<div class = "tabs-content">
+	<div class = "content active" id = "activeroster">
+		<h3>Active Students</h3>
+		<% @active_teams.each do |team| %>
+		<% unless team.students.empty? %>
+		<table class="table table-striped" id="roster"> [<%= team.division.name %>] <%= team.name %> 
+			<thead>
+				<th>Student Name</th>
+				<th>Present/Absent</th>
+			</thead>
+			<% team.students.each do |student| unless student.active == false %>
+			<tbody>
+				<td><%= link_to student.proper_name, student_path(student) %></td>
+				<% student_team = student.current_student_team %>
+				<% if student_team.active? %> <!-- TODOA: If student is absent, label should change? how clear is it?-->
+				<td class="centered"><%= link_to(image_tag("icons/check_green.gif"), toggle_path(student, status: 'inactive'), remote: true, method: 'patch') %></td>
+				<% else %>
+				<td class="centered"><%= link_to(image_tag("icons/check_black.gif"), toggle_path(student, status: 'active'), remote: true, method: 'patch') %></td>
+				<% end %>
+			</tbody>
+			<% end %>
+			<% end %>
+		</table>
+		<div class="form-actions">
+			<%= link_to 'Edit Team or Add/Remove Students from Team', edit_team_path(team), class: 'tiny button radius' %>
+			<%# link_to(new_student_path(team_id: team.id), id: 'new_student_link', class: 'button tiny radius', remote: true) do %>
+			<!-- <i class="fa fa-clipboard"></i> -->
+			<!-- &nbsp;Add New Student to Team -->
+			<%# end %>
+		</div>
+		<% end %>
+		<% end %>
+	</div>
+	<div class = "content" id = "inactiveroster">
+		<h3>Inactive Students</h3>
+		<% unless @inactive_students.nil? || @inactive_students.empty? %>
+		<% @inactive_students.each do |student| %>
+		<table>
+			<thead>
+				<th>Student Name</th>
+			</thead>
+			<tbody>
+				<td><%= link_to student.proper_name, student_path(student) %></td>
+			</tbody>
+		</table>
+		<!-- <div class="form-actions">
+			<%#= link_to 'Add new Student', new_student_path, class: 'tiny button radius' %>
+		</div> -->
+		<% end %>
+		<% end %>
+	</div>
+</div>

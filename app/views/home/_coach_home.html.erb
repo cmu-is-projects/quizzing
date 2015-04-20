@@ -4,9 +4,12 @@
                                                          secondary: nil,
                                                          sidebar: "students_without_team",
                                                          options: nil } %>
+
+<div id = "roster_reload">
 <div class="row">
   <div class="small-6 columns">
- 
+      <%= render :partial => 'roster' %>
+
   </div>
 
   <div class="small-1 columns">
@@ -16,4 +19,5 @@
   <div class="small-5 columns">
   	<%= render :partial=> 'students_without_team' %>
   </div>
+</div>
 </div>

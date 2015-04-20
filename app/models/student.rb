@@ -22,6 +22,7 @@ class Student < ActiveRecord::Base
   
   # Callbacks
   before_destroy :is_never_destroyable
+  before_update :remove_from_team_if_student_inactive
 
   # Methods
   def name
@@ -50,6 +51,16 @@ class Student < ActiveRecord::Base
     end
   end
 
+  def current_student_team
+    latest = self.student_teams.where(end_date: nil)
+    if latest.empty? || latest.nil?
+      return NullStudentTeam.new
+    else
+      return latest.first
+    end
+  end
+
+#TODO: this method doesn't work if db is empty
   def self.new_students(organization=nil)
     tmp = Array.new
     if organization
@@ -71,6 +82,7 @@ class Student < ActiveRecord::Base
     os.save!
   end
 
+  
   def is_captain?
     latest = self.student_teams.where(end_date: nil)
     if latest.empty? || latest.nil?
@@ -78,6 +90,20 @@ class Student < ActiveRecord::Base
     else
       return latest.to_a.first.is_captain
     end
+
   end
 
+  private
+  def remove_from_team_if_student_inactive
+    remove_from_current_team if !self.active
+  end
+
+
+  def remove_from_current_team
+    latest = self.student_teams.where(end_date: nil).first
+    unless latest.nil?
+      latest.end_date = Date.today
+      latest.save!
+    end
+  end
 end

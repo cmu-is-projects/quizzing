@@ -1,5 +1,5 @@
 <!--uses standings_controller which uses year_quizzer model-->
-<% unless @quizzers.empty? %>
+<% unless @year_quizzers.empty? %>
 
   <h3><%= "#{@division.name} Division Individual Standings" %></h3>
 
@@ -18,17 +18,17 @@
     </thead>
 
     <tbody>
-      <% @quizzers.each do |quizzer| %>
+      <% @year_quizzers.each do |year_quizzer| %>
         <tr>
           <!--TODO: rank logic using a simple counter-->
           <% rank_counter+=1 %><!--first quizzer's rank outputted as 1-->
           <td><%= rank_counter %></td>
-          <td><%= link_to quizzer.name, student_path(quizzer) %></td>
-          <td><%= link_to quizzer.team.name, team_path(quizzer.team) %></td>
-          <td><%= quizzer.total_points %></td>
-          <td><%= quizzer.lowest_points %></td>
-          <td><%= quizzer.adjusted_points %></td>
-          <td><%= quizzer.total_accuracy %></td>
+          <td><%= link_to year_quizzer.name, student_path(year_quizzer.quizzer) %></td>
+          <td><%= link_to year_quizzer.team.name, team_path(year_quizzer.team) %></td>
+          <td><%= year_quizzer.total_points %></td>
+          <td><%= year_quizzer.lowest_points %></td>
+          <td><%= year_quizzer.adjusted_points %></td>
+          <td><%= year_quizzer.total_accuracy %></td>
         </tr>
       <% end %>
     </tbody>

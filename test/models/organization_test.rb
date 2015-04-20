@@ -145,5 +145,15 @@ class OrganizationTest < ActiveSupport::TestCase
       delete_organization_students
     end
 
+    should "Show that that the active scope works" do
+      assert_equal 2, Organization.active.size
+      assert_equal ["ACAC", "Somerset"], Organization.active.all.map { |a| a.short_name }.sort
+    end
+
+    should "show that the inactive scope works" do
+      assert_equal 1, Organization.inactive.size
+      assert_equal ["Grove City"], Organization.inactive.all.map { |a| a.short_name }.sort
+    end
+
   end # contexts
 end
