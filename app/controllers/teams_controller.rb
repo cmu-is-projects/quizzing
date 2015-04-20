@@ -63,24 +63,38 @@ class TeamsController < ApplicationController
     # We will remove any students that are no longer on the team. To find these
     # students, we subtract OLD - NEW. We then need to use that to remove them 
     # from the original array.
-    team_ps = []
+    @team_ps = []
+    @team_ss = []
+    @students_to_add = []
+    @students_to_remove = []
+
     team_params.each{|p|
-      if(p == :student_teams_attributes)
-        team_ps << p;
+      if( p[0] == "student_teams_attributes")
+        p[1].to_a.each do |e|
+          @team_ps << e[1][:student_id]
+        end
       end
     }
 
     unless @team.students.nil?
-      @team.students = @team.students 
-      - (@team.students - team_ps)
+      @teams_ss = @team.students.to_a
+    end
+    @students_to_remove = @team_ss - @team_ps
+
+    StudentTeam.all.where(team_id: @team.id).each do |st|
+      @students_to_remove.each do |r|
+        if(st.student_id == r.id)
+          st.make_inactive
+        end
+      end
     end
 
-    # To make sure we don't wind up with the same team member twice, we find 
-    # all the members currently on the team and subtract them from the ones 
-    # that we are trying to add.
-    @old_members = @team.students
-    team_ps[:students] = team_ps[:students]-@team.students
+    # To make sure we don't wind up with the same team member twice, we need to
+    # add them ourselves.
+    @students_to_add = @team_ps - @team_ss
+    team_params[:student_teams_attributes] = nil
 
+lkjdf
 
     respond_to do |format|
       if @team.update(team_params)

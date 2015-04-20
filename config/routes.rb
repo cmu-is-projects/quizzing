@@ -1,5 +1,4 @@
 Quizzing::Application.routes.draw do
-  get "sessions/new"
   # generated routes
   resources :coaches
   resources :events
@@ -14,7 +13,7 @@ Quizzing::Application.routes.draw do
   get 'user/edit' => 'users#edit', as: :edit_current_user
   get 'login' => 'sessions#new', as: :login
   get 'logout' => 'sessions#destroy', as: :logout
-  post   'login'   => 'sessions#create'
+  post   'login'   => 'sessions#create', as: :session_create
   delete 'logout'  => 'sessions#destroy'
 
   # Set the root url
