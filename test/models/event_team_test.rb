@@ -31,7 +31,7 @@ class EventTeamTest < ActiveSupport::TestCase
 
     should "provide essential information a view would want to display" do
       assert_equal "ACAC 1", @event_team_1.name #team's name
-      assert_equal ["Alex, Mark, Quincy"], @event_team_1.students.alphabetical.map(&:first_name)
+      assert_equal ["Alex", "Mark", "Quincy"], @event_team_1.students.alphabetical.map(&:first_name)
     end
 
     should "get all team quizzes for a team in this event" do
