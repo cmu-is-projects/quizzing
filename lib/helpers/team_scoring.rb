@@ -18,15 +18,16 @@ module QuizHelpers
       return num_failed > 1 ? (num_failed-1) * 10 : 0
     end
 
-    def calculate_team_points_from_score(points)
-      return points > 100 ? (((points)/10)) : 10  
-    end
+    # raw score and points are provided Spring '15 so commenting out
+    # def calculate_team_points_from_raw_score(raw_score)
+    #   return points > 100 ? (((points)/10)) : 10  
+    # end
 
     # This method will be used to determine the total scoring for an entire
     # team. A team must be passed in, so we can differentiate students from
     # the other team. This method will also take into account total quizzer
-    # errors for the final score, using the previous method.
-    def calculate_team_score(student_quizzes_array, team)
+    # errors for the final score, using the previous method - calculate_team_points_from_score(points).
+    def calculate_team_quiz_score(student_quizzes_array, team)
       team_score = 0
       num_participants = 0
       total_num_correct = 0
@@ -37,7 +38,9 @@ module QuizHelpers
       student_quizzes_array.each{|sqi|
         #We need to make sure that we're looking at a student on the correct
         # team
-        if(sqi.student.student_teams.current.id == team.id)
+        #TODO: next code-line gives error undefined method `id' for #<ActiveRecord::AssociationRelation::ActiveRecord_AssociationRelation_StudentTeam:0x230831f8>
+        #would be nice to utilize EventTeam's get_all_team_quizzes_for_team_in_this_event so we don't have to check for the right team
+        if(sqi.student.student_teams.current.team.id == team.id)
           team_score += sqi.num_correct * 20
           #Keep tabs on 3rd, 4th, 5th person bonus
           num_participants += sqi.num_correct > 0 ? 1 : 0

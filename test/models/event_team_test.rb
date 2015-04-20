@@ -34,12 +34,16 @@ class EventTeamTest < ActiveSupport::TestCase
       assert_equal ["Alex", "Mark", "Quincy"], @event_team_1.students.alphabetical.map(&:first_name)
     end
 
-    should "get all team quizzes for a team in this event" do
-      #top down design assuming method written
-      team_quizzes = @event_team_1.get_all_team_quizzes_for_team_in_this_event
-      assert_equal 6, team_quizzes.size
-      assert_equal 93, team_quizzes.inject(0){|sum, quiz| sum += quiz.score}
-    end
+    # should "correctly calculate total points" do
+    #   assert_equal 93, @event_team_1.total_team_points
+    # end
+
+    # should "get all team quizzes for a team in this event" do
+    #   #top down design assuming method written
+    #   team_quizzes = @event_team_1.get_all_team_quizzes_for_team_in_this_event
+    #   assert_equal 6, team_quizzes.size
+    #   assert_equal 93, team_quizzes.inject(0){|sum, quiz| sum += quiz.team_score}
+    # end
 
 
   end
