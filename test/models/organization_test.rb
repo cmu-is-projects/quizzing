@@ -46,14 +46,14 @@ class OrganizationTest < ActiveSupport::TestCase
     end
 
     # commented-out in dev branch to save testing time
-    should "properly identify the coordinates of the organizations" do
-      assert_in_delta(40.4533665, @somerset.latitude, 0.0001)
-      assert_in_delta(-80.0030653, @somerset.longitude, 0.0001)
-      assert_in_delta(40.4533665, @grove_city.latitude, 0.0001)
-      assert_in_delta(-80.0030653, @grove_city.longitude, 0.0001)
-      deny @acac.latitude.nil?
-      deny @acac.longitude.nil?
-    end
+    # should "properly identify the coordinates of the organizations" do
+    #   assert_in_delta(40.4533665, @somerset.latitude, 0.0001)
+    #   assert_in_delta(-80.0030653, @somerset.longitude, 0.0001)
+    #   assert_in_delta(40.4533665, @grove_city.latitude, 0.0001)
+    #   assert_in_delta(-80.0030653, @grove_city.longitude, 0.0001)
+    #   deny @acac.latitude.nil?
+    #   deny @acac.longitude.nil?
+    # end
 
     should "show that a US state must have an exactly 5 digit zip" do
       bad_org = FactoryGirl.build(:organization, name: "bad org", short_name: "bo", zip: "123456")
@@ -105,7 +105,15 @@ class OrganizationTest < ActiveSupport::TestCase
       deny no_state_but_random_wrong_zip.valid?
     end
 
-
+    # should "show that if a street_2 is entered, a street_1 should be present" do
+    #   incorrect_org_wo_street_1 = FactoryGirl.build(:organization, name: "generic org", short_name: "go", zip: "20878", street_1: nil, street_2: "Apartment 2F")
+    #   deny incorrect_org_wo_street_1.valid?
+    #   street_2_so_street_1 = FactoryGirl.build(:organization, name: "generic org", short_name: "go", zip: "20878", street_1: "4705 Fifth Avenue", street_2: "Apartment 2F")
+    #   assert street_2_so_street_1.valid?
+    #   incorrect_org_wo_zip = FactoryGirl.build(:organization, name: "generic org", short_name: "go", zip: nil, street_1: nil, street_2: "Apartment 2F")
+    #   deny incorrect_org_wo_zip.valid?
+    # end
+    
     should "have methods to make active or inactive" do
       @acac.make_inactive
       deny @acac.active
@@ -135,6 +143,16 @@ class OrganizationTest < ActiveSupport::TestCase
       assert_equal %w[Alex Amanda Jonathan Mark], @acac.current_students.map{|s| s.first_name}.sort
       delete_students
       delete_organization_students
+    end
+
+    should "Show that that the active scope works" do
+      assert_equal 2, Organization.active.size
+      assert_equal ["ACAC", "Somerset"], Organization.active.all.map { |a| a.short_name }.sort
+    end
+
+    should "show that the inactive scope works" do
+      assert_equal 1, Organization.inactive.size
+      assert_equal ["Grove City"], Organization.inactive.all.map { |a| a.short_name }.sort
     end
 
   end # contexts

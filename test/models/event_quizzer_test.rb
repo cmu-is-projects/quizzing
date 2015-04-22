@@ -43,7 +43,7 @@ class EventQuizzerTest < ActiveSupport::TestCase
     end
 
     should "get all quizzes for a student in this event" do
-      quizzes = @event_quizzer_1.get_all_quizzes_for_student_in_this_event
+      quizzes = @event_quizzer_1.get_all_student_quizzes_for_student_in_this_event
       assert_equal 6, quizzes.size
       assert_equal 540, quizzes.inject(0){|sum, quiz| sum += quiz.score}
     end

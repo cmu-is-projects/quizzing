@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%="#{@organization.name} (Organization)"%></h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @organization.name %>
+</p>
+
+<p>
+  <strong>Short name:</strong>
+  <%= @organization.short_name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= "#{@organization.street_1}, #{@organization.street_2}, #{@organization.city}, #{@organization.state}, #{@organization.zip}" %>
+</p>
+
+
+<!-- <p>
+  <strong>Address:</strong>
+  <%# if !@organization.street_1.nil? ? "#{@organization.street_1}, " %>
+</p> -->
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @organization.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @organization.longitude %>
+</p>
+
+<p>
+  <strong>Active?:</strong>
+  <%= @organization.active ? "Yes" : "No" %>
+</p>

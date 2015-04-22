@@ -1,0 +1,8 @@
+&nbsp;
+<h4>Please Select a Division:</h4>
+<%= form_tag(indiv_standings_path, method: :get, remote: true) do %>
+	<%= select_tag("id", options_from_collection_for_select(Division.alphabetical.all, "id", "name"), onchange: "this.form.submit()") %>
+<% end %>
+
+<%= render partial: "individual_standings_data" %>
+
