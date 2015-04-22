@@ -107,6 +107,13 @@ class TeamTest < ActiveSupport::TestCase
       assert_equal "Senior A", @senior_a.name
       assert_equal ["ACAC 1", "ACAC 2", "ACAC 3"], Team.for_division(@senior_a).map(&:name).sort
     end
-  end #contexts
+  end
+
+    should "show that the not_at_capacity method works" do
+      assert_equal 3, Team.active.size
+      assert_equal 3, Team.not_at_capacity.size
+    end
+
+  end #context
 
 end # class

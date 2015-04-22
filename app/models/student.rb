@@ -16,8 +16,7 @@ class Student < ActiveRecord::Base
   validates_numericality_of :grade, only_integer: true, greater_than: 1, less_than: 13
 
   # Scopes
-  scope :alphabetical, -> {order("last_name, first_name")}
-
+  scope :alphabetical, -> {order("last_name, first_name")}  
   
   # Callbacks
   before_destroy :is_never_destroyable
@@ -48,5 +47,39 @@ class Student < ActiveRecord::Base
       return latest.first.team
     end
   end
+
+
+  def current_student_team
+    latest = self.student_teams.where(end_date: nil)
+    if latest.empty? || latest.nil?
+      return NullStudentTeam.new
+    else
+      return latest.first
+    end
+  end
+
+#TODO: this method doesn't work if db is empty
+  def self.new_students(organization=nil)
+    tmp = Array.new
+    if organization
+      newstudents = organization.students.active.alphabetical #how to install it
+    else
+      newstudents = Student.active.alphabetical
+    end
+    newstudents.each do |st|
+      tmp << st if st.current_team.is_a?(NullTeam)
+    end
+    tmp
+  end
+
+  #returns what division a student should be, according to his/her grade
+  #TODO2: Figure out if this is necessary
+  #def div
+    #if (3..6).include?(self.grade)
+      #return 3 #division id for juniors
+    #else
+      #return 2 #division id for senior b
+    #end
+  #end
 
 end

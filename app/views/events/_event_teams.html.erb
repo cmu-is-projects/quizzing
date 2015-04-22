@@ -1,1 +1,22 @@
-<h4>Teams Attending</h4>
+<% unless @event_teams.empty? %>
+	<% @divisions.each do |division| %>
+	 	<% unless @event_teams.for_division(division).empty? %>
+	<table>
+		<thead><%=division.name%>
+			<tr>
+				<th>Attending</th>
+				<th>Team Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @event_teams.for_division(division).each do |team| %>
+			<tr>
+				<td><%=team.active%></td>
+				<td><%=team.name%></td>
+			</tr>
+			<%end%>
+	</tbody>
+</table>
+<% end %>
+<% end %>
+<% end %>

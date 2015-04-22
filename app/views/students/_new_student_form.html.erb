@@ -1,0 +1,13 @@
+<%= simple_form_for @student, html: { :class => 'form-horizontal' }, remote: true do |f| %>
+    <%= f.input :first_name, input_html: {class: "avg"} %>
+    <%= f.input :last_name, input_html: {class: "avg"} %>
+    <%= f.input :grade, input_html: {class: "avg"} %>
+    <!-- TODO: assocation only with the coach's organization, not all of them. Also this does not seem to be working -->
+    <%= f.association :organizations, as: :radio_buttons %>
+    
+    <p>&nbsp;</p>
+    <div class="form-actions">
+      <%= f.submit nil, class: 'button radius' %>
+      <%= link_to 'Cancel', home_path, class: 'button radius alert' %>
+    </div>  
+<% end %>

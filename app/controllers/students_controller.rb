@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_student, only: [:show, :edit, :update, :destroy, :toggle]
 
   # GET /students
   # GET /students.json
@@ -25,6 +25,8 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
+    # authorize! :new, @student
+    @inactive_students = Student.inactive.alphabetical
   end
 
   # GET /students/1/edit
@@ -36,11 +38,16 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
-
+    # authorize! :create, @student
     respond_to do |format|
       if @student.save
-        format.html { redirect_to @student, notice: 'Student was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @student }
+        respond_to do |format|
+          format.html { redirect_to @student, notice: "#{@student.name} has been created." }
+          @active_teams = Team.all.active
+          format.js
+        # format.html { redirect_to @student, notice: 'Student was successfully created.' }
+        # format.json { render action: 'show', status: :created, location: @student }
+      end
       else
         format.html { render action: 'new' }
         format.json { render json: @student.errors, status: :unprocessable_entity }
@@ -62,6 +69,18 @@ class StudentsController < ApplicationController
     end
   end
 
+  def toggle
+    @student_team = @student.current_student_team
+    if params[:status] == 'inactive'
+      @student_team.active = false
+    else
+      @student_team.active = true
+    end
+    @student_team.save!
+    @student_team = nil
+    @active_teams = Team.all.active
+  end
+
   # DELETE /students/1
   # DELETE /students/1.json
   def destroy
@@ -80,6 +99,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :grade, :captain, :active, :organization_id)
+      params.require(:student).permit(:first_name, :last_name, :grade, :captain, :active, :team_id, :organization_id)
     end
 end
