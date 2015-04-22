@@ -12,6 +12,11 @@ Quizzing::Application.routes.draw do
   resources :users
 
   # named routes
+  get 'user/edit' => 'users#edit', as: :edit_current_user
+  get 'login' => 'sessions#new', as: :login
+  get 'logout' => 'sessions#destroy', as: :logout
+  post   'login'   => 'sessions#create', as: :session_create
+  delete 'logout'  => 'sessions#destroy'
 
   patch 'active/:id' => 'students#active', as: :active
   patch 'inactive/:id' => 'students#inactive', as: :inactive
