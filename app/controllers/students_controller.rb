@@ -40,24 +40,21 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     # authorize! :create, @student
-    respond_to do |format|
-      if @student.save
-        respond_to do |format|
-          @active_teams = Team.all.active
-          format.js
-        # format.html { redirect_to @student, notice: 'Student was successfully created.' }
-        # format.json { render action: 'show', status: :created, location: @student }
-
+    if @student.save
+      respond_to do |format|
         @student.add_to_organization(current_user.organization)
         format.html { redirect_to @student, notice: "#{@student.name} has been created." }
-        format.json { render action: 'show', status: :created, location: @student }
+        #format.json { render action: 'show', status: :created, location: @student }
+        @active_teams = Team.all.active
+        format.js
       end
-      else
+    else
         format.html { render action: 'new' }
         format.json { render json: @student.errors, status: :unprocessable_entity }
-      end
     end
   end
+  
+
 
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
