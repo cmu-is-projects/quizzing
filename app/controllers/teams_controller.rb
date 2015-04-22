@@ -63,8 +63,8 @@ class TeamsController < ApplicationController
     # We will remove any students that are no longer on the team. To find these
     # students, we subtract OLD - NEW. We then need to use that to remove them 
     # from the original array.
-    @team_ps = []
-    @team_ss = []
+    @team_ps = [] #team params
+    @team_ss = [] #team students
     @students_to_add = []
     @students_to_remove = []
 
@@ -77,13 +77,15 @@ class TeamsController < ApplicationController
     }
 
     unless @team.students.nil?
-      @teams_ss = @team.students.to_a
+      @team.students.pluck(:id).each do |id|
+        @team_ss << id
+      end
     end
     @students_to_remove = @team_ss - @team_ps
 
     StudentTeam.all.where(team_id: @team.id).each do |st|
       @students_to_remove.each do |r|
-        if(st.student_id == r.id)
+        if(st.student_id == r)
           st.make_inactive
         end
       end
@@ -94,16 +96,24 @@ class TeamsController < ApplicationController
     @students_to_add = @team_ps - @team_ss
     team_params[:student_teams_attributes] = nil
 
-    respond_to do |format|
-      if @team.update(team_params)
-        format.html { redirect_to @team, 
-          notice: 'Team was successfully updated.'}
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+    # respond_to do |format|
+    #   if @team.update(team_params)
+    #     format.html { redirect_to @team, 
+    #       notice: 'Team was successfully updated.'}
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { render action: 'edit' }
+    #     format.json { render json: @team.errors, status: :unprocessable_entity }
+    #   end
+
+    @students_to_add.each do |s|
+      StudentTeam.create(student_id: s, team_id: @team.id) unless s == ""
     end
+    
+    format.html { redirect_to @team, notice: 'Team was successfully updated.'}
+
+    # TODO: Adding/Removing coaches
+
   end
 
   # DELETE /teams/1
@@ -123,6 +133,7 @@ class TeamsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    # TODO: Remove editing of name, division, and organization
     def team_params
       params.require(:team).permit(:name,
                                    :active,
