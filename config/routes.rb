@@ -1,14 +1,16 @@
 Quizzing::Application.routes.draw do
 
   # generated routes
-  resources :events
-  resources :teams
   resources :coaches
-  resources :users
+  resources :events
   resources :organizations
-  resources :students
   resources :quizzes
   resources :student_teams
+  resources :sessions
+  resources :students
+  resources :teams
+  resources :users
+
 
   # named routes
 
@@ -17,7 +19,12 @@ Quizzing::Application.routes.draw do
   patch 'toggle_student/:id' => 'students#toggle', as: :toggle
 
   get "standings/individual" => "standings#individual", as: :indiv_standings
-
+  
+  get 'user/edit' => 'users#edit', as: :edit_current_user
+  get 'login' => 'sessions#new', as: :login
+  get 'logout' => 'sessions#destroy', as: :logout
+  post   'login'   => 'sessions#create', as: :session_create
+  delete 'logout'  => 'sessions#destroy'
 
   # Set the root url
   root to: 'home#home', as: :home

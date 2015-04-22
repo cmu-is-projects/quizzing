@@ -10,13 +10,13 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
+//= require best_in_place
 //= require foundation
-//= require turbolinks
-//= require_tree .
+//= require jquery
 //= require jquery-ui
-
+//= require jquery_ujs
+//= require_tree .
+//= require turbolinks
 
 $(function(){ $(document).foundation(); });
 
@@ -30,4 +30,9 @@ $(function() {
 	$(".datepicker").datepicker({
 		format: 'mm/dd/YYYY'
 	});
+});
+
+$(document).ready(function() {
+  /* Activating Best In Place */
+    jQuery(".best_in_place").best_in_place();
 });
