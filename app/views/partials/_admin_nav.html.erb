@@ -11,19 +11,22 @@
             <%= link_to "Events", events_path %>
           </li>
 
-          <!-- TODO: Add paths for the standings -->
-          <li class="has-dropdown">
-            <%= link_to "Standings" %>
-            <ul class="dropdown">
-              <li><%= link_to "Individual", indiv_standings_path %></li>
-              <li><%= link_to "Team" %></li>
-            </ul>
+          <li>
+            <%= link_to "Students", students_path %>
           </li>
 
           <li>
-            <%= link_to "Coaches", coaches_path %>
+            <%= link_to "Teams", teams_path %>
+          </li>
+
           <li>
-          
+            <%= link_to "Organizations", organizations_path %>
+          </li>
+
+          <li>
+            <%= link_to "Individual Standings", indiv_standings_path %>
+          </li>
+
         </ul>
       </section>
     </nav>
