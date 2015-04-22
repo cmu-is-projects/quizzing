@@ -7,6 +7,10 @@ class NullUser
     "guest"
   end
 
+  def role?(authorized_role)
+    return role == authorized_role
+  end
+
   def active
     false
   end

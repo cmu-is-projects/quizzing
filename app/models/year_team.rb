@@ -48,3 +48,4 @@ class YearTeam
     end
     events
   end
+end
