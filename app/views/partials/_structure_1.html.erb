@@ -18,5 +18,7 @@
 
 <div class="row">
   <!-- render a set of options, if they exist -->
-  <%= render partial: "#{options}", locals: {model_name: model_name, object: object} unless options.blank? %>
+  <%= render partial: "#{options}", 
+      locals: {model_name: model_name,
+      object: object} unless options.blank? %>
 </div>
