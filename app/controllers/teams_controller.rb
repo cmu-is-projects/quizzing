@@ -94,8 +94,6 @@ class TeamsController < ApplicationController
     @students_to_add = @team_ps - @team_ss
     team_params[:student_teams_attributes] = nil
 
-lkjdf
-
     respond_to do |format|
       if @team.update(team_params)
         format.html { redirect_to @team, 
