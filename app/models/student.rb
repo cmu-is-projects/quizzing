@@ -3,6 +3,8 @@ class Student < ActiveRecord::Base
   include QuizHelpers::Validations
   include Activeable
 
+  attr_accessor :team_id
+
   # Relationships
   has_many :student_quizzes
   has_many :quizzes, through: :student_quizzes
@@ -20,6 +22,7 @@ class Student < ActiveRecord::Base
   
   # Callbacks
   before_destroy :is_never_destroyable
+  before_update :remove_from_team_if_student_inactive
 
   # Methods
   def name
@@ -48,7 +51,6 @@ class Student < ActiveRecord::Base
     end
   end
 
-
   def current_student_team
     latest = self.student_teams.where(end_date: nil)
     if latest.empty? || latest.nil?
@@ -72,14 +74,36 @@ class Student < ActiveRecord::Base
     tmp
   end
 
-  #returns what division a student should be, according to his/her grade
-  #TODO2: Figure out if this is necessary
-  #def div
-    #if (3..6).include?(self.grade)
-      #return 3 #division id for juniors
-    #else
-      #return 2 #division id for senior b
-    #end
-  #end
+  def add_to_organization(organization)
+    os = OrganizationStudent.new
+    os.student_id = self.id
+    os.organization_id = organization.id
+    os.start_date = Date.today
+    os.save!
+  end
 
+  
+  def is_captain?
+    latest = self.student_teams.where(end_date: nil)
+    if latest.empty? || latest.nil?
+      return false
+    else
+      return latest.to_a.first.is_captain
+    end
+
+  end
+
+  private
+  def remove_from_team_if_student_inactive
+    remove_from_current_team if !self.active
+  end
+
+
+  def remove_from_current_team
+    latest = self.student_teams.where(end_date: nil).first
+    unless latest.nil?
+      latest.end_date = Date.today
+      latest.save!
+    end
+  end
 end

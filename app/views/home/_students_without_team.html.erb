@@ -1,40 +1,39 @@
 <!-- Partial for students without a team -->
 
 <!-- TODO: Ajax button to add a new student -->
-<%= link_to(new_student_path, id: 'new_student_link', class: 'button tiny radius', remote: true) do %>
+<%#= link_to(new_student_path, id: 'new_student_link', class: 'button tiny radius', remote: true) do %>
   <!-- <i class="fa fa-clipboard"></i> -->
-  &nbsp;Add New Student
-  <% end %>
+  &nbsp;(Add New Student button should be here)
+  <%# end %>
 
-<h3>New Students Without a Team</h3><br />
-<table>
-   	<thead>
-   		<tr>
-			<th>Name</th>
-			<th>Grade</th>
-			<th>Organization</th>
-			<th>Add to Team</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @new_students.each do |student| %>
-			<tr>
-				<td><%= student.name %></td>
-				<td><%= student.grade %></td>
-				<td><%= student.current_organization.name %></td>
-				<%= simple_form_for(student) do |f| %>
-						<!-- Add new team -->
-					<td><%= f.input :team_ids, label: false, collection: get_team_options(student), prompt: "Select team" %></td> 
+<% unless @new_students.empty? %>
+	<h3>New Students Without a Team</h3><br />
+	<table>
+	   	<thead>
+	   		<tr>
+				<th>Name</th>
+				<th>Grade</th>
+				<th>Organization</th>
+				<th>Add to Team</th>
 			</tr>
-	<% end %>
-	<% end %>
-	</tbody>
+		</thead>
 
-</table>
-			<!-- doesn't work -->
-					<!-- <div class="form-actions">
-						<%#= f.submit nil, class: 'button' %>
-					</div> --> 
-				<%# end %>
-    	<%# end %>
+		<tbody>
+			<% @new_students.each do |student| %>
+				<tr>
+					<td><%= student.name %></td>
+					<td><%= student.grade %></td>
+					<td><%= student.current_organization.name %></td>
+					<%= simple_form_for(@student) do |f| %>
+							<!-- Add new team -->
+							<td><%= f.input :team_ids, label: false, collection: get_team_options(student), prompt: "Select team" %></td> 
+				</tr>
+		</tbody>
+	</table>
+				<!-- doesn't work -->
+						<div class="form-actions">
+							<%= f.submit nil, class: 'button' %>
+						</div>
+					<% end %>
+	    	<% end %>
+<% end %>
