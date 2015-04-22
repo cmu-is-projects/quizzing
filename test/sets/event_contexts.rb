@@ -33,6 +33,7 @@ module Contexts
       create_prev_year_event # creates previous quiz year events
   		@event1 = FactoryGirl.create(:event, organization: @acac, start_date: 1.day.from_now.to_date, end_date: 1.day.from_now.to_date)
   		@event2 = FactoryGirl.create(:event, organization: @acac, start_date: 1.year.from_now.to_date, end_date: 1.year.from_now.to_date)
+      #@event3 causes student_quizzes with nil fields
   		@event3 = FactoryGirl.create(:event, organization: @acac, start_date: 4.weeks.from_now.to_date, end_date: 4.weeks.from_now.to_date)
   	end
 

@@ -1,0 +1,23 @@
+<!-- This is the coach dashboard -->
+<%#= render partial: "partials/structure_1", locals: {model_name: nil, 
+                                                         primary: nil, #roster
+                                                         secondary: nil,
+                                                         sidebar: "students_without_team",
+                                                         options: nil } %>
+
+<div id = "roster_reload">
+<div class="row">
+  <div class="small-6 columns">
+      <%= render :partial => 'roster' %>
+
+  </div>
+
+  <div class="small-1 columns">
+    &nbsp;
+  </div>
+
+  <div class="small-5 columns">
+  	<%= render :partial=> 'students_without_team' %>
+  </div>
+</div>
+</div>

@@ -24,16 +24,20 @@ class Organization < ActiveRecord::Base
   #case 3 - if state is entered - if a zip is entered with it - the zip needs to be 5 digits 
   #and continue to discern the allow_blank...
   validates :zip, format: { with: /\A\d{5}\z/, message: "should be five digits long because an American state was provided", allow_blank: true }, if: :zip_and_state_entered?
-  #case 4 - if zip is entered without a state, the zip should then be of Canadian format
+  #case 5 - if zip is entered without a state, the zip should then be of Canadian format
   validates :zip, format: { with: /\A[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1}[ -]?\d{1}[A-Z]{1}\d{1}\z/, message: "The zip you entered should be of Canadian format because you did not enter a US state", allow_blank: true }, if: :zip_is_entered_without_a_state?
   
   #Scopes
   scope :alphabetical, -> {order("name")}
+  scope :active, -> {where(active: true)}
+  scope :inactive, -> {where(active: false)}
   
   #Callbacks
   before_save :get_organization_coordinates
+
   before_destroy :is_never_destroyable
   before_update :end_student_tenure_if_organization_made_inactive
+  #before_validation :set_street_2_to_blank
 
   # Methods
   def current_students
@@ -74,5 +78,12 @@ class Organization < ActiveRecord::Base
     end
     coord
   end
+
+  # def set_street_2_to_blank
+  #   if self.street_1.blank? and self.street_2
+  #     self.street_2 = ""
+  #     self.street_2.save!
+  #   end
+  # end
 
 end #class

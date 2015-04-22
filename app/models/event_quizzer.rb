@@ -6,7 +6,7 @@ class EventQuizzer
     @division = team.division
     @name = quizzer.proper_name
     @event_host = event.organization.name
-    @student_quizzes = get_all_quizzes_for_student_in_this_event
+    @student_quizzes = get_all_student_quizzes_for_student_in_this_event  
   end
 
   attr_reader :event, :quizzer, :team, :division
@@ -37,9 +37,8 @@ class EventQuizzer
     end
   end
 
-  def get_all_quizzes_for_student_in_this_event
-    # gets student_quiz objects for a student during a particular event
-    student_quizzes = StudentQuiz.for_student(quizzer).for_event(event).to_a
+  def get_all_student_quizzes_for_student_in_this_event
+    student_quizzes = StudentQuiz.for_student(quizzer).for_event(event).by_round_num.to_a
   end
 
   def self.get_all_quizzers_for_event(event)
