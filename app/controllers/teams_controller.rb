@@ -96,7 +96,15 @@ class TeamsController < ApplicationController
     @students_to_add = @team_ps - @team_ss
     team_params[:student_teams_attributes] = nil
 
-stahp
+    # respond_to do |format|
+    #   if @team.update(team_params)
+    #     format.html { redirect_to @team, 
+    #       notice: 'Team was successfully updated.'}
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { render action: 'edit' }
+    #     format.json { render json: @team.errors, status: :unprocessable_entity }
+    #   end
 
     @students_to_add.each do |s|
       StudentTeam.create(student_id: s, team_id: @team.id) unless s == ""

@@ -1,4 +1,5 @@
 class StudentTeamsController < ApplicationController
+  #before_action :set_student_team, on: [:update]
   def update
     @student_team = StudentTeam.find(params[:id])
     respond_to do |format|
@@ -13,7 +14,29 @@ class StudentTeamsController < ApplicationController
   end
 
   def create
-    
+    @student_team = StudentTeam.new(student_team_params)
+    # authorize! :create, @student
+      # if @student_team.save
+      #   respond_to do |format|
+      #     #@active_teams = Team.all.active
+      #     format.js
+
+      #   format.html { redirect_to student_path(@student_team.student), notice: "#{@student.name} has been created." }
+      #   format.json { render action: 'show', status: :created, location: @student }
+      # end
+      # else
+      #   format.html { render action: 'new' }
+      #   format.json { render json: @student.errors, status: :unprocessable_entity }
+      # end
+      respond_to do |format|
+      if @student_team.save
+        format.html { redirect_to student_path(@student_team.student), notice: 'Student was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @student_team.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

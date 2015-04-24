@@ -13,15 +13,15 @@ class YearTeam
  attr_reader :name, :results
  attr_reader :division
 
- # What's the inject stuff in the other file? What does this return, if 
-  # anything?
-  def total_points
-    int total = 0
-    QuizTeam.all.where(team_id: @team.id).each do |qt|
-      total += qt.points
-    end
-    return total
-  end
+ # # What's the inject stuff in the other file? What does this return, if 
+ #  # anything?
+ #  def total_points
+ #    int total = 0
+ #    QuizTeam.all.where(team_id: @team.id).each do |qt|
+ #      total += qt.points
+ #    end
+ #    return total
+ #  end
   
   # Does team want an equivalent lower_points method?
 
