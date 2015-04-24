@@ -21,19 +21,21 @@
 		<tbody>
 			<% @new_students.each do |student| %>
 				<tr>
-					<td><%= student.name %></td>
+					<td><%= link_to student.name, student_path(student) %></td>
 					<td><%= student.grade %></td>
 					<td><%= student.current_organization.name %></td>
+					<!-- TODO1: This does not work -->
 					<%#= simple_form_for(@student) do |f| %>
 							<!-- Add new team -->
 							<td><%#= f.input :team_ids, label: false, collection: get_team_options(student), prompt: "Select team" %></td> 
 				</tr>
+			<% end %>
 		</tbody>
 	</table>
 				<!-- doesn't work -->
-						<div class="form-actions">
+						<!--<div class="form-actions">
 							<%#= f.submit nil, class: 'button' %>
-						</div>
-					<% end %>
+						</div>-->
+					<%# end %>
 	    	<%# end %>
 <% end %>

@@ -48,7 +48,8 @@ class StudentsController < ApplicationController
         # format.html { redirect_to @student, notice: 'Student was successfully created.' }
         # format.json { render action: 'show', status: :created, location: @student }
 
-        @student.add_to_organization(current_user.organization)
+        #@student.add_to_organization(current_user.organization)
+        @student.add_to_organization(current_user)
         format.html { redirect_to @student, notice: "#{@student.name} has been created." }
         format.json { render action: 'show', status: :created, location: @student }
       end

@@ -28,6 +28,8 @@
       <% @team.student_teams.build %>
     <% end %>
     <b>Students in roster:</b>
+    <!-- TODO1: Students in drop-down menu need to appropriate division-wise and organization-wise -->
+    <!-- TODO1: When adding students, the students already on the team shouldn't be included twice -->
     <%= f.simple_fields_for :student_teams do |builder| %>
       <%= builder.select :student_id, 
 	  @students.active.alphabetical.map{|s| 

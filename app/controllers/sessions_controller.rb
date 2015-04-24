@@ -15,8 +15,12 @@ class SessionsController < ApplicationController
       #event_id
       #TODO:
       # switch churches methods (changes session variable to that church id)
-      @u_coach = Coach.all.where(user_id: user.id)
-      session[:organization_id] = @u_coach.nil? || @u_coach.blank? ? -1 : @u_coach.first.organization_id
+      @u_coach = Coach.where(user_id: user.id).first
+      if @u_coach.nil?
+        session[:organization_id] = -1
+      else
+        session[:organization_id] = @u_coach.organization_id
+      end
       session[:user_name] = user.user_name
       redirect_to home_path, notice: "Logged in!"
     else
