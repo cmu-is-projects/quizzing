@@ -12,6 +12,7 @@ Quizzing::Application.routes.draw do
 
   # named routes
   get "standings/individual" => "standings#individual", as: :indiv_standings
+  get "standings/team" => "standings#team", as: :team_standings
   patch 'active/:id' => 'students#active', as: :active
   patch 'inactive/:id' => 'students#inactive', as: :inactive
   patch 'toggle_student/:id' => 'students#toggle', as: :toggle

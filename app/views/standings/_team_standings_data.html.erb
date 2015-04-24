@@ -1,37 +1,39 @@
 <!--first copied and pasted from individual standings-->
 
 <% @divisions.each do |division| %>
+  <% @year_teams = YearTeam.get_all_teams_for_division_for_year(division) %>
 
-<% unless @division_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
+  <% unless @year_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
 
-  <h3><%= "#{division.name} Division Team Standings" %></h3>
+    <h3><%= "#{division.name} Division Team Standings" %></h3>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Name</th>
-        <th>Score</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <!--@division teams declared above Spring '15-->
-      <% @division_teams.each do |dt| %>
-        <tr>          
-          <!--TODO: rank logic using a simple counter-->
-          <td>Rank (TODO)</td>
-          <td><%= link_to dt.name, team_path(dt) %></td>
-          <td><%= dt.raw_score %></td>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Score</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
 
-<%else%><!--No teams for this division-->
+      <tbody>
+        <% @year_teams.each do |dt| %>
+          <tr>          
+            <!--TODO: rank logic using a simple counter-->
+            <td>Rank (TODO)</td>
+            <td><%= link_to dt.name, team_path(dt) %></td>
+            <td><%= dt.raw_score %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <div class="panel clearfix">
-    <h3><%= "No #{division.name} Team Standings" %></h3>
-  </div>
+  <%else%><!--No teams for this division-->
+
+    <div class="panel clearfix">
+      <h3><%= "No #{division.name} Team Standings" %></h3>
+    </div>
+
+  <% end %>
 
 <% end %>
