@@ -24,13 +24,6 @@ Quizzing::Application.routes.draw do
 
   get "standings/individual" => "standings#individual", as: :indiv_standings
 
-  # named routes
-  get 'user/edit' => 'users#edit', as: :edit_current_user
-  get 'login' => 'sessions#new', as: :login
-  get 'logout' => 'sessions#destroy', as: :logout
-  post   'login'   => 'sessions#create', as: :session_create
-  delete 'logout'  => 'sessions#destroy'
-
   # Set the root url
   root to: 'home#home', as: :home
 
