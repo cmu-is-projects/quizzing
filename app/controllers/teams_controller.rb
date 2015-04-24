@@ -17,15 +17,26 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
     @students = Student.all
     @team = Team.new
+
+    unless current_user.coach.nil?
+      @team.organization = current_user.coach.organization
+      @team.name = @team.organization.short_name + " " + (@team.organization.teams.count+1).to_s
+    end
   end
 
   # GET /teams/1/edit
   def edit
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
@@ -40,6 +51,9 @@ class TeamsController < ApplicationController
   # POST /teams
   # POST /teams.json
   def create
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
@@ -48,7 +62,7 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
+        format.html { redirect_to edit_team_url(@team), notice: 'Team was successfully created.' }
         format.json { render action: 'show', status: :created, location: @team }
       else
         format.html { render action: 'new' }
@@ -60,6 +74,9 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
   def update
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
@@ -133,6 +150,9 @@ class TeamsController < ApplicationController
   # DELETE /teams/1
   # DELETE /teams/1.json
   def destroy
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @team.destroy
     respond_to do |format|
       format.html { redirect_to teams_url }
