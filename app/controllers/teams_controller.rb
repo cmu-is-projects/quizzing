@@ -71,7 +71,7 @@ class TeamsController < ApplicationController
     team_params.each{|p|
       if( p[0] == "student_teams_attributes")
         p[1].to_a.each do |e|
-          @team_ps << e[1][:student_id]
+          @team_ps << e[1][:student_id].to_i unless e[1][:student_id] == ""
         end
       end
     }
@@ -83,7 +83,7 @@ class TeamsController < ApplicationController
     end
     @students_to_remove = @team_ss - @team_ps
 
-    StudentTeam.all.where(team_id: @team.id).each do |st|
+    StudentTeam.all.active.where(team_id: @team.id).each do |st|
       @students_to_remove.each do |r|
         if(st.student_id == r)
           st.make_inactive
@@ -94,15 +94,16 @@ class TeamsController < ApplicationController
     # To make sure we don't wind up with the same team member twice, we need to
     # add them ourselves.
     @students_to_add = @team_ps - @team_ss
-    team_params[:student_teams_attributes] = nil
 
-stahp
+    team_params[:student_teams_attributes] = nil
 
     @students_to_add.each do |s|
       StudentTeam.create(student_id: s, team_id: @team.id) unless s == ""
     end
-    
-    format.html { redirect_to @team, notice: 'Team was successfully updated.'}
+
+    respond_to do |format|    
+      format.html { redirect_to @team, notice: 'Team was successfully updated.'}
+    end
 
     # TODO: Adding/Removing coaches
 

@@ -72,14 +72,18 @@
     <strong>Members:</strong>
   </p>
   <hr>
-  <% if @team.students.size == 0 %>
-    This team has no students
+
+  <% students_found = false %>
+  <% @team.student_teams.each do |s| %>
+
+    <% if s.active %>
+      <%= link_to s.student.proper_name, student_path(s) %><br>
+      <% students_found = true %>
+    <% end %>
+
   <% end %>
-
-  <% @team.students.each do |s| %>
-
-    <%= link_to s.proper_name, student_path(s) %><br>
-
+  <% if !students_found %>
+    This team has no active members
   <% end %>
 
   <hr>
