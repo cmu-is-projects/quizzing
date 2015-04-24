@@ -1,7 +1,6 @@
 <!--first copied and pasted from individual standings-->
 
 <% @divisions.each do |division| %>
-  <% @division_teams = @teams.for_division(division) %><!--declaring here in the view-->
 
 <% unless @division_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
 
@@ -23,7 +22,7 @@
           <!--TODO: rank logic using a simple counter-->
           <td>Rank (TODO)</td>
           <td><%= link_to dt.name, team_path(dt) %></td>
-          <td><%= dt.score %></td>
+          <td><%= dt.raw_score %></td>
         </tr>
       <% end %>
     </tbody>

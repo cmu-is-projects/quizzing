@@ -4,16 +4,17 @@ class EventTeam
     @name = team.name
     @event = event
     @students = team.students
-    @team_quizzes = get_all_team_quizzes_for_team_in_this_event
+    @quiz_teams = get_all_quiz_teams_for_team_in_this_event
   end
 
-  attr_reader :event, :team, :students, :name, :team_quizzes
+  attr_reader :event, :team, :students, :name, :quiz_teams
 
-  def total_team_points
-    team_quizzes.inject(0){|sum, quiz| sum += quiz.team_score}
+  def total_points
+    #Top down; go to QuizTeam
+    quiz_teams.inject(0){|sum, quiz_team| sum += quiz_team.raw_score}
   end
   
-  def get_all_team_quizzes_for_team_in_this_event
-    team_quizzes = QuizTeam.for_team(team).for_event(event).by_round_num.to_a
+  def get_all_quiz_teams_for_team_in_this_event
+    quiz_teams = QuizTeam.for_team(team).for_event(event).by_round_num.to_a
   end
 end #class EventTeam

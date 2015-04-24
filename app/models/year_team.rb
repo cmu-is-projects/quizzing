@@ -29,6 +29,17 @@ class YearTeam
     sorted = teams.sort_by{|yt| yt.ytd_score}.reverse	
   end
 
+  # Class method to get all the year_teams for a particular year and division
+  def self.get_all_teams_for_division_for_year(division, quiz_year=QuizYear.new)
+    teams_this_year = self.get_all_teams_who_quizzed_in_year(quiz_year)
+    teams = Array.new
+    teams_this_year.each do |stu_id|
+      year_team = YearTeam.new(Team.find(team_id), quiz_year)
+      teams << year_team if year_team.division == division
+    end
+    sorted = teams.sort_by{|yt| yt.adjusted_points}.reverse
+  end
+
   private
   def self.get_all_teams_who_quizzed_in_year(quiz_year)
     tmp = Array.new

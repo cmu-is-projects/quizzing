@@ -33,9 +33,6 @@
 </p>
 
 
-
-<!--Copied and pasted-->
-
 <% unless @all_student_quizzes.empty? %>
 
   <h4>Breakdown of Scores for <%= @student.proper_name %></h4>
@@ -62,7 +59,7 @@
           <!--TODO link to event standings-->
           <td><%= event.start_date.strftime('%B %d, %Y') %></td>
           <% @student_quizzes = @event_quizzer.student_quizzes %>
-          <!--empty student_quizzes or future-created ones (they nil scores)-->
+          <!--empty student_quizzes or future-created ones (they have nil scores)-->
           <% unless @student_quizzes.empty? || @student_quizzes.first.score.nil? %>
             <% @student_quizzes.each do |student_quiz| %>
               <td><%= student_quiz.score %></td>

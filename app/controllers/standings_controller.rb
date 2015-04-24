@@ -13,9 +13,18 @@ class StandingsController < ApplicationController
   end #end individual method
 
   def team
+    if params[:id].nil?
+      #division
+      division_id = get_default_division_id
+    else
+      division_id = params[:id]
+    end
+    
+    @division = Division.find(division_id)
+    @teams = YearTeam.get_all_teams
+    #@division_teams = @teams.for_division(division)
     #TODO: write YearTeam; top-down design
-    #@teams = YearTeam.get_all_teams
-    #@divisions = Division.all
+    @divisions = Division.all.alphabetical
   end
 
   private

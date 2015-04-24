@@ -12,6 +12,10 @@ class TeamsController < ApplicationController
   def show
     @teams = Team.all
     @divisions = Division.all
+    @all_quiz_teams = @team.quiz_teams
+    @events = Event.all.chronological
+    #not used yet
+    #@year_team = YearTeam.new(@student)
   end
 
   # GET /teams/new

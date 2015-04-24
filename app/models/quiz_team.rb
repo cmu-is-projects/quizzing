@@ -12,7 +12,7 @@ class QuizTeam < ActiveRecord::Base
   scope :by_round_num, -> { joins(:quiz).order('round_num') }
 
   # TODO: Need to calculate points from raw scores, challenges, and fouls
-  #before_save :calculate_team_score #TODO: fix; causing an error
+  before_save :calculate_raw_score #TODO: fix; causing an error
 
   def self.for_event(event)
     QuizTeam.joins(:quiz).where('quizzes.event_id = ?', event.id)
@@ -23,16 +23,19 @@ class QuizTeam < ActiveRecord::Base
   end
 
   # not sure if we want this private or not yet...
-  #TODO: write in TeamScoring.rb
-  def calculate_team_score
-    unless self.quiz.student_quizzes.nil?  || self.quiz.student_quizzes.empty?
-      #from TeamScoring.rb
-      #would be nice to utilize EventTeam's get_all_team_quizzes_for_team_in_this_event
-      self.team_score = calculate_team_quiz_score(self.quiz.student_quizzes, self.team)
-    else
-      self.team_score = nil
-    end
-    self.team_score
+  #TODO future semester?: write in TeamScoring.rb
+  def calculate_raw_score
+    #self.team_score = 1000000000000 #actually calculate
+    return self.raw_score
+    #relic exploratory code below
+    # unless self.quiz.student_quizzes.nil?  || self.quiz.student_quizzes.empty?
+    #   #Top down; go to TeamScoring.rb
+    #   #would be nice to utilize EventTeam's get_all_team_quizzes_for_team_in_this_event
+    #   self.team_score = calculate_team_quiz_score(self.quiz.student_quizzes, self.team)
+    # else
+    #   self.team_score = nil
+    # end
+    # self.team_score
   end
 
   private

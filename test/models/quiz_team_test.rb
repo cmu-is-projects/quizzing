@@ -71,5 +71,48 @@ class QuizTeamTest < ActiveSupport::TestCase
       assert_equal [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6], QuizTeam.by_round_num.map { |qt| qt.quiz.round_num }
     end
 
+    #TODO: test the below with teams (this was copied from student_quiz_test)
+    # should "accurately calculate the score" do
+    #   assert_equal 90, @mark1.calculate_score # num_correct: 4, num_attempts: 4, num_fouls: 0
+
+    #   # student with average day 
+    #   assert_equal 90, @alex1.calculate_score # num_correct: 4, num_attempts: 4, num_fouls: 0
+    #   assert_equal 80, @alex2.calculate_score # num_correct: 4, num_attempts: 5, num_fouls: 0
+    #   assert_equal 50, @alex3.calculate_score # num_correct: 3, num_attempts: 5, num_fouls: 0
+    #   assert_equal 20, @alex4.calculate_score # num_correct: 2, num_attempts: 5, num_fouls: 0
+    #   assert_equal 60, @alex5.calculate_score # num_correct: 3, num_attempts: 3, num_fouls: 0
+    #   assert_equal 0, @alex6.calculate_score  # num_correct: 0, num_attempts: 1, num_fouls: 0
+
+    #   # student with negative day 
+    #   assert_equal 0, @jimmy1.calculate_score   # num_correct: 1, num_attempts: 4, num_fouls: 0
+    #   assert_equal 0, @jimmy2.calculate_score   # num_correct: 0, num_attempts: 0, num_fouls: 1
+    #   assert_equal 10, @jimmy3.calculate_score  # num_correct: 1, num_attempts: 1, num_fouls: 3
+    #   assert_equal -20, @jimmy4.calculate_score # num_correct: 0, num_attempts: 3, num_fouls: 0
+    #   assert_equal -10, @jimmy5.calculate_score # num_correct: 0, num_attempts: 2, num_fouls: 2
+    #   assert_equal 0, @jimmy6.calculate_score   # num_correct: 0, num_attempts: 1, num_fouls: 1
+    # end
+
+    # should "have scores calculated upon either create or edit" do
+    #   assert_equal 90, @mark1.score # was calculated when created
+    #   @mark1.num_attempts = 5
+    #   @mark1.save
+    #   @mark1.reload
+    #   assert_equal 80, @mark1.score # was recalculated when revised
+    # end
+
+    # should "have class method to get all student_quizzes for an event" do
+    #   create_quizzes_for_future_event
+    #   create_student_quizzes_with_no_score_yet
+    #   assert_equal 24, StudentQuiz.all.size
+    #   assert_equal 18, StudentQuiz.for_event(@event).all.size
+    #   delete_student_quizzes_with_no_score_yet
+    #   delete_quizzes_for_future_event
+    # end
+
+    # should "have class method to get all student_quizzes for a student" do
+    #   assert_equal 18, StudentQuiz.all.size
+    #   assert_equal 6, StudentQuiz.for_student(@mark).all.size
+    # end
+
   end
 end
