@@ -24,6 +24,9 @@ Quizzing::Application.routes.draw do
 
   get "standings/individual" => "standings#individual", as: :indiv_standings
 
+  # post "student_teams/:id" => 'students#create_student_team', as: :create_student_team
+  # patch "student_teams/:id" => 'students#update_student_team', as: :update_student_team
+
 
   # Set the root url
   root to: 'home#home', as: :home
