@@ -106,6 +106,9 @@ class TeamTest < ActiveSupport::TestCase
     should "show that the not_at_capacity method works" do
       assert_equal 3, Team.active.size
       assert_equal 3, Team.not_at_capacity.size
+      delete_acac_teams
+      assert_equal 0, Team.active.size
+      assert_equal Array.new, Team.not_at_capacity
     end
 
     should "have a scope for getting teams by division" do
