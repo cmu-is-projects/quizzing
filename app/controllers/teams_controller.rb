@@ -30,6 +30,11 @@ class TeamsController < ApplicationController
     @divisions = Division.all
     @organizations = Organization.all
     @students = Student.all
+
+    @student_teams = @team.student_teams.where(active: true).to_a
+    (0..(4-@student_teams.size)).each do
+      @student_teams << @team.student_teams.build
+    end
   end
 
   # POST /teams
@@ -67,12 +72,16 @@ class TeamsController < ApplicationController
     @team_ss = [] #team students
     @students_to_add = []
     @students_to_remove = []
+    @team_c = nil
 
     team_params.each{|p|
       if( p[0] == "student_teams_attributes")
         p[1].to_a.each do |e|
           @team_ps << e[1][:student_id].to_i unless e[1][:student_id] == ""
         end
+
+      elsif( p[0] == "team_coaches")
+        @team_c = p[1][:coach_id].to_i unless p[1][:coach_id] == ""
       end
     }
 
@@ -101,12 +110,24 @@ class TeamsController < ApplicationController
       StudentTeam.create(student_id: s, team_id: @team.id) unless s == ""
     end
 
+    @coach_changed = @team.team_coaches.where(end_date: nil).count == 0
+    @cur_coach_id = @team_c
+    TeamCoach.all.where(team_id: @team.id, end_date: nil).each do |tc|
+      @cur_coach_id = tc.coach_id
+      # Set the end date for the old coach & create the new one
+      if(@cur_coach_id != @team_c)
+        tc.end_date = Date.today
+        tc.save
+        @coach_changed = true
+      end
+    end
+    if(@coach_changed)
+      @team.team_coaches.create!(coach_id: @team_c)
+    end
+
     respond_to do |format|    
       format.html { redirect_to @team, notice: 'Team was successfully updated.'}
     end
-
-    # TODO: Adding/Removing coaches
-
   end
 
   # DELETE /teams/1
@@ -133,7 +154,7 @@ class TeamsController < ApplicationController
                                    :division_id,
                                    :organization_id,
                                    :students,
-                                   :team_coaches,
+                                   team_coaches: [:coach_id],
                                     student_teams_attributes: [:student_id]
                                    )
     end
