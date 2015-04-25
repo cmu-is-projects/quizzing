@@ -17,24 +17,43 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
     @students = Student.all
     @team = Team.new
+
+    unless current_user.coach.nil?
+      @team.organization = current_user.coach.organization
+      @team.name = @team.organization.short_name + " " + (@team.organization.teams.count+1).to_s
+    end
   end
 
   # GET /teams/1/edit
   def edit
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
     @students = Student.all
+
+    @student_teams = @team.student_teams.where(active: true).to_a
+    (0..(4-@student_teams.size)).each do
+      @student_teams << @team.student_teams.build
+    end
   end
 
   # POST /teams
   # POST /teams.json
   def create
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
@@ -43,7 +62,7 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
+        format.html { redirect_to edit_team_url(@team), notice: 'Team was successfully created.' }
         format.json { render action: 'show', status: :created, location: @team }
       else
         format.html { render action: 'new' }
@@ -55,6 +74,9 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
   def update
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
@@ -67,12 +89,16 @@ class TeamsController < ApplicationController
     @team_ss = [] #team students
     @students_to_add = []
     @students_to_remove = []
+    @team_c = nil
 
     team_params.each{|p|
       if( p[0] == "student_teams_attributes")
         p[1].to_a.each do |e|
-          @team_ps << e[1][:student_id]
+          @team_ps << e[1][:student_id].to_i unless e[1][:student_id] == ""
         end
+
+      elsif( p[0] == "team_coaches")
+        @team_c = p[1][:coach_id].to_i unless p[1][:coach_id] == ""
       end
     }
 
@@ -83,7 +109,7 @@ class TeamsController < ApplicationController
     end
     @students_to_remove = @team_ss - @team_ps
 
-    StudentTeam.all.where(team_id: @team.id).each do |st|
+    StudentTeam.all.active.where(team_id: @team.id).each do |st|
       @students_to_remove.each do |r|
         if(st.student_id == r)
           st.make_inactive
@@ -94,7 +120,6 @@ class TeamsController < ApplicationController
     # To make sure we don't wind up with the same team member twice, we need to
     # add them ourselves.
     @students_to_add = @team_ps - @team_ss
-    team_params[:student_teams_attributes] = nil
 
     # respond_to do |format|
     #   if @team.update(team_params)
@@ -106,19 +131,38 @@ class TeamsController < ApplicationController
     #     format.json { render json: @team.errors, status: :unprocessable_entity }
     #   end
 
+    team_params[:student_teams_attributes] = nil
+
     @students_to_add.each do |s|
       StudentTeam.create(student_id: s, team_id: @team.id) unless s == ""
     end
-    
-    format.html { redirect_to @team, notice: 'Team was successfully updated.'}
 
-    # TODO: Adding/Removing coaches
+    @coach_changed = @team.team_coaches.where(end_date: nil).count == 0
+    @cur_coach_id = @team_c
+    TeamCoach.all.where(team_id: @team.id, end_date: nil).each do |tc|
+      @cur_coach_id = tc.coach_id
+      # Set the end date for the old coach & create the new one
+      if(@cur_coach_id != @team_c)
+        tc.end_date = Date.today
+        tc.save
+        @coach_changed = true
+      end
+    end
+    if(@coach_changed)
+      @team.team_coaches.create!(coach_id: @team_c)
+    end
 
+    respond_to do |format|    
+      format.html { redirect_to @team, notice: 'Team was successfully updated.'}
+    end
   end
 
   # DELETE /teams/1
   # DELETE /teams/1.json
   def destroy
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @team.destroy
     respond_to do |format|
       format.html { redirect_to teams_url }
@@ -140,7 +184,7 @@ class TeamsController < ApplicationController
                                    :division_id,
                                    :organization_id,
                                    :students,
-                                   :team_coaches,
+                                   team_coaches: [:coach_id],
                                     student_teams_attributes: [:student_id]
                                    )
     end
