@@ -37,6 +37,7 @@ class EventQuizzer
     end
   end
 
+  #the below could/should have been used in student show; forgot to make use of -Theophilus, Spr '15
   def get_all_student_quizzes_for_student_in_this_event
     student_quizzes = StudentQuiz.for_student(quizzer).for_event(event).by_round_num.to_a
   end

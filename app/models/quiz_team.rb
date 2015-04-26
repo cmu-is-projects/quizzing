@@ -23,19 +23,8 @@ class QuizTeam < ActiveRecord::Base
   end
 
   # not sure if we want this private or not yet...
-  #TODO future semester?: write in TeamScoring.rb
   def calculate_raw_score
-    #self.team_score = 1000000000000 #actually calculate
     return self.raw_score
-    #relic exploratory code below
-    # unless self.quiz.student_quizzes.nil?  || self.quiz.student_quizzes.empty?
-    #   #Top down; go to TeamScoring.rb
-    #   #would be nice to utilize EventTeam's get_all_team_quizzes_for_team_in_this_event
-    #   self.team_score = calculate_team_quiz_score(self.quiz.student_quizzes, self.team)
-    # else
-    #   self.team_score = nil
-    # end
-    # self.team_score
   end
 
   private
