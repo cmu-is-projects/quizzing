@@ -21,11 +21,11 @@ class YearTeam
   # Class method to get all the year_teams for a particular year and division
   def self.get_all_teams_for_division_for_year(division, quiz_year=QuizYear.new)
     #top down design assuming "get_all_teams_who_quizzed_in_year" written
-    teams_this_year = self.get_all_teams_who_quizzed_in_year(quiz_year=QuizYear.new, quiz_year)
+    teams_this_year = self.get_all_teams_who_quizzed_in_year(quiz_year)
     teams = Array.new
     teams_this_year.each do |team_id|
       year_team = YearTeam.new(Team.find(team_id), quiz_year)
-      teams << year_team
+      teams << year_team if year_team.division == division
     end
     sorted = teams.sort_by{|yt| yt.total_points}.reverse  
   end

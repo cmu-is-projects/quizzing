@@ -42,9 +42,9 @@ class EventQuizzer
   end
 
   def self.get_all_quizzers_for_event(event)
-    all_student_at_event = StudentQuiz.for_event(event).map(&:student_id).uniq
+    all_students_at_event = StudentQuiz.for_event(event).map(&:student_id).uniq
     quizzers = Array.new
-    all_student_at_event.each do |stu_id|
+    all_students_at_event.each do |stu_id|
       event_quizzer = EventQuizzer.new(Student.find(stu_id), event)
       quizzers << event_quizzer
     end

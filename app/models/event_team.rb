@@ -9,7 +9,7 @@ class EventTeam
 
   attr_reader :event, :team, :students, :name, :quiz_teams
 
-  def total_points
+  def total_score
     #Top down; go to QuizTeam
     quiz_teams.inject(0){|sum, quiz_team| sum += quiz_team.raw_score}
   end
