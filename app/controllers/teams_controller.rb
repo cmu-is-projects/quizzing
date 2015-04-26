@@ -14,7 +14,8 @@ class TeamsController < ApplicationController
     @divisions = Division.all
     @all_quiz_teams = @team.quiz_teams
     @events = Event.all.chronological
-    #not used yet
+    @declared_num_rounds = 6
+    #not used yet (to get cumulative score for the year)
     #@year_team = YearTeam.new(@student)
   end
 

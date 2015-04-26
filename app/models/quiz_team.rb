@@ -11,8 +11,8 @@ class QuizTeam < ActiveRecord::Base
 
   scope :by_round_num, -> { joins(:quiz).order('round_num') }
 
-  # TODO: Need to calculate points from raw scores, challenges, and fouls
-  before_save :calculate_raw_score #TODO: fix; causing an error
+  # TODO?: Need to calculate points from raw scores, challenges, and fouls
+  before_save :calculate_raw_score
 
   def self.for_event(event)
     QuizTeam.joins(:quiz).where('quizzes.event_id = ?', event.id)

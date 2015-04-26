@@ -17,8 +17,7 @@ class StudentsController < ApplicationController
     @year_quizzer = YearQuizzer.new(@student)
     @all_student_quizzes = @student.student_quizzes
     @events = Event.all.chronological
-    #@num_rounds = @organization_students.to_a.first.quiz.num_rounds
-    #@accuracy_percentage = number_to_percentage(@quizzer.total_accuracy*100.0, precision: 1)
+    @declared_num_rounds = 6
     @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)
   end
 

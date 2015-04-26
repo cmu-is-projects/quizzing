@@ -13,9 +13,9 @@ class YearTeam
  attr_reader :name, :results
  attr_reader :division
 
-  def total_points
- 	#top down design assuming event_team written with a total_points method
- 	self.results.inject(0){|sum, event_team| sum += event_team.total_points}
+  def total_yt_score
+ 	#top down design assuming event_team written with a total_yt_score method
+ 	  self.results.inject(0){|sum, event_team| sum += event_team.total_score}
   end
 
   # Class method to get all the year_teams for a particular year and division
@@ -27,7 +27,7 @@ class YearTeam
       year_team = YearTeam.new(Team.find(team_id), quiz_year)
       teams << year_team if year_team.division == division
     end
-    sorted = teams.sort_by{|yt| yt.total_points}.reverse  
+    sorted = teams.sort_by{|yt| yt.total_yt_score}.reverse  
   end
 
   private
