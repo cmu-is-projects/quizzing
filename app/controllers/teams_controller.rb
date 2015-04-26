@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
     @events = Event.all.chronological
     @declared_num_rounds = 6
     #not used yet (to get cumulative score for the year)
-    #@year_team = YearTeam.new(@student)
+    # @year_team = YearTeam.new(@team)
   end
 
   # GET /teams/new

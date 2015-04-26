@@ -1,9 +1,9 @@
 <!--first copied and pasted from individual standings-->
 
 <% @divisions.each do |division| %>
-  <% @year_teams = YearTeam.get_all_teams_for_division_for_year(division) %>
+  <% @year_div_teams = YearTeam.get_all_teams_for_division_for_year(division) %>
 
-  <% unless @year_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
+  <% unless @year_div_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
 
     <h3><%= "#{division.name} Division Team Standings" %></h3>
 
@@ -11,18 +11,19 @@
       <thead>
         <tr>
           <th>Rank</th>
+          <% rank_counter = 0 %>          
           <th>Name</th>
           <th>Score</th>
         </tr>
       </thead>
 
       <tbody>
-        <% @year_teams.each do |dt| %>
-          <tr>          
-            <!--TODO: rank logic using a simple counter-->
-            <td>Rank (TODO)</td>
-            <td><%= link_to dt.name, team_path(dt) %></td>
-            <td><%= dt.raw_score %></td>
+        <% @year_div_teams.each do |team| %>
+          <tr>
+            <% rank_counter+=1 %><!--first team's rank outputted as 1-->
+            <td><%= rank_counter %></td>
+            <td><%= link_to team.name, team_path(team) %></td>
+            <td><%= team.total_yt_score %></td>
           </tr>
         <% end %>
       </tbody>

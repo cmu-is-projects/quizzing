@@ -13,15 +13,46 @@
   <strong>Contact Person:</strong><br /><br />
   <!-- TODO: how to do this? put code in model or controller -->
 
-  <strong>Teams:</strong>
-  
-  <%# @quizzes.each do |quiz| %>
-      <%# quiz.teams.each do |team| %>
-        <!--<li><%#= team.name %></li>-->
-      <%# end %>
-  <%# end %> <br /><br />
+<!--Theophilus start-->
+<!--copied from team standings which was copied from individual standings-->
 
+<% @divisions.each do |division| %>
+  <!--TODO: write the following method (top down design)-->
+  <% @event_div_teams = EventTeam.get_all_teams_for_event_and_division(@event, division) %>
 
+  <% unless @event_div_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
 
-<%#link_to 'Edit', edit_event_path(@event), class: "button tiny radius" %>
-<%# link_to 'Back', events_path, class: 'button tiny secondary radius' %>
+    <h3><%= "#{division.name} Division Team Standings" %></h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <% rank_counter = 0 %>
+          <th>Name</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @event_div_teams.each do |et| %>
+          <tr>
+            <% rank_counter+=1 %><!--first team's rank outputted as 1-->
+            <td><%= rank_counter %></td>
+            <td><%= link_to et.name, team_path(et) %></td>
+            <td><%= et.total_score %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <%else%><!--No teams for this division-->
+
+    <div class="panel clearfix">
+      <h3><%= "No #{division.name} Team Standings" %></h3>
+    </div>
+
+  <% end %>
+
+<% end %>
+<!--Theophilus end-->
