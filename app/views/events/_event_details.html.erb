@@ -22,7 +22,7 @@
 
   <% unless @event_div_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
 
-    <h3><%= "#{division.name} Division Team Standings" %></h3>
+    <h3><%= "#{division.name} Team Standings for #{@event.start_date.strftime('%B %d, %Y')}" %></h3>
 
     <table>
       <thead>
@@ -35,12 +35,12 @@
       </thead>
 
       <tbody>
-        <% @event_div_teams.each do |et| %>
+        <% @event_div_teams.each do |team| %>
           <tr>
             <% rank_counter+=1 %><!--first team's rank outputted as 1-->
             <td><%= rank_counter %></td>
-            <td><%= link_to et.name, team_path(et) %></td>
-            <td><%= et.total_score %></td>
+            <td><%= link_to team.name, team_path(team) %></td>
+            <td><%= team.total_score %></td>
           </tr>
         <% end %>
       </tbody>
@@ -49,7 +49,7 @@
   <%else%><!--No teams for this division-->
 
     <div class="panel clearfix">
-      <h3><%= "No #{division.name} Team Standings" %></h3>
+      <h3><%= "No #{division.name} Team Standings for #{@event.start_date.strftime('%B %d, %Y')}" %></h3>
     </div>
 
   <% end %>
