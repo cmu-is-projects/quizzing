@@ -14,7 +14,8 @@ class EventQuizzer
   attr_reader :student_quizzes
 
   def total_points
-    student_quizzes.inject(0){|sum, quiz| sum += quiz.score}
+    #getting away without this: student_quizzes.inject(0){|sum, sq| sum += (sq.score.nil? ? 0 : sq.score)}
+    student_quizzes.inject(0){|sum, sq| sum += sq.score}
   end
 
   def average_points
@@ -28,8 +29,8 @@ class EventQuizzer
 
   def accuracy
     # round accuracy to 3 decimal places
-    total_correct = student_quizzes.inject(0){|sum, quiz| sum += quiz.num_correct}
-    total_attempts = student_quizzes.inject(0){|sum, quiz| sum += quiz.num_attempts}
+    total_correct = student_quizzes.inject(0){|sum, sq| sum += sq.num_correct}
+    total_attempts = student_quizzes.inject(0){|sum, sq| sum += sq.num_attempts}
     if total_attempts.zero?
       acc_rate = 0.0
     else

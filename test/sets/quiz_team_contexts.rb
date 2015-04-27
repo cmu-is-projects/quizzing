@@ -22,7 +22,7 @@ module Contexts
 
     def create_quiz_teams_for_future_event
       #when using in quiz_team_test contexts, 
-      #must first use create_quizzes_for_future_event before this
+      create_quizzes_for_future_event
       @quiz1f_acac2 = FactoryGirl.create(:quiz_team, quiz: @quiz1f, team: @acac_sr2)
       @quiz2f_acac2 = FactoryGirl.create(:quiz_team, quiz: @quiz2f, team: @acac_sr2)
       @quiz3f_acac2 = FactoryGirl.create(:quiz_team, quiz: @quiz3f, team: @acac_sr2)
@@ -51,6 +51,7 @@ module Contexts
     end
 
     def delete_quiz_teams_for_future_event
+      delete_quizzes_for_future_event
       @quiz1f_acac2.delete
       @quiz2f_acac2.delete
       @quiz3f_acac2.delete

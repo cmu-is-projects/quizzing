@@ -30,13 +30,14 @@ module Contexts
 
     # not sure if this is needed yet...
     def create_student_quizzes_with_no_score_yet
+      create_quizzes_for_future_event
       #the student_quiz fields are nil
-      @alex1 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz1f)
-      @alex2 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz2f)
-      @alex3 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz3f)
-      @alex4 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz4f)
-      @alex5 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz5f)
-      @alex6 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz6f)
+      @alex7 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz1f)
+      @alex8 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz2f)
+      @alex9 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz3f)
+      @alex10 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz4f)
+      @alex11 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz5f)
+      @alex12 = FactoryGirl.create(:student_quiz, student: @alex, quiz: @quiz6f)
     end
 
     def delete_student_quizzes
@@ -61,12 +62,13 @@ module Contexts
     end
 
     def delete_student_quizzes_with_no_score_yet
-      @alex1.delete
-      @alex2.delete
-      @alex3.delete
-      @alex4.delete
-      @alex5.delete
-      @alex6.delete
+      delete_quizzes_for_future_event
+      @alex7.delete
+      @alex8.delete
+      @alex9.delete
+      @alex10.delete
+      @alex11.delete
+      @alex12.delete
     end
   end
 end

@@ -52,11 +52,9 @@ class QuizTeamTest < ActiveSupport::TestCase
 
     should "have class method to get all team_quizzes for an event" do
     #TODO: Seek to know why the commented-out below gives Quiz is not active in system error
-      create_quizzes_for_future_event
       create_quiz_teams_for_future_event
       assert_equal 18, QuizTeam.all.size
       assert_equal 6, QuizTeam.for_event(@event3).all.size
-      delete_quizzes_for_future_event
       delete_quiz_teams_for_future_event
       assert_equal 12, QuizTeam.all.size
       assert_equal 12, QuizTeam.for_event(@event).all.size
@@ -89,7 +87,6 @@ class QuizTeamTest < ActiveSupport::TestCase
       assert_equal -10, @quiz6_somerset.retreive_raw_score
 
       # teams with nil raw_scores
-      create_quizzes_for_future_event
       create_quiz_teams_for_future_event
       assert_equal nil, @quiz1f_acac2.retreive_raw_score   # num_correct: 1, num_attempts: 4, num_fouls: 0
       assert_equal nil, @quiz2f_acac2.retreive_raw_score   # num_correct: 0, num_attempts: 0, num_fouls: 1
@@ -97,16 +94,13 @@ class QuizTeamTest < ActiveSupport::TestCase
       assert_equal nil, @quiz4f_acac2.retreive_raw_score # num_correct: 0, num_attempts: 3, num_fouls: 0
       assert_equal nil, @quiz5f_acac2.retreive_raw_score # num_correct: 0, num_attempts: 2, num_fouls: 2
       assert_equal nil, @quiz6f_acac2.retreive_raw_score   # num_correct: 0, num_attempts: 1, num_fouls: 1
-      delete_quiz_teams_for_future_event
       delete_quizzes_for_future_event
     end
 
     should "have class method to get all quiz_teams for an event" do
-      create_quizzes_for_future_event
       create_quiz_teams_for_future_event
       assert_equal 18, QuizTeam.all.size
       assert_equal 6, QuizTeam.for_event(@event3).all.size
-      delete_quizzes_for_future_event
       delete_quiz_teams_for_future_event
     end
 

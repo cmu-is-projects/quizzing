@@ -13,9 +13,6 @@ class StandingsController < ApplicationController
   end #end individual method
 
   def team
-    #@teams = YearTeam.get_all_teams
-    #@division_teams = @teams.for_division(division)
-    #TODO: write YearTeam; top-down design
     @divisions = Division.all.alphabetical
   end
 
