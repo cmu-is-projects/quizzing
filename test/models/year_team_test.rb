@@ -45,6 +45,7 @@ class YearTeamTest < ActiveSupport::TestCase
       remove_year_teams
     end
 
+    #TODO future: actually written with year_quizzers in mind; bother with for year_team later
     # should "calculate total_yt_score for year accurately when 4 events" do
     #   create_three_more_complete_quiz_contexts
     #   create_year_teams
@@ -57,44 +58,14 @@ class YearTeamTest < ActiveSupport::TestCase
     #   delete_three_more_complete_quiz_contexts
     # end
 
-    # should "calculate low points for year accurately when 4 events" do
-    #   create_three_more_complete_quiz_contexts
-    #   create_year_teams
-    #   assert_equal   0, @year_team_1.lowest_points, "Results count: #{@year_team_1.results.size}"
-    #   assert_equal 300, @year_team_2.lowest_points, "Results count: #{@year_team_2.results.size}"
-    #   assert_equal -20, @year_team_3.lowest_points
-    #   assert_equal   0, @year_team_4.lowest_points
-    #   remove_year_teams
-    #   delete_three_more_complete_quiz_contexts
-    # end
-
-    # should "calculate adjusted points for year accurately when 4 events" do
-    #   create_three_more_complete_quiz_contexts
-    #   create_year_teams
-    #   assert_equal 1620, @year_team_1.adjusted_points, "Results count: #{@year_team_1.results.size}"
-    #   assert_equal 1500, @year_team_2.adjusted_points, "Results count: #{@year_team_2.results.size}"
-    #   assert_equal   90, @year_team_3.adjusted_points
-    #   assert_equal    0, @year_team_4.adjusted_points
-    #   remove_year_teams
-    #   delete_three_more_complete_quiz_contexts
-    # end
-
-    # should "calculate total accuracy for year accurately when 4 events" do
-    #   create_three_more_complete_quiz_contexts
-    #   create_year_teams
-    #   assert_equal 1.000, @year_team_1.total_accuracy
-    #   assert_equal 0.822, @year_team_2.total_accuracy
-    #   assert_equal 0.348, @year_team_3.total_accuracy
-    #   assert_equal  0.0,  @year_team_4.total_accuracy
-    #   remove_year_teams
-    #   delete_three_more_complete_quiz_contexts
-    # end
-
-    # should "return an array of year_teams for a particular division and year" do
-    #   assert_equal 3, YearTeam.get_all_teams_for_division_for_year(@senior_a, QuizYear.new).size
-    #   yq = YearTeam.get_all_teams_for_division_for_year(@senior_a, QuizYear.new).first
-    #   assert_equal YearTeam, yq.class
-    # end
+    should "return an array of year_teams for a particular division and year" do
+      create_quiz_teams_for_future_event #adds ACAC SR2 which is also of Division Senior A, 
+      #BUT it has not quizzed this year :)
+      assert_equal 2, YearTeam.get_all_teams_for_division_for_year(@senior_a, QuizYear.new).size
+      yt = YearTeam.get_all_teams_for_division_for_year(@senior_a, QuizYear.new).first
+      assert_equal YearTeam, yt.class
+      delete_quiz_teams_for_future_event
+    end
 
   end #end contexts
 end #end class
