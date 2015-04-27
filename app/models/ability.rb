@@ -34,9 +34,9 @@ class Ability
       can :manage, :all
     elsif user.role? :coach
       can :read, :all
-      can :manage, user.organization.teams
-      can :manage, user.organization.students
-      can :manage, user.organization
+      can :manage, user.coach.organization.teams
+      can :manage, user.coach.organization.students
+      can :manage, user.coach.organization
     else
       can :read, :all
     end

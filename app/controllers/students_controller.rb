@@ -50,12 +50,6 @@ class StudentsController < ApplicationController
     # authorize! :create, @student
     if @student.save
       respond_to do |format|
-        @active_teams = Team.all.active
-        format.js
-        # format.html { redirect_to @student, notice: 'Student was successfully created.' }
-        # format.json { render action: 'show', status: :created, location: @student }
-
-        #@student.add_to_organization(current_user.organization)
         @student.add_to_organization(current_user)
         format.html { redirect_to @student, notice: "#{@student.name} has been created." }
         #format.json { render action: 'show', status: :created, location: @student }

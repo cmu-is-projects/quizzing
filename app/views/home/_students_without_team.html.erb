@@ -23,11 +23,13 @@
 				<tr>
 					<td><%= link_to student.name, student_path(student) %></td>
 					<td><%= student.grade %></td>
-					<td><%= student.current_organization.name %></td>
+					<td><%= student.current_organization.short_name %></td>
 					<!-- TODO1: This does not work -->
-					<%= simple_form_for(student) do |f| %>
+					<%= simple_form_for @student_team do |f| %>
+					<%= f.input :student_id, as: :hidden, input_html: {value: student.id} %>
 							<!-- Add new team -->
-							<td><%= f.input :team_ids, label: false, collection: get_team_options(student), prompt: "Select team" %></td> 
+							<td><%= f.input :team_id, label: false, collection: get_team_options(student), prompt: "Select team" %>
+							<%= f.submit nil, class: 'button tiny radius' %></td> 
 				</tr>
 				<% end %>
 			<% end %>

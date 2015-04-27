@@ -14,7 +14,7 @@
 				<th>Student Name</th>
 				<th>Present/Absent</th>
 			</thead>
-			<% team.students.each do |student| unless student.active == false %>
+			<% team.current_students.each do |student| unless student.active == false %>
 			<tbody>
 				<td><%= link_to student.proper_name, student_path(student) %></td>
 				<% student_team = student.current_student_team %>
@@ -40,19 +40,19 @@
 	<div class = "content" id = "inactiveroster">
 		<h3>Inactive Students</h3>
 		<% unless @inactive_students.nil? || @inactive_students.empty? %>
-		<% @inactive_students.each do |student| %>
 		<table>
 			<thead>
 				<th>Student Name</th>
 			</thead>
+			<% @inactive_students.each do |student| %>
 			<tbody>
 				<td><%= link_to student.proper_name, student_path(student) %></td>
 			</tbody>
+			<% end %>
 		</table>
 		<!-- <div class="form-actions">
 			<%#= link_to 'Add new Student', new_student_path, class: 'tiny button radius' %>
 		</div> -->
-		<% end %>
 		<% end %>
 	</div>
 </div>
