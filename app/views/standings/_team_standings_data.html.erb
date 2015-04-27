@@ -1,11 +1,12 @@
 <!--first copied and pasted from individual standings-->
+<!--TODO: turn into tab with individual standings-->
 
 <% @divisions.each do |division| %>
   <% @year_div_teams = YearTeam.get_all_teams_for_division_for_year(division) %>
 
   <% unless @year_div_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
 
-    <h3><%= "#{division.name} Division Team Standings" %></h3>
+    <h3><%= "#{division.name} Team Standings" %></h3>
 
     <table>
       <thead>

@@ -12,7 +12,8 @@ class EventTeam
 
   def total_score
     #Top down; go to QuizTeam
-    quiz_teams.inject(0){|sum, quiz_team| sum += quiz_team.raw_score}
+    quiz_teams.inject(0){|sum, quiz_team| sum += (quiz_team.raw_score.nil? ? 0 : quiz_team.raw_score)}
+
   end
   
   def get_all_quiz_teams_for_team_in_this_event
