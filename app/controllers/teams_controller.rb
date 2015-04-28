@@ -37,6 +37,9 @@ class TeamsController < ApplicationController
     if(current_user.role == "guest")
       redirect_to login_url and return
     end
+    if(!current_user.role?(:admin) && current_user.coach.organization.id != @team.organization.id)
+      redirect_to team_url(@team) and return
+    end
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
@@ -45,6 +48,10 @@ class TeamsController < ApplicationController
     @student_teams = @team.student_teams.where(active: true).to_a
     (0..(4-@student_teams.size)).each do
       @student_teams << @team.student_teams.build
+    end
+    @team_coaches = @team.team_coaches.where(end_date: nil).to_a
+    (0..(0-@team_coaches.size)).each do
+      @team_coaches << @team.team_coaches.build
     end
   end
 
@@ -77,6 +84,9 @@ class TeamsController < ApplicationController
     if(current_user.role == "guest")
       redirect_to login_url and return
     end
+    if(current_user.coach.organization.id != @team.organization.id)
+      redirect_to home_path and return
+    end
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
@@ -97,8 +107,8 @@ class TeamsController < ApplicationController
           @team_ps << e[1][:student_id].to_i unless e[1][:student_id] == ""
         end
 
-      elsif( p[0] == "team_coaches")
-        @team_c = p[1][:coach_id].to_i unless p[1][:coach_id] == ""
+      elsif( p[0] == "team_coaches_attributes")
+        @team_c = p[1]["0"][:coach_id].to_i unless p[1]["0"][:coach_id] == ""
       end
     }
 
@@ -138,8 +148,12 @@ class TeamsController < ApplicationController
         @coach_changed = true
       end
     end
+    if(!@team.active)
+      @team.active = true
+      @team.save!
+    end
     if(@coach_changed)
-      @team.team_coaches.create!(coach_id: @team_c)
+      @team.team_coaches.create!(team_id: @team.id, coach_id: @team_c)
     end
 
     respond_to do |format|    
@@ -152,6 +166,9 @@ class TeamsController < ApplicationController
   def destroy
     if(current_user.role == "guest")
       redirect_to login_url and return
+    end
+    if(current_user.coach.organization.id != @team.organization.id)
+      redirect_to home_path and return
     end
     @team.destroy
     respond_to do |format|
@@ -175,6 +192,7 @@ class TeamsController < ApplicationController
                                    :organization_id,
                                    :students,
                                    team_coaches: [:coach_id],
+                                   team_coaches_attributes: [:coach_id],
                                     student_teams_attributes: [:student_id]
                                    )
     end
