@@ -14,8 +14,8 @@ class EventQuizzer
   attr_reader :student_quizzes
 
   def total_points
-    #getting away without this: student_quizzes.inject(0){|sum, sq| sum += (sq.score.nil? ? 0 : sq.score)}
-    student_quizzes.inject(0){|sum, sq| sum += sq.score}
+    #Actually somehow passes tests with just student_quizzes.inject(0){|sum, sq| sum += sq.score}
+    student_quizzes.inject(0){|sum, sq| sum += (sq.score.nil? ? 0 : sq.score)}
   end
 
   def average_points
