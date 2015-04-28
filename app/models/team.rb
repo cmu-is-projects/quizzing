@@ -39,9 +39,7 @@ class Team < ActiveRecord::Base
   before_destroy :verify_that_there_are_no_scored_quizzes_for_team_this_year
 
   # Methods
-
   # Returns active teams that are not at capacity
-  # TODO: error if the db is empty
   def self.not_at_capacity(organization=nil, division=nil)
     tmp = Array.new
     if organization && division #if organization and division are provided
@@ -51,9 +49,11 @@ class Team < ActiveRecord::Base
     else
       teams = Team.active.alphabetical.all
     end
-    teams.each do |team|
-      tmp << team if team.current_students.size < 5
-    end
+    unless teams.empty?
+      teams.each do |team|
+        tmp << team if team.current_students.size < 5
+      end    
+    end 
     tmp
   end
 

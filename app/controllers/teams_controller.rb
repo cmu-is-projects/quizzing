@@ -100,6 +100,7 @@ class TeamsController < ApplicationController
     @students_to_add = []
     @students_to_remove = []
     @team_c = nil
+    @team_a = true
 
     team_params.each{|p|
       if( p[0] == "student_teams_attributes")
@@ -109,6 +110,8 @@ class TeamsController < ApplicationController
 
       elsif( p[0] == "team_coaches_attributes")
         @team_c = p[1]["0"][:coach_id].to_i unless p[1]["0"][:coach_id] == ""
+      elsif(p[0] == "active")
+        @team_a = (p[1] == "0") # 0 for active, 1 for inactive
       end
     }
 
@@ -131,7 +134,15 @@ class TeamsController < ApplicationController
     # add them ourselves.
     @students_to_add = @team_ps - @team_ss
 
-    team_params[:student_teams_attributes] = nil
+    # respond_to do |format|
+    #   if @team.update(team_params)
+    #     format.html { redirect_to @team, 
+    #       notice: 'Team was successfully updated.'}
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { render action: 'edit' }
+    #     format.json { render json: @team.errors, status: :unprocessable_entity }
+    #   end
 
     @students_to_add.each do |s|
       StudentTeam.create(student_id: s, team_id: @team.id) unless s == ""
@@ -155,6 +166,9 @@ class TeamsController < ApplicationController
     if(@coach_changed)
       @team.team_coaches.create!(team_id: @team.id, coach_id: @team_c)
     end
+
+    @team.active = @team_a
+    @team.save!
 
     respond_to do |format|    
       format.html { redirect_to @team, notice: 'Team was successfully updated.'}
