@@ -10,9 +10,9 @@ class EventTeam
 
   attr_reader :event, :team, :students, :name, :quiz_teams, :division
 
-  def total_score
+  def total_et_points
     #Top down; go to QuizTeam
-    quiz_teams.inject(0){|sum, quiz_team| sum += (quiz_team.raw_score.nil? ? 0 : quiz_team.raw_score)}
+    quiz_teams.inject(0){|sum, quiz_team| sum += (quiz_team.points.nil? ? 0 : quiz_team.points)}
 
   end
   
@@ -30,7 +30,7 @@ class EventTeam
     end
     # returned a sorted array of event_teams in descending order of average points
     # (until end when avg and total align, averages rule the day in reporting results)
-    sorted = teams.sort_by{|et| et.total_score}.reverse
+    sorted = teams.sort_by{|et| et.total_et_points}.reverse
   end
 
   def self.get_all_teams_for_event_and_division(event, division)
@@ -40,6 +40,6 @@ class EventTeam
       in_division << event_team if event_team.division == division
     end
     # resort just to be safe...
-    final = in_division.sort_by{|et| et.total_score}.reverse 
+    final = in_division.sort_by{|et| et.total_et_points}.reverse 
   end
 end #class EventTeam

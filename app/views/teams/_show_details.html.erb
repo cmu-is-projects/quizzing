@@ -46,7 +46,7 @@
         <%# end #team check %> 
 
       <%# end #list of all teams %>
-      <%= standing %>
+      <%# standing %>
     </p>
     <%# end %> -->
 
@@ -124,12 +124,12 @@
             <!--TODO link to event standings-->
             <td><%= event.start_date.strftime('%B %d, %Y') %></td>
             <% @quiz_teams = @event_team.quiz_teams %>
-            <!--empty quiz_teams or future-created ones (they have nil raw scores)-->
-            <% unless @quiz_teams.empty? || @quiz_teams.first.raw_score.nil? %>
+            <!--empty quiz_teams or future-created ones (they have nil points)-->
+            <% unless @quiz_teams.empty? || @quiz_teams.first.points.nil? %>
               <% @quiz_teams.each do |quiz_team| %>
-                <td><%= quiz_team.raw_score %></td>
+                <td><%= quiz_team.points %></td>
               <% end %><!--end quiz_teams.each-->
-              <td><%= @event_team.total_score %></td><!--for Total Points column-->
+              <td><%= @event_team.total_et_points %></td><!--for Total Points column-->
 
             <% else %><!--quiz_teams are empty so output dashes-->
 
