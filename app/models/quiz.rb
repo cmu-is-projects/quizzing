@@ -13,7 +13,7 @@ class Quiz < ActiveRecord::Base
   belongs_to :division
 
   #Validations
-  validates_presence_of :event_id, :division_id, :round_num
+  validates_presence_of :event_id, :division_id, :round_num, :category_id
   validates_numericality_of :event_id, :division_id, :round_num, :room_num, only_integer: true, greater_than: 0
 
   #Scopes

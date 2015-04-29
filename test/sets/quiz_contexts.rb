@@ -3,12 +3,12 @@ module Contexts
 
     # assumes create_events and create_divisions already run
     def create_quizzes_for_past_event
-      @quiz1 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 1)
-      @quiz2 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 2)
-      @quiz3 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 3)
-      @quiz4 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 4)
-      @quiz5 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 5)
-      @quiz6 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 6)
+      @quiz1 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 1, category: @category1)
+      @quiz2 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 2, category: @category2)
+      @quiz3 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 3, category: @category3)
+      @quiz4 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 4, category: @category1)
+      @quiz5 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 5, category: @category1)
+      @quiz6 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 6, category: @category1)
       @quiz_inactive = FactoryGirl.create(:quiz, event: @event, division: @senior_a, active: false)
     end
     
@@ -23,12 +23,12 @@ module Contexts
     end
 
     def create_quizzes_for_present_event
-      @quiz1p = FactoryGirl.create(:quiz, event: @event1, division: @senior_a, round_num: 1)
-      @quiz2p = FactoryGirl.create(:quiz, event: @event1, division: @senior_a, round_num: 2)
-      @quiz3p = FactoryGirl.create(:quiz, event: @event1, division: @senior_a, round_num: 3)
-      @quiz4p = FactoryGirl.create(:quiz, event: @event1, division: @senior_a, round_num: 4)
-      @quiz5p = FactoryGirl.create(:quiz, event: @event1, division: @senior_a, round_num: 5)
-      @quiz6p = FactoryGirl.create(:quiz, event: @event1, division: @senior_a, round_num: 6)
+      @quiz1p = FactoryGirl.create(:quiz, event: @event1, division: @senior_a, round_num: 1, category: @category1)
+      @quiz2p = FactoryGirl.create(:quiz, event: @event1, division: @senior_a, round_num: 2, category: @category2)
+      @quiz3p = FactoryGirl.create(:quiz, event: @event1, division: @senior_a, round_num: 3, category: @category3)
+      @quiz4p = FactoryGirl.create(:quiz, event: @event1, division: @senior_a, round_num: 4, category: @category1)
+      @quiz5p = FactoryGirl.create(:quiz, event: @event1, division: @senior_a, round_num: 5, category: @category1)
+      @quiz6p = FactoryGirl.create(:quiz, event: @event1, division: @senior_a, round_num: 6, category: @category1)
     end
     
     def delete_quizzes_for_present_event
@@ -42,12 +42,12 @@ module Contexts
 
     def create_quizzes_for_future_event
       #causes student_quizzes with nil fields
-      @quiz1f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 1)
-      @quiz2f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 2)
-      @quiz3f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 3)
-      @quiz4f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 4)
-      @quiz5f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 5)
-      @quiz6f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 6)
+      @quiz1f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 1, category: @category1)
+      @quiz2f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 2, category: @category2)
+      @quiz3f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 3, category: @category3)
+      @quiz4f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 4, category: @category1)
+      @quiz5f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 5, category: @category1)
+      @quiz6f = FactoryGirl.create(:quiz, event: @event3, division: @senior_a, round_num: 6, category: @category1)
     end
     
     def delete_quizzes_for_future_event

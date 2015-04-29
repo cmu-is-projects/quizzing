@@ -18,6 +18,7 @@
 				<th>Division</th>
 				<th>Category</th>
 				<th>Active</th>
+				<th>Edit</th>
 			</tr>
 		</thead>
 
@@ -27,8 +28,9 @@
 					<td><%= quiz.round_num %></td>
 					<td><%= quiz.room_num %></td>
 					<td><%= quiz.division.name %></td>
-					<td><%= quiz.category %></td>
+					<td><%= quiz.category.name %></td>
 					<td><%= quiz.active ? "Yes" : "No" %></td>
+					<td><%# link_to 'Edit', edit_quiz_path(quiz), class: "button tiny radius" %></td>
 				</tr>
 			<% end %>
 		</tbody>
