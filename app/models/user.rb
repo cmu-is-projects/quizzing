@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
   # get modules to help with some functionality
   include QuizHelpers::Validations
   include Activeable
@@ -25,8 +26,16 @@ class User < ActiveRecord::Base
 
   #Callbacks
   before_destroy :is_never_destroyable
+  before_save :downcase_user_name
 
   #Methods
+  def downcase_user_name
+    self.user_name = self.user_name.downcase
+  end
+
+  def self.authenticate(user_name,password)
+    find_by_user_name(user_name.downcase).try(:authenticate, password)
+  end
 
   def role?(authorized_role)
     return false if role.nil?

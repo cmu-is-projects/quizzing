@@ -63,8 +63,10 @@
     <!-- TODO: Add a toggle button here-->
   </p>
   
-  <%= link_to 'Edit', edit_team_path(@team) %> |
-  <%= link_to 'Back', teams_path %>
+  <% if logged_in? %>
+    <%= link_to 'Edit', edit_team_path(@team) %> |
+    <%= link_to 'Back', teams_path %>
+  <% end %>
 </div>
 
 <div style="width: 300px; border-style: groove; padding-left: 10px; padding-right:10px; margin-left: 6px; margin-right: 6px; float: right; text-align:center;">
@@ -72,14 +74,18 @@
     <strong>Members:</strong>
   </p>
   <hr>
-  <% if @team.students.size == 0 %>
-    This team has no students
+
+  <% students_found = false %>
+  <% @team.student_teams.each do |s| %>
+
+    <% if s.active %>
+      <%= link_to s.student.proper_name, student_path(s) %><br>
+      <% students_found = true %>
+    <% end %>
+
   <% end %>
-
-  <% @team.students.each do |s| %>
-
-    <%= link_to s.proper_name, student_path(s) %>
-
+  <% if !students_found %>
+    This team has no active members
   <% end %>
 
   <hr>
@@ -103,3 +109,4 @@
   <% end %>
 </div>
 <div>
+

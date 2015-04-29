@@ -1,22 +1,31 @@
 Quizzing::Application.routes.draw do
 
   # generated routes
-  resources :events
-  resources :teams
   resources :coaches
-  resources :users
+  resources :events
   resources :organizations
-  resources :students
   resources :quizzes
   resources :student_teams
+  resources :sessions
+  resources :students
+  resources :teams
+  resources :users
 
   # named routes
+  get 'user/edit' => 'users#edit', as: :edit_current_user
+  get 'login' => 'sessions#new', as: :login
+  get 'logout' => 'sessions#destroy', as: :logout
+  post   'login'   => 'sessions#create', as: :session_create
+  delete 'logout'  => 'sessions#destroy'
 
   patch 'active/:id' => 'students#active', as: :active
   patch 'inactive/:id' => 'students#inactive', as: :inactive
   patch 'toggle_student/:id' => 'students#toggle', as: :toggle
 
   get "standings/individual" => "standings#individual", as: :indiv_standings
+
+  # post "student_teams/:id" => 'students#create_student_team', as: :create_student_team
+  # patch "student_teams/:id" => 'students#update_student_team', as: :update_student_team
 
 
   # Set the root url

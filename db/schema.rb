@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330222533) do
+ActiveRecord::Schema.define(version: 20150408001025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,17 @@ ActiveRecord::Schema.define(version: 20150330222533) do
     t.integer "category_id"
   end
 
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+  add_index "roles", ["name"], name: "index_roles_on_name"
+
   create_table "settings", force: true do |t|
     t.date    "roster_lock_date"
     t.boolean "drop_lowest_score"
@@ -125,9 +136,9 @@ ActiveRecord::Schema.define(version: 20150330222533) do
 
   create_table "teams", force: true do |t|
     t.integer "division_id"
+    t.integer "organization_id"
     t.string  "name"
     t.boolean "active",          default: true
-    t.integer "organization_id"
   end
 
   create_table "users", force: true do |t|
@@ -136,5 +147,12 @@ ActiveRecord::Schema.define(version: 20150330222533) do
     t.string  "password_digest"
     t.boolean "active",          default: true
   end
+
+  create_table "users_roles", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
 
 end

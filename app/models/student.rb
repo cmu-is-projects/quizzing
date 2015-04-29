@@ -74,10 +74,11 @@ class Student < ActiveRecord::Base
     tmp
   end
 
-  def add_to_organization(organization)
+  def add_to_organization(current_user)
     os = OrganizationStudent.new
     os.student_id = self.id
-    os.organization_id = organization.id
+    org_id = Coach.all.where(user_id: current_user.id).first.organization_id
+    os.organization_id = org_id
     os.start_date = Date.today
     os.save!
   end
