@@ -36,8 +36,8 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
   task :symlink_shared do
-    run "cat /home/quizzing/apps/quizzing/shared/settings.yml"
-    run "ln -s /home/quizzing/apps/quizzing/shared/settings.yml /home/quizzing/apps/quizzing/releases/#{release_name}/config/"
+    run "ln -s /home/quizzing/apps/quizzing/shared/settings.yml /home/quizzing/apps/quizzing/releases/#{release_name}/config/settings.yml"
+    # run "ln -s /home/quizzing/apps/quizzing/shared/settings.yml /home/quizzing/apps/quizzing/releases/#{release_name}/config/"
   end
 end
 
