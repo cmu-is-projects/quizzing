@@ -1,4 +1,4 @@
-<%= simple_nested_form_for(@event, :html => {:multipart => true }) do |event_form| %>
+<%= simple_nested_form_for(@event, html: { class: 'form-horizontal' }) do |event_form| %>
   <div class="row">
     <div class="small-7 columns">
       <fieldset>
@@ -9,7 +9,8 @@
 
     <div class="small-5 columns">
         <div id="event_quizzes">
-          <% if controller.action_name=="new" or (controller.action_name=="edit" && @event.active) %> 
+          <% if controller.action_name=="new" or (controller.action_name=="edit") %>
+            <h3> Add Quiz to this Event </h3>
             <%= event_form.simple_fields_for :quiz do |quiz_form| %>
                <%= render :partial => "quiz_fields", :locals => { :f => quiz_form} %>
             <% end %> 
