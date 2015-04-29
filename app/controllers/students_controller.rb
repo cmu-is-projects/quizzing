@@ -39,11 +39,13 @@ class StudentsController < ApplicationController
     #@organizations = Organization.active.all
     if @student.current_student_team.is_a? NullStudentTeam
       @student_team = StudentTeam.new
-      @collection = @student.current_organization.teams.active.alphabetical
+      #@collection = @student.current_organization.teams.active.alphabetical
+      @collection = Team.not_at_capacity(@student.current_organization)
       @team_id = -1
     else
       @student_team = @student.current_student_team
-      @collection = @student.current_organization.teams.active.alphabetical.for_division(@student.current_team.division)
+      #@collection = @student.current_organization.teams.active.alphabetical.for_division(@student.current_team.division)
+      @collection = Team.not_at_capacity(@student.current_organization, @student.current_team.division)
       @team_id = @student.current_team.id
     end
   end
