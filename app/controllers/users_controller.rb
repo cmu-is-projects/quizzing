@@ -4,27 +4,42 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    if( !current_user.role?(:admin))
+      redirect_to login_url and return
+    end
     @users = User.all
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    if( !current_user.role?(:admin))
+      redirect_to login_url and return
+    end
   end
 
   # GET /users/new
   def new
+    if( !current_user.role?(:admin))
+      redirect_to login_url and return
+    end
     @user = User.new
   end
 
   # GET /users/1/edit
   def edit
+    if( !current_user.role?(:admin))
+      redirect_to login_url and return
+    end
     @user = current_user
   end
 
   # POST /users
   # POST /users.json
   def create
+    if( !current_user.role?(:admin))
+      redirect_to login_url and return
+    end
     @user = User.new(user_params)
     
     respond_to do |format|
@@ -42,6 +57,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    if( !current_user.role?(:admin))
+      redirect_to login_url and return
+    end
     @user = current_user
 
     respond_to do |format|
@@ -58,6 +76,9 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    if( !current_user.role?(:admin))
+      redirect_to login_url and return
+    end
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }
@@ -68,6 +89,9 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
+      if( !current_user.role?(:admin))
+        redirect_to login_url and return
+      end
       @user = User.find(params[:id])
     end
 

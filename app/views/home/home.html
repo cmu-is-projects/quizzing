@@ -1,6 +1,6 @@
 <!-- For now, everyone can see the general home. Login restrictions will be added in later -->
 
-<% if logged_in? && current_user.role?(:coach)%>
+<% if logged_in? && current_user.role?(:coach) %>
   <%= render :partial => 'coach_home' %>
 <% else %>
   <%= render :partial => 'general_home', locals: {upcoming_events: @upcoming_events} %>
