@@ -33,7 +33,9 @@ class Organization < ActiveRecord::Base
   scope :inactive, -> {where(active: false)}
   
   #Callbacks
+
   # before_save :get_organization_coordinates
+
 
   before_destroy :is_never_destroyable
   before_update :end_student_tenure_if_organization_made_inactive
@@ -79,6 +81,7 @@ class Organization < ActiveRecord::Base
     coord
   end
 
+  #Written by Melinda, we'll deal with if time permits Spr '15
   # def set_street_2_to_blank
   #   if self.street_1.blank? and self.street_2
   #     self.street_2 = ""

@@ -17,8 +17,7 @@ class StudentsController < ApplicationController
     @year_quizzer = YearQuizzer.new(@student)
     @all_student_quizzes = @student.student_quizzes
     @events = Event.all.chronological
-    #@num_rounds = @organization_students.to_a.first.quiz.num_rounds
-    #@accuracy_percentage = number_to_percentage(@quizzer.total_accuracy*100.0, precision: 1)
+    @declared_num_rounds = 6
     @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)
   end
 
@@ -40,11 +39,13 @@ class StudentsController < ApplicationController
     #@organizations = Organization.active.all
     if @student.current_student_team.is_a? NullStudentTeam
       @student_team = StudentTeam.new
-      @collection = @student.current_organization.teams.active.alphabetical
+      #@collection = @student.current_organization.teams.active.alphabetical
+      @collection = Team.not_at_capacity(@student.current_organization)
       @team_id = -1
     else
       @student_team = @student.current_student_team
-      @collection = @student.current_organization.teams.active.alphabetical.for_division(@student.current_team.division)
+      #@collection = @student.current_organization.teams.active.alphabetical.for_division(@student.current_team.division)
+      @collection = Team.not_at_capacity(@student.current_organization, @student.current_team.division)
       @team_id = @student.current_team.id
     end
   end

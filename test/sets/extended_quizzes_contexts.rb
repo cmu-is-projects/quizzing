@@ -15,6 +15,22 @@ module Contexts
       @year_quizzer_4 = nil      
     end
 
+    #written by Theophilus
+    def create_year_teams
+      @year_team_1 = YearTeam.new(@acac_jr1)
+      @year_team_2 = YearTeam.new(@acac_sr3)
+      @year_team_3 = YearTeam.new(@acac_sr1)
+      @year_team_4 = YearTeam.new(@somerset_sr1)
+    end
+
+    def remove_year_teams
+      @year_team_1 = nil          
+      @year_team_2 = nil 
+      @year_team_3 = nil
+      @year_team_4 = nil
+    end
+    #end written by Theophilus
+
     # assumes create_students, create_one_event (and related) already run
     def create_three_more_complete_quiz_contexts
       create_three_more_past_events
