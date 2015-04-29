@@ -21,8 +21,8 @@
 </p>
 
 <p>
-  <strong>Active:</strong>
-  <%= @coach.active %>
+  <strong>Active?:</strong>
+  <%= @coach.active ? "Yes" : "No" %>
 </p>
 
 <%= link_to 'Edit', edit_coach_path(@coach) %> |

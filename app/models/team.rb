@@ -17,6 +17,7 @@ class Team < ActiveRecord::Base
   accepts_nested_attributes_for :student_teams,
   reject_if: proc {|attr| attr['student_id'].blank?}
   accepts_nested_attributes_for :organization
+  accepts_nested_attributes_for :team_coaches
 
   #Validations
   validates_presence_of :division_id, :name, :organization_id

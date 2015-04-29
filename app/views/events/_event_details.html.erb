@@ -10,8 +10,8 @@
   <strong>Address:</strong>
   <%= "#{@event.organization.street_1}, #{@event.organization.city}, #{@event.organization.state}, #{@event.organization.zip}" %><br /><br />
 
-  <strong>Contact Person:</strong><br /><br />
   <!-- TODO: how to do this? put code in model or controller -->
+  <!--<strong>Contact Person:</strong><br /><br />-->
 
 <!--Theophilus start-->
 <!--copied from team standings which was copied from individual standings-->
@@ -40,7 +40,7 @@
             <% rank_counter+=1 %><!--first team's rank outputted as 1-->
             <td><%= rank_counter %></td>
             <td><%= link_to team.name, team_path(team) %></td>
-            <td><%= team.total_score %></td>
+            <td><%= team.total_et_points %></td>
           </tr>
         <% end %>
       </tbody>
