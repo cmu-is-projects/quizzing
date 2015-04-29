@@ -5,8 +5,8 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     @students = Student.all
-    @active_students = Student.active.alphabetical
-    @inactive_students = Student.inactive.alphabetical
+    @active_students = current_user.coach.organization.current_students.sort_by! {|n| n.last_name}
+    @inactive_students = current_user.coach.organization.students.inactive.sort_by! {|n| n.last_name}
   end
 
   # GET /students/1
@@ -57,23 +57,21 @@ class StudentsController < ApplicationController
     end
     @student = Student.new(student_params)
     # authorize! :create, @student
-      if @student.save
-        respond_to do |format|
-          @active_teams = Team.all.active
-          format.js
-        # format.html { redirect_to @student, notice: 'Student was successfully created.' }
-        # format.json { render action: 'show', status: :created, location: @student }
-
-        #@student.add_to_organization(current_user.organization)
+    if @student.save
+      respond_to do |format|
         @student.add_to_organization(current_user)
         format.html { redirect_to @student, notice: "#{@student.name} has been created." }
-        format.json { render action: 'show', status: :created, location: @student }
+        #format.json { render action: 'show', status: :created, location: @student }
+        @active_teams = Team.all.active
+        format.js
       end
-      else
+    else
         format.html { render action: 'new' }
         format.json { render json: @student.errors, status: :unprocessable_entity }
-      end
+    end
   end
+  
+
 
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
