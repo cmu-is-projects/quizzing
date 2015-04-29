@@ -26,6 +26,7 @@ class Team < ActiveRecord::Base
   
   #Scopes
   scope :alphabetical, -> {order("name")}
+  scope :for_division, -> (division) { where(division_id: division.id)}
   scope :active, -> {where(active: true)}
   scope :inactive, -> {where(active: false)}
   scope :for_division, -> (division) { where(division_id: division.id)}
@@ -33,7 +34,6 @@ class Team < ActiveRecord::Base
   #Methods
   validate :division_is_active_in_system
   validate :organization_is_active_in_system
-
 
   # Callbacks
   before_destroy :verify_that_there_are_no_scored_quizzes_for_team_this_year
@@ -43,9 +43,9 @@ class Team < ActiveRecord::Base
   def self.not_at_capacity(organization=nil, division=nil)
     tmp = Array.new
     if organization && division #if organization and division are provided
-      teams = organization.teams.alphabetical.for_division(division)
+      teams = organization.teams.active.alphabetical.for_division(division)
     elsif organization && !division #if only organization is provided
-      teams = organization.teams.alphabetical
+      teams = organization.teams.active.alphabetical
     else
       teams = Team.active.alphabetical.all
     end

@@ -8,6 +8,7 @@ class HomeController < ApplicationController
     end
     @inactive_students = Student.all.inactive
     @new_students = Student.new_students
+    @student_team = StudentTeam.new
   end
 
   def display

@@ -5,8 +5,8 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     @students = Student.all
-    @active_students = Student.active.alphabetical
-    @inactive_students = Student.inactive.alphabetical
+    @active_students = current_user.coach.organization.current_students.sort_by! {|n| n.last_name}
+    @inactive_students = current_user.coach.organization.students.inactive.sort_by! {|n| n.last_name}
   end
 
   # GET /students/1
@@ -17,8 +17,7 @@ class StudentsController < ApplicationController
     @year_quizzer = YearQuizzer.new(@student)
     @all_student_quizzes = @student.student_quizzes
     @events = Event.all.chronological
-    #@num_rounds = @organization_students.to_a.first.quiz.num_rounds
-    #@accuracy_percentage = number_to_percentage(@quizzer.total_accuracy*100.0, precision: 1)
+    @declared_num_rounds = 6
     @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)
   end
 
@@ -40,11 +39,13 @@ class StudentsController < ApplicationController
     #@organizations = Organization.active.all
     if @student.current_student_team.is_a? NullStudentTeam
       @student_team = StudentTeam.new
-      @collection = @student.current_organization.teams.active.alphabetical
+      #@collection = @student.current_organization.teams.active.alphabetical
+      @collection = Team.not_at_capacity(@student.current_organization)
       @team_id = -1
     else
       @student_team = @student.current_student_team
-      @collection = @student.current_organization.teams.active.alphabetical.for_division(@student.current_team.division)
+      #@collection = @student.current_organization.teams.active.alphabetical.for_division(@student.current_team.division)
+      @collection = Team.not_at_capacity(@student.current_organization, @student.current_team.division)
       @team_id = @student.current_team.id
     end
   end
@@ -57,23 +58,21 @@ class StudentsController < ApplicationController
     end
     @student = Student.new(student_params)
     # authorize! :create, @student
-      if @student.save
-        respond_to do |format|
-          @active_teams = Team.all.active
-          format.js
-        # format.html { redirect_to @student, notice: 'Student was successfully created.' }
-        # format.json { render action: 'show', status: :created, location: @student }
-
-        #@student.add_to_organization(current_user.organization)
+    if @student.save
+      respond_to do |format|
         @student.add_to_organization(current_user)
         format.html { redirect_to @student, notice: "#{@student.name} has been created." }
-        format.json { render action: 'show', status: :created, location: @student }
+        #format.json { render action: 'show', status: :created, location: @student }
+        @active_teams = Team.all.active
+        format.js
       end
-      else
+    else
         format.html { render action: 'new' }
         format.json { render json: @student.errors, status: :unprocessable_entity }
-      end
+    end
   end
+  
+
 
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json

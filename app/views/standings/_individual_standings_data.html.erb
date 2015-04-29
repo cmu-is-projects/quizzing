@@ -20,7 +20,6 @@
     <tbody>
       <% @year_quizzers.each do |year_quizzer| %>
         <tr>
-          <!--TODO: rank logic using a simple counter-->
           <% rank_counter+=1 %><!--first quizzer's rank outputted as 1-->
           <td><%= rank_counter %></td>
           <td><%= link_to year_quizzer.name, student_path(year_quizzer.quizzer) %></td>

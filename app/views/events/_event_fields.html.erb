@@ -1,0 +1,13 @@
+      <%= f.input :start_date, label: "Start Date", as: :string, :input_html => {:class => "datepicker"} %>
+      <br>
+      <%= f.input :end_date, label: "End Date", as: :string, :input_html => {:class => "datepicker"} %>
+      <br>
+      <% if @event.start_time.nil? %>
+      <%= f.input :start_time, collection: options_for_time_select %>
+      <% elsif !@event.start_time.nil? %>
+      <%= f.input :start_time, collection: options_for_time_select, selected: f.object.start_time.strftime("%H:%M:%S")  %>
+      <% end %>
+      <br>
+      <%= f.input :num_rounds, as: :string %>
+      <br>
+      <%= f.association :organization %>

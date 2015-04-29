@@ -70,6 +70,14 @@ class StudentQuizTest < ActiveSupport::TestCase
       assert_equal -20, @jimmy4.calculate_score # num_correct: 0, num_attempts: 3, num_fouls: 0
       assert_equal -10, @jimmy5.calculate_score # num_correct: 0, num_attempts: 2, num_fouls: 2
       assert_equal 0, @jimmy6.calculate_score   # num_correct: 0, num_attempts: 1, num_fouls: 1
+
+      # students with nil scores
+      
+      create_student_quizzes_with_no_score_yet
+      assert_equal nil, @alex7.calculate_score
+      assert_equal nil, @alex8.calculate_score
+      
+      delete_student_quizzes_with_no_score_yet
     end
 
     should "have scores calculated upon either create or edit" do
@@ -81,12 +89,12 @@ class StudentQuizTest < ActiveSupport::TestCase
     end
 
     should "have class method to get all student_quizzes for an event" do
-      create_quizzes_for_future_event
+      
       create_student_quizzes_with_no_score_yet
       assert_equal 24, StudentQuiz.all.size
       assert_equal 18, StudentQuiz.for_event(@event).all.size
       delete_student_quizzes_with_no_score_yet
-      delete_quizzes_for_future_event
+      
     end
 
     should "have class method to get all student_quizzes for a student" do
