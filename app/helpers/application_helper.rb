@@ -14,7 +14,8 @@ module ApplicationHelper
     # will return an array with key being team_name - division_name so
     # coach can see the divisions and choose the right team
   def get_team_options(student)
-    Team.active.not_at_capacity(student.current_organization).map{|t| ["#{t.name} - (#{t.division.name})", t.id] }
+    Team.active.not_at_capacity(student.current_organization).where(map{|t| ["#{t.name} - (#{t.division.name})", t.id] }
+    	#student.grade if student.grade < senior_a.division.start_grade, display only junior division else display senior_a and senior_b
   end
 
 end
