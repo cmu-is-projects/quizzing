@@ -3,8 +3,6 @@ class HomeController < ApplicationController
   	# all events for right now
   	@events = Event.all 
     @upcoming_events = Event.upcoming.chronological.to_a
-    @active_teams = Team.all.active
-    @inactive_students = Student.all.inactive
     @new_students = Student.new_students
     @student_team = StudentTeam.new
   end
