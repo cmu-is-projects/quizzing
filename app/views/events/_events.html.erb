@@ -6,7 +6,7 @@
     <tr>
       <th width="140">Date</th>
       <th width="280">Location</th>
-      <% if logged_in? %>
+      <% if current_user.role?(:admin) %>
       <th></th>
       <% end %>
     </tr>
@@ -19,7 +19,7 @@
         <td><%#= link_to event.organization.name, organization_path(event.organization) %>
             <%= event.organization.name %>
         </td>
-	<% if logged_in? %>
+	<% if current_user.role?(:admin) %>
         <td><%= link_to 'Edit', edit_event_path(event), class: "button tiny radius" %></td>
         <!--<td><%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
 	<% end %>
