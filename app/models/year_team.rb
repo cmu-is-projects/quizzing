@@ -71,11 +71,11 @@ class YearTeam
     teams_this_year = self.get_all_teams_that_quizzed_in_year(quiz_year)
     teams = Array.new
     teams_this_year.each do |team_id|
-      year_team = YearTeam.new(Team.find(|team_id|), quiz_year)
+      year_team = YearTeam.new(Team.find(team_id), quiz_year)
       teams << year_team if year_team.divsion == divison
     end
     # Do we want to be sorting by something else/?
-    sorted = teams.sort_by(|yt| yt.adjusted_points}.reverse
+    sorted = teams.sort_by{|yt| yt.adjusted_points}.reverse
   end
 
 end
