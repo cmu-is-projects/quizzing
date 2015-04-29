@@ -1,0 +1,41 @@
+<!--based off app/views/home/_quizzes_without_team.html.erb-->
+
+<%# if logged_in? && (current_user.role?(:admin) || current_user.role?(:area_admin)) %>
+<!-- TODO: Ajax button to add a new quiz -->
+<%= link_to(new_quiz_path, id: 'new_quiz_link', class: 'button tiny radius', remote: true) do %>
+  <!-- <i class="fa fa-clipboard"></i> -->
+  &nbsp;Add New Quiz
+  <% end %>
+<%# end %><!--authorization-->
+
+<% unless @quizzes.empty? %>
+	<h3>Quizzes</h3><br />
+	<table>
+	   	<thead>
+	   		<tr>
+				<th>Round Number</th>
+				<th>Room Number</th>
+				<th>Division</th>
+				<th>Category</th>
+				<th>Active</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @quizzes.each do |quiz| %>
+				<tr>
+					<td><%= quiz.round_num %></td>
+					<td><%= quiz.room_num %></td>
+					<td><%= quiz.division.name %></td>
+					<td><%= quiz.category %></td>
+					<td><%= quiz.active ? "Yes" : "No" %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+				<!-- doesn't work -->
+						<!--<div class="form-actions">
+							<%#= f.submit nil, class: 'button' %>
+						</div>-->
+					<%# end %>
+<% end %>
