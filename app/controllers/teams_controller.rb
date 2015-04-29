@@ -37,6 +37,9 @@ class TeamsController < ApplicationController
     if(current_user.role == "guest")
       redirect_to login_url and return
     end
+    if(!current_user.role?(:admin) && current_user.coach.organization.id != @team.organization.id)
+      redirect_to team_url(@team) and return
+    end
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
@@ -45,6 +48,10 @@ class TeamsController < ApplicationController
     @student_teams = @team.student_teams.where(active: true).to_a
     (0..(4-@student_teams.size)).each do
       @student_teams << @team.student_teams.build
+    end
+    @team_coaches = @team.team_coaches.where(end_date: nil).to_a
+    (0..(0-@team_coaches.size)).each do
+      @team_coaches << @team.team_coaches.build
     end
   end
 
@@ -77,6 +84,9 @@ class TeamsController < ApplicationController
     if(current_user.role == "guest")
       redirect_to login_url and return
     end
+    if(current_user.coach.organization.id != @team.organization.id)
+      redirect_to home_path and return
+    end
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
@@ -90,6 +100,7 @@ class TeamsController < ApplicationController
     @students_to_add = []
     @students_to_remove = []
     @team_c = nil
+    @team_a = true
 
     team_params.each{|p|
       if( p[0] == "student_teams_attributes")
@@ -97,8 +108,10 @@ class TeamsController < ApplicationController
           @team_ps << e[1][:student_id].to_i unless e[1][:student_id] == ""
         end
 
-      elsif( p[0] == "team_coaches")
-        @team_c = p[1][:coach_id].to_i unless p[1][:coach_id] == ""
+      elsif( p[0] == "team_coaches_attributes")
+        @team_c = p[1]["0"][:coach_id].to_i unless p[1]["0"][:coach_id] == ""
+      elsif(p[0] == "active")
+        @team_a = (p[1] == "0") # 0 for active, 1 for inactive
       end
     }
 
@@ -131,7 +144,6 @@ class TeamsController < ApplicationController
     #     format.json { render json: @team.errors, status: :unprocessable_entity }
     #   end
 
-    team_params[:student_teams_attributes] = nil
 
     @students_to_add.each do |s|
       StudentTeam.create(student_id: s, team_id: @team.id) unless s == ""
@@ -148,9 +160,16 @@ class TeamsController < ApplicationController
         @coach_changed = true
       end
     end
-    if(@coach_changed)
-      @team.team_coaches.create!(coach_id: @team_c)
+    if(!@team.active)
+      @team.active = true
+      @team.save!
     end
+    if(@coach_changed)
+      @team.team_coaches.create!(team_id: @team.id, coach_id: @team_c)
+    end
+
+    @team.active = @team_a
+    @team.save!
 
     respond_to do |format|    
       format.html { redirect_to @team, notice: 'Team was successfully updated.'}
@@ -162,6 +181,9 @@ class TeamsController < ApplicationController
   def destroy
     if(current_user.role == "guest")
       redirect_to login_url and return
+    end
+    if(current_user.coach.organization.id != @team.organization.id)
+      redirect_to home_path and return
     end
     @team.destroy
     respond_to do |format|
@@ -185,6 +207,7 @@ class TeamsController < ApplicationController
                                    :organization_id,
                                    :students,
                                    team_coaches: [:coach_id],
+                                   team_coaches_attributes: [:coach_id],
                                     student_teams_attributes: [:student_id]
                                    )
     end

@@ -37,14 +37,10 @@
 	    input_html: {value: @team.id}%>
       <% end %>
 
-      <% (0..(0-@team.coaches.size)).each do %>
-        <% @team.coaches.build %>
-      <% end %>
-
       <b>Team coach:</b>
-      <%= f.simple_fields_for :team_coaches do |builder| %>
+      <%= f.simple_fields_for :team_coaches, @team_coaches do |builder| %>
         <%= builder.select :coach_id, 
-	    @coaches.alphabetical.map{|c| [c.last_name+", "+c.first_name,
+	    @coaches.active.alphabetical.map{|c| [c.last_name+", "+c.first_name,
 	                                   c.id]} %>
       <% end %>
 
