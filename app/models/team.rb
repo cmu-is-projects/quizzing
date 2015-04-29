@@ -17,6 +17,7 @@ class Team < ActiveRecord::Base
   accepts_nested_attributes_for :student_teams,
   reject_if: proc {|attr| attr['student_id'].blank?}
   accepts_nested_attributes_for :organization
+  accepts_nested_attributes_for :team_coaches
 
   #Validations
   validates_presence_of :division_id, :name, :organization_id
@@ -25,6 +26,7 @@ class Team < ActiveRecord::Base
   
   #Scopes
   scope :alphabetical, -> {order("name")}
+  scope :for_division, -> (division) { where(division_id: division.id)}
   scope :active, -> {where(active: true)}
   scope :inactive, -> {where(active: false)}
   scope :for_division, -> (division) { where(division_id: division.id)}
@@ -32,7 +34,6 @@ class Team < ActiveRecord::Base
   #Methods
   validate :division_is_active_in_system
   validate :organization_is_active_in_system
-
 
   # Callbacks
   before_destroy :verify_that_there_are_no_scored_quizzes_for_team_this_year

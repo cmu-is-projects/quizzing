@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.13'
@@ -67,7 +67,7 @@ gem 'time_date_helpers', '0.0.2'
 
 gem 'cancancan'
 gem 'rolify'
-gem 'best_in_place'
+gem 'best_in_place', github: 'cmu-is-projects/best_in_place'
 
 # Additional gems that are very useful in Rails development
 group :development do

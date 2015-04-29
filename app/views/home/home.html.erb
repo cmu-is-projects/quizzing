@@ -1,0 +1,6 @@
+<% if logged_in? && current_user.role?(:coach)%>
+  <%= render :partial => 'coach_home' %>
+<% else %>
+  <%= render :partial => 'general_home', locals: {upcoming_events: @upcoming_events} %>
+<% end %>
+

@@ -14,7 +14,8 @@ class EventQuizzer
   attr_reader :student_quizzes
 
   def total_points
-    student_quizzes.inject(0){|sum, quiz| sum += quiz.score}
+    #Actually somehow passes tests with just student_quizzes.inject(0){|sum, sq| sum += sq.score}
+    student_quizzes.inject(0){|sum, sq| sum += (sq.score.nil? ? 0 : sq.score)}
   end
 
   def average_points
@@ -28,8 +29,8 @@ class EventQuizzer
 
   def accuracy
     # round accuracy to 3 decimal places
-    total_correct = student_quizzes.inject(0){|sum, quiz| sum += quiz.num_correct}
-    total_attempts = student_quizzes.inject(0){|sum, quiz| sum += quiz.num_attempts}
+    total_correct = student_quizzes.inject(0){|sum, sq| sum += sq.num_correct}
+    total_attempts = student_quizzes.inject(0){|sum, sq| sum += sq.num_attempts}
     if total_attempts.zero?
       acc_rate = 0.0
     else
@@ -37,14 +38,15 @@ class EventQuizzer
     end
   end
 
+  #the below could/should have been used in student show; forgot to make use of -Theophilus, Spr '15
   def get_all_student_quizzes_for_student_in_this_event
     student_quizzes = StudentQuiz.for_student(quizzer).for_event(event).by_round_num.to_a
   end
 
   def self.get_all_quizzers_for_event(event)
-    all_student_at_event = StudentQuiz.for_event(event).map(&:student_id).uniq
+    all_students_at_event = StudentQuiz.for_event(event).map(&:student_id).uniq
     quizzers = Array.new
-    all_student_at_event.each do |stu_id|
+    all_students_at_event.each do |stu_id|
       event_quizzer = EventQuizzer.new(Student.find(stu_id), event)
       quizzers << event_quizzer
     end

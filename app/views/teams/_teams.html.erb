@@ -2,7 +2,7 @@
 
 <!-- TODO: Organization Picker & AJAX-->
 
-<% @divisions.active.alphabetical.each do |d| %>
+<% @divisions.each do |d| %>
   <div style="background-color: #61b6d9; width:100%; text-align:center; border-top-left-radius: 50px; border-top-right-radius: 50px;">
     <b style="color:white; width:100%;"><%= d.name %></b>
   </div>
@@ -17,7 +17,7 @@
       </thead>
 
       <tbody>
-	<% @teams.each do |team| %>
+	<% @active_teams.each do |team| %>
 	<% if team.division == d%>
 	<tr>
           <td><%= link_to team.name, team_path(team) %></td>
