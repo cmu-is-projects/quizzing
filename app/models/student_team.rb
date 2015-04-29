@@ -29,12 +29,13 @@ class StudentTeam < ActiveRecord::Base
     is_active_in_system(:team)
   end
 
-  def student_appropriate_for_team
-    return true if self.student.is_a?(NullStudent) || self.team.is_a?(NullTeam)
-    unless (self.team.division.start_grade..self.team.division.end_grade).cover?(self.student.grade)
-      errors.add(:base, "Student is not eligible for team")
-    end
-  end
+  #TODO1: Currently not working
+  # def student_appropriate_for_team
+  #   return true if self.student.is_a?(NullStudent) || self.team.is_a?(NullTeam)
+  #   unless (self.team.division.start_grade..self.team.division.end_grade).cover?(self.student.grade)
+  #     errors.add(:base, "Student is not eligible for team")
+  #   end
+  # end
 
   def remove_student_from_previous_team_assignment
     previous_assignment = self.student.student_teams.where(end_date: nil).first
