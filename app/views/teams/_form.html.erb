@@ -12,7 +12,45 @@
       </div>
     <% end %>
 
-    <%= f.input :name %><br>
+    <%= f.input :name, 
+	label:"Team Name", 
+	label_html: {style: 'font-weight: bold;font-size: 16px;'} %>
+
+    <b>Organization:</b>
+    <%= f.select :organization_id, 
+	@organizations.active.map{|o| [o.name, o.id]} %>
+
+    <b>Division:</b>
+    <%= f.select :division_id,
+	@divisions.active.alphabetical.map{|d| [d.name, d.id]} %>
+
+    <% (0..(4-@team.student_teams.size)).each do %>
+      <% @team.student_teams.build %>
+    <% end %>
+    <b>Students in roster:</b>
+    <!-- TODO1: Students in drop-down menu need to appropriate division-wise and organization-wise -->
+    <!-- TODO1: When adding students, the students already on the team shouldn't be included twice -->
+    <%= f.simple_fields_for :student_teams do |builder| %>
+      <%= builder.select :student_id, 
+	  @students.active.alphabetical.map{|s| 
+	    [s.last_name+", "+s.first_name,
+	    s.id]},
+	  include_blank: true%>
+      <%= builder.input :team_id, 
+	  as: :hidden, 
+	  input_html: {value: @team.id}%>
+    <% end %>
+
+    <% (0..(0-@team.coaches.size)).each do %>
+      <% @team.coaches.build %>
+    <% end %>
+    <b>Team coach:</b>
+    <%= f.fields_for :coaches do |builder| %>
+      <%= builder.select :id, 
+	  @coaches.alphabetical.map{|c| [c.last_name+", "+c.first_name,
+	                                 c.id]} %>
+    <% end %>
+
     <%= f.input :active %><br>
 
     <div class="form-actions">

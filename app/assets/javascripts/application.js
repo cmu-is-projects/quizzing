@@ -11,12 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require_tree .
-//= require jquery-ui
-
+//= require turbolinks
+//= require best_in_place
 
 $(function(){ $(document).foundation(); });
 
@@ -30,4 +30,9 @@ $(function() {
 	$(".datepicker").datepicker({
 		format: 'mm/dd/YYYY'
 	});
+});
+
+$(document).ready(function() {
+  /* Activating Best In Place */
+    jQuery(".best_in_place").best_in_place();
 });
