@@ -22,6 +22,7 @@ Quizzing::Application.routes.draw do
   patch 'inactive/:id' => 'students#inactive', as: :inactive
   patch 'toggle_student/:id' => 'students#toggle', as: :toggle
 
+  get 'home' => 'home#home', as: :home
   get "standings/individual" => "standings#individual", as: :indiv_standings
 
   # post "student_teams/:id" => 'students#create_student_team', as: :create_student_team
@@ -29,7 +30,7 @@ Quizzing::Application.routes.draw do
 
 
   # Set the root url
-  root to: 'home#home', as: :home
+  root to: 'home#home'
 
 
   # default (error_handling)
