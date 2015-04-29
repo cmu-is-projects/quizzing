@@ -8,7 +8,7 @@
 		<h3>Active Students</h3>
 		<!-- TODO1: @user.organization.current_teams.each-->
 		<% @active_teams.each do |team| %>
-		<% unless team.students.empty? %>
+		<% unless team.student_teams.empty? %>
 		<table class="table table-striped" id="roster"> [<%= team.division.name %>] <%= team.name %> 
 			<thead>
 				<th>Student Name</th>
