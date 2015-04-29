@@ -47,7 +47,7 @@ class YearTeam
       events = Event.where("start_date >= ? and end_date <= ?", quiz_year.start_date, Date.today)
     end
     events
-  
+  end
   # The other file has attr_reader stuff here. What is it?
 
   # What's the inject stuff in the other file? What does this return, if 
