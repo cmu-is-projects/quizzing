@@ -6,7 +6,6 @@
       <th>Name</th>
       <th>Team</th>
       <th>Division</th>
-      <th></th>
     </tr>
   </thead>
 
@@ -16,7 +15,9 @@
         <td><%= link_to student.name, student_path(student) %></td>
         <td><%= student.current_team.name %></td>
         <td><%= student.current_team.division.name %></td>
-        <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
+	<% if current_user.role != "guest" && current_user.coach.organization_id == student.current_organization.id %>
+          <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
+	<% end %>
       </tr>
     <% end %>
   </tbody>

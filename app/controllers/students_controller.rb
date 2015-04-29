@@ -5,8 +5,8 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     @students = Student.all
-    @active_students = Student.active.alphabetical
-    @inactive_students = Student.inactive.alphabetical
+    @active_students = current_user.coach.organization.current_students.sort_by! {|n| n.last_name}
+    @inactive_students = current_user.coach.organization.students.inactive.sort_by! {|n| n.last_name}
   end
 
   # GET /students/1
@@ -24,6 +24,9 @@ class StudentsController < ApplicationController
 
   # GET /students/new
   def new
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @student = Student.new
     # authorize! :new, @student
     @inactive_students = Student.inactive.alphabetical
@@ -31,6 +34,9 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     #@organizations = Organization.active.all
     if @student.current_student_team.is_a? NullStudentTeam
       @student_team = StudentTeam.new
@@ -46,6 +52,9 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.json
   def create
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @student = Student.new(student_params)
     # authorize! :create, @student
     if @student.save
@@ -67,6 +76,9 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
@@ -79,6 +91,9 @@ class StudentsController < ApplicationController
   end
 
   def toggle
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @student_team = @student.current_student_team
     if params[:status] == 'inactive'
       @student_team.active = false
@@ -93,6 +108,9 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.json
   def destroy
+    if(current_user.role == "guest")
+      redirect_to login_url and return
+    end
     @student.destroy
     respond_to do |format|
       format.html { redirect_to students_url }

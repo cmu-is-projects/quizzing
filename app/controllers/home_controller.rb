@@ -1,9 +1,11 @@
 class HomeController < ApplicationController
   def home
-  	# all events for right now
-  	@events = Event.all 
+    # all events for right now
+    @events = Event.all 
     @upcoming_events = Event.upcoming.chronological.to_a
-    @active_teams = Team.all.active
+    if(current_user.role != "guest")
+      @active_teams = Team.all.where(organization_id: current_user.coach.organization_id).active
+    end
     @inactive_students = Student.all.inactive
     @new_students = Student.new_students
     @student_team = StudentTeam.new

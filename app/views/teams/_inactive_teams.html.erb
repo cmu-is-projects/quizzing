@@ -1,0 +1,13 @@
+<% unless @inactive_teams.empty? %>
+  <!-- TODO: <br /> should be placed in CSS eventually -->
+  <!-- TODOA: add Ajax for toggling student active -->
+  <br /><br /><br />
+  <div class="panel clearfix">
+    <h5>Inactive Teams</h5>
+    <ul>
+      <% @inactive_teams.each do |team| %>
+        <li><%= link_to team.name, team_path(team) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
