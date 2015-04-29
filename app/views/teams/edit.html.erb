@@ -1,6 +1,8 @@
-<h1>Editing team</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+<%# if can? :update, @team %>
+  <h1>Editing team</h1>
+  
+  <%= render 'form' %>
+  
+<%# else %>
+  <!--h1>You cannot do that!</h2><br-->
+<%# end %>

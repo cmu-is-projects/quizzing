@@ -1,8 +1,8 @@
-  class Team < ActiveRecord::Base
+class Team < ActiveRecord::Base
   # get modules to help with some functionality
   include QuizHelpers::Validations
   include Activeable
-
+  
   #Relationships
   belongs_to :organization
   belongs_to :division
@@ -12,6 +12,12 @@
   has_many :quizzes, through: :quiz_teams
   has_many :team_coaches
   has_many :coaches, through: :team_coaches
+
+  accepts_nested_attributes_for :coaches
+  accepts_nested_attributes_for :student_teams,
+  reject_if: proc {|attr| attr['student_id'].blank?}
+  accepts_nested_attributes_for :organization
+  accepts_nested_attributes_for :team_coaches
 
   #Validations
   validates_presence_of :division_id, :name, :organization_id
@@ -37,9 +43,9 @@
   def self.not_at_capacity(organization=nil, division=nil)
     tmp = Array.new
     if organization && division #if organization and division are provided
-      teams = organization.teams.alphabetical.for_division(division)
+      teams = organization.teams.active.alphabetical.for_division(division)
     elsif organization && !division #if only organization is provided
-      teams = organization.teams.alphabetical
+      teams = organization.teams.active.alphabetical
     else
       teams = Team.active.alphabetical.all
     end
@@ -67,6 +73,9 @@
 
   private
   def division_is_active_in_system
+    if(:division.nil? || :division.blank?)
+      self.division = Division.all.where(:id => self.division_id)
+    end
     is_active_in_system(:division)
   end
 

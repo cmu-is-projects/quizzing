@@ -12,7 +12,7 @@ class QuizTeam < ActiveRecord::Base
   scope :by_round_num, -> { joins(:quiz).order('round_num') }
 
   # TODO?: Need to calculate points from raw scores, challenges, and fouls
-  before_save :retreive_raw_score
+  before_save :retreive_qt_points
 
   def self.for_event(event)
     QuizTeam.joins(:quiz).where('quizzes.event_id = ?', event.id)
@@ -23,8 +23,8 @@ class QuizTeam < ActiveRecord::Base
   end
 
   # not sure if we want this private or not yet...
-  def retreive_raw_score
-    return self.raw_score
+  def retreive_qt_points
+    return self.points
   end
 
   private

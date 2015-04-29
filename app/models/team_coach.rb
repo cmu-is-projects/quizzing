@@ -4,6 +4,7 @@ class TeamCoach < ActiveRecord::Base
 
   belongs_to :team
   belongs_to :coach
+  accepts_nested_attributes_for :coach
 
   validate :coach_is_active_in_system
   validate :team_is_active_in_system

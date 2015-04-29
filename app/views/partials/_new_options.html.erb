@@ -1,4 +1,4 @@
-<% if logged_in? %>
+<% if !current_user.role?("guest") %>
   <!-- Add a button for new instances of object -->
   <%= link_to(eval("new_#{model_name}_path"), class: "button radius") do %>
     <!-- <i class="fa fa-plus"></i> -->
