@@ -111,7 +111,7 @@ class TeamsController < ApplicationController
       elsif( p[0] == "team_coaches_attributes")
         @team_c = p[1]["0"][:coach_id].to_i unless p[1]["0"][:coach_id] == ""
       elsif(p[0] == "active")
-        @team_a = (p[1] == "0") # 0 for active, 1 for inactive
+        @team_a = (p[1] == "1") # 1 for active, 0 for inactive
       end
     }
 
