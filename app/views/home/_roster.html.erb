@@ -8,23 +8,25 @@
 		<h3>Active Students</h3>
 		<!-- TODO1: @user.organization.current_teams.each-->
 		<% @active_teams.each do |team| %>
-		<% unless team.students.empty? %>
+		<% unless team.student_teams.empty? %>
 		<table class="table table-striped" id="roster"> [<%= team.division.name %>] <%= team.name %> 
 			<thead>
 				<th>Student Name</th>
 				<th>Present/Absent</th>
 			</thead>
-			<% team.students.each do |student| unless student.active == false %>
-			<tbody>
-				<td><%= link_to student.proper_name, student_path(student) %></td>
-				<% student_team = student.current_student_team %>
-				<% if student_team.active? %> <!-- TODOA: If student is absent, label should change? how clear is it?-->
-				<td class="centered"><%= link_to(image_tag("icons/check_green.gif"), toggle_path(student, status: 'inactive'), remote: true, method: 'patch') %></td>
-				<% else %>
-				<td class="centered"><%= link_to(image_tag("icons/check_black.gif"), toggle_path(student, status: 'active'), remote: true, method: 'patch') %></td>
-				<% end %>
-			</tbody>
-			<% end %>
+			<% team.student_teams.active.each do |st| %>
+			  <% student = st.student %>
+		          <% unless !student.active %>
+			    <tbody>
+			      <td><%= link_to student.proper_name, student_path(student) %></td>
+			      <% student_team = student.current_student_team %>
+			      <% if student_team.active? %> <!-- TODOA: If student is absent, label should change? how clear is it?-->
+			        <td class="centered"><%= link_to(image_tag("icons/check_green.gif"), toggle_path(student, status: 'inactive'), remote: true, method: 'patch') %></td>
+			      <% else %>
+			        <td class="centered"><%= link_to(image_tag("icons/check_black.gif"), toggle_path(student, status: 'active'), remote: true, method: 'patch') %></td>
+			      <% end %>
+			    </tbody>
+			  <% end %>
 			<% end %>
 		</table>
 		<div class="form-actions">

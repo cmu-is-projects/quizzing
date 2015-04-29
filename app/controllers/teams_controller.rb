@@ -43,7 +43,8 @@ class TeamsController < ApplicationController
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
-    @students = Student.all
+    @ineligable_students = StudentTeam.all.where(active: true).where("team_id != :t", {t: @team.id}).pluck(:student_id)
+    @students = Student.all.where('id NOT IN (?)', @ineligable_students)
 
     @student_teams = @team.student_teams.where(active: true).to_a
     (0..(4-@student_teams.size)).each do
@@ -105,7 +106,7 @@ class TeamsController < ApplicationController
     team_params.each{|p|
       if( p[0] == "student_teams_attributes")
         p[1].to_a.each do |e|
-          @team_ps << e[1][:student_id].to_i unless e[1][:student_id] == ""
+          @team_ps << e[1][:student_id].to_i unless e[1][:student_id] == "" || @team_ps.include?(e[1][:student_id].to_i)
         end
 
       elsif( p[0] == "team_coaches_attributes")
@@ -115,8 +116,8 @@ class TeamsController < ApplicationController
       end
     }
 
-    unless @team.students.nil?
-      @team.students.pluck(:id).each do |id|
+    unless @team.student_teams.nil?
+      @team.student_teams.active.pluck(:student_id).each do |id|
         @team_ss << id
       end
     end
