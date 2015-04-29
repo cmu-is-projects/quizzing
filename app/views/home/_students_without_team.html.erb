@@ -29,7 +29,7 @@
 					<%= f.input :student_id, as: :hidden, input_html: {value: student.id} %>
 							<!-- Add new team -->
 							<td><%= f.input :team_id, label: false, collection: get_team_options(student), prompt: "Select team" %>
-							<%= f.submit nil, class: 'button tiny radius' %></td> 
+							<%= f.submit 'Add to Team', class: 'button tiny radius'%></td> 
 				</tr>
 				<% end %>
 			<% end %>
