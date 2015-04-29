@@ -7,7 +7,8 @@
 	<div class = "content active" id = "activeroster">
 		<h3>Active Students</h3>
 		<!-- TODO1: @user.organization.current_teams.each-->
-		<% @active_teams.each do |team| %>
+
+		<% current_user.coach.organization.teams.active.each do |team| %>
 		<% unless team.students.empty? %>
 		<table class="table table-striped" id="roster"> [<%= team.division.name %>] <%= team.name %> 
 			<thead>
