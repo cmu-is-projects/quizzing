@@ -4,8 +4,10 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @teams = Team.all
-    @divisions = Division.all
+    @teams = current_user.coach.organization.teams
+    @active_teams = @teams.active.sort_by! {|n| n.name}
+    @inactive_teams = @teams.inactive.sort_by! {|n| n.name}
+    @divisions = @teams.active.map {|d| d.division}.uniq
   end
 
   # GET /teams/1

@@ -5,8 +5,8 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     @students = Student.all
-    @active_students = Student.active.alphabetical
-    @inactive_students = Student.inactive.alphabetical
+    @active_students = current_user.coach.organization.current_students.sort_by! {|n| n.last_name}
+    @inactive_students = current_user.coach.organization.students.inactive.sort_by! {|n| n.last_name}
   end
 
   # GET /students/1
