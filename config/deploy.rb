@@ -37,7 +37,7 @@ namespace :deploy do
   end
   task :symlink_shared do
     # run "cp /home/#{user}/apps/#{application}/shared/settings.yml /home/#{user}/apps/#{application}/releases/#{release_name}/config/"
-    run "ln -sf /home/#{user}/apps/#{application}/shared/settings.yml /home/#{user}/apps/#{application}/releases/#{release_name}/config/"
+    run "ln -nsf /home/#{user}/apps/#{application}/shared/settings.yml /home/#{user}/apps/#{application}/releases/#{release_name}/config/"
   end
 end
 
