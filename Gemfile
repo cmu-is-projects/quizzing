@@ -79,7 +79,7 @@ group :development do
   gem 'wirble', '0.1.3'
   gem 'hirb', '0.7.2'
   gem 'faker', '1.4.3'
-  gem 'capistrano', '2.15.5'
+  gem 'capistrano', '2.13.5'
 end
 
 # Gems used only in testing
