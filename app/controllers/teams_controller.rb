@@ -127,6 +127,8 @@ class TeamsController < ApplicationController
       @students_to_remove.each do |r|
         if(st.student_id == r)
           st.make_inactive
+          st.end_date = Date.today
+          st.save!
         end
       end
     end
