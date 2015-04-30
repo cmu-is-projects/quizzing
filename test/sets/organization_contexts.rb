@@ -15,7 +15,7 @@ module Contexts
       create_one_organization
       sleep 1
       @somerset = FactoryGirl.create(:organization, name: "Somerset Alliance Church", short_name: "Somerset")
-      # sleep 1
+      sleep 1
       @grove_city = FactoryGirl.create(:organization, name: "Grove City Church", short_name: "Grove City", active: false)
       sleep 1
     end
