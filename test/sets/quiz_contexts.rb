@@ -9,7 +9,7 @@ module Contexts
       @quiz4 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 4, category: @category1)
       @quiz5 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 5, category: @category1)
       @quiz6 = FactoryGirl.create(:quiz, event: @event, division: @senior_a, round_num: 6, category: @category1)
-      @quiz_inactive = FactoryGirl.create(:quiz, event: @event, division: @senior_a, active: false)
+      @quiz_inactive = FactoryGirl.create(:quiz, event: @event, division: @senior_a, active: false, category: @category1)
     end
     
     def delete_quizzes_for_past_event

@@ -1,28 +1,29 @@
 <%= simple_nested_form_for(@event, html: { class: 'form-horizontal' }) do |event_form| %>
   <div class="row">
+
     <div class="small-7 columns">
       <fieldset>
-          <h3><%= controller.action_name.capitalize %> Event</h3>
-          <%= render :partial => "event_fields", :locals => { :f => event_form } %>
+        <h3><%= controller.action_name.capitalize %> Event</h3>
+        <%= render :partial => "event_fields", :locals => { :f => event_form } %>
       </fieldset>
     </div>
 
-    <div class="small-5 columns">
-        <div id="event_quizzes">
-          <% if controller.action_name=="new" or (controller.action_name=="edit") %>
-            <h3> Add Quiz to this Event </h3>
-            <%= event_form.simple_fields_for :quiz do |quiz_form| %>
-               <%= render :partial => "quiz_fields", :locals => { :f => quiz_form} %>
-            <% end %> 
-          <% end %>
-        </div> 
+<!--     <div class="small-5 columns">
+      <div id="event_quizzes">
+        <%# if controller.action_name=="new" or (controller.action_name=="edit") %>
+          <h3> Add Quiz to this Event </h3>
+          <%=# event_form.simple_fields_for :quiz do |quiz_form| %>
+            <%=# render :partial => "quiz_fields", :locals => { :f => quiz_form} %>
+          <%# end %>
+        <%# end %>
       </div>
-    </div>
-   
+    </div> -->
 
-    <div class="form-actions">
-      <%= event_form.submit nil, class: 'button radius' %>
-      <%= link_to 'Cancel', events_path, :class => 'button secondary radius' %>
-    </div>
+  </div>
+  
+  <div class="form-actions">
+    <%= event_form.submit nil, class: 'button radius' %>
+    <%= link_to 'Cancel', events_path, :class => 'button secondary radius' %>
+  </div>
 
 <% end %>
