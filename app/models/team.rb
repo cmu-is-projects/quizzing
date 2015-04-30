@@ -27,9 +27,6 @@ class Team < ActiveRecord::Base
   #Scopes
   scope :alphabetical, -> {order("name")}
   scope :for_division, -> (division) { where(division_id: division.id)}
-  scope :active, -> {where(active: true)}
-  scope :inactive, -> {where(active: false)}
-  scope :for_division, -> (division) { where(division_id: division.id)}
 
   #Methods
   validate :division_is_active_in_system
