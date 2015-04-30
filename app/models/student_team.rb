@@ -17,7 +17,7 @@ class StudentTeam < ActiveRecord::Base
   validate :student_is_active_in_system
   validate :team_is_active_in_system
 
-  #before_create :remove_student_from_previous_team_assignment
+  before_create :remove_student_from_previous_team_assignment
 
   private
   def student_is_active_in_system
