@@ -8,6 +8,14 @@ class HomeController < ApplicationController
     end
     @inactive_students = Student.all.inactive
     @new_students = Student.new_students
+    @student_team = StudentTeam.new
+
+
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json
+    #   format.js
+    # end
   end
 
   def display

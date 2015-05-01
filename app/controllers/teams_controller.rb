@@ -4,14 +4,21 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @teams = Team.all
-    @divisions = Division.all
+    @teams = current_user.coach.organization.teams
+    @active_teams = @teams.active.sort_by! {|n| n.name}
+    @inactive_teams = @teams.inactive.sort_by! {|n| n.name}
+    @divisions = @teams.active.map {|d| d.division}.uniq
   end
 
   # GET /teams/1
   # GET /teams/1.json
   def show
     @divisions = Division.all
+    @all_quiz_teams = @team.quiz_teams
+    @events = Event.all.chronological
+    @declared_num_rounds = 6
+    #not used yet (to get cumulative score for the year)
+    @year_team = YearTeam.new(@team)
     @teams = Team.all
   end
 
@@ -146,6 +153,7 @@ class TeamsController < ApplicationController
     #     format.html { render action: 'edit' }
     #     format.json { render json: @team.errors, status: :unprocessable_entity }
     #   end
+
 
     @students_to_add.each do |s|
       StudentTeam.create(student_id: s, team_id: @team.id) unless s == ""

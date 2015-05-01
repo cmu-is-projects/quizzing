@@ -8,20 +8,27 @@
       <section class="top-bar-section">
         <ul class="left">
           <li>
+            <%= link_to "Home", home_path %>
+          </li>
+
+          <li>
             <%= link_to "Events", events_path %>
           </li>
 
-          <!-- TODO: Add paths for the standings -->
           <li class="has-dropdown">
             <%= link_to "Standings" %>
             <ul class="dropdown">
               <li><%= link_to "Individual", indiv_standings_path %></li>
-              <li><%= link_to "Team" %></li>
+              <li><%= link_to "Team", team_standings_path %></li>
             </ul>
           </li>
 
           <li>
-            <%= link_to "Coaches", coaches_path %>
+            <%= link_to "Students", students_path %>
+          <li>
+
+          <li>
+            <%= link_to "Teams", teams_path %>
           <li>
           
         </ul>

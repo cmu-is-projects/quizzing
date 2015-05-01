@@ -35,4 +35,6 @@ class StudentTeam < ActiveRecord::Base
     previous_assignment.save!
     true
   end
+
+
 end

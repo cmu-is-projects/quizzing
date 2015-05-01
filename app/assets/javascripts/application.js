@@ -10,13 +10,13 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require best_in_place
-//= require foundation
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require foundation
 //= require_tree .
 //= require turbolinks
+//= require best_in_place
 
 $(function(){ $(document).foundation(); });
 

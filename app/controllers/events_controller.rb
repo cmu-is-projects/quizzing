@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @quizzes = @event.quizzes
-    #@teams = @event.quizzes.teams
+    @divisions = Division.all.alphabetical
   end
 
   # GET /events/new

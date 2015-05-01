@@ -23,8 +23,16 @@
             <%= link_to "Organizations", organizations_path %>
           </li>
 
+          <li class="has-dropdown">
+            <%= link_to "Standings" %>
+            <ul class="dropdown">
+              <li><%= link_to "Individual", indiv_standings_path %></li>
+              <li><%= link_to "Team", team_standings_path %></li>
+            </ul>
+          </li>
+
           <li>
-            <%= link_to "Individual Standings", indiv_standings_path %>
+            <%= link_to "Coaches", coaches_path %>
           </li>
 
         </ul>

@@ -26,6 +26,7 @@ class Team < ActiveRecord::Base
   
   #Scopes
   scope :alphabetical, -> {order("name")}
+  scope :for_division, -> (division) { where(division_id: division.id)}
   scope :active, -> {where(active: true)}
   scope :inactive, -> {where(active: false)}
   scope :for_division, -> (division) { where(division_id: division.id)}
@@ -34,28 +35,46 @@ class Team < ActiveRecord::Base
   validate :division_is_active_in_system
   validate :organization_is_active_in_system
 
-
   # Callbacks
   before_destroy :verify_that_there_are_no_scored_quizzes_for_team_this_year
 
   # Methods
-  # Returns active teams that are not at capacity
-  def self.not_at_capacity(organization=nil, division=nil)
+  # Returns active teams that are not at capacity in accordance with student's grade and organization
+  def self.not_at_capacity(student=nil, organization=nil, division=nil)
     tmp = Array.new
-    if organization && division #if organization and division are provided
-      teams = organization.teams.alphabetical.for_division(division)
-    elsif organization && !division #if only organization is provided
-      teams = organization.teams.alphabetical
-    else
+    if student && organization && division #if student, organization and division are provided
+      teams = organization.teams.active.alphabetical.for_division(division)
+    elsif student && organization && !division #if only student and organization are provided
+      gr = student.grade
+      divisions_in_range = Division.all.active.where("start_grade <= :g AND end_grade >= :g", {g: gr}).order("id")
+      teams = student.current_organization.teams.active.all.select{|t| divisions_in_range.map{ |d| d.id}.include?(t.division_id)}
+    else #returns all active teams that are not at capacity 
       teams = Team.active.alphabetical.all
     end
-    unless teams.empty?
+    unless teams.empty? #filters out at capacity teams
       teams.each do |team|
         tmp << team if team.current_students.size < 5
       end    
     end 
     tmp
   end
+
+  #  def self.not_at_capacity(organization=nil, division=nil)
+  #   tmp = Array.new
+  #   if organization && division #if organization and division are provided
+  #     teams = organization.teams.active.alphabetical.for_division(division)
+  #   elsif organization && !division #if only organization is provided
+  #     teams = organization.teams.active.alphabetical
+  #   else
+  #     teams = Team.active.alphabetical.all
+  #   end
+  #   unless teams.empty?
+  #     teams.each do |team|
+  #       tmp << team if team.current_students.size < 5
+  #     end    
+  #   end 
+  #   tmp
+  # end
 
   def scored_quizzes_this_year
     quizzes = Array.new
