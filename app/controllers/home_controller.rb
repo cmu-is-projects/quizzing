@@ -3,12 +3,19 @@ class HomeController < ApplicationController
     # all events for right now
     @events = Event.all 
     @upcoming_events = Event.upcoming.chronological.to_a
-    if(current_user.role != "guest")
-      @active_teams = Team.all.where(organization_id: current_user.coach.organization_id).active
+    if(current_user.role == "coach")
+      @active_teams = Team.where(organization_id: current_user.coach.organization_id).active
     end
     @inactive_students = Student.all.inactive
     @new_students = Student.new_students
     @student_team = StudentTeam.new
+
+
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json
+    #   format.js
+    # end
   end
 
   def display
