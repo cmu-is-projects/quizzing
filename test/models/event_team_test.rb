@@ -35,7 +35,7 @@ class EventTeamTest < ActiveSupport::TestCase
     end
 
     should "correctly calculate total score" do
-      assert_equal 920, @event_team.total_score
+      assert_equal 920, @event_team.total_et_points
     end
 
     should "get all team quizzes for a team in this event" do
