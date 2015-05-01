@@ -38,10 +38,10 @@ class YearTeamTest < ActiveSupport::TestCase
     should "calculate total_yt_score for year accurately when only 1 event" do
       create_year_teams
       #go to QuizTeam and add the team's scores
-      assert_equal 0, @year_team_1.total_yt_score
-      assert_equal 0, @year_team_2.total_yt_score
-      assert_equal 920, @year_team_3.total_yt_score
-      assert_equal 300, @year_team_4.total_yt_score
+      assert_equal 0, @year_team_1.total_yt_points
+      assert_equal 0, @year_team_2.total_yt_points
+      assert_equal 93, @year_team_3.total_yt_points
+      assert_equal 27, @year_team_4.total_yt_points
       remove_year_teams
     end
 
