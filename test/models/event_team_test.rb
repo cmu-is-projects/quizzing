@@ -35,14 +35,14 @@ class EventTeamTest < ActiveSupport::TestCase
     end
 
     should "correctly calculate total score" do
-      assert_equal 920, @event_team.total_et_points
+      assert_equal 93, @event_team.total_et_points
     end
 
     should "get all team quizzes for a team in this event" do
       #top down design assuming method written
       quiz_teams = @event_team.get_all_quiz_teams_for_team_in_this_event
       assert_equal 6, quiz_teams.size
-      assert_equal 920, quiz_teams.inject(0){|sum, qt| sum += qt.raw_score}
+      assert_equal 93, quiz_teams.inject(0){|sum, qt| sum += qt.raw_score}
     end
 
 

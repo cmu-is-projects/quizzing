@@ -35,25 +35,25 @@ class YearTeamTest < ActiveSupport::TestCase
       remove_year_teams
     end
 
-    should "calculate total_yt_score for year accurately when only 1 event" do
+    should "calculate total_yt_points for year accurately when only 1 event" do
       create_year_teams
       #go to QuizTeam and add the team's scores
-      assert_equal 0, @year_team_1.total_yt_score
-      assert_equal 0, @year_team_2.total_yt_score
-      assert_equal 920, @year_team_3.total_yt_score
-      assert_equal 300, @year_team_4.total_yt_score
+      assert_equal 0, @year_team_1.total_yt_points
+      assert_equal 0, @year_team_2.total_yt_points
+      assert_equal 93, @year_team_3.total_yt_points
+      assert_equal 27, @year_team_4.total_yt_points
       remove_year_teams
     end
 
     #TODO future: actually written with year_quizzers in mind; bother with for year_team later
-    # should "calculate total_yt_score for year accurately when 4 events" do
+    # should "calculate total_yt_points for year accurately when 4 events" do
     #   create_three_more_complete_quiz_contexts
     #   create_year_teams
     #   assert_equal 4, @year_team_1.results.size
-    #   assert_equal 1620, @year_team_1.total_yt_score, "Results count: #{Event.all.size}"
-    #   assert_equal 1800, @year_team_2.total_yt_score
-    #   assert_equal   70, @year_team_3.total_yt_score
-    #   assert_equal    0, @year_team_4.total_yt_score
+    #   assert_equal 1620, @year_team_1.total_yt_points, "Results count: #{Event.all.size}"
+    #   assert_equal 1800, @year_team_2.total_yt_points
+    #   assert_equal   70, @year_team_3.total_yt_points
+    #   assert_equal    0, @year_team_4.total_yt_points
     #   remove_year_teams
     #   delete_three_more_complete_quiz_contexts
     # end
