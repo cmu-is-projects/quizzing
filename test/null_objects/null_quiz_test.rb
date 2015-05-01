@@ -14,6 +14,10 @@ class NullQuizTest < ActiveSupport::TestCase
     deny NullQuiz.new.active
   end
 
+  def test_inactive
+    assert NullQuiz.new.inactive
+  end  
+
   def test_division
     assert_equal NullDivision, NullQuiz.new.division.class
   end

@@ -9,6 +9,7 @@ class QuizTeamTest < ActiveSupport::TestCase
     setup do
       create_organizations
       create_divisions
+      create_categories
       create_events
       create_quizzes_for_past_event
       create_students
@@ -45,7 +46,7 @@ class QuizTeamTest < ActiveSupport::TestCase
       bad_quiz_team = FactoryGirl.build(:quiz_team, quiz: @quiz_inactive, team: @acac_sr1)
       deny bad_quiz_team.valid?
       # test the nonexistent quiz
-      quiz7 = FactoryGirl.build(:quiz, event: @event, division: @senior_a, round_num: 7)
+      quiz7 = FactoryGirl.build(:quiz, event: @event, division: @senior_a, round_num: 7, category: @category1)
       bad_quiz_team = FactoryGirl.build(:quiz_team, quiz: quiz7, team: @acac_sr1)
       deny bad_quiz_team.valid?
     end

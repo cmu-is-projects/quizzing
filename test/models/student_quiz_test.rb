@@ -9,6 +9,7 @@ class StudentQuizTest < ActiveSupport::TestCase
     setup do
       create_organizations
       create_divisions
+      create_categories
       create_events
       create_quizzes_for_past_event
       create_students
@@ -22,6 +23,7 @@ class StudentQuizTest < ActiveSupport::TestCase
     teardown do
       delete_organizations
       delete_divisions
+      delete_categories
       delete_events
       delete_quizzes_for_past_event
       delete_students
@@ -47,7 +49,7 @@ class StudentQuizTest < ActiveSupport::TestCase
       bad_student_quiz = FactoryGirl.build(:student_quiz, quiz: @quiz_inactive, student: @mark)
       deny bad_student_quiz.valid?
       # test the nonexistent quiz
-      quiz7 = FactoryGirl.build(:quiz, event: @event, division: @senior_a, round_num: 7)
+      quiz7 = FactoryGirl.build(:quiz, event: @event, division: @senior_a, round_num: 7, category: @category1)
       bad_student_quiz = FactoryGirl.build(:student_quiz, quiz: quiz7, student: @mark)
       deny bad_student_quiz.valid?
     end
