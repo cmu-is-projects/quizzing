@@ -122,7 +122,7 @@
         <% @event_team = EventTeam.new(@team,event) %>
           <tr><!--each row is the quizzes of one event-->
             <!--TODO link to event standings-->
-            <td><%= event.start_date.strftime('%B %d, %Y') %></td>
+            <td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event) %></td>
             <% @quiz_teams = @event_team.quiz_teams %>
             <!--empty quiz_teams or future-created ones (they have nil points)-->
             <% unless @quiz_teams.empty? || @quiz_teams.first.points.nil? %>
