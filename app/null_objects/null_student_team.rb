@@ -3,6 +3,10 @@ class NullStudentTeam
     false
   end
 
+  def inactive
+    true    
+  end
+  
   def students
     [NullStudent.new]
   end
