@@ -17,7 +17,7 @@
 			<tbody>
 				<td><%= link_to student.proper_name, student_path(student) %></td>
 				<% student_team = student.current_student_team %>
-				<% if student_team.active? %> <!-- TODOA: If student is absent, label should change? how clear is it?-->
+				<% if student_team.active? %>
 				<td class="centered"><%= link_to(image_tag("icons/check_green.gif"), toggle_path(student, status: 'inactive'), remote: true, method: 'patch') %></td>
 				<% else %>
 				<td class="centered"><%= link_to(image_tag("icons/check_black.gif"), toggle_path(student, status: 'active'), remote: true, method: 'patch') %></td>
@@ -28,10 +28,6 @@
 		</table>
 		<div class="form-actions">
 			<%= link_to 'Edit Team or Add/Remove Students from Team', edit_team_path(team), class: 'tiny button radius' %>
-			<%# link_to(new_student_path(team_id: team.id), id: 'new_student_link', class: 'button tiny radius', remote: true) do %>
-			<!-- <i class="fa fa-clipboard"></i> -->
-			<!-- &nbsp;Add New Student to Team -->
-			<%# end %>
 		</div>
 		<% end %>
 		<% end %>
@@ -49,9 +45,6 @@
 			</tbody>
 			<% end %>
 		</table>
-		<!-- <div class="form-actions">
-			<%#= link_to 'Add new Student', new_student_path, class: 'tiny button radius' %>
-		</div> -->
 		<% end %>
 	</div>
 </div>
