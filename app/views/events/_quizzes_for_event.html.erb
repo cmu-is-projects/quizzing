@@ -2,7 +2,7 @@
 
 <%# if logged_in? && (current_user.role?(:admin) || current_user.role?(:area_admin)) %>
 <!-- TODO: Ajax button to add a new quiz -->
-<%= link_to(new_quiz_path, id: 'new_quiz_link', class: 'button tiny radius', remote: true) do %>
+<%= link_to(new_quiz_path, id: 'new_quiz_link', class: 'button tiny radius', remote: true, locals: {event_id: @event.id}) do %>
   <!-- <i class="fa fa-clipboard"></i> --><!--what is dis?-->
   &nbsp;Add New Quiz
  <% end %>
