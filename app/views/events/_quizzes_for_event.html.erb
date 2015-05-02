@@ -33,7 +33,7 @@
 					<td><%= quiz.category.name %></td>
 					<td><%= quiz.active ? "Yes" : "No" %></td>
 					<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:area_admin)) %>
-					  <td><%=# link_to 'Edit', edit_quiz_path(quiz), class: "button tiny radius" %></td>
+					  <td><%= link_to 'Edit', edit_quiz_path(quiz), class: "button tiny radius" %></td>
 					<% end %>
 				</tr>
 			<% end %>
