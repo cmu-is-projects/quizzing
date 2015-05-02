@@ -13,7 +13,9 @@ class HomeController < ApplicationController
 
     end
     @inactive_students = Student.all.inactive
-    @new_students = Student.new_students
+    if current_user.role?(:coach)
+      @new_students = Student.new_students(current_user.coach.organization)
+    end
     @student_team = StudentTeam.new
 
 

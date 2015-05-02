@@ -63,8 +63,12 @@ class Student < ActiveRecord::Base
 #TODO: this method doesn't work if db is empty
   def self.new_students(organization=nil)
     tmp = Array.new
+    newstudents = Array.new
     if organization
-      newstudents = organization.students.active.alphabetical #how to install it
+      current_students = organization.current_students
+      current_students.each do |s| 
+        newstudents << s if s.active #how to install it
+      end
     else
       newstudents = Student.active.alphabetical
     end

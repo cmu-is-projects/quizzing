@@ -1,3 +1,4 @@
+<% unless current_user.role == "guest" %>
 <% unless @inactive_teams.empty? %>
   <!-- TODO: <br /> should be placed in CSS eventually -->
   <!-- TODOA: add Ajax for toggling student active -->
@@ -10,4 +11,5 @@
       <% end %>
     </ul>
   </div>
+<% end %>
 <% end %>
