@@ -27,16 +27,19 @@ class TeamsController < ApplicationController
     if(current_user.role == "guest")
       redirect_to login_url and return
     end
+    @edit = false
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
     @students = Student.all
     @team = Team.new
 
-    unless current_user.coach.nil?
-      @team.organization = current_user.coach.organization
-      @team.name = @team.organization.short_name + " " + (@team.organization.teams.count+1).to_s
+    if current_user.coach.nil?
+      @team_organization = Organization.all.first
+    else
+      @team_organization = current_user.coach.organization
     end
+    @team_name = @team_organization.short_name + " " + (@team_organization.teams.count+1).to_s
   end
 
   # GET /teams/1/edit
@@ -47,6 +50,12 @@ class TeamsController < ApplicationController
     if(!current_user.role?(:admin) && current_user.coach.organization.id != @team.organization.id)
       redirect_to team_url(@team) and return
     end
+    unless current_user.coach.nil?
+      @team_organization = current_user.coach.organization
+      @team_name = @team_organization.short_name + " " + (@team_organization.teams.count+1).to_s
+    end
+
+    @edit = true
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
@@ -75,6 +84,13 @@ class TeamsController < ApplicationController
     @students = Student.all
     @team = Team.new(team_params)
 
+    unless current_user.coach.nil?
+      @team_organization = current_user.coach.organization
+      @team_name = @team.organization.short_name + " " + (@team.organization.teams.count+1).to_s
+      @team.organization = @team_organization
+      @team.name = @team_name
+    end
+    
     respond_to do |format|
       if @team.save
         format.html { redirect_to edit_team_url(@team), notice: 'Team was successfully created.' }
@@ -92,7 +108,7 @@ class TeamsController < ApplicationController
     if(current_user.role == "guest")
       redirect_to login_url and return
     end
-    if(current_user.coach.organization.id != @team.organization.id)
+    if(!current_user.role?(:admin) && current_user.coach.organization.id != @team.organization.id)
       redirect_to home_path and return
     end
     @coaches = Coach.all
@@ -178,6 +194,13 @@ class TeamsController < ApplicationController
       @team.team_coaches.create!(team_id: @team.id, coach_id: @team_c)
     end
 
+    if(!@team_a)
+      @team.student_teams.active.each do |st|
+        st.end_date = Date.today
+        st.make_inactive
+      end
+    end
+
     @team.active = @team_a
     @team.save!
 
@@ -211,10 +234,8 @@ class TeamsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     # TODO: Remove editing of name, division, and organization
     def team_params
-      params.require(:team).permit(:name,
-                                   :active,
+      params.require(:team).permit(:active,
                                    :division_id,
-                                   :organization_id,
                                    :students,
                                    team_coaches: [:coach_id],
                                    team_coaches_attributes: [:coach_id],

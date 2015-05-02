@@ -36,7 +36,9 @@
       <b>Students in roster:</b>
       <%= f.simple_fields_for :student_teams, @student_teams do |builder| %>
         <%= builder.select :student_id, 
-	    @students.active.where("grade >= :d_sg AND grade <= :d_eg", {d_sg: @team.division.start_grade, d_eg: @team.division.end_grade}).alphabetical.map{|s| 
+	    @students.active.where("grade >= :d_sg AND grade <= :d_eg",
+	                           {d_sg: @team.division.start_grade,
+	                            d_eg: @team.division.end_grade}).alphabetical.map{|s| 
 	      [s.last_name+", "+s.first_name,
 	      s.id]},
 	    include_blank: true%>
@@ -51,7 +53,6 @@
 	    @coaches.active.alphabetical.map{|c| [c.last_name+", "+c.first_name,
 	                                   c.id]} %>
       <% end %>
-
     <% end %>
 
     <%= f.input :active %><br>
