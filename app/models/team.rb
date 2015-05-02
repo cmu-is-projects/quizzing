@@ -84,7 +84,7 @@ class Team < ActiveRecord::Base
   end
 
   def current_students
-    self.student_teams.current.map{|st| st.student}
+    self.student_teams.current.map{|st| st.student}.sort
   end
 
   private

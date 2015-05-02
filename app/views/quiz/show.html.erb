@@ -1,2 +1,6 @@
-<h1>Quiz#show</h1>
-<p>Find me in app/views/quiz/show.html.erb</p>
+<%= render partial: "partials/structure_1", locals: {model_name: "quiz", 
+                                                         primary: "quiz_details", 
+                                                         secondary: nil,
+                                                         sidebar: nil,
+                                                         options: "partials/quiz_options", object: @quiz} %>
+
