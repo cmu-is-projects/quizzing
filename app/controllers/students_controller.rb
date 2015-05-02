@@ -4,7 +4,11 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = current_user.coach.organization.students
+    if(current_user.role == "coach")
+      @students = current_user.coach.organization.students
+    else
+      @students = Student.all
+    end
     @active_students = @students.active.sort_by! {|n| n.last_name}
     @inactive_students = @students.inactive.sort_by! {|n| n.last_name}
   end

@@ -3,9 +3,14 @@ class HomeController < ApplicationController
     # all events for right now
     @events = Event.all 
     @upcoming_events = Event.upcoming.chronological.to_a
-    if(current_user.role != "guest")
+
+    if(current_user.role == "coach")
       @cur_coach = current_user.coach
       @active_teams = @cur_coach.nil? ? Team.all.active : Team.all.where(organization_id: @cur_coach.organization_id).active
+
+    # if(current_user.role == "coach")
+    #   @active_teams = Team.where(organization_id: current_user.coach.organization_id).active
+
     end
     @inactive_students = Student.all.inactive
     @new_students = Student.new_students
