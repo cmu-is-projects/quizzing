@@ -23,7 +23,7 @@
           <tr>
             <% rank_counter+=1 %><!--first team's rank outputted as 1-->
             <td><%= rank_counter %></td>
-            <td><%= link_to team.name, team_path(team) %></td>
+            <td><%= link_to team.name, team_path(team.team) %></td>
             <td><%= team.total_yt_points %></td>
           </tr>
         <% end %>
