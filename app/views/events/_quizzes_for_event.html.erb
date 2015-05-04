@@ -2,10 +2,10 @@
 
 <% if logged_in? %> <!--&& (current_user.role?(:admin) || current_user.role?(:area_admin)) %>--><!--TODO: authorize correctly-->
 <!-- TODO: Ajax button to add a new quiz -->
-	<% if @event.start_date >= Date.today %>
+	<% if @event == Event.where("start_date >= ?", Date.today).order(:start_date).first %>
 	  <%= link_to(new_quiz_path, id: 'new_quiz_link', class: 'small button radius', remote: true) do %>
   <!-- <i class="fa fa-clipboard"></i> --><!--what is dis?-->
-  &nbsp;Add New Quiz (to the next upcoming event)
+  &nbsp;Add New Quiz
    	  <% end %><!--link_to-->
   	<% end %><!--if-->
 <% end %><!--authorization-->
