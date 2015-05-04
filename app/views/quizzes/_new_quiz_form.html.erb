@@ -1,0 +1,15 @@
+<div id = 'new_quiz' >
+<h3>New Quiz</h3>
+<%= simple_form_for @quiz, html: { :class => 'form-horizontal' }, remote: true do |f| %>
+    <%= f.input :room_num, input_html: {class: "avg"} %>
+    <%= f.input :round_num, input_html: {class: "avg"} %>
+    <%= f.input :event_id, :as => :hidden, :input_html => { :value => "some value" }%>
+    <%= f.input :division_id, collection: Division.active.alphabetical, prompt: "Please select Division..." %>
+    <%= f.input :category_id, collection: Category.alphabetical, prompt: "Please select Category..." %>    
+    <p>&nbsp;</p>
+    <div class="form-actions">
+      <%= f.submit nil, class: 'button radius' %>
+      <%#= link_to 'Cancel', home_path, class: 'button radius alert' %>
+    </div>  
+<% end %>
+</div>

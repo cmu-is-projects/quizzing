@@ -1,10 +1,9 @@
 <!-- Partial for students without a team -->
 
-<!-- TODO: Ajax button to add a new student -->
 <%= link_to(new_student_path, id: 'new_student_link', class: 'button tiny radius', remote: true) do %>
   <!-- <i class="fa fa-clipboard"></i> -->
   &nbsp;Add New Student
-  <% end %>
+<% end %>
 
 <% unless @new_students.empty? %>
 	<h3>New Students Without a Team</h3><br />
@@ -24,20 +23,14 @@
 					<td><%= link_to student.name, student_path(student) %></td>
 					<td><%= student.grade %></td>
 					<td><%= student.current_organization.short_name %></td>
-					<!-- TODO1: This does not work -->
 					<%= simple_form_for @student_team do |f| %>
 					<%= f.input :student_id, as: :hidden, input_html: {value: student.id} %>
 							<!-- Add new team -->
 							<td><%= f.input :team_id, label: false, collection: get_team_options(student), prompt: "Select team" %>
-							<%= f.submit nil, class: 'button tiny radius' %></td> 
+							<%= f.submit 'Add to Team', class: 'button tiny radius'%></td> 
 				</tr>
 				<% end %>
 			<% end %>
 		</tbody>
 	</table>
-				<!-- doesn't work -->
-						<!--<div class="form-actions">
-							<%#= f.submit nil, class: 'button' %>
-						</div>-->
-					<%# end %>
 <% end %>

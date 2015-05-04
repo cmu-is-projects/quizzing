@@ -14,16 +14,25 @@ class CoachesController < ApplicationController
 
   # GET /coaches/new
   def new
+    if(!logged_in?)
+      redirect_to login_url and return
+    end
     @coach = Coach.new
   end
 
   # GET /coaches/1/edit
   def edit
+    if(!logged_in?)
+      redirect_to login_url and return
+    end
   end
 
   # POST /coaches
   # POST /coaches.json
   def create
+    if(!logged_in?)
+      redirect_to login_url and return
+    end
     @coach = Coach.new(coach_params)
 
     respond_to do |format|
@@ -40,6 +49,9 @@ class CoachesController < ApplicationController
   # PATCH/PUT /coaches/1
   # PATCH/PUT /coaches/1.json
   def update
+    if(!logged_in?)
+      redirect_to login_url and return
+    end
     respond_to do |format|
       if @coach.update(coach_params)
         format.html { redirect_to @coach, notice: 'Coach was successfully updated.' }
@@ -54,6 +66,9 @@ class CoachesController < ApplicationController
   # DELETE /coaches/1
   # DELETE /coaches/1.json
   def destroy
+    if(!logged_in?)
+      redirect_to login_url and return
+    end
     @coach.destroy
     respond_to do |format|
       format.html { redirect_to coaches_url }
@@ -64,6 +79,9 @@ class CoachesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_coach
+    if(!current_user.role?(:admin))
+      redirect_to login_url and return
+    end
       @coach = Coach.find(params[:id])
     end
 

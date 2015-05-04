@@ -6,7 +6,10 @@
     <tr>
       <th width="140">Date</th>
       <th width="280">Location</th>
+      <th>Quizzes?</th>
+      <% if current_user.role?(:admin) %>
       <th></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -15,13 +18,19 @@
       <tr>
         <td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event) %></td>
         <td><%#= link_to event.organization.name, organization_path(event.organization) %>
-            <%= event.organization.name %>
-        </td> 
+          <%= event.organization.name %>
+        </td>
+        <td><%= event.quizzes.empty? ? "No" : "Yes" %></td>
+	<% if current_user.role?(:admin) %>
         <td><%= link_to 'Edit', edit_event_path(event), class: "button tiny radius" %></td>
         <!--<td><%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+	<% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
+<% if current_user.role?(:admin) %>
+<%= link_to 'Add a New Event', new_event_path, class: "button radius" %>
+<% end %>
 
 

@@ -26,8 +26,10 @@ class StudentTeamsController < ApplicationController
       end
 
     else
-      format.html { render template: 'students/edit', locals:{primary: "form", sidebar: "student_teams"} }
-      format.json { render json: @student_team.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        format.html { render template: 'students/edit', locals:{primary: "form", sidebar: "student_teams"} }
+        format.json { render json: @student_team.errors, status: :unprocessable_entity }
+    end
     end
     # else
     #   format.html { render action: 'new' }

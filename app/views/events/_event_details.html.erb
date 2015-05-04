@@ -36,7 +36,7 @@
 
       <tbody>
         <% @event_div_teams.each do |edt| %>
-          <!--maybe "unless total_et_points == 0" (didn't compete) -->
+          <% unless edt.total_et_points == 0 %>
           <tr>
             <% rank_counter+=1 %><!--first team's rank outputted as 1-->
             <td><%= rank_counter %></td>
@@ -44,7 +44,8 @@
             <!--Display total_et_points if team's points are not nil-->
             <td><%= edt.total_et_points == 0 ? "--" : edt.total_et_points %></td>
           </tr>
-        <% end %>
+          <% end %><!--unless loop-->
+        <% end %><!--edt loop-->
       </tbody>
     </table>
 

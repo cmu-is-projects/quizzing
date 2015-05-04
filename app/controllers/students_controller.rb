@@ -4,9 +4,13 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
-    @active_students = current_user.coach.organization.current_students.sort_by! {|n| n.last_name}
-    @inactive_students = current_user.coach.organization.students.inactive.sort_by! {|n| n.last_name}
+    if(current_user.role == "coach")
+      @students = current_user.coach.organization.students
+    else
+      @students = Student.all
+    end
+    @active_students = @students.active.sort_by! {|n| n.last_name}
+    @inactive_students = @students.inactive.sort_by! {|n| n.last_name}
   end
 
   # GET /students/1
@@ -40,12 +44,12 @@ class StudentsController < ApplicationController
     if @student.current_student_team.is_a? NullStudentTeam
       @student_team = StudentTeam.new
       #@collection = @student.current_organization.teams.active.alphabetical
-      @collection = Team.not_at_capacity(@student.current_organization)
+      @collection = Team.not_at_capacity(@student, @student.current_organization)
       @team_id = -1
     else
       @student_team = @student.current_student_team
       #@collection = @student.current_organization.teams.active.alphabetical.for_division(@student.current_team.division)
-      @collection = Team.not_at_capacity(@student.current_organization, @student.current_team.division)
+      @collection = Team.not_at_capacity(@student, @student.current_organization, @student.current_team.division)
       @team_id = @student.current_team.id
     end
   end
