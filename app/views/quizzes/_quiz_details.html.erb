@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event:</strong>
+  <%= link_to @quiz.event.start_date.strftime('%B %d, %Y'), events_path(@quiz.event) %>
+</p>
+
+<p>
+  <strong>Division:</strong>
+  <%= @quiz.division.name %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @quiz.category.name %>
+</p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @quiz.room_num %>
+</p>
+
+<p>
+  <strong>Round:</strong>
+  <%= @quiz.round_num %>
+</p>
+
+<p>
+  <strong>Active?:</strong>
+  <%= @quiz.active ? "Yes" : "No" %>
+</p>
+
+<%# if current_user.can?(:update, @quiz) %>
+  <% opt = "#{@quiz.respond_to?(:name) ? @quiz.name : 'quiz'.capitalize }" %>
+  <%= link_to(eval("edit_quiz_path(@quiz)"), 
+class: 'small button radius') do %>
+    <!-- <i class="fa fa-pencil"></i> -->
+    &nbsp;<%= "Edit #{opt}" %>
+  <% end %>
+  &nbsp;&nbsp;
+<%# end %>
+
+<div class="form-actions" style="float:left;">
+  <!-- made button smaller -->
+  <%= link_to(eval("#{'event'.pluralize}_path"), 
+class: 'small button radius') do %>
+    <!-- <i class="fa fa-list"></i> -->
+    &nbsp;Display All <%= "event".pluralize.capitalize %>
+  <% end %>
+  &nbsp;&nbsp;
