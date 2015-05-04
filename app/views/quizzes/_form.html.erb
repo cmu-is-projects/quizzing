@@ -20,7 +20,7 @@
 
     <div class="form-actions">
       <%= f.submit nil, class: 'button' %>
-      <%= link_to 'Cancel', quizzes_path, :class => 'button secondary' %>
+      <%= link_to 'Cancel', event_path(@quiz.event), :class => 'button secondary' %>
     </div>
 
   </fieldset>
