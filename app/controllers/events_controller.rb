@@ -18,7 +18,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @quizzes = @event.quizzes
+    @quizzes = @event.quizzes.by_round_num
     @divisions = Division.all.alphabetical
   end
 
