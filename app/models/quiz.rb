@@ -19,8 +19,6 @@ class Quiz < ActiveRecord::Base
   #Scopes
   scope :active, -> {where(active: true)}
   scope :inactive, -> {where(active: false)}
-  #TODO: test by_round_num scope
-  scope :by_round_num, -> { order('round_num') }
 
   #Callbacks
   validate :event_is_active_in_system

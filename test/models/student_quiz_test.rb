@@ -105,7 +105,8 @@ class StudentQuizTest < ActiveSupport::TestCase
     end
 
     should "order student_quizzes by round_num" do
-      #with create_student_quizzes according to above
+      #When refactoring, scrap this and use Ruby's sort
+      #according to create_student_quizzes according to above
       assert_equal [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6], StudentQuiz.by_round_num.map { |sq| sq.quiz.round_num }
     end
 
