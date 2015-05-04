@@ -7,7 +7,7 @@
 	<div class = "content active" id = "activeroster">
 		<h3>Active Students</h3>
 		<% current_user.coach.organization.teams.active.each do |team| %>
-		<% unless team.students.empty? %>
+		<% unless team.current_students.empty? %>
 		<table class="table table-striped" id="roster"> [<%= team.division.name %>] <%= team.name %> 
 			<thead>
 				<th>Student Name</th>
@@ -27,8 +27,21 @@
 			<% end %>
 		</table>
 		<div class="form-actions">
-			<%= link_to 'Edit Team or Add/Remove Students from Team', edit_team_path(team), class: 'tiny button radius' %>
-		</div>
+			<%= link_to 'Edit Team or Add/Remove Students from this Team', edit_team_path(team), class: 'tiny button radius' %>
+			<%# link_to(new_student_path(team_id: team.id), id: 'new_student_link', class: 'button tiny radius', remote: true) do %>
+			<!-- <i class="fa fa-clipboard"></i> -->
+			<!-- &nbsp;Add New Student to Team -->
+			<%# end %>
+		</div></br>
+		<% else %>
+		No students in <%= team.name %>
+		<div class="form-actions">
+			<%= link_to 'Edit Team or Add/Remove Students from this Team', edit_team_path(team), class: 'tiny button radius' %>
+			<%# link_to(new_student_path(team_id: team.id), id: 'new_student_link', class: 'button tiny radius', remote: true) do %>
+			<!-- <i class="fa fa-clipboard"></i> -->
+			<!-- &nbsp;Add New Student to Team -->
+			<%# end %>
+		</div></br>
 		<% end %>
 		<% end %>
 	</div>

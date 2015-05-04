@@ -3,7 +3,7 @@
 <%= simple_form_for @quiz, html: { :class => 'form-horizontal' }, remote: true do |f| %>
     <%= f.input :room_num, input_html: {class: "avg"} %>
     <%= f.input :round_num, input_html: {class: "avg"} %>
-    <%= f.input :event_id, :as => :hidden, :input_html => { :value => "#{event_id}" }%>
+    <%= f.input :event_id, :as => :hidden, :input_html => { :value => session[:id] } %>
     <%= f.input :division_id, collection: Division.active.alphabetical, prompt: "Please select Division..." %>
     <%= f.input :category_id, collection: Category.alphabetical, prompt: "Please select Category..." %>    
     <p>&nbsp;</p>

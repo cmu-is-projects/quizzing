@@ -63,11 +63,11 @@
       <strong>Members:</strong>
     </p>
     <hr>
-    <% if @team.students.size == 0 %>
+    <% if @team.current_students.size == 0 %>
       This team has no students
     <% end %>
 
-    <% @team.students.each do |s| %>
+    <% @team.current_students.each do |s| %>
 
       <li><%= link_to s.proper_name, student_path(s) %></li>
 
