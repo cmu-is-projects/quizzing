@@ -54,7 +54,7 @@
     <tbody>
       <% @year_event_quizzes.each do |event_quiz| %>
       <tr><!--each row is the quizzes of one event-->
-        <td><%= link_to event_quiz.event.start_date.strftime('%B %d, %Y'), event_path(event_quiz.event) %></td>
+        <td><%= link_to event_quiz.event.start_date.strftime('%b %Y'), event_path(event_quiz.event) %></td>
           <% student_quizzes = event_quiz.student_quizzes %>
           <!--empty student_quizzes or future-created ones (they have nil scores as their first quiz (round 1))-->
           <% unless student_quizzes.empty? || student_quizzes.first.score.nil? %>
