@@ -18,38 +18,6 @@
       <%= @team.division.name %>
     </p>
 
-<!--The below is for if we're ever interested in Standing on the page -->
-<!--     <%# if @team.active==true%>
-    <p>
-      <strong>Standing:</strong>
-      <%# standing = 1 %>
-      <%# @teams.each do |t| %>
-        <%# t_score = 0 %>
-
-        <% #Quick check that we should be comparing this team %>
-        <%# if t.active==true && t.division_id == @team.division_id && t != @team %>
-        
-          <%# t.quizzes.each do |p| -%>
-            <%# p.quiz_teams.each do |qt| %>
-
-  	    <%# if qt.team == t && !qt.points.nil? %>
-  	      <%# t_score += qt.points %>
-  	    <%# end %>
-
-  	  <%# end %>
-          <%# end %>
-
-          <%# if t_score > score %>
-            <%# standing += 1 %>
-          <%# end %>
-
-        <%# end #team check %> 
-
-      <%# end #list of all teams %>
-      <%# standing %>
-    </p>
-    <%# end %> -->
-
     <p>
       <strong>Active:</strong>
       <%= @team.active==true ? "Yes" : "No" %>
@@ -151,7 +119,40 @@
     <div class="panel clearfix">
       <h4>No Competition for <%= @team.name %></h4>
     </div>
-  
+
+<!--Theophilus end-->
+
+<!--The below is for if we're ever interested in Standing on the page -->
+<!--     <%# if @team.active==true%>
+    <p>
+      <strong>Standing:</strong>
+      <%# standing = 1 %>
+      <%# @teams.each do |t| %>
+        <%# t_score = 0 %>
+
+        <% #Quick check that we should be comparing this team %>
+        <%# if t.active==true && t.division_id == @team.division_id && t != @team %>
+        
+          <%# t.quizzes.each do |p| -%>
+            <%# p.quiz_teams.each do |qt| %>
+
+        <%# if qt.team == t && !qt.points.nil? %>
+          <%# t_score += qt.points %>
+        <%# end %>
+
+      <%# end %>
+          <%# end %>
+
+          <%# if t_score > score %>
+            <%# standing += 1 %>
+          <%# end %>
+
+        <%# end #team check %> 
+
+      <%# end #list of all teams %>
+      <%# standing %>
+    </p>
+    <%# end %> -->
 
   <% end %>
-    <!--Theophilus end-->
+ 

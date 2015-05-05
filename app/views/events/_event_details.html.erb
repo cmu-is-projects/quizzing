@@ -35,17 +35,16 @@
       </thead>
 
       <tbody>
-        <% @event_div_teams.each do |edt| %>
-          <% unless edt.total_et_points == 0 %>
+        <% @event_div_teams.each do |t| %>
+          <% unless t.total_et_points == 0 %><!--Didn't compete so don't show-->
           <tr>
             <% rank_counter+=1 %><!--first team's rank outputted as 1-->
             <td><%= rank_counter %></td>
-            <td><%= link_to edt.name, team_path(edt.team) %></td>
-            <!--Display total_et_points if team's points are not nil-->
-            <td><%= edt.total_et_points == 0 ? "--" : edt.total_et_points %></td>
+            <td><%= link_to t.name, team_path(t.team) %></td>
+            <td><%= t.total_et_points %></td>
           </tr>
           <% end %><!--unless loop-->
-        <% end %><!--edt loop-->
+        <% end %><!--t loop-->
       </tbody>
     </table>
 
