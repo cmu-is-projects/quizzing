@@ -74,7 +74,7 @@
     <table>
       <thead>
         <tr>
-          <th>Date</th>        
+          <th align="center">Date</th>        
           <!--TODO (not 373 Spring '15): make dynamic -->
           <%round_counter = 1%>
           <% while round_counter <= @declared_num_rounds do%>
@@ -93,9 +93,9 @@
             <!--empty quiz_teams or future-created ones (they have nil points)-->
             <% unless quiz_teams.empty? || quiz_teams.first.points.nil? %>
               <% quiz_teams.each do |quiz_team| %>
-                <td><%= quiz_team.points %></td>
+                <td align="center"><%= quiz_team.points %></td>
               <% end %><!--end quiz_teams.each-->
-              <td><%= event_quiz.total_et_points %></td><!--for Total Points column-->
+              <td align="center"><%= event_quiz.total_et_points %></td><!--for Total Points column-->
 
             <% else %><!--quiz_teams are empty so output dashes-->
 
@@ -104,7 +104,7 @@
                 <td> -- </td>
                 <%round_counter+=1%>
               <% end %> <!--end while-->
-              <td> -- </td><!--for Total Points column-->
+              <td align="center"> -- </td><!--for Total Points column-->
 
             <% end %><!--end quiz_teams unless-->
           </tr>
