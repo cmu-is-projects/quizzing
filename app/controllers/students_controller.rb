@@ -19,7 +19,7 @@ class StudentsController < ApplicationController
     @student_teams = StudentTeam.all
     @organization_students = OrganizationStudent.all
     @year_quizzer = YearQuizzer.new(@student)
-    @all_student_quizzes = @student.student_quizzes
+    @year_event_quizzes = @year_quizzer.results
     @events = Event.all.chronological
     @declared_num_rounds = 6
     @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)

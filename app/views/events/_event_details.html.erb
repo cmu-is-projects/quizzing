@@ -48,11 +48,13 @@
       </tbody>
     </table>
 
-  <%else%><!--No teams for this division-->
+<!--
+  <%#else%>
 
     <div class="panel clearfix">
-      <h3><%= "No #{division.name} Team Standings for #{@event.start_date.strftime('%B %d, %Y')}" %></h3>
+      <h3><%#= "No #{division.name} Team Standings for #{@event.start_date.strftime('%B %d, %Y')}" %></h3>
     </div>
+-->
 
   <% end %>
 

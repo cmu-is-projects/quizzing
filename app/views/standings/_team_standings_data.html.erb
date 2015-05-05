@@ -32,12 +32,14 @@
       </tbody>
     </table>
 
-  <%else%><!--No teams for this division-->
+<!--have discerned to not show else As of 5/5/2015-->
+<!--
+  <%#else%>
 
     <div class="panel clearfix">
-      <h3><%= "No #{division.name} Team Standings" %></h3>
+      <h3><%#= "No #{division.name} Team Standings" %></h3>
     </div>
-
+-->
   <% end %>
 
 <% end %>
