@@ -67,7 +67,7 @@
 
  <!--based off student_details equivalent-->
     <!--basing on topdown design-->
-    <% unless @all_quiz_teams.empty? %>
+    <% unless @year_event_quizzes.empty? %>
 
     <h4>Breakdown of Scores for <%= @team.name %></h4>
 
@@ -86,18 +86,16 @@
       </thead>
 
       <tbody>
-        <% @events.each do |event| %>
-        <% @event_team = EventTeam.new(@team,event) %>
+        <% @year_event_quizzes.each do |event_quiz| %>
           <tr><!--each row is the quizzes of one event-->
-            <!--TODO link to event standings-->
-            <td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event) %></td>
-            <% @quiz_teams = @event_team.quiz_teams %>
+            <td><%= link_to event_quiz.event.start_date.strftime('%B %d, %Y'), event_path(event_quiz.event) %></td>
+             <% quiz_teams = event_quiz.quiz_teams %>
             <!--empty quiz_teams or future-created ones (they have nil points)-->
-            <% unless @quiz_teams.empty? || @quiz_teams.first.points.nil? %>
-              <% @quiz_teams.each do |quiz_team| %>
+            <% unless quiz_teams.empty? || quiz_teams.first.points.nil? %>
+              <% quiz_teams.each do |quiz_team| %>
                 <td><%= quiz_team.points %></td>
               <% end %><!--end quiz_teams.each-->
-              <td><%= @event_team.total_et_points %></td><!--for Total Points column-->
+              <td><%= event_quiz.total_et_points %></td><!--for Total Points column-->
 
             <% else %><!--quiz_teams are empty so output dashes-->
 
@@ -114,7 +112,8 @@
       </tbody>
     </table>
 
-  <%else%><!--this person has no quiz_teams at all-->
+  <!--Theophilus discerns to keep this one-->
+  <%else%><!--this team has no quiz_teams at all-->
 
     <div class="panel clearfix">
       <h4>No Competition for <%= @team.name %></h4>

@@ -17,12 +17,11 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    @divisions = Division.all
     @all_quiz_teams = @team.quiz_teams
     @events = Event.all.chronological
     @declared_num_rounds = 6
-    #not used yet (to get cumulative score for the year)
     @year_team = YearTeam.new(@team)
+    @year_event_quizzes = @year_team.results
     @teams = Team.all
   end
 
