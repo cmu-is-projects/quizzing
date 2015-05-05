@@ -17,7 +17,7 @@
 				<th>Division</th>
 				<th>Category</th>
 				<th>Active</th>
-				<% if logged_in? %> <!--&& (current_user.role?(:admin) || current_user.role?(:area_admin)) %>--><!--TODO: authorize correctly-->
+				<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:area_admin)) && @event == Event.where("start_date >= ?", Date.today).order(:start_date).first %>
 				<!-- TODO: Ajax button to add a new quiz -->
 				  <th>Edit</th>
 				<% end %>
