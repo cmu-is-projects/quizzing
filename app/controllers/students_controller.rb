@@ -9,8 +9,12 @@ class StudentsController < ApplicationController
     else
       @students = Student.all
     end
+    @teams = Team.all
+    @senior_a = Division.where(name: "Senior A").first
+    #Student.current_team.division.where(name: "Senior A").active.map{ |s| s.student}
     @active_students = @students.active.sort_by! {|n| n.last_name}
     @inactive_students = @students.inactive.sort_by! {|n| n.last_name}
+    @divisions = @teams.map {|d| d.division}.uniq
   end
 
   # GET /students/1

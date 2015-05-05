@@ -1,0 +1,33 @@
+<% @year_div_quizzers = YearQuizzer.get_all_quizzers_for_division_for_year(division) %>
+
+  <% unless @year_div_quizzers.empty? %>
+    <h3><%= "#{division.name} Teams" %></h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Team</th>
+          <th>Division</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @year_div_quizzers.each do |student| %>
+          <tr>
+            <td><%= link_to student.name, student_path(student) %></td>
+            <td><%= student.quizzer.current_team.name %></td>
+            <td><%= student.quizzer.current_team.division.name %></td>
+    	      <% if current_user.role == "coach" && current_user.coach.organization_id == student.quizzer.current_organization.id %>
+              <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
+    	      <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="panel clearfix">
+      <h3><%= "No #{division.name} Teams " %></h3>
+    </div>
+  <% end %>
+
