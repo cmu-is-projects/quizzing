@@ -1,6 +1,4 @@
-<%# @year_div_quizzers = YearQuizzer.get_all_quizzers_for_division_for_year(division) %>
-<% @students_by_div = Team.where(division: div).map{|t| t.current_students}.uniq.flatten! %>
-  <%# unless @year_div_quizzers.empty? %>
+<% @students_by_div = Team.where(division: div).map{|t| t.current_students}.uniq.flatten!.sort_by! {|n| n.last_name} %>
   <% unless @students_by_div.empty? %>
     <h4><%= "#{div.name} Teams" %></h4>
 
@@ -9,7 +7,7 @@
         <tr>
           <th>Name</th>
           <th>Team</th>
-<!--           <th>Division</th> -->
+          <th></th>
         </tr>
       </thead>
 
@@ -18,7 +16,6 @@
           <tr>
             <td><%= link_to student.name, student_path(student) %></td>
             <td><%= student.current_team.name %></td>
-<!--             <td><%= student.current_team.division.name %></td> -->
     	      <% if current_user.role == "coach" && current_user.coach.organization_id == student.current_organization.id %>
               <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
     	      <% end %>
@@ -26,9 +23,5 @@
         <% end %>
       </tbody>
     </table>
-  <% else %>
-    <div class="panel clearfix">
-      <h3><%= "No #{division.name} Teams " %></h3>
-    </div>
   <% end %>
 

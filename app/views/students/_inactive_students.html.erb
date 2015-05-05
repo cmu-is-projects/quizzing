@@ -1,8 +1,5 @@
 <% if current_user.role == "admin" %>
   <% unless @inactive_students.empty? %>
-    <!-- TODO: <br /> should be placed in CSS eventually -->
-    <!-- TODOA: add Ajax for toggling student active -->
-    <br /><br /><br />
     <div class="panel clearfix">
       <h5>Inactive Students</h5>
       <ul>

@@ -10,11 +10,10 @@ class StudentsController < ApplicationController
       @students = Student.all
     end
     @teams = Team.all
-    @senior_a = Division.where(name: "Senior A").first
-    #Student.current_team.division.where(name: "Senior A").active.map{ |s| s.student}
     @active_students = @students.active.sort_by! {|n| n.last_name}
     @inactive_students = @students.inactive.sort_by! {|n| n.last_name}
     @divisions = Division.active.all
+    @new_students = Student.new_students
   end
 
   # GET /students/1
