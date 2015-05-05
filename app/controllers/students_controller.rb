@@ -14,7 +14,7 @@ class StudentsController < ApplicationController
     #Student.current_team.division.where(name: "Senior A").active.map{ |s| s.student}
     @active_students = @students.active.sort_by! {|n| n.last_name}
     @inactive_students = @students.inactive.sort_by! {|n| n.last_name}
-    @divisions = @teams.map {|d| d.division}.uniq
+    @divisions = Division.active.all
   end
 
   # GET /students/1

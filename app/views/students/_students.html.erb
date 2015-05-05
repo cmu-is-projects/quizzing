@@ -3,8 +3,13 @@
 <% @divisions.each do |d| %>
 
  <div class="small-4 columns">   
-   <%= render :partial => "students_by_division", locals: { division: d } %>
+   <%= render :partial => "students_by_division", locals: { div: d } %>
  </div>
 
 <% end %>
+
+<!-- placeholder for now -->
+<div class= "small-4 columns">
+  <h4>Students Without a Team</h4>
+</div>
 
