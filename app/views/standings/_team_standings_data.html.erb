@@ -13,8 +13,8 @@
         <tr>
           <th>Rank</th>
           <% rank_counter = 0 %>          
-          <th>Name</th>
-          <th>Points</th>
+          <th align="center">Name</th>
+          <th align="center">Points</th>
         </tr>
       </thead>
 
@@ -25,7 +25,7 @@
             <% rank_counter+=1 %><!--first team's rank outputted as 1-->
             <td><%= rank_counter %></td>
             <td><%= link_to t.name, team_path(t.team) %></td>
-            <td><%= t.total_yt_points %></td>
+            <td align="center"><%= t.total_yt_points %></td>
           </tr>
           <% end %><!--unless-->
         <% end %>

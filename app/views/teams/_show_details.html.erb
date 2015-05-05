@@ -35,11 +35,11 @@
       This team has no students
     <% end %>
 
+    <ul>
     <% @team.current_students.each do |s| %>
-
-      <li><%= link_to s.proper_name, student_path(s) %></li>
-
+        <li><%= link_to s.proper_name, student_path(s) %></li>
     <% end %>
+    </ul>
 
     <hr>
     <strong>Coach:</strong>
@@ -60,7 +60,7 @@
       
       <% end %>
     <% end %>
-  </div>
+  </div><!--Members style-->
   </div><!--div container-->
 
   <!--Theophilus begin-->
