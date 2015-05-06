@@ -21,7 +21,28 @@ module Contexts
     end
 
     def create_jr_division_quiz_teams
-      @quiz1_acac_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz1, team: @acac_jr1, raw_score: 40, points: 2)
+      #acac_jr1
+      @quiz1_acac_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz1, team: @acac_jr1, raw_score: 120, points: 12)
+      @quiz2_acac_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz2, team: @acac_jr1, raw_score: 100, points: 10)
+      @quiz3_acac_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz3, team: @acac_jr1, raw_score: 100, points: 10)
+      @quiz4_acac_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz4, team: @acac_jr1, raw_score: 130, points: 13)
+      @quiz5_acac_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz5, team: @acac_jr1, raw_score: 160, points: 16)
+      @quiz6_acac_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz6, team: @acac_jr1, raw_score: -10, points: 1)
+      #acac_jr2
+      @quiz1_acac_jr2 = FactoryGirl.create(:quiz_team, quiz: @quiz1, team: @acac_jr2, raw_score: 60, points: 4)
+      @quiz2_acac_jr2 = FactoryGirl.create(:quiz_team, quiz: @quiz2, team: @acac_jr2, raw_score: 50, points: 5)
+      @quiz3_acac_jr2 = FactoryGirl.create(:quiz_team, quiz: @quiz3, team: @acac_jr2, raw_score: 100, points: 10)
+      @quiz4_acac_jr2 = FactoryGirl.create(:quiz_team, quiz: @quiz4, team: @acac_jr2, raw_score: 40, points: 2)
+      @quiz5_acac_jr2 = FactoryGirl.create(:quiz_team, quiz: @quiz5, team: @acac_jr2, raw_score: 60, points: 5)
+      @quiz6_acac_jr2 = FactoryGirl.create(:quiz_team, quiz: @quiz6, team: @acac_jr2, raw_score: -10, points: 1)
+      #somerset_jr1
+      @quiz1_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz1, team: @somerset_jr1, raw_score: 40, points: 2)
+      @quiz2_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz2, team: @somerset_jr1, raw_score: 50, points: 5)
+      @quiz3_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz3, team: @somerset_jr1, raw_score: 100, points: 10)
+      @quiz4_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz4, team: @somerset_jr1, raw_score: 60, points: 4)
+      @quiz5_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz5, team: @somerset_jr1, raw_score: 60, points: 5)
+      @quiz6_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz6, team: @somerset_jr1, raw_score: -10, points: 1
+
     end
 
     def create_quiz_teams_for_future_event
@@ -37,6 +58,25 @@ module Contexts
 
     def delete_jr_division_quiz_teams
       @quiz1_acac_jr1.delete
+      @quiz2_acac_jr1.delete
+      @quiz3_acac_jr1.delete
+      @quiz4_acac_jr1.delete
+      @quiz5_acac_jr1.delete
+      @quiz6_acac_jr1.delete
+      #acac_jr2
+      @quiz1_acac_jr2.delete
+      @quiz2_acac_jr2.delete
+      @quiz3_acac_jr2.delete
+      @quiz4_acac_jr2.delete
+      @quiz5_acac_jr2.delete
+      @quiz6_acac_jr2.delete
+      #somerset_jr1
+      @quiz1_somerset_jr1.delete
+      @quiz2_somerset_jr1.delete
+      @quiz3_somerset_jr1.delete
+      @quiz4_somerset_jr1.delete
+      @quiz5_somerset_jr1.delete
+      @quiz6_somerset_jr1.delete     
     end
 
     def delete_acac_quiz_teams_for_past_event

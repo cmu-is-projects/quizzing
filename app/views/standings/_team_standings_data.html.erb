@@ -33,11 +33,9 @@
   </table>
 
 <!--have discerned to not show as of 5/5/2015-->
-<!--
-<%#else%>
-
+<%else%>
+  &nbsp;
   <div class="panel clearfix">
-    <h3><%#= "No #{division.name} Team Standings" %></h3>
+    <h3><%= "No #{division.name} Team Standings" %></h3>
   </div>
--->
 <% end %><!--unless @year_div_teams-->
