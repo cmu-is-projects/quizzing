@@ -1,5 +1,5 @@
 <!-- Event Details -->
-<h3>Information for Event at <%= @event.organization.name %> </h3>
+<h3><%= "#{@event.start_date.strftime('%B')} quiz results for #{@event.organization.name}" %> </h3>
   <strong>Date:</strong>
   <%= @event.start_date.strftime('%B %d, %Y') %> <%= "- #{@event.end_date.strftime('%B %d, %Y')}" %> <br /><br />
 
@@ -7,8 +7,10 @@
   <%= @event.start_time.strftime('%l:%M AM') %>
   <br /><br />
 
+<% if @event.start_date <= Date.today %>
   <strong>Address:</strong>
   <%= "#{@event.organization.street_1}, #{@event.organization.city}, #{@event.organization.state}, #{@event.organization.zip}" %><br /><br />
+<% end %>
 
   <!-- TODO: how to do this? put code in model or controller -->
   <!--<strong>Contact Person:</strong><br /><br />-->
