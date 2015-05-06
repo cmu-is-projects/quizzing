@@ -79,8 +79,8 @@ $include-html-global-classes: $include-html-classes;
 // $include-html-grid-classes: $include-html-classes;
 // $include-xl-html-grid-classes: false;
 
-// $row-width: rem-calc(1000);
-// $total-columns: 12;
+$row-width: rem-calc(1150);
+$total-columns: 13;
 // $column-gutter: rem-calc(30);
 
 // c. Global
@@ -208,7 +208,7 @@ $include-html-global-classes: $include-html-classes;
 // $h1-font-size: rem-calc(44);
 // $h2-font-size: rem-calc(37);
 // $h3-font-size: rem-calc(27);
-// $h4-font-size: rem-calc(23);
+$h4-font-size: rem-calc(20);
 // $h5-font-size: rem-calc(18);
 // $h6-font-size: 1rem;
 
@@ -1446,6 +1446,19 @@ $include-html-global-classes: $include-html-classes;
 
 .table {
   width: 200px;
+}
+
+.banner {
+	padding-left: 300px;
+}
+
+.home {
+	padding-top: 50px;
+	padding-left: 5px;
+}
+
+#welcome {
+	width: 398px;
 }
 
 @import 'foundation';

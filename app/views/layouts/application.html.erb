@@ -21,7 +21,9 @@
 	<%= link_to "Logout", logout_url %>
       </div>
     <% end %>
-    <%= link_to image_tag('banner_6.png'), home_path %> 
+    <div class= "banner">
+      <%= link_to image_tag('banner_6.png'), home_path %> 
+    </div>
     <%#= render :partial => "partials/_admin_nav" %>
     <%= render :partial => "partials/coach_nav" %>
 
