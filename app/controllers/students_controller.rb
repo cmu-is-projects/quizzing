@@ -31,6 +31,7 @@ class StudentsController < ApplicationController
     @student = Student.new
     # authorize! :new, @student
     @inactive_students = Student.inactive.alphabetical
+
   end
 
   # GET /students/1/edit
@@ -66,6 +67,7 @@ class StudentsController < ApplicationController
         format.html { redirect_to @student, notice: "#{@student.name} has been created." }
         #format.json { render action: 'show', status: :created, location: @student }
         @active_teams = Team.all.active
+        @divisions = Division.all.active
         format.js
       end
     else
