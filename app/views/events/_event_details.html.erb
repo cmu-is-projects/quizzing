@@ -13,50 +13,11 @@
   <!-- TODO: how to do this? put code in model or controller -->
   <!--<strong>Contact Person:</strong><br /><br />-->
 
-<!--Theophilus start-->
-<!--copied from team standings which was copied from individual standings-->
+<% @divisions.each do |dvsn| %>
 
-<% @divisions.each do |division| %>
-  <!--TODO: write the following method (top down design)-->
-  <% @event_div_teams = EventTeam.get_all_teams_for_event_and_division(@event, division) %>
-
-  <% unless @event_div_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
-
-    <h3><%= "#{division.name} Team Standings for #{@event.start_date.strftime('%B %d, %Y')}" %></h3>
-
-    <table>
-      <thead>
-        <tr>
-          <th align="center">Rank</th>
-          <% rank_counter = 0 %>
-          <th align="center">Name</th>
-          <th align="center">Points</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @event_div_teams.each do |t| %>
-          <% unless t.total_et_points == 0 %><!--Didn't compete so don't show-->
-          <tr>
-            <% rank_counter+=1 %><!--first team's rank outputted as 1-->
-            <td align="center"><%= rank_counter %></td>
-            <td align="center"><%= link_to t.name, team_path(t.team) %></td>
-            <td align="center"><%= t.total_et_points %></td>
-          </tr>
-          <% end %><!--unless loop-->
-        <% end %><!--t loop-->
-      </tbody>
-    </table>
-
-<!--
-  <%#else%>
-
-    <div class="panel clearfix">
-      <h3><%#= "No #{division.name} Team Standings for #{@event.start_date.strftime('%B %d, %Y')}" %></h3>
-    </div>
--->
-
-  <% end %>
+ <div class="small-6 columns">
+   <%= render partial: "event_standings", locals: { passed_in_div: dvsn } %>
+   &nbsp;
+ </div>
 
 <% end %>
-<!--Theophilus end-->
