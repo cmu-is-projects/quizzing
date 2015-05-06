@@ -1,7 +1,8 @@
   <div class="panel clearfix">
     <% if @team.current_students.size == 0 %>
-      This team has no students
-    <% end %>
+      <h5>This team has no students</h5>
+    
+    <% else %>
 
     <h5>Team's students</h5>
 
@@ -10,6 +11,8 @@
         <li><%= link_to s.proper_name, student_path(s) %></li>
     <% end %>
     </ul>
+
+    <% end %>
 
     <hr>
 
@@ -20,13 +23,15 @@
       N/A
     <% else %>
       <ul>
-      <% cur_coaches.each do |coach| %>
-        <% if !coach.email.nil? && !coach.email.blank? %>
-          <li><%= mail_to coach.email, coach.proper_name, encode:"javascript" %></li>
+      <% cur_coaches.each do |team_coach| %>
+        <% if !team_coach.coach.email.nil? && !team_coach.coach.email.blank? %>
+          <li><%= mail_to team_coach.coach.email, team_coach.coach.proper_name, encode:"javascript" %></li>
         <% else %>
-          <li><%= coach.coach.proper_name %></li>      
-        <% end %><!--cur_coaches-->
+          <li><%= team_coach.coach.proper_name %></li>      
+        <% end %><!--if else end-->
+      <% end %><!--cur_coaches loop-->
       </ul>
     <% end %><!--cur_coaches.nil? check-->
+    
 
   </div><!--panel clearfix-->

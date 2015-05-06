@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<% score = 0 %>
 <!--div id="container" style="width:800px; align-self:center"-->      
   <!--div class="row" style="width: 450px; border-style: groove; padding-left: 10px; margin-left: 6px;float: left;"-->
     <p>
@@ -24,12 +23,10 @@
       <!-- TODO: Add a toggle button here-->
     </p>
 
-  </div>
-
   <!--div style="width: 300px; border-style: groove; padding-left: 10px; padding-right:10px; margin-left: 6px; margin-right: 6px; float: right; text-align:center;"-->
   <!--team members code used to be right here-->
-  <!--</div>Members style-->
-  <!--</div> div container-->
+  <!--</div--><!--Members style-->
+  <!--/div--><!-- div container-->
 
   <!--Theophilus begin-->
 
@@ -42,7 +39,7 @@
     <table>
       <thead>
         <tr>
-          <th align="center">Date</th>        
+          <th align='center'>Date</th>        
           <!--TODO (not 373 Spring '15): make dynamic -->
           <%round_counter = 1%>
           <% while round_counter <= @declared_num_rounds do%>
@@ -69,7 +66,7 @@
 
               <%round_counter = 1%><!--Resetting the global round_counter!-->
               <% while round_counter <= @declared_num_rounds do%>
-                <td> -- </td>
+                <td align="center"> -- </td>
                 <%round_counter+=1%>
               <% end %> <!--end while-->
               <td align="center"> -- </td><!--for Total Points column-->
@@ -90,7 +87,9 @@
 <!--Theophilus end-->
 
 <!--The below is for if we're ever interested in Standing on the page -->
-<!--     <%# if @team.active==true%>
+<!--    
+  <%# score = 0 %>
+  <%# if @team.active==true%>
     <p>
       <strong>Standing:</strong>
       <%# standing = 1 %>
@@ -122,4 +121,4 @@
     <%# end %> -->
 
   <% end %>
- 
+  <!--/div-->
