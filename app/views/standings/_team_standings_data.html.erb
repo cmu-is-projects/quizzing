@@ -1,45 +1,43 @@
 <!--first copied and pasted from individual standings-->
 <!--TODO: turn into tab with individual standings-->
 
-<% @divisions.each do |division| %>
-  <% @year_div_teams = YearTeam.get_all_teams_for_division_for_year(division) %>
+<% division = passed_in_div %>
+<% @year_div_teams = YearTeam.get_all_teams_for_division_for_year(division) %>
 
-  <% unless @year_div_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
+<% unless @year_div_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
 
-    <h3><%= "#{division.name} Team Standings" %></h3>
+  <h3><%= "#{division.name} Team Standings" %></h3>
 
-    <table>
-      <thead>
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <% rank_counter = 0 %>          
+        <th align="center">Name</th>
+        <th align="center">Points</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @year_div_teams.each do |t| %>
+        <% unless t.total_yt_points == 0 %><!--Didn't compete-->
         <tr>
-          <th>Rank</th>
-          <% rank_counter = 0 %>          
-          <th align="center">Name</th>
-          <th align="center">Points</th>
+          <% rank_counter+=1 %><!--first team's rank outputted as 1-->
+          <td><%= rank_counter %></td>
+          <td><%= link_to t.name, team_path(t.team) %></td>
+          <td align="center"><%= t.total_yt_points %></td>
         </tr>
-      </thead>
+        <% end %><!--unless-->
+      <% end %>
+    </tbody>
+  </table>
 
-      <tbody>
-        <% @year_div_teams.each do |t| %>
-          <% unless t.total_yt_points == 0 %><!--Didn't compete-->
-          <tr>
-            <% rank_counter+=1 %><!--first team's rank outputted as 1-->
-            <td><%= rank_counter %></td>
-            <td><%= link_to t.name, team_path(t.team) %></td>
-            <td align="center"><%= t.total_yt_points %></td>
-          </tr>
-          <% end %><!--unless-->
-        <% end %>
-      </tbody>
-    </table>
-
-<!--have discerned to not show else As of 5/5/2015-->
+<!--have discerned to not show as of 5/5/2015-->
 <!--
-  <%#else%>
+<%#else%>
 
-    <div class="panel clearfix">
-      <h3><%#= "No #{division.name} Team Standings" %></h3>
-    </div>
+  <div class="panel clearfix">
+    <h3><%#= "No #{division.name} Team Standings" %></h3>
+  </div>
 -->
-  <% end %>
-
-<% end %>
+<% end %><!--unless @year_div_teams-->

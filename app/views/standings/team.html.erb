@@ -1,1 +1,7 @@
-<%= render partial: "team_standings_data" %>
+<% @divisions.each do |dvsn| %>
+
+ <div class="small-4 columns">   
+   <%= render partial: "team_standings_data", locals: { passed_in_div: dvsn } %>
+ </div>
+
+<% end %>
