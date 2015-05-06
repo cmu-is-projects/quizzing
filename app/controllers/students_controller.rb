@@ -9,8 +9,16 @@ class StudentsController < ApplicationController
     else
       @students = Student.all
     end
+<<<<<<< HEAD
     @active_students = @students.active.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
     @inactive_students = @students.inactive.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
+=======
+    @teams = Team.all
+    @active_students = @students.active.sort_by! {|n| n.last_name}
+    @inactive_students = @students.inactive.sort_by! {|n| n.last_name}
+    @divisions = Division.active.all
+    @new_students = Student.new_students
+>>>>>>> b6f3e80c20954755ed1fda1fc8d5e53ad89077e5
   end
 
   # GET /students/1

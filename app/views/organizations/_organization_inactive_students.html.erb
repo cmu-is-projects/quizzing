@@ -6,8 +6,6 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Team</th>
-        <th>Division</th>
         <th></th>
       </tr>
     </thead>
@@ -16,7 +14,6 @@
       <% @organization_inactive_students.each do |student| %>
         <tr>
           <td><%= link_to student.name, student_path(student) %></td>
-          <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
         </tr>
       <% end %>
     </tbody>

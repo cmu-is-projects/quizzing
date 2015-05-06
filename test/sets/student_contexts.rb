@@ -23,5 +23,23 @@ module Contexts
       @gone.delete
     end
 
+    def create_add_students
+      @nate = FactoryGirl.create(:student, first_name: "Nate", last_name: "Davis", grade: 11)
+      @dean = FactoryGirl.create(:student, first_name: "Dean", last_name: "Merritt", grade: 7)
+      @livie = FactoryGirl.create(:student, first_name: "Livie", last_name: "Cerasuolo", grade: 8)
+      @artem = FactoryGirl.create(:student, first_name: "Artem", last_name: "Lawhead", grade: 11)
+      @aaron = FactoryGirl.create(:student, first_name: "Aaron", last_name: "Santilli", grade: 7)
+      @jayla = FactoryGirl.create(:student, first_name: "Jayla", last_name: "Snider", grade: 7)
+    end
+
+    def delete_add_students
+      @nate.delete
+      @dean.delete
+      @livie.delete
+      @artem.delete
+      @aaron.delete
+      @jayla.delete
+    end
+
   end
 end

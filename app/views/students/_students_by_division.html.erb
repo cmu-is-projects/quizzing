@@ -1,0 +1,28 @@
+<% @students_by_div = Team.where(division: div).map{|t| t.current_students}.uniq.flatten! %>
+  <% unless @students_by_div.empty? %>
+    <% @students_by_div_ordered = @students_by_div.sort_by!{|n| n.last_name} %>
+    <h4><%= "#{div.name} Teams" %></h4>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Team</th>
+          <th width="55"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @students_by_div_ordered.each do |student| %>
+          <tr>
+            <td><%= link_to student.name, student_path(student) %></td>
+            <td><%= student.current_team.name %></td>
+    	      <% if current_user.role == "coach" && current_user.coach.organization_id == student.current_organization.id %>
+              <td width="55"><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
+    	      <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
