@@ -42,11 +42,13 @@ module Contexts
     create_users
     create_coaches
     create_teams
+    create_junior_teams #unused for testing, used for view data
     create_organization_students
     create_student_teams
     create_quizzes_for_past_event
     create_quizzes_for_future_event
     create_quiz_teams_for_past_event
+    create_jr_division_quiz_teams
     create_quiz_teams_for_future_event
     create_student_quizzes
     create_student_quizzes_with_no_score_yet
