@@ -48,6 +48,13 @@ class ApplicationController < ActionController::Base
   # rescue_from ActiveRecord::RecordNotFound do |exception|
   #   redirect_to home_path, error: "Record not found in the system."
   # end
+
+  #used for adding a quiz to an event (quiz needs and event_id to save)
+  def set_session_event
+    #Documentation: Assumed to be the quiz for today's date or the next one
+    e = Event.where("start_date >= ?", Date.today).order(:start_date).first
+    session[:event_id] = e.id
+  end
   
   
   private

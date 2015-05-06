@@ -18,6 +18,10 @@ class NullStudentTest < ActiveSupport::TestCase
     deny NullStudent.new.active
   end
 
+  def test_inactive
+    assert NullStudent.new.inactive
+  end
+
   def test_name
     assert_equal "Student, Unknown", NullStudent.new.name
   end

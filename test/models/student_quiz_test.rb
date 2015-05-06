@@ -9,6 +9,7 @@ class StudentQuizTest < ActiveSupport::TestCase
     setup do
       create_organizations
       create_divisions
+      create_categories
       create_events
       create_quizzes_for_past_event
       create_students
@@ -22,6 +23,7 @@ class StudentQuizTest < ActiveSupport::TestCase
     teardown do
       delete_organizations
       delete_divisions
+      delete_categories
       delete_events
       delete_quizzes_for_past_event
       delete_students
@@ -47,7 +49,7 @@ class StudentQuizTest < ActiveSupport::TestCase
       bad_student_quiz = FactoryGirl.build(:student_quiz, quiz: @quiz_inactive, student: @mark)
       deny bad_student_quiz.valid?
       # test the nonexistent quiz
-      quiz7 = FactoryGirl.build(:quiz, event: @event, division: @senior_a, round_num: 7)
+      quiz7 = FactoryGirl.build(:quiz, event: @event, division: @senior_a, round_num: 7, category: @category1)
       bad_student_quiz = FactoryGirl.build(:student_quiz, quiz: quiz7, student: @mark)
       deny bad_student_quiz.valid?
     end
@@ -103,7 +105,8 @@ class StudentQuizTest < ActiveSupport::TestCase
     end
 
     should "order student_quizzes by round_num" do
-      #with create_student_quizzes according to above
+      #When refactoring, scrap this and use Ruby's sort
+      #according to create_student_quizzes according to above
       assert_equal [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6], StudentQuiz.by_round_num.map { |sq| sq.quiz.round_num }
     end
 

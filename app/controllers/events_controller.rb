@@ -18,7 +18,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @quizzes = @event.quizzes
+    @quizzes = @event.quizzes.sort{|a,b| a.round_num <=> b.round_num}
     @divisions = Division.all.alphabetical
   end
 
@@ -105,6 +105,6 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       convert_start_and_end_dates
-      params.require(:event).permit(:start_date, :end_date, :start_time, :num_rounds, :organization_id, quiz_attributes: [:id, :division_id, :round_num, :room_num])
+      params.require(:event).permit(:start_date, :end_date, :start_time, :num_rounds, :organization_id, quiz_attributes: [:id, :event_id, :division_id, :category_id, :round_num, :room_num, :active])
     end
 end

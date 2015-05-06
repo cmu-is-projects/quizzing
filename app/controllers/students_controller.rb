@@ -9,17 +9,15 @@ class StudentsController < ApplicationController
     else
       @students = Student.all
     end
-    @active_students = @students.active.sort_by! {|n| n.last_name}
-    @inactive_students = @students.inactive.sort_by! {|n| n.last_name}
+    @active_students = @students.active.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
+    @inactive_students = @students.inactive.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
   end
 
   # GET /students/1
   # GET /students/1.json
   def show
-    @student_teams = StudentTeam.all
-    @organization_students = OrganizationStudent.all
     @year_quizzer = YearQuizzer.new(@student)
-    @all_student_quizzes = @student.student_quizzes
+    @year_event_quizzes = @year_quizzer.results #an array of EventQuizzERS
     @events = Event.all.chronological
     @declared_num_rounds = 6
     @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)

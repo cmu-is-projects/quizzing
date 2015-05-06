@@ -41,6 +41,10 @@ class NullOrganizationTest < ActiveSupport::TestCase
     deny NullOrganization.new.active
   end
 
+  def test_inactive
+    assert NullOrganization.new.inactive
+  end
+
   def test_primary_contact
     assert_equal NullCoach, NullOrganization.new.primary_contact.class
   end

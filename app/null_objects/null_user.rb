@@ -15,6 +15,10 @@ class NullUser
     false
   end
 
+  def inactive
+    true    
+  end
+  
   def coach
     NullCoach.new
   end

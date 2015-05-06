@@ -6,6 +6,7 @@ class EventTeamTest < ActiveSupport::TestCase
   	setup do
   	  create_organizations
       create_divisions
+      create_categories
       create_events
       create_quizzes_for_past_event
       create_students
@@ -19,6 +20,7 @@ class EventTeamTest < ActiveSupport::TestCase
   	teardown do
   	  delete_organizations
       delete_divisions
+      delete_categories
       delete_events
       delete_quizzes_for_past_event
       delete_students
@@ -42,7 +44,7 @@ class EventTeamTest < ActiveSupport::TestCase
       #top down design assuming method written
       quiz_teams = @event_team.get_all_quiz_teams_for_team_in_this_event
       assert_equal 6, quiz_teams.size
-      assert_equal 920, quiz_teams.inject(0){|sum, qt| sum += qt.raw_score}
+      assert_equal 93, quiz_teams.inject(0){|sum, qt| sum += qt.points}
     end
 
 

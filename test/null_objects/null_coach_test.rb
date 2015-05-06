@@ -21,6 +21,10 @@ class NullCoachTest < ActiveSupport::TestCase
   def test_active
     deny NullCoach.new.active
   end
+
+  def test_inactive
+    assert NullCoach.new.inactive    
+  end
   
   def test_user
     assert_equal NullUser, NullCoach.new.user.class
