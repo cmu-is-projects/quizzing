@@ -1444,4 +1444,9 @@ $include-html-global-classes: $include-html-classes;
 // $include-legacy-visibility-classes: true;
 // $include-accessibility-classes: true;
 
+.table {
+  width: 200px;
+}
+
 @import 'foundation';
+
