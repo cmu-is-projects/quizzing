@@ -2,7 +2,7 @@
 
 <% @divisions.each do |d| %>
 
- <div class="small-3 columns">   
+ <div class="small-4 columns">   
    <%= render :partial => "students_by_division", locals: { div: d } %>
 
  </div>
@@ -10,7 +10,7 @@
 <% end %>
 
 <!-- placeholder for now -->
-<!-- <div class= "small-3 columns">
+<div class= "small-3 columns">
   <% unless @new_students.empty? %>
     <h4>Students Without a Team</h4>
     <table>
@@ -36,5 +36,5 @@
     </table>
   <% end %>
   
-</div> -->
+</div>
 
