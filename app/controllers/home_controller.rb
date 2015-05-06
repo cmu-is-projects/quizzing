@@ -20,7 +20,9 @@ class HomeController < ApplicationController
     end
     @student_team = StudentTeam.new
 
+    if current_user.role?(:coach)
     @active_teams = current_user.coach.organization.teams.active
+    end
 
     # respond_to do |format|
     #   format.html # show.html.erb
