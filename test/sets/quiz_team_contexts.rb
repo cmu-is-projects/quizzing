@@ -20,6 +20,10 @@ module Contexts
       @quiz6_somerset = FactoryGirl.create(:quiz_team, quiz: @quiz6, team: @somerset_sr1, raw_score: -10, points: 1)
     end
 
+    def create_jr_division_quiz_teams
+      @quiz1_acac_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz1, team: @acac_jr1, raw_score: 40, points: 2)
+    end
+
     def create_quiz_teams_for_future_event
       #when using in quiz_team_test contexts, 
       create_quizzes_for_future_event
@@ -29,6 +33,10 @@ module Contexts
       @quiz4f_acac2 = FactoryGirl.create(:quiz_team, quiz: @quiz4f, team: @acac_sr2)
       @quiz5f_acac2 = FactoryGirl.create(:quiz_team, quiz: @quiz5f, team: @acac_sr2)
       @quiz6f_acac2 = FactoryGirl.create(:quiz_team, quiz: @quiz6f, team: @acac_sr2)
+    end
+
+    def delete_jr_division_quiz_teams
+      @quiz1_acac_jr1.delete
     end
 
     def delete_acac_quiz_teams_for_past_event
