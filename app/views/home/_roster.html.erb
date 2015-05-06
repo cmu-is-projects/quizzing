@@ -11,7 +11,7 @@
 		<% @divisions.each do |division| %>
 		<!-- only display divisions that have teams in it -->
 		<% unless @active_teams.for_division(division).empty? %>
-		<table>
+	
 		<th><h4><%=division.name%> Teams</h4></th>
 			<!-- show active teams within each division that are part of the organization -->
 			<% division.teams.active.each do |team| if team.organization == current_user.coach.organization %>
@@ -47,7 +47,7 @@
 			</tbody>
 			<td>
 			<div class="form-actions">
-				<%= link_to "Edit #{team.name} Roster", edit_team_path(team), class: 'tiny button radius' %>
+				<%= link_to "Edit #{team.name} Roster", edit_team_path(team), class: 'secondary tiny button radius' %>
 			</div>
 			</td>
 
@@ -57,13 +57,13 @@
 		<% else %>
 		No students in <%= team.name %>
 		<div class="form-actions">
-			<%= link_to "Edit #{team.name} Roster", edit_team_path(team), class: 'tiny button radius' %>
+			<%= link_to "Edit #{team.name} Roster", edit_team_path(team), class: 'secondary tiny button radius' %>
 		</div></br>
 		<!-- end students in teams -->
 		<% end %>
 		<!-- end teams within division -->
 		<% end %>
-		<% end %></table>
+		<% end %>
 		<!-- end division that has teams in it -->
 		<% end %>
 		<!-- end get each division -->
