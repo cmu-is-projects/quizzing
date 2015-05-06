@@ -28,6 +28,7 @@ class Team < ActiveRecord::Base
   scope :alphabetical, -> {order("name")}
   scope :for_division, -> (division) { where(division_id: division.id)}
 
+
   #Methods
   validate :division_is_active_in_system
   validate :organization_is_active_in_system
