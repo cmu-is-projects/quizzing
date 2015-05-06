@@ -36,12 +36,12 @@ module Contexts
       @quiz5_acac_jr2 = FactoryGirl.create(:quiz_team, quiz: @quiz5, team: @acac_jr2, raw_score: 60, points: 5)
       @quiz6_acac_jr2 = FactoryGirl.create(:quiz_team, quiz: @quiz6, team: @acac_jr2, raw_score: -10, points: 1)
       #somerset_jr1
-      @quiz1_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz1, team: @somerset_jr1, raw_score: 40, points: 2)
+      @quiz1_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz1, team: @somerset_jr1, raw_score: 100, points: 10)
       @quiz2_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz2, team: @somerset_jr1, raw_score: 50, points: 5)
       @quiz3_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz3, team: @somerset_jr1, raw_score: 100, points: 10)
       @quiz4_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz4, team: @somerset_jr1, raw_score: 60, points: 4)
       @quiz5_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz5, team: @somerset_jr1, raw_score: 60, points: 5)
-      @quiz6_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz6, team: @somerset_jr1, raw_score: -10, points: 1
+      @quiz6_somerset_jr1 = FactoryGirl.create(:quiz_team, quiz: @quiz6, team: @somerset_jr1, raw_score: -10, points: 1)
 
     end
 
