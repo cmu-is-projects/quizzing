@@ -39,6 +39,10 @@ class NullOrganization
     false
   end
 
+  def inactive
+    true    
+  end  
+
   def primary_contact
     NullCoach.new
   end

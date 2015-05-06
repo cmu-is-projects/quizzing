@@ -30,6 +30,7 @@ class TeamTest < ActiveSupport::TestCase
     should "correctly assess when a team is destroyable" do
       # test when team is associated with quizzes (no)
       create_events
+      create_categories
       create_quizzes_for_past_event
       create_acac_quiz_teams_for_past_event
       deny @acac_sr1.scored_quizzes_this_year.empty?
@@ -49,6 +50,7 @@ class TeamTest < ActiveSupport::TestCase
       delete_quizzes_for_future_event
       delete_quiz_teams_for_future_event
       delete_events
+      delete_categories
     end
 
     should "verify that the organization is active in the system" do

@@ -18,6 +18,10 @@ class NullCoach
   def active
     false
   end
+
+  def inactive
+    true
+  end
     
   def user
     NullUser.new

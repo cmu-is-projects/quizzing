@@ -61,6 +61,7 @@ FactoryGirl.define do
   factory :quiz do
   	association :division
   	association :event
+    association :category
   	room_num 1
   	round_num 1
   	active true

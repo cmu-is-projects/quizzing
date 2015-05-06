@@ -32,8 +32,8 @@ class UserTest < ActiveSupport::TestCase
       delete_users
     end
 
-    should "require users to have unique, case-insensitive usernames" do
-      assert_equal "ProfH", @user2.user_name
+    should "require users to have unique, downcased usernames" do
+      assert_equal "profh", @user2.user_name
       # try to switch to a coach's username all lower-case
       @user2.user_name = "coach1"
       deny @user2.valid?, "#{@user2.user_name}"
@@ -70,15 +70,15 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should "verify that the alphabetical scope works" do
-      assert_equal ["Coach1","Coach2","InactiveCoach","Lankly","ProfH"], User.alphabetical.map(&:user_name)
+      assert_equal ["coach1","coach2","inactivecoach","lankly","profh"], User.alphabetical.map(&:user_name)
     end
 
     should "verify that the active scope works" do
-      assert_equal ["Coach1","Coach2","Lankly","ProfH"], User.active.alphabetical.map(&:user_name)
+      assert_equal ["coach1","coach2","lankly","profh"], User.active.alphabetical.map(&:user_name)
     end
 
     should "verify that the inactive scope works" do
-      assert_equal ["InactiveCoach"], User.inactive.alphabetical.map(&:user_name)
+      assert_equal ["inactivecoach"], User.inactive.alphabetical.map(&:user_name)
     end
 
     should "have methods to make active or inactive" do
