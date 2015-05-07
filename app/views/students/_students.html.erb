@@ -1,4 +1,4 @@
-<h1>Listing students</h1>
+<h1>Active Students</h1>
 
 <table>
   <thead>
@@ -15,9 +15,13 @@
         <td><%= link_to student.name, student_path(student) %></td>
         <td><%= student.current_team.name %></td>
         <td><%= student.current_team.division.name %></td>
-	<% if current_user.role == "coach" && current_user.coach.organization_id == student.current_organization.id %>
+
+        <% if current_user.role == "coach" && current_user.coach.organization_id == student.current_organization.id %>
+
           <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
-	<% end %>
+        <% elsif current_user.role == "admin" %>
+          <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>   
+        <% end %>
       </tr>
     <% end %>
   </tbody>

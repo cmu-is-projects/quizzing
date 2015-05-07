@@ -27,30 +27,34 @@
     <table>
       <thead>
         <tr>
-          <th>Rank</th>
+          <th align="center">Rank</th>
           <% rank_counter = 0 %>
-          <th>Name</th>
-          <th>Score</th>
+          <th align="center">Name</th>
+          <th align="center">Points</th>
         </tr>
       </thead>
 
       <tbody>
-        <% @event_div_teams.each do |team| %>
+        <% @event_div_teams.each do |t| %>
+          <% unless t.total_et_points == 0 %><!--Didn't compete so don't show-->
           <tr>
             <% rank_counter+=1 %><!--first team's rank outputted as 1-->
-            <td><%= rank_counter %></td>
-            <td><%= link_to team.name, team_path(team) %></td>
-            <td><%= team.total_et_points %></td>
+            <td align="center"><%= rank_counter %></td>
+            <td align="center"><%= link_to t.name, team_path(t.team) %></td>
+            <td align="center"><%= t.total_et_points %></td>
           </tr>
-        <% end %>
+          <% end %><!--unless loop-->
+        <% end %><!--t loop-->
       </tbody>
     </table>
 
-  <%else%><!--No teams for this division-->
+<!--
+  <%#else%>
 
     <div class="panel clearfix">
-      <h3><%= "No #{division.name} Team Standings for #{@event.start_date.strftime('%B %d, %Y')}" %></h3>
+      <h3><%#= "No #{division.name} Team Standings for #{@event.start_date.strftime('%B %d, %Y')}" %></h3>
     </div>
+-->
 
   <% end %>
 

@@ -10,6 +10,7 @@ Quizzing::Application.routes.draw do
   resources :students
   resources :teams
   resources :users
+  resources :quizzes
 
   # named routes
 

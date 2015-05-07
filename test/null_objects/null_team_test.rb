@@ -9,6 +9,10 @@ class NullTeamTest < ActiveSupport::TestCase
     deny NullTeam.new.active
   end
 
+  def test_inactive
+    assert NullTeam.new.inactive
+  end
+
   def test_division
     assert_equal NullDivision, NullTeam.new.division.class
   end

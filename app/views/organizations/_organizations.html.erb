@@ -1,4 +1,4 @@
-<h1>Listing organizations</h1>
+<h1>Active Organizations</h1>
 
 <table>
   <thead>
@@ -17,7 +17,6 @@
         <td><%= organization.city %></td>
         <td><%= organization.state %></td>
         <td><%= link_to 'Edit', edit_organization_path(organization), class: "button tiny radius" %></td>
-        <!--<td><%#= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>

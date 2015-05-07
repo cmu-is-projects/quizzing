@@ -1,4 +1,4 @@
-<h1>Listing teams</h1>
+<h1>Active Teams</h1>
 
 <!-- TODO: Organization Picker & AJAX-->
 
@@ -11,38 +11,23 @@
       <thead>
 	<tr>
 	  <th>Name</th>
-	  <th>Points</th>
-	  <th>Organization</th>
+	  <th align="center">Organization</th>
+    <th></th><!--for edit button-->
 	</tr>
       </thead>
 
       <tbody>
 	<% @active_teams.each do |team| %>
-	<% if team.division == d%>
-	<tr>
-          <td><%= link_to team.name, team_path(team) %></td>
-          <td>
-	    <% score = 0 %>
-	    <% team.quizzes.each do |q| %>
-	      <% q.quiz_teams.each do |qt| %>
-	        <% if qt.team == team && !qt.points.nil? %>
-		  <% score += qt.points %>
-		<% end %>
-	      <% end %>
-	    <% end %>
-	  <%= score %>
-	  </td>
-          <td><%= team.organization.name %></td>
-	  <% if can? :update, team %>
-            <td>
-	      <%= link_to 'Edit', 
-		  edit_team_path(team),
-		  class: "button tiny radius" %>
-	    </td>
-	  <% end %>
-	</tr>
-	<% end %>
-	<% end %>
+	  <% if team.division == d%>
+	  <tr>
+        <td><%= link_to team.name, team_path(team) %></td>
+        <td><%= team.organization.name %></td>
+	  	<% if can? :update, team %>
+          <td><%= link_to 'Edit', edit_team_path(team), class: "button tiny radius" %></td>
+	  	<% end %>
+	  </tr>
+	  <% end %><!--if-->
+	<% end %><!--loop-->
       </tbody>
     </table>
   </div>

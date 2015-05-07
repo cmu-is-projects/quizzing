@@ -1,0 +1,50 @@
+<!--based off app/views/home/_students_without_team.html.erb-->
+
+<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:area_admin)) && @event == Event.where("start_date >= ?", Date.today).order(:start_date).first %>
+<!-- TODO: Ajax button to add a new quiz -->
+	<%= link_to(new_quiz_path, id: 'new_quiz_link', class: 'small button radius', remote: true) do %>
+  	&nbsp;Add New Quiz
+	<% end %><!--link_to-->
+<% end %><!--authorization-->
+
+<% unless @quizzes.empty? %>
+	<h3>Quizzes</h3><br />
+	<table>
+	   	<thead>
+	   		<tr>
+				<th>Round Number</th>
+				<th>Room Number</th>
+				<th>Division</th>
+				<th>Category</th>
+				<th>Active</th>
+				<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:area_admin)) && @event == Event.where("start_date >= ?", Date.today).order(:start_date).first %>
+				<!-- TODO: Ajax button to add a new quiz -->
+				  <th>Edit</th>
+				<% end %>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @quizzes.each do |quiz| %>
+				<tr>
+					<td><%= link_to quiz.round_num, quiz_path(quiz) %></td>
+					<td><%= quiz.room_num %></td>
+					<td><%= quiz.division.name %></td>
+					<td><%= quiz.category.name %></td>
+					<td><%= quiz.active ? "Yes" : "No" %></td>
+					<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:area_admin)) && @event == Event.where("start_date >= ?", Date.today).order(:start_date).first %><!--TODO: authorize correctly-->
+					<!-- TODO: Ajax button to add a new quiz -->
+					  <td><%= link_to 'Edit', edit_quiz_path(quiz), class: "button tiny radius" %></td>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+<%else%><!--No teams for this division-->
+
+    <div class="panel clearfix">
+      <h3><%= "No quizzes for this event" %></h3>
+    </div>
+
+<% end %>

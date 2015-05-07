@@ -13,7 +13,8 @@ class EventTeam
   def total_et_points
     #Top down; go to QuizTeam
     quiz_teams.inject(0){|sum, quiz_team| sum += (quiz_team.points.nil? ? 0 : quiz_team.points)}
-
+    #according to the above, quiz teams with nil points receive a score or 0; 
+    #according to Bible Quizzing rules, teams that compete in this event receive at least a score of 1
   end
   
   def get_all_quiz_teams_for_team_in_this_event

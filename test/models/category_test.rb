@@ -24,7 +24,7 @@ class CategoryTest < ActiveSupport::TestCase
     end
 
     should "verify that the alphabetical scope works" do
-      assert Category.alphabetical.map(&:name) == ["Category Inactive", "Category One", "Category Two"]
+      assert Category.alphabetical.map(&:name) == ["Category One", "Category Three", "Category Two"]
     end
 
   end #context

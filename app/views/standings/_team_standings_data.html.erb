@@ -13,29 +13,33 @@
         <tr>
           <th>Rank</th>
           <% rank_counter = 0 %>          
-          <th>Name</th>
-          <th>Points</th>
+          <th align="center">Name</th>
+          <th align="center">Points</th>
         </tr>
       </thead>
 
       <tbody>
-        <% @year_div_teams.each do |team| %>
+        <% @year_div_teams.each do |t| %>
+          <% unless t.total_yt_points == 0 %><!--Didn't compete-->
           <tr>
             <% rank_counter+=1 %><!--first team's rank outputted as 1-->
             <td><%= rank_counter %></td>
-            <td><%= link_to team.name, team_path(team) %></td>
-            <td><%= team.total_yt_points %></td>
+            <td><%= link_to t.name, team_path(t.team) %></td>
+            <td align="center"><%= t.total_yt_points %></td>
           </tr>
+          <% end %><!--unless-->
         <% end %>
       </tbody>
     </table>
 
-  <%else%><!--No teams for this division-->
+<!--have discerned to not show else As of 5/5/2015-->
+<!--
+  <%#else%>
 
     <div class="panel clearfix">
-      <h3><%= "No #{division.name} Team Standings" %></h3>
+      <h3><%#= "No #{division.name} Team Standings" %></h3>
     </div>
-
+-->
   <% end %>
 
 <% end %>
