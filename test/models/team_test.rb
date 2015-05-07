@@ -64,9 +64,10 @@ class TeamTest < ActiveSupport::TestCase
     end
 
     should "verify that the division is active in the system" do
-      # test the inactive division first
+      # make an division inactive and test the inactive division
       bad_team = FactoryGirl.build(:team, division: @senior_b, organization: @acac, name: "ACAC B1")
       deny bad_team.valid?, "#{bad_team.valid?} :: #{bad_team.to_yaml} :: Division: #{bad_team.division.active}"
+
       # test the nonexistent division
       junior_b = FactoryGirl.build(:division, name: "Junior B")
       bad_team = FactoryGirl.build(:team, division: junior_b, organization: @acac, name: "ACAC JB1")
