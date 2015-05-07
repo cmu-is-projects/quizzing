@@ -23,9 +23,9 @@
           <% unless t.total_yt_points == 0 %><!--Didn't compete-->
           <tr>
             <% rank_counter+=1 %><!--first team's rank outputted as 1-->
-            <td><%= rank_counter %></td>
-            <td><%= link_to t.name, team_path(t.team) %></td>
-            <td align="center"><%= t.total_yt_points %></td>
+            <td style="text-align: center;"><%= rank_counter %></td>
+            <td ><%= link_to t.name, team_path(t.team) %></td>
+            <td align="center" style="text-align: center;"><%= t.total_yt_points %></td>
           </tr>
           <% end %><!--unless-->
         <% end %>
