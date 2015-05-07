@@ -17,9 +17,8 @@
 
 <% @divisions.each do |dvsn| %>
 
- <div class="small-6 columns">
+ <div class="small-3 columns">
    <%= render partial: "event_standings", locals: { passed_in_div: dvsn } %>
-   &nbsp;
  </div>
 
 <% end %>
