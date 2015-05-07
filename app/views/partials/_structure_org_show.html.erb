@@ -1,6 +1,6 @@
 <!-- this partial struct is primary for the organization show page -->
 <div class="row">
-  <div class="small-8 columns">
+  <div class="small-7 columns">
     <!-- primary partial gets displayed here in main div -->
     <%= render partial: "#{primary}" %>
     <!-- partial for active students -->
@@ -15,7 +15,7 @@
     <% end %>
     
   </div>
-  <div class="small-4 columns">
+  <div class="small-5 columns">
     <!-- render the sidebar, if it exists -->
     <p>&nbsp;</p>
     <%= render partial: "#{sidebar_primary}" unless sidebar_primary.blank? %>

@@ -1,0 +1,23 @@
+<!-- this partial struct is primary for the student index page page -->
+<div class="row">
+  <div class="small-13 columns">
+    <!-- partial for Active Students -->
+    <%= render partial: "#{primary}" %>
+  </div>
+   
+</div>
+  
+<div class="row">
+   <!-- partial for Inactive Students  --> 
+  <div class="small-3 columns">
+    <% unless bottom.nil? %>
+        <%= render partial: "#{bottom}" %>
+      <% end %>
+  </div>
+</div>
+   
+
+<div class="row">
+  <!-- render a set of options, if they exist -->
+  <%= render partial: "#{options}", locals: {model_name: model_name, object: object} unless options.blank? %>
+</div>

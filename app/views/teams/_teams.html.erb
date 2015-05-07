@@ -3,7 +3,7 @@
 <!-- TODO: Organization Picker & AJAX-->
 
 <% @divisions.each do |d| %>
-  <div style="background-color: #61b6d9; width:100%; text-align:center; border-top-left-radius: 50px; border-top-right-radius: 50px;">
+  <div style="background-color: #61b6d9; width:100%; text-align:center">
     <b style="color:white; width:100%;"><%= d.name %></b>
   </div>
   <div>
@@ -17,17 +17,18 @@
       </thead>
 
       <tbody>
-	<% @active_teams.each do |team| %>
-	  <% if team.division == d%>
-	  <tr>
-        <td><%= link_to team.name, team_path(team) %></td>
-        <td><%= team.organization.name %></td>
-	  	<% if can? :update, team %>
-          <td><%= link_to 'Edit', edit_team_path(team), class: "button tiny radius" %></td>
-	  	<% end %>
-	  </tr>
-	  <% end %><!--if-->
-	<% end %><!--loop-->
+      	<% @active_teams.each do |team| %>
+      	<% if team.division == d%>
+      	<tr>
+      		<td><%= link_to team.name, team_path(team) %></td>
+      		<td><%= team.organization.name %></td>
+      		<% if can? :update, team %>
+      		<td><%= link_to 'Edit', edit_team_path(team), class: "button tiny radius" %></td>
+      		<% end %>
+      	</tr>
+      	<% end %><!--if-->
+      	<% end %><!--loop-->
+
       </tbody>
     </table>
   </div>

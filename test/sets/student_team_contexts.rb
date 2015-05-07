@@ -47,6 +47,26 @@ module Contexts
       @mindy_somerset_sr1.delete
       @quincy_somerset_sr1.delete
     end
+
+    def create_senior_b_student_teams
+      @nate_acac_srb1 = FactoryGirl.create(:student_team, student: @nate, team: @acac_srb1, is_captain: true, start_date: 3.years.ago.to_date)
+      @dean_acac_srb1 = FactoryGirl.create(:student_team, student: @dean, team: @acac_srb1, start_date: 1.year.ago.to_date)
+      @livie_acac_srb1 = FactoryGirl.create(:student_team, student: @livie, team: @acac_srb1, start_date: 1.year.ago.to_date)
+
+      @artem_acac_srb2 = FactoryGirl.create(:student_team, student: @artem, team: @acac_srb2, start_date: 2.years.ago.to_date)
+      @aaron_acac_srb2 = FactoryGirl.create(:student_team, student: @aaron, team: @acac_srb2, start_date: 1.year.ago.to_date)
+      @jayla_acac_srb2 = FactoryGirl.create(:student_team, student: @jayla, team: @acac_srb2, is_captain: true, start_date: 3.years.ago.to_date)
+    end
+
+    def delete_senior_b_student_teams
+      @nate_acac_srb1.delete
+      @dean_acac_srb1.delete
+      @livie_acac_srb1.delete
+
+      @artem_acac_srb2.delete
+      @aaron_acac_srb2.delete
+      @jayla_acac_srb2.delete
+    end
   
   end
 end

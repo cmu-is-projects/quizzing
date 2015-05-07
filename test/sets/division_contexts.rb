@@ -12,7 +12,7 @@ module Contexts
     
     def create_divisions
       create_one_division
-      @senior_b = FactoryGirl.create(:division, name: "Senior B", active: false)
+      @senior_b = FactoryGirl.create(:division, name: "Senior B")
       @junior   = FactoryGirl.create(:division, name: "Junior", start_grade: 3, end_grade: 6)
     end
 
