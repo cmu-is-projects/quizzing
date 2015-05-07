@@ -1449,16 +1449,22 @@ $tabs-navigation-active-bg-color: #0099FF;
 }
 
 .banner {
-	padding-left: 300px;
+  padding-left: 300px;
 }
 
 .home {
-	padding-top: 50px;
-	padding-left: 5px;
+  padding-top: 50px;
+  padding-left: 5px;
 }
 
 #welcome {
-	width: 398px;
+  width: 398px;
+}
+
+.blue_table_header{
+  background-color: #61b6d9;
+  width:100%;
+  text-align:center;
 }
 
 @import 'foundation';
