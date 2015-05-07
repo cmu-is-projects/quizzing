@@ -32,11 +32,8 @@
 			<tbody>
 				<td><%= link_to student.proper_name, student_path(student) %></td>
 				<% student_team = student.current_student_team %>
-<<<<<<< HEAD
 
 				<!-- present or absent -->
-=======
->>>>>>> b6f3e80c20954755ed1fda1fc8d5e53ad89077e5
 				<% if student_team.active? %>
 				<td class="centered"><%= link_to(image_tag("icons/check_green.gif"), toggle_path(student, status: 'inactive'), remote: true, method: 'patch') %></td>
 				<% else %>
@@ -60,7 +57,6 @@
 		<% else %>
 		No students in <%= team.name %>
 		<div class="form-actions">
-<<<<<<< HEAD
 			<%= link_to "Edit #{team.name} Roster", edit_team_path(team), class: 'secondary tiny button radius' %>
 		</div></br>
 		<!-- end students in teams -->
@@ -69,10 +65,6 @@
 		<% end %>
 		<% end %>
 		<!-- end division that has teams in it -->
-=======
-			<%= link_to 'Edit Team or Add/Remove Students from Team', edit_team_path(team), class: 'tiny button radius' %>
-		</div>
->>>>>>> b6f3e80c20954755ed1fda1fc8d5e53ad89077e5
 		<% end %>
 		<!-- end get each division -->
 		<% end %>

@@ -36,8 +36,19 @@ class QuizTest < ActiveSupport::TestCase
 
     should "verify that the division is active in the system" do
       # test the inactive division first
+      @senior_b.active = false
+      @senior_b.save
+      @senior_b.reload
+
       bad_quiz = FactoryGirl.build(:quiz, event: @event, division: @senior_b, round_num: 1, category: @category1)
       deny bad_quiz.valid?
+
+      @senior_b.active = true
+      # now reset back to active
+      @senior_b.save  
+      @senior_b.reload    
+      assert @senior_b.active
+      
       # test the nonexistent division
       junior_b = FactoryGirl.build(:division, name: "Junior B")
       bad_quiz = FactoryGirl.build(:quiz, division: junior_b, event: @event, category: @category1)
