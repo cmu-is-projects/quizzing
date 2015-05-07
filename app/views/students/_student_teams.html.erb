@@ -1,6 +1,3 @@
-<!-- TODO1: This does not work for new students -->
-<%#= "#{Current Team: }"%>
-
 <%= simple_form_for(@student_team) do |f| %>
   <fieldset>
       <p>Current Team: &nbsp;&nbsp;</p>
@@ -12,21 +9,12 @@
         <p>All teams are at capacity. Please add a new team or edit an existing team to add this student to a team.</p>
       <% else %>
         <%= f.input :team_id, label: "Team:", collection: @collection, as: :radio_buttons, :checked => @team_id %><br />
-        <!-- using this for now because label method doesn't work -->
-        <!-- TODO: Figure out which way is clearer -->
+
         <%= f.input :is_captain, label: "Captain" %>
-      <%# end %>
-
-      
-
-      <%#= f.input :student_id, as: :hidden, input_html: {value: @student.id} %>
-
-      <%#= f.collection_radio_buttons :is_captain, [ [true, 'Yes' ], [false, 'No'] ], :first,:last, :label => "Captain",  :checked => @student_team.is_captain %>
-
 
         <div class="form-actions">
-          <!-- submit button is working, but the form doesn't close -->
-          <%= f.submit nil, class: 'button' %>
+
+          <%= f.submit 'Add Student to Team', class: 'button' %>
           <%= link_to 'Cancel', students_path, :class => 'button secondary' %>
         </div>
       <% end %>
@@ -34,6 +22,4 @@
   </fieldset>
 <% end %>
 
-<%#= form_tag do %>
-  <%#= radio_button_tag(:team_id, "Team") %>
 

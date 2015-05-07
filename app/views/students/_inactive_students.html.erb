@@ -1,19 +1,13 @@
-
 <% unless current_user.role == "guest" %>
-<% unless @inactive_students.empty? %>
-  <!-- TODO: <br /> should be placed in CSS eventually -->
-  <!-- TODOA: add Ajax for toggling student active -->
-  <br /><br /><br />
-  <div class="panel clearfix">
-    <h5>Inactive Students</h5>
-    <ul>
-      <% @inactive_students.each do |student| %>
-        <li><%= link_to student.name, student_path(student) %></li>
-      <% end %>
-    </ul>
-  </div>
-
+  <% unless @inactive_students.empty? %>
+    <div class="panel clearfix">
+      <h5>Inactive Students</h5>
+      <ul>
+        <% @inactive_students.each do |student| %>
+          <li><%= link_to student.name, student_path(student) %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 <% end %>
-<% end %>
-
 
