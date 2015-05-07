@@ -8,7 +8,6 @@
 <div class = "tabs-content">
 	<div class = "content active" id = "activeroster">
 		
-
 		<!-- get each division -->
 		<% @divisions.each do |division| %>
 			<!-- only display divisions that have teams in it -->
@@ -22,10 +21,10 @@
 					<% @stu.sort_by! {|s| s.id} %>
 					<!-- active teams with students -->
 					<% unless @stu.empty? %>
-						<div style="background-color: #61b6d9; width: 210px; text-align:center">
+						<div class="blue_table_header" style="width: 250px">
 							<b style="color:white"><%= team.name %></b>
 						</div>
-						<table class="table table-striped" id="roster" style= "width: 210px"> 
+						<table class="table table-striped" id="roster" style= "width: 250px"> 
 							<!-- <h5><%#= team.name %></h5>  -->
 							<thead>
 								<th>Student Name</th>
