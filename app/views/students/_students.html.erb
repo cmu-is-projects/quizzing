@@ -1,6 +1,7 @@
 <h1>Active Students</h1>
 
 <% @divisions.each do |d| %>
+
  <div class="small-4 columns">   
    <%= render :partial => "students_by_division", locals: { div: d } %>
 

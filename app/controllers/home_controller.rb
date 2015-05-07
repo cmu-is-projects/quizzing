@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     @events = Event.all 
     @upcoming_events = Event.upcoming.chronological.to_a
 
-    @divisions = Division.all
+    @divisions = Division.all.active
 
     if(current_user.role == "coach")
       @cur_coach = current_user.coach
