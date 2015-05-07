@@ -8,11 +8,6 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       set_session_event #inherited from application_controller
       #TODO1:
-      #session[:first_name] = user.first_name
-      #session[:organization_id]
-        #if no current_organization, set it to negative one
-        # else set a session variable to their church
-      #TODO1:
       #event_id
       #TODO:
       # switch churches methods (changes session variable to that church id)

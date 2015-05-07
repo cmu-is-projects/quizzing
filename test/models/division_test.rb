@@ -31,13 +31,24 @@ class DivisionTest < ActiveSupport::TestCase
     end
 
     should "Show that that the active scope works" do
-      assert_equal 2, Division.active.size
-      assert_equal ["Junior","Senior A"], Division.active.all.map{|d| d.name}.sort
+      assert_equal 3, Division.active.size
+      assert_equal ["Junior","Senior A", "Senior B"], Division.active.all.map{|d| d.name}.sort
     end
 
     should "show that the inactive scope works" do
+      # set Division Senior B to inactive first
+      @senior_b.active = false
+      @senior_b.save
+      @senior_b.reload
+     
       assert_equal 1, Division.inactive.size
       assert_equal ["Senior B"], Division.inactive.all.map{|d| d.name}.sort
+
+      @senior_b.active = true
+      # now reset back to active
+      @senior_b.save  
+      @senior_b.reload    
+      assert @senior_b.active
     end
 
     should "have methods to make active or inactive" do
