@@ -51,10 +51,9 @@ class TeamsController < ApplicationController
     if(!current_user.role?(:admin) && current_user.coach.organization.id != @team.organization.id)
       redirect_to team_url(@team) and return
     end
-    unless current_user.coach.nil?
-      @team_organization = current_user.coach.organization
-      @team_name = @team_organization.short_name + " " + (@team_organization.teams.count+1).to_s
-    end
+    
+    @team_organization = @team.organization
+    @team_name = @team.name
 
     @edit = true
     @coaches = Coach.all
