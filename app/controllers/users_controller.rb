@@ -4,10 +4,17 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+<<<<<<< HEAD
     if( !current_user.role?(:admin))
       redirect_to login_url and return
     end
     @users = User.all
+=======
+    if(current_user.role == "guest" or current_user.role == "coach" )
+      redirect_to login_url and return
+    end
+       @users = User.all
+>>>>>>> b6f3e80c20954755ed1fda1fc8d5e53ad89077e5
   end
 
   # GET /users/1
@@ -19,25 +26,46 @@ class UsersController < ApplicationController
   end
 
   # GET /users/new
+<<<<<<< HEAD
   def new
     if( !current_user.role?(:admin))
       redirect_to login_url and return
     end
     @user = User.new
+=======
+  def new  
+    if(current_user.role == "guest" or current_user.role == "coach" )
+      redirect_to login_url and return
+    end
+       @user = User.new
+
+>>>>>>> b6f3e80c20954755ed1fda1fc8d5e53ad89077e5
   end
 
   # GET /users/1/edit
   def edit
+<<<<<<< HEAD
     if( !current_user.role?(:admin))
       redirect_to login_url and return
     end
     @user = current_user
+=======
+    if(current_user.role == "guest" or current_user.role == "coach" )
+      redirect_to login_url and return
+    end
+      @user = current_user
+
+>>>>>>> b6f3e80c20954755ed1fda1fc8d5e53ad89077e5
   end
 
   # POST /users
   # POST /users.json
   def create
+<<<<<<< HEAD
     if( !current_user.role?(:admin))
+=======
+    if(current_user.role == "guest" or current_user.role == "coach" )
+>>>>>>> b6f3e80c20954755ed1fda1fc8d5e53ad89077e5
       redirect_to login_url and return
     end
     @user = User.new(user_params)
@@ -57,7 +85,11 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+<<<<<<< HEAD
     if( !current_user.role?(:admin))
+=======
+    if(current_user.role == "guest" or current_user.role == "coach" )
+>>>>>>> b6f3e80c20954755ed1fda1fc8d5e53ad89077e5
       redirect_to login_url and return
     end
     @user = current_user
@@ -76,7 +108,11 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+<<<<<<< HEAD
     if( !current_user.role?(:admin))
+=======
+    if(current_user.role == "guest" or current_user.role == "coach" )
+>>>>>>> b6f3e80c20954755ed1fda1fc8d5e53ad89077e5
       redirect_to login_url and return
     end
     @user.destroy

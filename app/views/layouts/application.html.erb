@@ -14,16 +14,16 @@
   <body>
     <% if !logged_in? %>
       <div style="float: right; background-color: #cecece; border-radius: 5px;padding-top: 5px; padding-bottom: 5px; padding-left: 7px; padding-right: 7px; margin: 3px;">
-	<%= link_to "Login", login_url %>
+	<%= link_to "Coach's Login", login_url %>
       </div>
     <% else %>
       <div style="float: right; background-color: #cecece; border-radius: 5px;padding-top: 5px; padding-bottom: 5px; padding-left: 7px; padding-right: 7px; margin: 3px;">
 	<%= link_to "Logout", logout_url %>
       </div>
     <% end %>
-    <%#= image_tag 'banner_6.png' , class: "banner" %>
-    <!-- TODO: set banner as link to home -->
-    <%= link_to image_tag('banner_6.png'), home_path %> 
+    <div class= "banner">
+      <%= link_to image_tag('banner_6.png'), home_path %> 
+    </div>
     <%#= render :partial => "partials/_admin_nav" %>
     <%= render :partial => "partials/coach_nav" %>
 

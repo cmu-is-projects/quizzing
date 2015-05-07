@@ -1,28 +1,39 @@
 <h1>Active Students</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Team</th>
-      <th>Division</th>
-    </tr>
-  </thead>
+<% @divisions.each do |d| %>
+ <div class="small-4 columns">   
+   <%= render :partial => "students_by_division", locals: { div: d } %>
 
-  <tbody>
-    <% @active_students.each do |student| %>
-      <tr>
-        <td><%= link_to student.name, student_path(student) %></td>
-        <td><%= student.current_team.name %></td>
-        <td><%= student.current_team.division.name %></td>
-        <% if current_user.role == "coach" && current_user.coach.organization_id == student.current_organization.id %>
-          <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
-        <% elsif current_user.role == "admin" %>
-          <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>   
+ </div>
+
+<% end %>
+
+<!-- placeholder for now -->
+<div class= "small-3 columns">
+  <% unless @new_students.empty? %>
+    <h4>Students Without a Team</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Team</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @new_students.each do |student| %>
+          <tr>
+            <td><%= link_to student.name, student_path(student) %></td>
+            <td><%= student.current_team.name %></td>
+            <% if current_user.role == "coach" && current_user.coach.organization_id == student.current_organization.id %>
+              <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
+            <% end %>
+          </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </tbody>
+    </table>
+  <% end %>
+  
+</div>
 
-<!-- TODOA: add Ajax for adding new student and toggle inactive -->

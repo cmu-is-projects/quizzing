@@ -31,5 +31,23 @@ module Contexts
       @jimmy_somerset.delete
     end
 
+    def create_add_organization_students
+      @nate_acac     = FactoryGirl.create(:organization_student, student: @nate, organization: @acac, start_date: 3.years.ago.to_date)
+      @dean_acac     = FactoryGirl.create(:organization_student, student: @dean, organization: @acac, start_date: 3.years.ago.to_date)
+      @livie_acac    = FactoryGirl.create(:organization_student, student: @livie, organization: @acac, start_date: 1.years.ago.to_date)
+      @artem_acac    = FactoryGirl.create(:organization_student, student: @artem, organization: @acac, start_date: 1.years.ago.to_date)
+      @aaron_acac    = FactoryGirl.create(:organization_student, student: @aaron, organization: @acac, start_date: 2.years.ago.to_date)
+      @jayla_acac    = FactoryGirl.create(:organization_student, student: @jayla, organization: @acac, start_date: 3.years.ago.to_date)
+    end
+
+    def delete_add_organization_students
+      @nate_acac.delete
+      @dean_acac.delete
+      @livie_acac.delete
+      @artem_acac.delete
+      @aaron_acac.delete
+      @jayla_acac.delete
+    end
+
   end
 end

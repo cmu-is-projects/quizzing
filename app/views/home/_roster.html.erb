@@ -5,46 +5,79 @@
 </ul>
 <div class = "tabs-content">
 	<div class = "content active" id = "activeroster">
-		<h3>Active Students</h3>
-		<% current_user.coach.organization.teams.active.each do |team| %>
-		<% unless team.current_students.empty? %>
-		<table class="table table-striped" id="roster"> [<%= team.division.name %>] <%= team.name %> 
+		<h2>My <%=current_user.coach.organization.short_name%> Teams</h2></br>
+
+		<!-- get each division -->
+		<% @divisions.each do |division| %>
+		<!-- only display divisions that have teams in it -->
+		<% unless @active_teams.for_division(division).empty? %>
+	
+		<th><h4><%=division.name%> Teams</h4></th>
+			<!-- show active teams within each division that are part of the organization -->
+			<% division.teams.active.each do |team| if team.organization == current_user.coach.organization %>
+			<!-- find teams that have students in it -->
+			<% @stu = team.current_students %>
+			<% @stu.sort_by! {|s| s.id} %>
+			<!-- active teams with students -->
+			<% unless @stu.empty? %>
+		<table class="table table-striped" id="roster"> 
+			<h5><%= team.name %></h5> 
 			<thead>
 				<th>Student Name</th>
 				<th>Present/Absent</th>
 			</thead>
-			<% team.current_students.each do |student| unless student.active == false %>
+
+			<!-- get each student within team that is active -->
+			<% @stu.each do |student| unless student.active == false %>
 			<tbody>
 				<td><%= link_to student.proper_name, student_path(student) %></td>
 				<% student_team = student.current_student_team %>
-				<% if student_team.active? %> <!-- TODOA: If student is absent, label should change? how clear is it?-->
+<<<<<<< HEAD
+
+				<!-- present or absent -->
+=======
+>>>>>>> b6f3e80c20954755ed1fda1fc8d5e53ad89077e5
+				<% if student_team.active? %>
 				<td class="centered"><%= link_to(image_tag("icons/check_green.gif"), toggle_path(student, status: 'inactive'), remote: true, method: 'patch') %></td>
 				<% else %>
 				<td class="centered"><%= link_to(image_tag("icons/check_black.gif"), toggle_path(student, status: 'active'), remote: true, method: 'patch') %></td>
-				<% end %>
+				<!-- end present or absent -->
+				<% end %> 
+				<!-- end each student -->
+			<% end %>
+			<% end %>
+
 			</tbody>
-			<% end %>
-			<% end %>
-		</table>
-		<div class="form-actions">
-			<%= link_to 'Edit Team or Add/Remove Students from this Team', edit_team_path(team), class: 'tiny button radius' %>
-			<%# link_to(new_student_path(team_id: team.id), id: 'new_student_link', class: 'button tiny radius', remote: true) do %>
-			<!-- <i class="fa fa-clipboard"></i> -->
-			<!-- &nbsp;Add New Student to Team -->
-			<%# end %>
-		</div></br>
+			<td>
+			<div class="form-actions">
+				<%= link_to "Edit #{team.name} Roster", edit_team_path(team), class: 'secondary tiny button radius' %>
+			</div>
+			</td>
+
+		</table></br>
+
+		<!-- active teams without students -->
 		<% else %>
 		No students in <%= team.name %>
 		<div class="form-actions">
-			<%= link_to 'Edit Team or Add/Remove Students from this Team', edit_team_path(team), class: 'tiny button radius' %>
-			<%# link_to(new_student_path(team_id: team.id), id: 'new_student_link', class: 'button tiny radius', remote: true) do %>
-			<!-- <i class="fa fa-clipboard"></i> -->
-			<!-- &nbsp;Add New Student to Team -->
-			<%# end %>
+<<<<<<< HEAD
+			<%= link_to "Edit #{team.name} Roster", edit_team_path(team), class: 'secondary tiny button radius' %>
 		</div></br>
+		<!-- end students in teams -->
 		<% end %>
+		<!-- end teams within division -->
+		<% end %>
+		<% end %>
+		<!-- end division that has teams in it -->
+=======
+			<%= link_to 'Edit Team or Add/Remove Students from Team', edit_team_path(team), class: 'tiny button radius' %>
+		</div>
+>>>>>>> b6f3e80c20954755ed1fda1fc8d5e53ad89077e5
+		<% end %>
+		<!-- end get each division -->
 		<% end %>
 	</div>
+
 	<div class = "content" id = "inactiveroster">
 		<h3>Inactive Students</h3>
 		<% unless current_user.coach.organization.students.inactive.nil? || current_user.coach.organization.students.inactive.empty? %>
@@ -58,9 +91,6 @@
 			</tbody>
 			<% end %>
 		</table>
-		<!-- <div class="form-actions">
-			<%#= link_to 'Add new Student', new_student_path, class: 'tiny button radius' %>
-		</div> -->
 		<% end %>
 	</div>
 </div>

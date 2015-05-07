@@ -4,6 +4,8 @@ class HomeController < ApplicationController
     @events = Event.all 
     @upcoming_events = Event.upcoming.chronological.to_a
 
+    @divisions = Division.all
+
     if(current_user.role == "coach")
       @cur_coach = current_user.coach
       @active_teams = @cur_coach.nil? ? Team.all.active : Team.all.where(organization_id: @cur_coach.organization_id).active
@@ -18,6 +20,9 @@ class HomeController < ApplicationController
     end
     @student_team = StudentTeam.new
 
+    if current_user.role?(:coach)
+    @active_teams = current_user.coach.organization.teams.active
+    end
 
     # respond_to do |format|
     #   format.html # show.html.erb

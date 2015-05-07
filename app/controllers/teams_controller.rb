@@ -4,11 +4,12 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    if(current_user.role == "coach")
-      @teams = current_user.coach.organization.teams
-    else
-      @teams = Team.all
-    end
+    # if(current_user.role == "coach")
+    #   @teams = current_user.coach.organization.teams
+    # else
+    #   @teams = Team.all
+    # end
+    @teams = Team.all
     @active_teams = @teams.active.sort_by! {|n| n.name}
     @inactive_teams = @teams.inactive.sort_by! {|n| n.name}
     @divisions = @teams.active.map {|d| d.division}.uniq
