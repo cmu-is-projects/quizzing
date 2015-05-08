@@ -1,6 +1,6 @@
 <!-- General Home Page for the Public -->
 <div class="row">
-  <div class="small-8 columns">
+  <div class="small-7 columns">
   	<!-- Welcome message for general public -->
     <%= render partial: 'welcome_general' %>
     <br />
@@ -9,13 +9,7 @@
   </div>
 
   <div class="small-5 columns">
-    <%= image_tag 'andrew_reay_cropped', class: "home" %>
+    <%#= image_tag 'andrew_reay_cropped', class: "home" %>
+    <%= image_tag 'pyramid', class: "pyramid" %>
   </div>
 </div>
-
-<!-- possible to use the partial structure?-->
-<%#= render partial: "partials/structure_1", locals: {model_name: nil, 
-                                                         primary: "welcome_general", 
-                                                         secondary: "events/upcoming_events",
-                                                         sidebar: nil,
-                                                         options: nil} %>
