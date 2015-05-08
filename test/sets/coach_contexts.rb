@@ -13,5 +13,13 @@ module Contexts
 			@coach_inactive.delete
 		end
 
+		def create_extra_coaches
+			@coach_tom = FactoryGirl.create(:coach, organization: @acac, user: @user6, first_name: "Tom", last_name: "Reay", phone: "0123456789")
+		end
+
+		def delete_extra_coaches
+			@coach_tom.delete
+		end
+
 	end
 end

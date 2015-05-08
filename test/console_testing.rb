@@ -41,7 +41,9 @@ module Contexts
     create_students
     create_add_students
     create_users
+    create_extra_users #unused for testing, used for view data
     create_coaches
+    create_extra_coaches #unused for testing, used for view data
     create_teams
     create_junior_teams #unused for testing, used for view data
     create_senior_b_teams  #unused for testing, used for view data
