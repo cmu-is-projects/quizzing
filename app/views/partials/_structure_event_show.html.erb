@@ -1,0 +1,14 @@
+<!-- this partial struct is primary for the event show  page -->
+<div class="row">
+  <div class="small-12 columns">
+    <!-- partial for Active Students -->
+    <%= render partial: "#{primary}" %>
+  </div>
+   
+</div>
+   
+
+<div class="row">
+  <!-- render a set of options, if they exist -->
+  <%= render partial: "#{options}", locals: {model_name: model_name, object: object} unless options.blank? %>
+</div>
