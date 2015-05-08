@@ -6,13 +6,13 @@
 <% end %>
 
 <% unless @new_students.empty? %>
-	<h3>New Students Without a Team</h3><br />
+	<h3>Students Without a Team</h3><br />
 	<table>
 	   	<thead>
 	   		<tr>
 				<th>Name</th>
 				<th>Grade</th>
-				<th>Organization</th>
+				<!-- <th>Organization</th> -->
 				<th>Add to Team</th>
 			</tr>
 		</thead>
@@ -22,7 +22,7 @@
 				<tr>
 					<td><%= link_to student.name, student_path(student) %></td>
 					<td style="text-align: center;"><%= student.grade %></td>
-					<td><%= student.current_organization.short_name %></td>
+					<!-- <td><%#= student.current_organization.short_name %></td> -->
 					<%= simple_form_for @student_team do |f| %>
 					<%= f.input :student_id, as: :hidden, input_html: {value: student.id} %>
 							<!-- Add new team -->

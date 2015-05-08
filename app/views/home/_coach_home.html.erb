@@ -6,16 +6,17 @@
                                                          options: nil } %>
 
 <div id = "roster_reload">
-<div class="row">
-  <div class="small-6 columns">
+<div class="row"></br>
+  <h2><%=current_user.coach.organization.short_name%> Teams</h2>
+  <div class="small-4 columns">
       <%= render :partial => 'roster' %>
 
   </div>
 
-  <div class="small-1 columns">
+<!--   <div class="small-1 columns">
     &nbsp;
   </div>
-
+ -->
   <div class="small-6 columns">
   	<%= render :partial=> 'students_without_team' %>
   </div>
