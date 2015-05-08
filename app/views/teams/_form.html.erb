@@ -20,7 +20,7 @@
       <%= f.select :organization_id, 
 	  @organizations.active.map{|o| [o.name, o.id]} %>
     <% elsif %>
-      <b>Team Name:</b><%= @team_name %><br>
+      <b>Team Name:</b><%= @team.name %><br>
     <b>Organization:</b> <%= @team_organization.name %><br>
     <% end %>
 

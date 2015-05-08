@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<% score = 0 %>
-<div id="container" style="width:800px; align-self:center">      
-  <div class="row" style="width: 450px; border-style: groove; padding-left: 10px; margin-left: 6px;float: left;">
+<!--div id="container" style="width:800px; align-self:center"-->      
+  <!--div class="row" style="width: 450px; border-style: groove; padding-left: 10px; margin-left: 6px;float: left;"-->
     <p>
       <strong>Name:</strong>
       <%= "#{@team.name} (#{@team.division.name})" %>
@@ -23,44 +22,10 @@
       <%= @team.active==true ? "Yes" : "No" %>
     </p>
 
-  </div>
-
-  <div style="width: 300px; border-style: groove; padding-left: 10px; padding-right:10px; margin-left: 6px; margin-right: 6px; float: right; text-align:center;">
-    <p>
-      <strong>Members:</strong>
-    </p>
-    <hr>
-    <% if @team.current_students.size == 0 %>
-      This team has no students
-    <% end %>
-
-    <ul>
-    <% @team.current_students.each do |s| %>
-        <li><%= link_to s.proper_name, student_path(s) %></li>
-    <% end %>
-    </ul>
-
-    <hr>
-    <strong>Coach:</strong>
-    <% cur_coach = @team.team_coaches.where(end_date: nil).first %>
-
-    <% if cur_coach.nil? %>
-      N/A
-    <% else %>
-      <% cur_coach = cur_coach.coach%>
-
-      <% if !cur_coach.email.nil? && !cur_coach.email.blank? %>
-
-      <%= mail_to cur_coach.email, cur_coach.proper_name, encode:"javascript" %>
-      
-      <% else %>
-
-        <%= cur_coach.coach.proper_name %>
-      
-      <% end %>
-    <% end %>
-  </div><!--Members style-->
-  </div><!--div container-->
+  <!--div style="width: 300px; border-style: groove; padding-left: 10px; padding-right:10px; margin-left: 6px; margin-right: 6px; float: right; text-align:center;"-->
+  <!--team members code used to be right here-->
+  <!--</div--><!--Members style-->
+  <!--/div--><!-- div container-->
 
   <!--Theophilus begin-->
 
@@ -73,7 +38,7 @@
     <table>
       <thead>
         <tr>
-          <th align="center">Date</th>        
+          <th align='center'>Date</th>        
           <!--TODO (not 373 Spring '15): make dynamic -->
           <%round_counter = 1%>
           <% while round_counter <= @declared_num_rounds do%>
@@ -125,7 +90,9 @@
 <!--Theophilus end-->
 
 <!--The below is for if we're ever interested in Standing on the page -->
-<!--     <%# if @team.active==true%>
+<!--    
+  <%# score = 0 %>
+  <%# if @team.active==true%>
     <p>
       <strong>Standing:</strong>
       <%# standing = 1 %>
@@ -157,4 +124,4 @@
     <%# end %> -->
 
   <% end %>
- 
+  <!--/div-->
