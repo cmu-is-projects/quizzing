@@ -7,7 +7,9 @@
 
   <% unless @event_div_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
 
-    <h4 style="text-align: center;"><%= "#{division.name} Team" %></h4>
+  <div class="blue_table_header">
+    <b style="color:white; width:100%;"><%= "#{division.name} Teams" %></b>
+  </div>
 
     <table>
       <thead>
