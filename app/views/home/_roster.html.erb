@@ -1,71 +1,74 @@
 <!-- TODO1: If nothing in database exists, a form should show up for admin to add divisions, set up website -->
+</br>
+<h2><%=current_user.coach.organization.short_name%> Teams</h2></br>
 <ul class = "tabs" data-tab>
 	<li class = "tab-title active"><a href="#activeroster">Active</a></li>
 	<li class = "tab-title"><a href="#inactiveroster">Inactive</a></li>
 </ul>
 <div class = "tabs-content">
 	<div class = "content active" id = "activeroster">
-		<h2>My <%=current_user.coach.organization.short_name%> Teams</h2></br>
-
+		
 		<!-- get each division -->
 		<% @divisions.each do |division| %>
-		<!-- only display divisions that have teams in it -->
-		<% unless @active_teams.for_division(division).empty? %>
+			<!-- only display divisions that have teams in it -->
+			<% unless @active_teams.for_division(division).empty? %>
 	
-		<th><h4><%=division.name%> Teams</h4></th>
-			<!-- show active teams within each division that are part of the organization -->
-			<% division.teams.active.each do |team| if team.organization == current_user.coach.organization %>
-			<!-- find teams that have students in it -->
-			<% @stu = team.current_students %>
-			<% @stu.sort_by! {|s| s.id} %>
-			<!-- active teams with students -->
-			<% unless @stu.empty? %>
-		<table class="table table-striped" id="roster"> 
-			<h5><%= team.name %></h5> 
-			<thead>
-				<th>Student Name</th>
-				<th>Present</th>
-			</thead>
+				<th><h3><%=division.name%> Teams</h3></th>
+				<!-- show active teams within each division that are part of the organization -->
+				<% division.teams.active.each do |team| if team.organization == current_user.coach.organization %>
+					<!-- find teams that have students in it -->
+					<% @stu = team.current_students %>
+					<% @stu.sort_by! {|s| s.id} %>
+					<!-- active teams with students -->
+					<% unless @stu.empty? %>
+						<div class="blue_table_header" style="width: 250px">
+							<b style="color:white"><%= team.name %></b>
+						</div>
+						<table class="table table-striped" id="roster" style= "width: 250px"> 
+							<!-- <h5><%#= team.name %></h5>  -->
+							<thead>
+								<th>Student Name</th>
+								<th>Present</th>
+							</thead>
 
-			<!-- get each student within team that is active -->
-			<% @stu.each do |student| unless student.active == false %>
-			<tbody>
-				<td><%= link_to student.proper_name, student_path(student) %></td>
-				<% student_team = student.current_student_team %>
+							<!-- get each student within team that is active -->
+							<tbody>
+								<% @stu.each do |student| unless student.active == false %>
+									<tr>
+										<td><%= link_to student.proper_name, student_path(student) %></td>
+										<% student_team = student.current_student_team %>
 
-				<!-- present or absent -->
-				<% if student_team.active? %>
-				<td class="centered"><%= link_to(image_tag("icons/check_green.gif"), toggle_path(student, status: 'inactive'), remote: true, method: 'patch') %></td>
-				<% else %>
-				<td class="centered"><%= link_to(image_tag("icons/check_black.gif"), toggle_path(student, status: 'active'), remote: true, method: 'patch') %></td>
-				<!-- end present or absent -->
-				<% end %> 
-				<!-- end each student -->
+										<!-- present or absent -->
+										<% if student_team.active? %>
+											<td class="centered"><%= link_to(image_tag("icons/check_green.gif"), toggle_path(student, status: 'inactive'), remote: true, method: 'patch') %></td>
+										<% else %>
+											<td class="centered"><%= link_to(image_tag("icons/check_black.gif"), toggle_path(student, status: 'active'), remote: true, method: 'patch') %></td>
+										<!-- end present or absent -->
+										<% end %> 
+									</tr>
+									<!-- end each student -->
+								<% end %>
+								<% end %>
+									
+								<tr>
+									<td colspan="2"><%= link_to "Edit #{team.name} Roster", edit_team_path(team), class: 'secondary tiny button radius' %></td>
+								</tr>
+							</tbody>
+						</table></br>
+
+					<!-- active teams without students -->
+					<% else %>
+						No students in <%= team.name %>
+						<div class="form-actions">
+							<%= link_to "Edit #{team.name} Roster", edit_team_path(team), class: 'secondary tiny button radius' %>
+						</div>
+					<!-- end students in teams -->
+					<% end %>
+				<!-- end teams within division -->
+				<% end %>
+				<% end %>
+			<!-- end division that has teams in it -->
 			<% end %>
-			<% end %>
-
-			</tbody>
-			<td>
-			<div class="form-actions">
-				<%= link_to "Edit #{team.name} Roster", edit_team_path(team), class: 'secondary tiny button radius' %>
-			</div>
-			</td>
-
-		</table></br>
-
-		<!-- active teams without students -->
-		<% else %>
-		No students in <%= team.name %>
-		<div class="form-actions">
-			<%= link_to "Edit #{team.name} Roster", edit_team_path(team), class: 'secondary tiny button radius' %>
-		</div></br>
-		<!-- end students in teams -->
-		<% end %>
-		<!-- end teams within division -->
-		<% end %>
-		<% end %>
-		<!-- end division that has teams in it -->
-		<% end %>
 		<!-- end get each division -->
 		<% end %>
 	</div>
@@ -73,16 +76,16 @@
 	<div class = "content" id = "inactiveroster">
 		<h3>Inactive Students</h3>
 		<% unless current_user.coach.organization.students.inactive.nil? || current_user.coach.organization.students.inactive.empty? %>
-		<table>
-			<thead>
-				<th>Student Name</th>
-			</thead>
-			<% current_user.coach.organization.students.inactive.each do |student| %>
-			<tbody>
-				<td><%= link_to student.proper_name, student_path(student) %></td>
-			</tbody>
-			<% end %>
-		</table>
+			<table>
+				<thead>
+					<th>Student Name</th>
+				</thead>
+				<% current_user.coach.organization.students.inactive.each do |student| %>
+					<tbody>
+						<td><%= link_to student.proper_name, student_path(student) %></td>
+					</tbody>
+				<% end %>
+			</table>
 		<% end %>
 	</div>
 </div>
