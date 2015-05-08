@@ -1,5 +1,5 @@
 <!-- Partial for students without a team -->
-
+</br>
 <%= link_to(new_student_path, id: 'new_student_link', class: 'button tiny radius', remote: true) do %>
   <!-- <i class="fa fa-clipboard"></i> -->
   &nbsp;Add New Student
@@ -21,7 +21,7 @@
 			<% @new_students.each do |student| %>
 				<tr>
 					<td><%= link_to student.name, student_path(student) %></td>
-					<td><%= student.grade %></td>
+					<td style="text-align: center;"><%= student.grade %></td>
 					<td><%= student.current_organization.short_name %></td>
 					<%= simple_form_for @student_team do |f| %>
 					<%= f.input :student_id, as: :hidden, input_html: {value: student.id} %>

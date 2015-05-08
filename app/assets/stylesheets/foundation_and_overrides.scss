@@ -1304,7 +1304,7 @@ $h4-font-size: rem-calc(20);
 
 // $tabs-navigation-padding: rem-calc(16);
 // $tabs-navigation-bg-color: $silver  ;
-$tabs-navigation-active-bg-color: #0099FF;
+$tabs-navigation-active-bg-color: #008CBA;
 // $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
 // $tabs-navigation-font-color: $jet;
 // $tabs-navigation-active-font-color: $tabs-navigation-font-color;
@@ -1450,16 +1450,22 @@ $tabs-navigation-active-bg-color: #0099FF;
 }
 
 .banner {
-	padding-left: 300px;
+  padding-left: 300px;
 }
 
 .home {
-	padding-top: 50px;
-	padding-left: 5px;
+  padding-top: 50px;
+  padding-left: 5px;
 }
 
 #welcome {
-	width: 398px;
+  width: 398px;
+}
+
+.blue_table_header{
+  background-color: #61b6d9;
+  width:100%;
+  text-align:center;
 }
 
 @import 'foundation';
