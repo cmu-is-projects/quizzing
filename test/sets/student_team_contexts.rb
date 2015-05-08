@@ -17,12 +17,12 @@ module Contexts
       @jonathan_acac_jr1.delete
     end
 
-    def create_senior_b_quiz_teams
-      @mindy_acac_srb1 = FactoryGirl.create(:student_team, student: @mindy, team: @acac_srb1, is_captain: true, start_date: 3.years.ago.to_date)   
+    def create_senior_b_student_teams
+      @nate_acac_srb1 = FactoryGirl.create(:student_team, student: @nate, team: @acac_srb1, is_captain: true, start_date: 3.years.ago.to_date)   
     end
 
-    def delete_senior_b_quiz_teams
-      @mindy_acac_srb1.delete
+    def delete_senior_b_student_teams
+      @nate_acac_srb1.delete
     end
 
     # created for the sake of testing quincy having a team

@@ -48,21 +48,35 @@ module Contexts
     end
 
     def create_senior_b_student_quizzes
-      @mindy1 = FactoryGirl.create(:student_quiz, student: @mindy, quiz: @quiz1, num_correct: 1, num_attempts: 4, num_fouls: 0)
-      @mindy2 = FactoryGirl.create(:student_quiz, student: @mindy, quiz: @quiz2, num_correct: 0, num_attempts: 0, num_fouls: 1)
-      @mindy3 = FactoryGirl.create(:student_quiz, student: @mindy, quiz: @quiz3, num_correct: 1, num_attempts: 1, num_fouls: 3)
-      @mindy4 = FactoryGirl.create(:student_quiz, student: @mindy, quiz: @quiz4, num_correct: 0, num_attempts: 3, num_fouls: 0)
-      @mindy5 = FactoryGirl.create(:student_quiz, student: @mindy, quiz: @quiz5, num_correct: 0, num_attempts: 2, num_fouls: 2)
-      @mindy6 = FactoryGirl.create(:student_quiz, student: @mindy, quiz: @quiz6, num_correct: 0, num_attempts: 1, num_fouls: 1)
+      @nate1 = FactoryGirl.create(:student_quiz, student: @nate, quiz: @quiz1, num_correct: 1, num_attempts: 4, num_fouls: 0)
+      @nate2 = FactoryGirl.create(:student_quiz, student: @nate, quiz: @quiz2, num_correct: 0, num_attempts: 0, num_fouls: 1)
+      @nate3 = FactoryGirl.create(:student_quiz, student: @nate, quiz: @quiz3, num_correct: 1, num_attempts: 1, num_fouls: 3)
+      @nate4 = FactoryGirl.create(:student_quiz, student: @nate, quiz: @quiz4, num_correct: 0, num_attempts: 3, num_fouls: 0)
+      @nate5 = FactoryGirl.create(:student_quiz, student: @nate, quiz: @quiz5, num_correct: 0, num_attempts: 2, num_fouls: 2)
+      @nate6 = FactoryGirl.create(:student_quiz, student: @nate, quiz: @quiz6, num_correct: 0, num_attempts: 1, num_fouls: 1)
+      #dean
+      @dean1 = FactoryGirl.create(:student_quiz, student: @dean, quiz: @quiz1, num_correct: 4, num_attempts: 4, num_fouls: 0)
+      @dean2 = FactoryGirl.create(:student_quiz, student: @dean, quiz: @quiz2, num_correct: 4, num_attempts: 5, num_fouls: 0)
+      @dean3 = FactoryGirl.create(:student_quiz, student: @dean, quiz: @quiz3, num_correct: 3, num_attempts: 5, num_fouls: 0)
+      @dean4 = FactoryGirl.create(:student_quiz, student: @dean, quiz: @quiz4, num_correct: 2, num_attempts: 5, num_fouls: 0)
+      @dean5 = FactoryGirl.create(:student_quiz, student: @dean, quiz: @quiz5, num_correct: 3, num_attempts: 3, num_fouls: 0)
+      @dean6 = FactoryGirl.create(:student_quiz, student: @dean, quiz: @quiz6, num_correct: 0, num_attempts: 1, num_fouls: 0)
     end
 
     def delete_senior_b_student_quizzes
-      @mindy1.delete
-      @mindy2.delete
-      @mindy3.delete
-      @mindy4.delete
-      @mindy5.delete
-      @mindy6.delete
+      @nate1.delete
+      @nate2.delete
+      @nate3.delete
+      @nate4.delete
+      @nate5.delete
+      @nate6.delete
+      #dean
+      @dean1.delete
+      @dean2.delete
+      @dean3.delete
+      @dean4.delete
+      @dean5.delete
+      @dean6.delete     
     end
 
 
