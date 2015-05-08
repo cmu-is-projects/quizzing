@@ -28,6 +28,44 @@ module Contexts
       @jimmy6 = FactoryGirl.create(:student_quiz, student: @jimmy, quiz: @quiz6, num_correct: 0, num_attempts: 1, num_fouls: 1)
     end
 
+    def create_junior_student_quizzes
+      #jonathan
+      @jonathan1 = FactoryGirl.create(:student_quiz, student: @jonathan, quiz: @quiz1, num_correct: 1, num_attempts: 4, num_fouls: 0)
+      @jonathan2 = FactoryGirl.create(:student_quiz, student: @jonathan, quiz: @quiz2, num_correct: 0, num_attempts: 0, num_fouls: 1)
+      @jonathan3 = FactoryGirl.create(:student_quiz, student: @jonathan, quiz: @quiz3, num_correct: 1, num_attempts: 1, num_fouls: 3)
+      @jonathan4 = FactoryGirl.create(:student_quiz, student: @jonathan, quiz: @quiz4, num_correct: 0, num_attempts: 3, num_fouls: 0)
+      @jonathan5 = FactoryGirl.create(:student_quiz, student: @jonathan, quiz: @quiz5, num_correct: 0, num_attempts: 2, num_fouls: 2)
+      @jonathan6 = FactoryGirl.create(:student_quiz, student: @jonathan, quiz: @quiz6, num_correct: 0, num_attempts: 1, num_fouls: 1)
+    end
+
+    def delete_junior_student_quizzes
+      @jonathan1.delete
+      @jonathan2.delete
+      @jonathan3.delete
+      @jonathan4.delete
+      @jonathan5.delete
+      @jonathan6.delete
+    end
+
+    def create_senior_b_student_quizzes
+      @mindy1 = FactoryGirl.create(:student_quiz, student: @mindy, quiz: @quiz1, num_correct: 1, num_attempts: 4, num_fouls: 0)
+      @mindy2 = FactoryGirl.create(:student_quiz, student: @mindy, quiz: @quiz2, num_correct: 0, num_attempts: 0, num_fouls: 1)
+      @mindy3 = FactoryGirl.create(:student_quiz, student: @mindy, quiz: @quiz3, num_correct: 1, num_attempts: 1, num_fouls: 3)
+      @mindy4 = FactoryGirl.create(:student_quiz, student: @mindy, quiz: @quiz4, num_correct: 0, num_attempts: 3, num_fouls: 0)
+      @mindy5 = FactoryGirl.create(:student_quiz, student: @mindy, quiz: @quiz5, num_correct: 0, num_attempts: 2, num_fouls: 2)
+      @mindy6 = FactoryGirl.create(:student_quiz, student: @mindy, quiz: @quiz6, num_correct: 0, num_attempts: 1, num_fouls: 1)
+    end
+
+    def delete_senior_b_student_quizzes
+      @mindy1.delete
+      @mindy2.delete
+      @mindy3.delete
+      @mindy4.delete
+      @mindy5.delete
+      @mindy6.delete
+    end
+
+
     # not sure if this is needed yet...
     def create_student_quizzes_with_no_score_yet
       create_quizzes_for_future_event
