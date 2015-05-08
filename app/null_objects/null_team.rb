@@ -7,6 +7,10 @@ class NullTeam
     false
   end
 
+  def inactive
+    true
+  end
+
   def division
     NullDivision.new
   end

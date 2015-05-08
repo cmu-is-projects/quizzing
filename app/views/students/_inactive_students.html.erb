@@ -1,4 +1,4 @@
-<% if current_user.role == "admin" %>
+<% unless current_user.role == "guest" %>
   <% unless @inactive_students.empty? %>
     <div class="panel clearfix">
       <h5>Inactive Students</h5>
@@ -10,6 +10,4 @@
     </div>
   <% end %>
 <% end %>
-
-
 

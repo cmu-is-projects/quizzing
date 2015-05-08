@@ -1,12 +1,10 @@
-<h1>Listing users</h1>
+<h1>Active Users</h1>
 
 <table>
   <thead>
     <tr>
       <th>User name</th>
       <th>Role</th>
-      <th>Password hash</th>
-      <th>Password salt</th>
       <th>Active</th>
       <th></th>
       <th></th>
@@ -19,8 +17,6 @@
       <tr>
         <td><%= user.user_name %></td>
         <td><%= user.role %></td>
-        <td><%= user.password_hash %></td>
-        <td><%= user.password_salt %></td>
         <td><%= user.active %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>

@@ -18,7 +18,7 @@
       </div>
     <% else %>
       <div style="float: right; background-color: #cecece; border-radius: 5px;padding-top: 5px; padding-bottom: 5px; padding-left: 7px; padding-right: 7px; margin: 3px;">
-	<%= link_to "Logout", logout_url %>
+	<%= link_to "Logout "+current_user.user_name, logout_url %>
       </div>
     <% end %>
     <div class= "banner">

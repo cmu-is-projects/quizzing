@@ -5,6 +5,7 @@ class YearTeamTest < ActiveSupport::TestCase
     setup do
       create_organizations
       create_divisions
+      create_categories
       create_events
       create_quizzes_for_past_event
       create_students
@@ -17,6 +18,7 @@ class YearTeamTest < ActiveSupport::TestCase
     teardown do
       delete_organizations
       delete_divisions
+      delete_categories
       delete_events
       delete_quizzes_for_past_event
       delete_students
@@ -35,7 +37,7 @@ class YearTeamTest < ActiveSupport::TestCase
       remove_year_teams
     end
 
-    should "calculate total_yt_score for year accurately when only 1 event" do
+    should "calculate total_yt_points for year accurately when only 1 event" do
       create_year_teams
       #go to QuizTeam and add the team's scores
       assert_equal 0, @year_team_1.total_yt_points

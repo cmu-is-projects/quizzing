@@ -10,6 +10,7 @@ class StudentQuiz < ActiveRecord::Base
   validate :quiz_is_active_in_system
 
   #Scopes
+  #When refactoring, scrap this and use Ruby's sort
   scope :by_round_num, -> { joins(:quiz).order('round_num') }
   
 

@@ -18,6 +18,10 @@ class NullDivisionTest < ActiveSupport::TestCase
     deny NullDivision.new.active
   end
 
+  def test_inactive
+    assert NullDivision.new.inactive  
+  end
+
   def test_teams
     assert_equal 1, NullDivision.new.teams.size
     assert_equal NullTeam, NullDivision.new.teams.first.class

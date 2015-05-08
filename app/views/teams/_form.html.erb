@@ -12,19 +12,27 @@
       </div>
     <% end %>
 
-    <%= f.input :name, 
-	label:"Team Name", 
-	label_html: {style: 'font-weight: bold;font-size: 16px;'} %>
-
-    <b>Organization:</b>
-    <%= f.select :organization_id, 
-	@organizations.active.map{|o| [o.name, o.id]} %>
+    <% if current_user.role?(:admin) %>
+      <%= f.input :name,
+	  label: "Team Name",
+	  label_html: {style: 'font-weight: bold; font-size: 16px;'} %>
+      <b>Organization:</b>
+      <%= f.select :organization_id, 
+	  @organizations.active.map{|o| [o.name, o.id]} %>
+    <% elsif %>
+      <b>Team Name:</b><%= @team.name %><br>
+    <b>Organization:</b> <%= @team_organization.name %><br>
+    <% end %>
 
     <b>Division:</b>
-    <%= f.select :division_id,
-	@divisions.active.alphabetical.map{|d| [d.name, d.id]} %>
+    <% if @edit %>
+      <%= @team.division.name %><br>
+    <% elsif %>
+      <%= f.select :division_id,
+	  @divisions.active.alphabetical.map{|d| [d.name, d.id]} %>
+    <% end %>
 
-    <% if !@team.new_record? %>
+    <% if @edit && !@team.new_record? %>
       <b>Students in roster:</b>
       <%= f.simple_fields_for :student_teams, @student_teams do |builder| %>
         <%= builder.select :student_id, 

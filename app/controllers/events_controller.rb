@@ -18,17 +18,23 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @quizzes = @event.quizzes
+    @quizzes = @event.quizzes.sort{|a,b| a.round_num <=> b.round_num}
     @divisions = Division.all.alphabetical
   end
 
   # GET /events/new
   def new
+    if(!current_user.role?(:admin))
+      redirect_to login_url and return
+    end
     @event = Event.new
   end
 
   # GET /events/1/edit
   def edit
+    if(!current_user.role?(:admin))
+      redirect_to login_url and return
+    end
     @event_teams = Team.all
     @divisions = Division.all
     # @senior_a_teams = Team.all.for_division(@senior_a)
@@ -39,6 +45,9 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+    if(!current_user.role?(:admin))
+      redirect_to login_url and return
+    end
     @event = Event.new(event_params)
 
     respond_to do |format|
@@ -55,6 +64,9 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    if(!current_user.role?(:admin))
+      redirect_to login_url and return
+    end
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -69,6 +81,9 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
+    if(!current_user.role?(:admin))
+      redirect_to login_url and return
+    end
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_url }
@@ -90,6 +105,6 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       convert_start_and_end_dates
-      params.require(:event).permit(:start_date, :end_date, :start_time, :num_rounds, :organization_id, quiz_attributes: [:id, :division_id, :round_num, :room_num])
+      params.require(:event).permit(:start_date, :end_date, :start_time, :num_rounds, :organization_id, quiz_attributes: [:id, :event_id, :division_id, :category_id, :round_num, :room_num, :active])
     end
 end

@@ -13,6 +13,7 @@ class QuizTest < ActiveSupport::TestCase
   # test validations
   should validate_presence_of(:event_id)
   should validate_presence_of(:division_id)
+  should validate_presence_of(:category_id)
   should validate_numericality_of(:room_num).only_integer.is_greater_than(0)
   should validate_numericality_of(:round_num).only_integer.is_greater_than(0)
 
@@ -21,6 +22,7 @@ class QuizTest < ActiveSupport::TestCase
       create_one_organization
       create_events
       create_divisions
+      create_categories
       create_quizzes_for_past_event
     end
 
@@ -28,23 +30,35 @@ class QuizTest < ActiveSupport::TestCase
       delete_one_organization
       delete_events
       delete_divisions
+      delete_categories
       delete_quizzes_for_past_event
     end
 
     should "verify that the division is active in the system" do
       # test the inactive division first
-      bad_quiz = FactoryGirl.build(:quiz, event: @event, division: @senior_b, round_num: 1)
+      @senior_b.active = false
+      @senior_b.save
+      @senior_b.reload
+
+      bad_quiz = FactoryGirl.build(:quiz, event: @event, division: @senior_b, round_num: 1, category: @category1)
       deny bad_quiz.valid?
+
+      @senior_b.active = true
+      # now reset back to active
+      @senior_b.save  
+      @senior_b.reload    
+      assert @senior_b.active
+      
       # test the nonexistent division
       junior_b = FactoryGirl.build(:division, name: "Junior B")
-      bad_quiz = FactoryGirl.build(:quiz, division: junior_b, event: @event)
+      bad_quiz = FactoryGirl.build(:quiz, division: junior_b, event: @event, category: @category1)
       deny bad_quiz.valid?
     end
 
     should "verify that the event is in the system" do
       # test the nonexistent event
       tourney = FactoryGirl.build(:event, organization: @acac)
-      bad_quiz = FactoryGirl.build(:quiz, division: @senior_a, event: tourney)
+      bad_quiz = FactoryGirl.build(:quiz, division: @senior_a, event: tourney, category: @category1)
       deny bad_quiz.valid?
     end
 

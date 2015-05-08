@@ -60,26 +60,26 @@ module Contexts
     end
 
     def create_quizzes_for_past_events
-      @quiz1_4 = FactoryGirl.create(:quiz, event: @event4, division: @senior_a, round_num: 1)
-      @quiz2_4 = FactoryGirl.create(:quiz, event: @event4, division: @senior_a, round_num: 2)
-      @quiz3_4 = FactoryGirl.create(:quiz, event: @event4, division: @senior_a, round_num: 3)
-      @quiz4_4 = FactoryGirl.create(:quiz, event: @event4, division: @senior_a, round_num: 4)
-      @quiz5_4 = FactoryGirl.create(:quiz, event: @event4, division: @senior_a, round_num: 5)
-      @quiz6_4 = FactoryGirl.create(:quiz, event: @event4, division: @senior_a, round_num: 6)
+      @quiz1_4 = FactoryGirl.create(:quiz, event: @event4, division: @senior_a, round_num: 1, category: @category1)
+      @quiz2_4 = FactoryGirl.create(:quiz, event: @event4, division: @senior_a, round_num: 2, category: @category2)
+      @quiz3_4 = FactoryGirl.create(:quiz, event: @event4, division: @senior_a, round_num: 3, category: @category3)
+      @quiz4_4 = FactoryGirl.create(:quiz, event: @event4, division: @senior_a, round_num: 4, category: @category1)
+      @quiz5_4 = FactoryGirl.create(:quiz, event: @event4, division: @senior_a, round_num: 5, category: @category1)
+      @quiz6_4 = FactoryGirl.create(:quiz, event: @event4, division: @senior_a, round_num: 6, category: @category1)
 
-      @quiz1_6 = FactoryGirl.create(:quiz, event: @event6, division: @senior_a, round_num: 1)
-      @quiz2_6 = FactoryGirl.create(:quiz, event: @event6, division: @senior_a, round_num: 2)
-      @quiz3_6 = FactoryGirl.create(:quiz, event: @event6, division: @senior_a, round_num: 3)
-      @quiz4_6 = FactoryGirl.create(:quiz, event: @event6, division: @senior_a, round_num: 4)
-      @quiz5_6 = FactoryGirl.create(:quiz, event: @event6, division: @senior_a, round_num: 5)
-      @quiz6_6 = FactoryGirl.create(:quiz, event: @event6, division: @senior_a, round_num: 6)
+      @quiz1_6 = FactoryGirl.create(:quiz, event: @event6, division: @senior_a, round_num: 1, category: @category1)
+      @quiz2_6 = FactoryGirl.create(:quiz, event: @event6, division: @senior_a, round_num: 2, category: @category2)
+      @quiz3_6 = FactoryGirl.create(:quiz, event: @event6, division: @senior_a, round_num: 3, category: @category3)
+      @quiz4_6 = FactoryGirl.create(:quiz, event: @event6, division: @senior_a, round_num: 4, category: @category1)
+      @quiz5_6 = FactoryGirl.create(:quiz, event: @event6, division: @senior_a, round_num: 5, category: @category1)
+      @quiz6_6 = FactoryGirl.create(:quiz, event: @event6, division: @senior_a, round_num: 6, category: @category1)
 
-      @quiz1_8 = FactoryGirl.create(:quiz, event: @event8, division: @senior_a, round_num: 1)
-      @quiz2_8 = FactoryGirl.create(:quiz, event: @event8, division: @senior_a, round_num: 2)
-      @quiz3_8 = FactoryGirl.create(:quiz, event: @event8, division: @senior_a, round_num: 3)
-      @quiz4_8 = FactoryGirl.create(:quiz, event: @event8, division: @senior_a, round_num: 4)
-      @quiz5_8 = FactoryGirl.create(:quiz, event: @event8, division: @senior_a, round_num: 5)
-      @quiz6_8 = FactoryGirl.create(:quiz, event: @event8, division: @senior_a, round_num: 6)
+      @quiz1_8 = FactoryGirl.create(:quiz, event: @event8, division: @senior_a, round_num: 1, category: @category1)
+      @quiz2_8 = FactoryGirl.create(:quiz, event: @event8, division: @senior_a, round_num: 2, category: @category2)
+      @quiz3_8 = FactoryGirl.create(:quiz, event: @event8, division: @senior_a, round_num: 3, category: @category3)
+      @quiz4_8 = FactoryGirl.create(:quiz, event: @event8, division: @senior_a, round_num: 4, category: @category1)
+      @quiz5_8 = FactoryGirl.create(:quiz, event: @event8, division: @senior_a, round_num: 5, category: @category1)
+      @quiz6_8 = FactoryGirl.create(:quiz, event: @event8, division: @senior_a, round_num: 6, category: @category1)
     end
 
     def assign_teams_to_past_quizzes

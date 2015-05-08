@@ -1,0 +1,37 @@
+  <div class="panel clearfix">
+    <% if @team.current_students.size == 0 %>
+      <h5>This team has no students</h5>
+    
+    <% else %>
+
+    <h5>Team's students</h5>
+
+    <ul>
+    <% @team.current_students.each do |s| %>
+        <li><%= link_to s.proper_name, student_path(s) %></li>
+    <% end %>
+    </ul>
+
+    <% end %>
+
+    <hr>
+
+    <h5>Team's coaches</h5>
+    <% cur_coaches = @team.team_coaches.where(end_date: nil) %>
+
+    <% if cur_coaches.nil? %>
+      N/A
+    <% else %>
+      <ul>
+      <% cur_coaches.each do |team_coach| %>
+        <% if !team_coach.coach.email.nil? && !team_coach.coach.email.blank? %>
+          <li><%= mail_to team_coach.coach.email, team_coach.coach.proper_name, encode:"javascript" %></li>
+        <% else %>
+          <li><%= team_coach.coach.proper_name %></li>      
+        <% end %><!--if else end-->
+      <% end %><!--cur_coaches loop-->
+      </ul>
+    <% end %><!--cur_coaches.nil? check-->
+    
+
+  </div><!--panel clearfix-->

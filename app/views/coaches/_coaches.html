@@ -1,4 +1,4 @@
-<h1>Listing coaches</h1>
+<h1>Active coaches</h1>
 
 <table>
   <thead>
@@ -7,29 +7,32 @@
       <th>Last name</th>
       <th>Phone</th>
       <th>Email</th>
-      <th>Active</th>
+      <% if current_user.role?(:admin) %>
       <th></th>
       <th></th>
       <th></th>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
-    <% @coaches.each do |coach| %>
+    <% @coaches.active.each do |coach| %>
       <tr>
         <td><%= coach.first_name %></td>
         <td><%= coach.last_name %></td>
         <td><%= coach.phone %></td>
         <td><%= coach.email %></td>
-        <td><%= coach.active %></td>
+	<% if current_user.role?(:admin) %>
         <td><%= link_to 'Show', coach %></td>
         <td><%= link_to 'Edit', edit_coach_path(coach) %></td>
         <td><%= link_to 'Destroy', coach, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+ <% if current_user.role?(:admin) %>
 <%= link_to 'New Coach', new_coach_path %>
+<% end %>

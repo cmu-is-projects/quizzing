@@ -5,6 +5,7 @@ class YearQuizzerTest < ActiveSupport::TestCase
     setup do
       create_organizations
       create_divisions
+      create_categories
       create_events
       create_quizzes_for_past_event
       create_students
@@ -18,6 +19,7 @@ class YearQuizzerTest < ActiveSupport::TestCase
     teardown do
       delete_organizations
       delete_divisions
+      delete_categories
       delete_events
       delete_quizzes_for_past_event
       delete_students

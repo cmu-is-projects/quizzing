@@ -30,6 +30,7 @@ class TeamTest < ActiveSupport::TestCase
     should "correctly assess when a team is destroyable" do
       # test when team is associated with quizzes (no)
       create_events
+      create_categories
       create_quizzes_for_past_event
       create_acac_quiz_teams_for_past_event
       deny @acac_sr1.scored_quizzes_this_year.empty?
@@ -49,6 +50,7 @@ class TeamTest < ActiveSupport::TestCase
       delete_quizzes_for_future_event
       delete_quiz_teams_for_future_event
       delete_events
+      delete_categories
     end
 
     should "verify that the organization is active in the system" do
@@ -64,10 +66,20 @@ class TeamTest < ActiveSupport::TestCase
     end
 
     should "verify that the division is active in the system" do
-      # make an division inactive and test the inactive division
+      # test the inactive division first
+      @senior_b.active = false
+      @senior_b.save
+      @senior_b.reload
+
       bad_team = FactoryGirl.build(:team, division: @senior_b, organization: @acac, name: "ACAC B1")
       deny bad_team.valid?, "#{bad_team.valid?} :: #{bad_team.to_yaml} :: Division: #{bad_team.division.active}"
 
+      @senior_b.active = true
+      # now reset back to active
+      @senior_b.save  
+      @senior_b.reload    
+      assert @senior_b.active
+      
       # test the nonexistent division
       junior_b = FactoryGirl.build(:division, name: "Junior B")
       bad_team = FactoryGirl.build(:team, division: junior_b, organization: @acac, name: "ACAC JB1")

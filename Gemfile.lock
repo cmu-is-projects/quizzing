@@ -144,6 +144,7 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.11.0)
     multi_test (0.1.2)
+    nested_form (0.3.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -265,6 +266,7 @@ DEPENDENCIES
   meta_request (= 0.3.4)
   mocha (= 1.1.0)
   momentjs-rails (~> 2.9)!
+  nested_form
   pg
   quiet_assets (= 1.1.0)
   rails (= 4.0.13)

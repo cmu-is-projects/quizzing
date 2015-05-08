@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<% score = 0 %>
-<div id="container" style="width:800px; align-self:center">      
-  <div class="row" style="width: 450px; border-style: groove; padding-left: 10px; margin-left: 6px;float: left;">
+<!--div id="container" style="width:800px; align-self:center"-->      
+  <!--div class="row" style="width: 450px; border-style: groove; padding-left: 10px; margin-left: 6px;float: left;"-->
     <p>
       <strong>Name:</strong>
       <%= "#{@team.name} (#{@team.division.name})" %>
@@ -18,8 +17,82 @@
       <%= @team.division.name %>
     </p>
 
+    <p>
+      <strong>Active:</strong>
+      <%= @team.active==true ? "Yes" : "No" %>
+    </p>
+
+  <!--div style="width: 300px; border-style: groove; padding-left: 10px; padding-right:10px; margin-left: 6px; margin-right: 6px; float: right; text-align:center;"-->
+  <!--team members code used to be right here-->
+  <!--</div--><!--Members style-->
+  <!--/div--><!-- div container-->
+
+  <!--Theophilus begin-->
+
+ <!--based off student_details equivalent-->
+    <!--basing on topdown design-->
+    <% unless @year_event_quizzes.empty? %>
+
+    <h4>Breakdown of Scores for <%= @team.name %></h4>
+
+    <table>
+      <thead>
+        <tr>
+          <th align='center'>Date</th>        
+          <!--TODO (not 373 Spring '15): make dynamic -->
+          <%round_counter = 1%>
+          <% while round_counter <= @declared_num_rounds do%>
+            <th><%= "Round #{round_counter}" %></th>
+            <%round_counter+=1%>
+          <% end %>
+          <th>Total Points</th>
+        </tr>
+      </thead>
+
+      <tbody>
+	<% @previous_month = nil%>
+        <% @year_event_quizzes.each do |event_quiz| %>
+	  <% if @previous_month.nil? || @previous_month.month < event_quiz.event.start_date.month %>
+          <tr><!--each row is the quizzes of one event-->
+            <td><%= link_to event_quiz.event.start_date.strftime('%b %Y'), event_path(event_quiz.event) %></td>
+             <% quiz_teams = event_quiz.quiz_teams %>
+            <!--empty quiz_teams or future-created ones (they have nil points)-->
+            <% unless quiz_teams.empty? || quiz_teams.first.points.nil? %>
+              <% quiz_teams.each do |quiz_team| %>
+                <td align="center" style="text-align: center;"><%= quiz_team.points %></td>
+              <% end %><!--end quiz_teams.each-->
+              <td align="center" style="text-align: center;"><%= event_quiz.total_et_points %></td><!--for Total Points column-->
+
+            <% else %><!--quiz_teams are empty so output dashes-->
+
+              <%round_counter = 1%><!--Resetting the global round_counter!-->
+              <% while round_counter <= @declared_num_rounds do%>
+                <td style="text-align: center;"> -- </td>
+                <%round_counter+=1%>
+              <% end %> <!--end while-->
+              <td align="center" style="text-align: center;"> -- </td><!--for Total Points column-->
+
+            <% end %><!--end quiz_teams unless-->
+          </tr>
+	  <% end %><%# end if %>
+	  <% @previous_month = event_quiz.event.start_date %>
+        <% end %><!--end events.each-->
+      </tbody>
+    </table>
+
+  <!--Theophilus discerns to keep this one-->
+  <%else%><!--this team has no quiz_teams at all-->
+
+    <div class="panel clearfix">
+      <h4>No Competition for <%= @team.name %></h4>
+    </div>
+
+<!--Theophilus end-->
+
 <!--The below is for if we're ever interested in Standing on the page -->
-<!--     <%# if @team.active==true%>
+<!--    
+  <%# score = 0 %>
+  <%# if @team.active==true%>
     <p>
       <strong>Standing:</strong>
       <%# standing = 1 %>
@@ -32,11 +105,11 @@
           <%# t.quizzes.each do |p| -%>
             <%# p.quiz_teams.each do |qt| %>
 
-  	    <%# if qt.team == t && !qt.points.nil? %>
-  	      <%# t_score += qt.points %>
-  	    <%# end %>
+        <%# if qt.team == t && !qt.points.nil? %>
+          <%# t_score += qt.points %>
+        <%# end %>
 
-  	  <%# end %>
+      <%# end %>
           <%# end %>
 
           <%# if t_score > score %>
@@ -50,107 +123,5 @@
     </p>
     <%# end %> -->
 
-    <p>
-      <strong>Active:</strong>
-      <%= @team.active==true ? "Yes" : "No" %>
-    </p>
-
-  </div>
-
-  <div style="width: 300px; border-style: groove; padding-left: 10px; padding-right:10px; margin-left: 6px; margin-right: 6px; float: right; text-align:center;">
-    <p>
-      <strong>Members:</strong>
-    </p>
-    <hr>
-    <% if @team.students.size == 0 %>
-      This team has no students
-    <% end %>
-
-    <% @team.students.each do |s| %>
-
-      <li><%= link_to s.proper_name, student_path(s) %></li>
-
-    <% end %>
-
-    <hr>
-    <strong>Coach:</strong>
-    <% cur_coach = @team.team_coaches.where(end_date: nil).first %>
-
-    <% if cur_coach.nil? %>
-      N/A
-    <% else %>
-      <% cur_coach = cur_coach.coach%>
-
-      <% if !cur_coach.email.nil? && !cur_coach.email.blank? %>
-
-      <%= mail_to cur_coach.email, cur_coach.proper_name, encode:"javascript" %>
-      
-      <% else %>
-
-        <%= cur_coach.coach.proper_name %>
-      
-      <% end %>
-    <% end %>
-  </div>
-  </div><!--div container-->
-
-  <!--Theophilus begin-->
-
- <!--based off student_details equivalent-->
-    <!--basing on topdown design-->
-    <% unless @all_quiz_teams.empty? %>
-
-    <h4>Breakdown of Scores for <%= @team.name %></h4>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>        
-          <!--TODO (not 373 Spring '15): make dynamic -->
-          <%round_counter = 1%>
-          <% while round_counter <= @declared_num_rounds do%>
-            <th><%= "Round #{round_counter}" %></th>
-            <%round_counter+=1%>
-          <% end %>
-          <th>Total Points</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @events.each do |event| %>
-        <% @event_team = EventTeam.new(@team,event) %>
-          <tr><!--each row is the quizzes of one event-->
-            <!--TODO link to event standings-->
-            <td><%= event.start_date.strftime('%B %d, %Y') %></td>
-            <% @quiz_teams = @event_team.quiz_teams %>
-            <!--empty quiz_teams or future-created ones (they have nil points)-->
-            <% unless @quiz_teams.empty? || @quiz_teams.first.points.nil? %>
-              <% @quiz_teams.each do |quiz_team| %>
-                <td><%= quiz_team.points %></td>
-              <% end %><!--end quiz_teams.each-->
-              <td><%= @event_team.total_et_points %></td><!--for Total Points column-->
-
-            <% else %><!--quiz_teams are empty so output dashes-->
-
-              <%round_counter = 1%><!--Resetting the global round_counter!-->
-              <% while round_counter <= @declared_num_rounds do%>
-                <td> -- </td>
-                <%round_counter+=1%>
-              <% end %> <!--end while-->
-              <td> -- </td><!--for Total Points column-->
-
-            <% end %><!--end quiz_teams unless-->
-          </tr>
-        <% end %><!--end events.each-->
-      </tbody>
-    </table>
-
-  <%else%><!--this person has no quiz_teams at all-->
-
-    <div class="panel clearfix">
-      <h4>No Competition for <%= @team.name %></h4>
-    </div>
-  
-
   <% end %>
-    <!--Theophilus end-->
+  <!--/div-->

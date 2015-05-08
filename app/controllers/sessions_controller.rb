@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by_user_name(params[:user_name])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      set_session_event #inherited from application_controller
       #TODO1:
       #event_id
       #TODO:

@@ -25,6 +25,16 @@ module Contexts
       @somerset_sr1.delete
     end
 
+    def create_junior_teams
+      @acac_jr2 = FactoryGirl.create(:team, division: @junior, organization: @acac, name: "ACAC JR2")
+      @somerset_jr1 = FactoryGirl.create(:team, division: @junior, organization: @somerset, name: "Somerset JR1")
+    end
+
+    def delete_junior_teams
+      @acac_jr2.delete
+      @somerset_jr1.delete
+    end
+
     def create_senior_b_teams
       @acac_srb1 = FactoryGirl.create(:team, division: @senior_b, organization: @acac, name: "ACAC SRB1")
       @acac_srb2 = FactoryGirl.create(:team, division: @senior_b, organization: @acac, name: "ACAC SRB2")

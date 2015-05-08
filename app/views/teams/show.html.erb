@@ -1,14 +1,6 @@
-<div class="row">
-  <div class="small-6 columns">   
-    <!-- all teams -->
-      <%= render :partial => "show_details" %>
-      <%= render :partial => "partials/object_options", locals: {model_name: "team", object: @team} %>
-  </div>
+<%= render partial: "partials/structure_1", locals: {model_name: "team", 
+                                                         primary: "show_details", 
+                                                         secondary: nil,
+                                                         sidebar: "team_members",
+                                                         options: "partials/object_options", object: @team} %>
 
-  <div class="small-1 columns">
-    &nbsp;
-  </div>
-
-  <div class="small-5 columns">
-  </div>
-</div>
