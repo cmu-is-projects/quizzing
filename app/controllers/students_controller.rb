@@ -111,6 +111,7 @@ class StudentsController < ApplicationController
     @student_team.save!
     @student_team = nil
     @active_teams = Team.all.active
+    @divisions = Division.all.active
   end
 
   # DELETE /students/1
