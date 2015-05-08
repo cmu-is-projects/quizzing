@@ -21,13 +21,13 @@
       <% @year_quizzers.each do |year_quizzer| %>
         <tr>
           <% rank_counter+=1 %><!--first quizzer's rank outputted as 1-->
-          <td><%= rank_counter %></td>
+          <td style="text-align: center;"><%= rank_counter %></td>
           <td><%= link_to year_quizzer.name, student_path(year_quizzer.quizzer) %></td>
           <td><%= link_to year_quizzer.team.name, team_path(year_quizzer.team) %></td>
-          <td><%= year_quizzer.total_points %></td>
-          <td><%= year_quizzer.lowest_points %></td>
-          <td><%= year_quizzer.adjusted_points %></td>
-          <td><%= year_quizzer.total_accuracy %></td>
+          <td style="text-align: center;"><%= year_quizzer.total_points %></td>
+          <td style="text-align: center;"><%= year_quizzer.lowest_points %></td>
+          <td style="text-align: center;"><%= year_quizzer.adjusted_points %></td>
+          <td style="text-align: center;"><%= year_quizzer.total_accuracy %></td>
         </tr>
       <% end %>
     </tbody>

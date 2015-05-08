@@ -18,24 +18,18 @@
       </tr>
     </thead>
 
-    <tbody>
-      <% @year_div_teams.each do |t| %>
-        <% unless t.total_yt_points == 0 %><!--Didn't compete-->
-        <tr>
-          <% rank_counter+=1 %><!--first team's rank outputted as 1-->
-          <td><%= rank_counter %></td>
-          <td><%= link_to t.name, team_path(t.team) %></td>
-          <td align="center"><%= t.total_yt_points %></td>
-        </tr>
-        <% end %><!--unless-->
-      <% end %>
-    </tbody>
-  </table>
+      <tbody>
+        <% @year_div_teams.each do |t| %>
+          <% unless t.total_yt_points == 0 %><!--Didn't compete-->
+          <tr>
+            <% rank_counter+=1 %><!--first team's rank outputted as 1-->
+            <td style="text-align: center;"><%= rank_counter %></td>
+            <td ><%= link_to t.name, team_path(t.team) %></td>
+            <td align="center" style="text-align: center;"><%= t.total_yt_points %></td>
+          </tr>
+          <% end %><!--unless-->
+        <% end %>
+      </tbody>
+    </table>
 
-<!--have discerned to not show as of 5/5/2015-->
-<!--%#else%>
-  &nbsp;
-  <div class="panel clearfix">
-    <h3><%#= "No #{division.name} Team Standings" %></h3>
-  </div-->
-<% end %><!--unless @year_div_teams-->
+<% end %>
