@@ -13,7 +13,7 @@ class StandingsController < ApplicationController
   end #end individual method
 
   def team
-    @divisions = Division.all.active.alphabetical
+    @divisions = Division.all.active
   end
 
   private
