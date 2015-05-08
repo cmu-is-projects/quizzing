@@ -57,6 +57,8 @@ module Contexts
     create_quiz_teams_for_future_event
     create_student_quizzes
     create_student_quizzes_with_no_score_yet
+    create_junior_student_quizzes #unused for testing, used for view data
+    create_senior_b_student_quizzes #unused for testing, used for view data
     create_team_coaches
     create_three_more_complete_quiz_contexts
   end
