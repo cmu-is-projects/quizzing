@@ -75,6 +75,14 @@ module Contexts
       @aaron_acac_srb2.delete
       @jayla_acac_srb2.delete
     end
+
+    def create_more_jr_student_teams
+      @austin_somerset_jr1 = FactoryGirl.create(:student_team, student: @austin, team: @somerset_jr1, start_date: 1.year.ago.to_date)
+    end
+
+    def delete_more_jr_student_teams
+      @austin_somerset_jr1.delete
+    end
   
   end
 end

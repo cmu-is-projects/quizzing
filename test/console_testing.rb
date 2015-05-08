@@ -49,6 +49,7 @@ module Contexts
     create_add_organization_students
     create_student_teams
     create_senior_b_student_teams #unused for testing, used for view data
+    create_more_jr_student_teams #unused for testing, used for view data
     create_quizzes_for_past_event
     create_quizzes_for_future_event
     create_quiz_teams_for_past_event
