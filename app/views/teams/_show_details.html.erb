@@ -50,7 +50,9 @@
       </thead>
 
       <tbody>
+	<% @previous_month = nil%>
         <% @year_event_quizzes.each do |event_quiz| %>
+	  <% if @previous_month.nil? || @previous_month.month < event_quiz.event.start_date.month %>
           <tr><!--each row is the quizzes of one event-->
             <td><%= link_to event_quiz.event.start_date.strftime('%b %Y'), event_path(event_quiz.event) %></td>
              <% quiz_teams = event_quiz.quiz_teams %>
@@ -65,15 +67,15 @@
 
               <%round_counter = 1%><!--Resetting the global round_counter!-->
               <% while round_counter <= @declared_num_rounds do%>
-
                 <td style="text-align: center;"> -- </td>
-
                 <%round_counter+=1%>
               <% end %> <!--end while-->
               <td align="center" style="text-align: center;"> -- </td><!--for Total Points column-->
 
             <% end %><!--end quiz_teams unless-->
           </tr>
+	  <% end %><%# end if %>
+	  <% @previous_month = event_quiz.event.start_date %>
         <% end %><!--end events.each-->
       </tbody>
     </table>

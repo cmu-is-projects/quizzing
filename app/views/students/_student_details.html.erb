@@ -52,7 +52,9 @@
     </thead>
 
     <tbody>
+      <% @previous_month = nil %>
       <% @year_event_quizzes.each do |event_quiz| %>
+      <% if @previous_month.nil? || @previous_month.month < event_quiz.event.start_date.month %>
       <tr><!--each row is the quizzes of one event-->
         <td><%= link_to event_quiz.event.start_date.strftime('%b %Y'), event_path(event_quiz.event) %></td>
           <% student_quizzes = event_quiz.student_quizzes %>
@@ -74,6 +76,8 @@
 
           <% end %><!--end event_quizzes unless-->
         </tr>
+      <% end %><%# end if %>
+      <% @previous_month = event_quiz.event.start_date %>
       <% end %><!--end events.each-->
     </tbody>
   </table>
