@@ -1,7 +1,9 @@
 <% @students_by_div = Team.where(division: div).map{|t| t.current_students}.uniq.flatten! %>
   <% unless @students_by_div.empty? %>
     <% @students_by_div_ordered = @students_by_div.sort_by!{|n| n.last_name} %>
-    <h4><%= "#{div.name} Teams" %></h4>
+  <div class="blue_table_header">
+    <b style="color:white; width:100%;"><%= "#{div.name} Students" %></b>
+  </div>
 
     <table class="table">
       <thead>

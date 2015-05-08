@@ -30,6 +30,7 @@ module Contexts
       @artem = FactoryGirl.create(:student, first_name: "Artem", last_name: "Lawhead", grade: 11)
       @aaron = FactoryGirl.create(:student, first_name: "Aaron", last_name: "Santilli", grade: 7)
       @jayla = FactoryGirl.create(:student, first_name: "Jayla", last_name: "Snider", grade: 7)
+      @austin = FactoryGirl.create(:student, first_name: "Austin", last_name: "Elliot", grade: 4)
     end
 
     def delete_add_students

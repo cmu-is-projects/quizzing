@@ -1,9 +1,14 @@
 <% unless @year_event_quizzes.empty? %>
 
-  <h4>Breakdown of Scores for <%= @student.proper_name %></h4>
-
   <table>
     <thead>
+      <tr>
+        <td colspan="8">
+          <div class="blue_table_header">
+          <%= "Breakdown of Scores for #{@student.proper_name}" %>
+          </div>
+        </td>
+      </tr>
       <tr>
         <th align="center">Date</th>        
         <!--TODO (not 373 Spring '15): make dynamic -->
@@ -17,9 +22,9 @@
     </thead>
 
     <tbody>
-      <% @previous_month = nil %>
+      <%# @previous_month = nil %><!--*-->
       <% @year_event_quizzes.each do |event_quiz| %>
-      <% if @previous_month.nil? || @previous_month.month < event_quiz.event.start_date.month %>
+      <%# if @previous_month.nil? || @previous_month.month < event_quiz.event.start_date.month %><!--*-->
       <tr><!--each row is the quizzes of one event-->
         <td><%= link_to event_quiz.event.start_date.strftime('%b %Y'), event_path(event_quiz.event) %></td>
           <% student_quizzes = event_quiz.student_quizzes %>
@@ -41,8 +46,8 @@
 
           <% end %><!--end event_quizzes unless-->
         </tr>
-      <% end %><%# end if %>
-      <% @previous_month = event_quiz.event.start_date %>
+        <%# end %><%# end if* %>
+        <%# @previous_month = event_quiz.event.start_date %><!--*-->
       <% end %><!--end events.each-->
     </tbody>
   </table>
@@ -55,3 +60,5 @@
   </div>
 
 <% end %>
+
+<!--*everything asterisked was written for a Spr '15 presentation screenshot-->

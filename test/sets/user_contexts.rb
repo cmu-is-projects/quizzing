@@ -16,5 +16,13 @@ module Contexts
       @user4.delete
       @user5.delete
     end
+
+    def create_extra_users
+      @user6 = FactoryGirl.create(:user, user_name: "tomreay")
+    end
+
+    def delete_extra_users
+      @user6.delete      
+    end
   end
 end

@@ -41,22 +41,27 @@ module Contexts
     create_students
     create_add_students
     create_users
+    create_extra_users #unused for testing, used for view data
     create_coaches
+    create_extra_coaches #unused for testing, used for view data
     create_teams
     create_junior_teams #unused for testing, used for view data
-    create_senior_b_teams
+    create_senior_b_teams  #unused for testing, used for view data
     create_organization_students
     create_add_organization_students
     create_student_teams
-    create_senior_b_student_teams
+    create_senior_b_student_teams #unused for testing, used for view data
+    create_more_jr_student_teams #unused for testing, used for view data
     create_quizzes_for_past_event
     create_quizzes_for_future_event
     create_quiz_teams_for_past_event
     create_jr_division_quiz_teams #unused for testing, used for view data
-    create_senior_b_quiz_teams
+    create_senior_b_quiz_teams #unused for testing, used for view data
     create_quiz_teams_for_future_event
     create_student_quizzes
     create_student_quizzes_with_no_score_yet
+    create_junior_student_quizzes #unused for testing, used for view data
+    create_senior_b_student_quizzes #unused for testing, used for view data
     create_team_coaches
     create_three_more_complete_quiz_contexts
   end

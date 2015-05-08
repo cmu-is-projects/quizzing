@@ -6,14 +6,15 @@ class StandingsController < ApplicationController
   	else
   		division_id = params[:id]
   	end
-    
   	@division = Division.find(division_id)
+    #all the above was used back when a dropdown was used to select one division at a time
   	#TODO (probably NOT during CMU 67-373 Spring 2015): adjust this to ultimately take a QuizYear parameter
   	@year_quizzers = YearQuizzer.get_all_quizzers_for_division_for_year(@division)
+    @divisions = Division.all.active
   end #end individual method
 
   def team
-    @divisions = Division.all.active.alphabetical
+    @divisions = Division.all.active
   end
 
   private

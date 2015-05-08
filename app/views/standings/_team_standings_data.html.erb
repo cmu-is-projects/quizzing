@@ -1,12 +1,11 @@
-<!--first copied and pasted from individual standings-->
-<!--TODO: turn into tab with individual standings-->
+<!--uses standings_controller which uses year_team model-->
 
 <% division = passed_in_div %>
 <% @year_div_teams = YearTeam.get_all_teams_for_division_for_year(division) %>
 
 <% unless @year_div_teams.empty? %><!--No teams for this division (highly unlikely and probably unrealistic)-->
 
-  <!-- <h4 align="center"><%#= "#{division.name} Team" %></h4> -->
+
   <div class="blue_table_header">
     <b style="color:white; width:100%;"><%= division.name %></b>
   </div>

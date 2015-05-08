@@ -1,8 +1,12 @@
+
+<h2 align='center'>Individual standings </h2>
+
+ <div class="small-12 columns">
+ <% @divisions.each do |dvsn| %>  
+   <%= render partial: "individual_standings_data", locals: { passed_in_div: dvsn } %>
+ <% end %>
+ </div>
+
+
 &nbsp;
-<h4>Please Select a Division:</h4>
-<%= form_tag(indiv_standings_path, method: :get, remote: true) do %>
-	<%= select_tag("id", options_from_collection_for_select(Division.alphabetical.active.all, "id", "name"), onchange: "this.form.submit()") %>
-<% end %>
-
-<%= render partial: "individual_standings_data" %>
-
+<h4 style="text-align: left;"><%= link_to "See Team Standings", team_standings_path %></h4>

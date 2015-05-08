@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @quizzes = @event.quizzes.sort{|a,b| a.round_num <=> b.round_num}
-    @divisions = Division.all.alphabetical
+    @divisions = Division.all.active
   end
 
   # GET /events/new
