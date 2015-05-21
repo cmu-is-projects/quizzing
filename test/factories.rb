@@ -113,7 +113,7 @@ FactoryGirl.define do
   end
 
   factory :user do
-    sequence :user_name do |n|
+    sequence :username do |n|
       "user#{n}"
     end
     role "coach"

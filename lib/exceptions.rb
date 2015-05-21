@@ -13,5 +13,5 @@ module Exceptions
 
   # a custom exception when authentication being hammered
   class AttemptedHammering < Error; end
-
+  
 end

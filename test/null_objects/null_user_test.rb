@@ -2,8 +2,8 @@ require 'test_helper'
 
 class NullUserTest < ActiveSupport::TestCase
 
-  def test_user_name
-    assert_equal "N/A", NullUser.new.user_name
+  def test_username
+    assert_equal "N/A", NullUser.new.username
   end
   
   def test_role

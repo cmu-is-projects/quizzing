@@ -6,14 +6,14 @@ class UserTest < ActiveSupport::TestCase
   should have_secure_password
 
   #test validations
-  should validate_presence_of(:user_name)
+  should validate_presence_of(:username)
   should validate_presence_of(:role)
-  should validate_uniqueness_of(:user_name).case_insensitive
+  should validate_uniqueness_of(:username).case_insensitive
 
 
-  should allow_value("Lankly").for(:user_name)
-  should allow_value("1234").for(:user_name)
-  should_not allow_value(nil).for(:user_name)
+  should allow_value("Lankly").for(:username)
+  should allow_value("1234").for(:username)
+  should_not allow_value(nil).for(:username)
 
   should allow_value("admin").for(:role)
   should allow_value("area_admin").for(:role)
@@ -33,26 +33,26 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should "require users to have unique, downcased usernames" do
-      assert_equal "profh", @user2.user_name
+      assert_equal "profh", @user2.username
       # try to switch to a coach's username all lower-case
-      @user2.user_name = "coach1"
-      deny @user2.valid?, "#{@user2.user_name}"
+      @user2.username = "coach1"
+      deny @user2.valid?, "#{@user2.username}"
     end
 
     should "require a password for new users" do
-      bad_user = FactoryGirl.build(:user, user_name: "wheezy", password: nil)
+      bad_user = FactoryGirl.build(:user, username: "wheezy", password: nil)
       deny bad_user.valid?
     end
     
     should "require passwords to be confirmed and matching" do
-      bad_user_1 = FactoryGirl.build(:user, user_name: "wheezy", password: "secret", password_confirmation: nil)
+      bad_user_1 = FactoryGirl.build(:user, username: "wheezy", password: "secret", password_confirmation: nil)
       deny bad_user_1.valid?
-      bad_user_2 = FactoryGirl.build(:user, user_name: "wheezy", password: "secret", password_confirmation: "sauce")
+      bad_user_2 = FactoryGirl.build(:user, username: "wheezy", password: "secret", password_confirmation: "sauce")
       deny bad_user_2.valid?
     end
     
     should "require passwords to be at least four characters" do
-      bad_user = FactoryGirl.build(:user, user_name: "wheezy", password: "no", password_confirmation: "no")
+      bad_user = FactoryGirl.build(:user, username: "wheezy", password: "no", password_confirmation: "no")
       deny bad_user.valid?
     end
 
@@ -65,20 +65,20 @@ class UserTest < ActiveSupport::TestCase
       assert @user3.role?(:coach)
     end
 
-    should "verify that the user_name is unique in the system" do
-      deny FactoryGirl.build(:user, user_name: "Lankly").valid?
+    should "verify that the username is unique in the system" do
+      deny FactoryGirl.build(:user, username: "Lankly").valid?
     end
 
     should "verify that the alphabetical scope works" do
-      assert_equal ["coach1","coach2","inactivecoach","lankly","profh"], User.alphabetical.map(&:user_name)
+      assert_equal ["coach1","coach2","inactivecoach","lankly","profh"], User.alphabetical.map(&:username)
     end
 
     should "verify that the active scope works" do
-      assert_equal ["coach1","coach2","lankly","profh"], User.active.alphabetical.map(&:user_name)
+      assert_equal ["coach1","coach2","lankly","profh"], User.active.alphabetical.map(&:username)
     end
 
     should "verify that the inactive scope works" do
-      assert_equal ["inactivecoach"], User.inactive.alphabetical.map(&:user_name)
+      assert_equal ["inactivecoach"], User.inactive.alphabetical.map(&:username)
     end
 
     should "have methods to make active or inactive" do

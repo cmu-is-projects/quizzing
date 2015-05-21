@@ -1,5 +1,6 @@
 class CoachesController < ApplicationController
   before_action :set_coach, only: [:show, :edit, :update, :destroy]
+  before_action :verify_user_is_area_admin, :only => [:new, :create, :edit, :update, :destroy]
 
   # GET /coaches
   # GET /coaches.json

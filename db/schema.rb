@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20150330222533) do
   end
 
   create_table "users", force: true do |t|
-    t.string  "user_name"
+    t.string  "username"
     t.string  "role"
     t.string  "password_digest"
     t.boolean "active",          default: true

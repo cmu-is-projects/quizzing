@@ -1,5 +1,5 @@
 class NullUser
-  def user_name
+  def username
     "N/A"
   end
 
@@ -37,5 +37,9 @@ class NullUser
 
   def is_coach?
     false
+  end
+
+  def is_guest?
+    true
   end
 end
