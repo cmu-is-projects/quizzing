@@ -61,7 +61,6 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.1.4)
     callsite (0.0.11)
-    cancancan (1.10.1)
     capistrano (2.13.5)
       highline
       net-scp (>= 1.0.0)
@@ -110,7 +109,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
-    foundation-rails (5.5.1.2)
+    foundation-rails (5.5.2.1)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
     geocoder (1.2.8)
@@ -125,7 +124,7 @@ GEM
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (5.0.3)
+    jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.2)
     launchy (2.4.3)
@@ -154,10 +153,10 @@ GEM
       net-ssh (>= 2.6.5)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    pg (0.18.1)
+    pg (0.18.2)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
-    rack (1.5.2)
+    rack (1.5.3)
     rack-contrib (1.2.0)
       rack (>= 0.9.1)
     rack-test (0.6.3)
@@ -178,7 +177,6 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    rolify (4.0.0)
     sass (3.4.13)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -205,9 +203,9 @@ GEM
     simplecov-html (0.8.0)
     single_test (0.6.0)
       rake
-    sprockets (3.0.3)
+    sprockets (3.1.0)
       rack (~> 1.0)
-    sprockets-rails (2.2.4)
+    sprockets-rails (2.3.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
@@ -246,7 +244,6 @@ DEPENDENCIES
   best_in_place!
   better_errors (= 2.0.0)
   binding_of_caller (= 0.7.2)
-  cancancan
   capistrano (= 2.13.5)
   capybara
   chronic
@@ -270,7 +267,6 @@ DEPENDENCIES
   pg
   quiet_assets (= 1.1.0)
   rails (= 4.0.13)
-  rolify
   sass-rails (~> 5.0.0)
   sdoc
   shoulda (= 3.5.0)

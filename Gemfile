@@ -67,8 +67,6 @@ gem 'jquery-ui-rails'
 gem 'chronic'
 gem 'time_date_helpers', '0.0.2'
 
-gem 'cancancan'
-gem 'rolify'
 gem 'best_in_place', github: 'cmu-is-projects/best_in_place'
 
 # Additional gems that are very useful in Rails development
