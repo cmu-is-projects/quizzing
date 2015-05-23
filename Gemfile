@@ -80,6 +80,7 @@ group :development do
   gem 'hirb', '0.7.2'
   gem 'faker', '1.4.3'
   gem 'capistrano', '2.13.5'
+  gem 'letter_opener'
 end
 
 # Gems used only in testing
