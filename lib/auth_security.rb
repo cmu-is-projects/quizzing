@@ -1,8 +1,8 @@
 module AuthSecurity
   def verify_user_not_timed_out(user)
     if user.active_after > Time.now
-      # if user already timed out, add 30 minutes and raise exception
-      user.active_after = 30.minutes.from_now
+      # if user already timed out, add 60 minutes and raise exception
+      user.active_after = 60.minutes.from_now
       user.save
       raise Exceptions::UserIsTimedOut
     end

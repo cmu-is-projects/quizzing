@@ -3,6 +3,8 @@ secret_key_base: '621d878119cb93a899add5f4deb404f071097256bb0ba9376c351f54ca19b3
 session_name: '_quizzing_session'
 
 # database configurations
+dev_database: 'quizzing_dev'
+test_database: 'quizzing_test'
 production_database: 'quizzing'
 db_user: 'quizzing'
 db_password: 'quizmaster!'
