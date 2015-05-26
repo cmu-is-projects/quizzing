@@ -9,7 +9,7 @@ class CreateCoaches < ActiveRecord::Migration
       t.string :email
       t.boolean :active, default: true
 
-      # t.timestamps
+      t.timestamps
     end
   end
 end
