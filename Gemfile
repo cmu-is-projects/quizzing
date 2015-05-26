@@ -9,6 +9,9 @@ gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.0'
 
+# Use Materialize for css
+gem 'materialize-sass', github: 'mkhairi/materialize-sass'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -39,9 +42,6 @@ gem 'validates_timeliness'
 gem 'simple_form'
 
 gem "nested_form"
-
-# Use foundation for base CSS
-gem 'foundation-rails'
 
 # Use geocoder to get latitude and longitude data
 gem 'geocoder'
