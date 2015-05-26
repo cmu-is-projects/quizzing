@@ -14,12 +14,10 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery_nested_form
-//= require foundation
-//= require_tree .
 //= require turbolinks
+//= require materialize-sprockets
 //= require best_in_place
-
-$(function(){ $(document).foundation(); });
+//= require_tree .
 
 //from datatables
 // $(document).ready( function () {
