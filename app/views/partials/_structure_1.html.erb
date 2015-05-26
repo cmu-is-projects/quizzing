@@ -22,5 +22,5 @@
   <!-- render a set of options, if they exist -->
   <%= render partial: "#{graphs}", 
       locals: {model_name: model_name,
-      object: object} unless options.blank? %>
+      object: object} unless graphs.blank? %>
 </div>
