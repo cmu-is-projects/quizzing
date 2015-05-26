@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include ExceptionManager
   include DatabaseSwitcher
+  # check which database to use...
+  before_action :determine_correct_database #if Rails.env.production?
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -21,7 +23,7 @@ class ApplicationController < ActionController::Base
   rescue_from Exceptions::NoPasswordResetToken, with: :no_reset_token
   rescue_from Exceptions::UserIsTimedOut, with: :user_timed_out
   rescue_from Exceptions::AttemptedHammering, with: :stop_hammering
-  
+
   private
   # Handling authentication
   def current_user

@@ -10,9 +10,9 @@ module DatabaseSwitcher
   end
 
   def verify_subdomain(subdomain)
-    allowed_subdomains = ['westpa', 'pgh', 'erie', 'altoona', 'ovd', 'central', 'greatlakes', 'pnw', 'cmd', 'westcanada', 'metro', 'centralcanada']
+    allowed_subdomains = ['home', 'westpa', 'pgh', 'erie', 'altoona', 'ovd', 'central', 'greatlakes', 'pnw', 'cmd', 'westcanada', 'metro', 'centralcanada']
     if subdomain.blank?
-      return "auth"
+      return "quizzing_dev"
     elsif allowed_subdomains.include?(subdomain)
       return subdomain
     else
