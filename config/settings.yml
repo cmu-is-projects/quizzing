@@ -10,6 +10,6 @@ db_user: 'quizzing'
 db_password: 'quizmaster!'
 
 # mailer configurations
-mailer_service: 'MAILER SERVICE GOES HERE'
-mailer_user: 'MAILER USER GOES HERE'
-mailer_password: 'MAILER PASSWORD GOES HERE'
+mailer_service: 'smtp.gmail.com'
+mailer_user: 'biblequizstats.net'
+mailer_password: 'Iwryftytlhe'
