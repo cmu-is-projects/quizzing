@@ -11,4 +11,9 @@ class IndivStanding < ActiveRecord::Base
         validates_numericality_of :adjusted_points, only_integer: true, greater_than: 0
         validates_numericality_of :accuracy, less_than: 1.01
 
+        # Scopes
+        scope :for_juniors, -> { joins(:divisions).where('divisions.name = ?', 'juniors') }
+        scope :for_seniors, -> { joins(:divisions).where('divisions.name = ?', 'seniors') }
+        scope :for_seniorb, -> { joins(:divisions).where('divisions.name = ?', 'senior_b') }
+
 end

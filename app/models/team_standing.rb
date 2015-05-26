@@ -12,6 +12,8 @@ class TeamStanding < ActiveRecord::Base
         validates_numericality_of :accuracy, less_than: 1.01
 
         # Scopes
-        scope :for_division, -> { joins(:teams).where('teams.division_id = ?', 1) }
-        #scope :for_division, -> { includes(teams:[:division] )}
+        #scope :for_division, -> { joins(:teams).where('teams.division_id = ?', 1) }
+        scope :for_juniors, -> { joins(:divisions).where('divisions.name = ?', 'juniors') }
+        scope :for_seniors, -> { joins(:divisions).where('divisions.name = ?', 'seniors') }
+        scope :for_seniorb, -> { joins(:divisions).where('divisions.name = ?', 'senior_b') }
 end

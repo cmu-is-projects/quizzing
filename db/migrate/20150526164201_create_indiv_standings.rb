@@ -3,8 +3,9 @@ class CreateIndivStandings < ActiveRecord::Migration
     create_table :indiv_standings do |t|
       t.integer :position
       t.integer :student_id
-      t.integer :current_team
-      t.string :total_points_integer
+      t.integer :team_id
+      t.integer :division_id
+      t.integer :total_points
       t.integer :lowest_score
       t.integer :adjusted_points
       t.float :accuracy
