@@ -13,7 +13,7 @@ class TeamStanding < ActiveRecord::Base
 
         # Scopes
         #scope :for_division, -> { joins(:teams).where('teams.division_id = ?', 1) }
-        scope :for_juniors, -> { joins(:divisions).where('divisions.name = ?', 'juniors') }
-        scope :for_seniors, -> { joins(:divisions).where('divisions.name = ?', 'seniors') }
-        scope :for_seniorb, -> { joins(:divisions).where('divisions.name = ?', 'senior_b') }
+        scope :for_juniors, -> { where('division_id = ?', "#{Division.find_by_name('juniors').id}") }
+        scope :for_seniors, -> { where('division_id = ?', "#{Division.find_by_name('seniors').id}") }
+        scope :for_seniorb, -> { where('division_id = ?', "#{Division.find_by_name('seniorb').id}") }
 end
