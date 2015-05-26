@@ -1,0 +1,23 @@
+<!-- Top Row- 12cols, next row divided into 8col and 4col-->
+<!-- 8col is called primary, 4col is called secondary -->
+
+
+<div class="row">
+  <!-- render a set of options, if they exist -->
+  <%= render partial: "#{graphs}", 
+      locals: {model_name: model_name,
+      object: object} unless options.blank? %>
+</div>
+
+<div class="row">
+  <div class="col s8">
+    <!-- primary partial gets displayed here in main div -->
+    <%= render partial: "#{primary}" %>   
+  </div>
+
+  <div class="col s4">
+  	<%= render partial: "#{secondary}" %>
+  </div>
+</div>
+
+
