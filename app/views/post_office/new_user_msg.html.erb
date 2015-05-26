@@ -1,0 +1,18 @@
+<html>
+  <body>
+    <p><%= @user.first_name %>,</p>
+
+    <p>Welcome to biblequizstats.net</p>
+
+    <p>To login into your account and set your password, click the URL below.</p>
+
+    <p><%= edit_password_reset_url(@user.password_reset_token, host: @request) %></p>
+
+    <p>This link will take you to a page to set a password.  </p>
+
+    <p>Admin at biblequizstats.net</p>
+
+    <p><a href="http://biblequizstats.net">http://biblequizstats.net</a></p>
+
+  </body>
+</html>
