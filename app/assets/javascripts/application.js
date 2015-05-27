@@ -43,15 +43,26 @@ $(document).ready(function() {
 // });
 
 
-$('#toggle-search').click(function()
-	{
-		event.preventDefault();
-		var search = $('div#search-bar');
+// $('#toggle-search').click(function()
+// 	{
+// 		event.preventDefault();
+// 		var search = $('div#search-bar');
 
-		search.is(":visible") ? search.slideUp() : search.slideDown(function()
-		{
-			search.find('input').focus();
-		});
+// 		search.is(":visible") ? search.slideUp() : search.slideDown(function()
+// 		{
+// 			search.find('input').focus();
+// 		});
 
-		return false;
-	});
+// 		return false;
+// 	});
+
+
+$(function() {
+  var $searchlink = $('#searchlink');
+ 
+  // hover effect
+  $searchlink.on('mouseover', function(){
+    $(this).addClass('search-bar');
+  }).on('mouseout', function(){
+    $(this).removeClass('search-bar');
+  });
