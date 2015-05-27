@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   
   #Validations
   validates_presence_of :username, :role
+  validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, allow_nil: :false, message: "is not a valid format"
   validates :username, uniqueness: { case_sensitive: false}
   validates_presence_of :password, on: :create 
   validates_presence_of :password_confirmation, on: :create 

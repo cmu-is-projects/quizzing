@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20150526143746) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "phone"
-    t.string   "email"
     t.boolean  "active",          default: true
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -93,6 +92,9 @@ ActiveRecord::Schema.define(version: 20150526143746) do
     t.boolean "drop_lowest_score"
     t.boolean "roster_lock_toggle"
     t.boolean "auto_promote_students"
+    t.string  "area_name"
+    t.string  "admin_name"
+    t.string  "admin_email"
   end
 
   create_table "student_quizzes", force: true do |t|
@@ -136,6 +138,7 @@ ActiveRecord::Schema.define(version: 20150526143746) do
 
   create_table "users", force: true do |t|
     t.string   "username"
+    t.string   "email"
     t.string   "role"
     t.string   "password_digest"
     t.boolean  "active",                 default: true

@@ -8,7 +8,6 @@ FactoryGirl.define do
     association :organization
   	first_name "Rob"
   	last_name "Stanton"
-    email { |c| "#{c.first_name}.#{c.last_name}@example.com".downcase }
     phone { rand(10 ** 10).to_s.rjust(10,'0') }
   	active true
   end
@@ -119,6 +118,7 @@ FactoryGirl.define do
     role "coach"
     password "secret"
     password_confirmation "secret"
+    email { |u| "#{u.username}@example.com".downcase }
     active true
   end
   

@@ -9,7 +9,20 @@ class UserTest < ActiveSupport::TestCase
   should validate_presence_of(:username)
   should validate_presence_of(:role)
   should validate_uniqueness_of(:username).case_insensitive
+  
+  should validate_presence_of(:email)
 
+  should allow_value("fred@fred.com").for(:email)
+  should allow_value("fred@andrew.cmu.edu").for(:email)
+  should allow_value("my_fred@fred.org").for(:email)
+  should allow_value("fred123@fred.gov").for(:email)
+  should allow_value("my.fred@fred.net").for(:email)
+  
+  should_not allow_value("fred").for(:email)
+  should_not allow_value("fred@fred,com").for(:email)
+  should_not allow_value("fred@fred.uk").for(:email)
+  should_not allow_value("my fred@fred.com").for(:email)
+  should_not allow_value("fred@fred.con").for(:email)
 
   should allow_value("Lankly").for(:username)
   should allow_value("1234").for(:username)

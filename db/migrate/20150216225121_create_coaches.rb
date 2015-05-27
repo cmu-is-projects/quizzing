@@ -6,7 +6,6 @@ class CreateCoaches < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :phone
-      t.string :email
       t.boolean :active, default: true
 
       t.timestamps

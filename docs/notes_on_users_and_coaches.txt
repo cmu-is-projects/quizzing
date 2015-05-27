@@ -1,0 +1,1 @@
+We will create new area admins via the user model and coaches, with associated user, via coach only.

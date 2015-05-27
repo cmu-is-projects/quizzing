@@ -8,7 +8,7 @@ module SessionManager
   end
 
   def set_session_event
-    #Documentation: Assumed to be the quiz for today's date or the next one
+    # Documentation: Assumed to be the quiz for today's date or the next one
     e = Event.where("start_date >= ? or (start_date = ? and end_date = ?)", Date.today,Date.yesterday,Date.today).order(:start_date).first
     session[:event_id] = e.id
   end
@@ -25,8 +25,8 @@ module SessionManager
   def set_session_vars_after_login(user)
     session[:user_id] = user.id
     session[:username] = user.username
-    session[:first_name] = user.first_name
-    session[:last_name] = user.last_name
+    session[:first_name] = user.coach.first_name unless user.coach.nil?
+    session[:last_name] = user.coach.last_name unless user.coach.nil?
     session[:role] = user.role  
     session[:auth_attempts] = nil 
     set_session_event 

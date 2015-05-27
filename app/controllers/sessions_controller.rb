@@ -19,22 +19,26 @@ class SessionsController < ApplicationController
 
       # make sure the user has the right password        
       if user.authenticate(params[:password])
-        set_session_vars(user)
+        set_session_vars_after_login(user)
         # connect_to_db(session[:subdomain])
         current_user
         send_to_landing_page(session[:subdomain])
       else
-        flash.now.alert = "Username or password is invalid"
-        render "new"
+        handle_failed_attempt
       end
     else
-      flash.now.alert = "Username or password is invalid"
-      render "new"
+      handle_failed_attempt
     end
   end
   
   def destroy
     clear_session_data
     redirect_to home_path, notice: "Logged out!"
+  end
+
+  private
+  def handle_failed_attempt
+    flash.now.alert = "Username or password is invalid"
+    render "new"
   end
 end
