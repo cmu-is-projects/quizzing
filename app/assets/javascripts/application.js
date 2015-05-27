@@ -14,7 +14,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery_nested_form
-//= require turbolinks
 //= require materialize-sprockets
 //= require best_in_place
 //= require_tree .
@@ -36,33 +35,11 @@ $(document).ready(function() {
     jQuery(".best_in_place").best_in_place();
 });
 
-//Toggle Search bar
-// $("#toggle-search").click(function(){
-// 	 event.preventDefault();
-//     $("#search-bar").toggle();
-// });
+
+$(document).ready(function() {
+    $('.toggle-search').click(function() {
+            $('#search-bar').slideToggle("slow");
+    });
+});
 
 
-// $('#toggle-search').click(function()
-// 	{
-// 		event.preventDefault();
-// 		var search = $('div#search-bar');
-
-// 		search.is(":visible") ? search.slideUp() : search.slideDown(function()
-// 		{
-// 			search.find('input').focus();
-// 		});
-
-// 		return false;
-// 	});
-
-
-$(function() {
-  var $searchlink = $('#searchlink');
- 
-  // hover effect
-  $searchlink.on('mouseover', function(){
-    $(this).addClass('search-bar');
-  }).on('mouseout', function(){
-    $(this).removeClass('search-bar');
-  });
