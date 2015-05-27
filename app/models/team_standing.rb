@@ -1,9 +1,6 @@
 class TeamStanding < ActiveRecord::Base
 
-        # Relationships
-        belongs_to :teams
-
-
+		# Validations
         validates_presence_of :position, :team_id, :total_points, :accuracy
 
         validates_numericality_of :position, only_integer: true, greater_than: 0, less_than: 100
@@ -12,7 +9,6 @@ class TeamStanding < ActiveRecord::Base
         validates_numericality_of :accuracy, less_than: 1.01
 
         # Scopes
-        #scope :for_division, -> { joins(:teams).where('teams.division_id = ?', 1) }
         scope :for_juniors, -> { where('division_id = ?', "#{Division.find_by_name('juniors').id}") }
         scope :for_seniors, -> { where('division_id = ?', "#{Division.find_by_name('seniors').id}") }
         scope :for_seniorb, -> { where('division_id = ?', "#{Division.find_by_name('seniorb').id}") }

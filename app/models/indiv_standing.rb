@@ -1,6 +1,6 @@
 class IndivStanding < ActiveRecord::Base
+        
         # Validations
-
         validates_presence_of :position, :student_id, :current_team, :total_points, :lowest_score, :adjusted_points, :accuracy
 
         validates_numericality_of :position, only_integer: true, greater_than: 0, less_than: 100
