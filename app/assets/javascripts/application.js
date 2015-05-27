@@ -35,3 +35,9 @@ $(document).ready(function() {
   /* Activating Best In Place */
     jQuery(".best_in_place").best_in_place();
 });
+
+//Toggle Search bar
+$("#toggle-search").click(function(){
+	 event.preventDefault();
+    $("#search-bar").toggle();
+});
