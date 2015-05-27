@@ -1,0 +1,20 @@
+<table>
+  <thead> Top Students </thead>
+    <tr>
+      <th data-field="id">Rank</th>
+      <th data-field="name">Student</th>
+      <th data-field="price">Cumulative Score</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @active_students.each do |student| %>
+      <tr>
+        <!--Placeholder for when Nick's standing model -->
+        <td>1</td>
+        <td><%= link_to student.name, student_path(student) %></td>
+        <td><%=YearQuizzer.new(student).total_points %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
