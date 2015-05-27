@@ -1,0 +1,22 @@
+<h5>Upcoming Events</h5> 
+
+<% unless @upcoming_events.empty? %>
+  <div class="collection">
+    <% @upcoming_events.each do |event| %>
+    <li class="collection-item">
+      <div> <%=event.organization.name%>
+        <a href="#!" class="secondary-content">
+          <i class="mdi-content-send"></i>
+        </a>
+      </div>
+    </li>
+    <a href="#!" class="collection-item"><%= event.start_date %></a>
+    <% end %>
+  </div>
+
+<% else %>
+  <h6> No upcoming events </h6>
+
+<% end %>
+
+
