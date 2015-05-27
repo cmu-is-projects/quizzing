@@ -37,7 +37,21 @@ $(document).ready(function() {
 });
 
 //Toggle Search bar
-$("#toggle-search").click(function(){
-	 event.preventDefault();
-    $("#search-bar").toggle();
-});
+// $("#toggle-search").click(function(){
+// 	 event.preventDefault();
+//     $("#search-bar").toggle();
+// });
+
+
+$('#toggle-search').click(function()
+	{
+		event.preventDefault();
+		var search = $('div#search-bar');
+
+		search.is(":visible") ? search.slideUp() : search.slideDown(function()
+		{
+			search.find('input').focus();
+		});
+
+		return false;
+	});
