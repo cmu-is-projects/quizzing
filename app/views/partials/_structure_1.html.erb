@@ -12,13 +12,7 @@
   </div>
 
   <div class="col s4">
-    <% render partial: "#{right4}" %>
+    <% render partial: "#{right4}" unless right4.blank? %>
   </div>
 
-</div>
-
-<div class="row">
-  <!-- render a set of options, if they exist -->
-  <%= render partial: "#{content}", 
-      locals: {model_name: model_name} unless content.blank? %>
 </div>

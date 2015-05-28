@@ -1,6 +1,7 @@
-<%= render partial: "partials/structure_student_show", locals: {model_name: "student", 
-                                                         primary: "student_details", 
-                                                         secondary: nil,
-                                                         sidebar: "student_scores",
-                                                         options: "partials/object_options", object: @student} %>
+<%= render partial: "partials/structure_1", locals: {
+	model_name: "student",
+	header: nil, 
+	left8: "students_left_column", 
+	right4: "student_standings",
+	content: "partials/object_options", object: @student} %>
 

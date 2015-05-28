@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th data-field="id">Name</th>
+      <th data-field="name">Team</th>
+      <th data-field="price">Org</th>
+      <th data-field="price">Grade</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @active_students.each do |student| %>
+      <tr>
+        <td><%= link_to student.name, student_path(student) %></td>
+        <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+        <td><%=student.current_organization.name%></td>
+        <td><%=student.grade%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

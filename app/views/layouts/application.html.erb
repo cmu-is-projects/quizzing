@@ -20,8 +20,6 @@
      
     <%= render :partial => "partials/side_nav" %>
 
-    
-
       <div id="mainContent" class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
         <!-- Teal page content
 
@@ -29,11 +27,11 @@
           9-columns-wide on large screens,
           8-columns-wide on medium screens,
           12-columns-wide on small screens  -->
-          <%= yield %>
-      </div>
+        <%= yield %>
+        </div>
 
-  </body> 
-
+    </body> 
+    
     <div id= "footer" class="small-12 columns" >
       <%= render :partial => "partials/footer" %>
     </div>
