@@ -9,6 +9,7 @@ class TeamsController < ApplicationController
     # else
     #   @teams = Team.all
     # end
+    @current_user = @current_user
     @teams = Team.all
     @active_teams = @teams.active.sort_by! {|n| n.name}
     @inactive_teams = @teams.inactive.sort_by! {|n| n.name}
@@ -18,7 +19,8 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    @events = Event.all.chronological
+    @quiz_year = QuizYear.new
+    @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events
     @declared_num_rounds = 6
     @year_team = YearTeam.new(@team)
     @year_event_quizzes = @year_team.results
