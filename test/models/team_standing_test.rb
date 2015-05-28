@@ -88,11 +88,10 @@ class TeamStandingTest < ActiveSupport::TestCase
 
 		should "show the standing for a given team" do
 			create_team
-			assert_equal TeamStanding.for_team(@team1).team.name, "Test Test"
+			assert_equal TeamStanding.for_team(@team1).team_id, @team1.id
 			delete_team
 
 		end
 	end
-
 
 end

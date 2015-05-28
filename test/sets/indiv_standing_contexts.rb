@@ -4,7 +4,7 @@ module Contexts
     def create_divisions
       # creates divisions, one of each juniors, senior As, and senior B.
 
-      @divisionj = FactoryGirl.create(:division, name: "juniors", start_grade: 1, end_grade: 5, active: true)
+      @divisionj = FactoryGirl.create(:division, name: "juniors", start_grade: 2, end_grade: 5, active: true)
       @divisionsb = FactoryGirl.create(:division, name: "seniorb", start_grade: 6, end_grade: 8, active: true)
       @divisions = FactoryGirl.create(:division, name: "seniors", start_grade: 9, end_grade: 12, active: true)
     end
