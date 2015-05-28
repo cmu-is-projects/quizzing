@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408001025) do
+ActiveRecord::Schema.define(version: 20150526164201) do
 
   create_table "categories", force: true do |t|
     t.string "name"
@@ -40,6 +40,19 @@ ActiveRecord::Schema.define(version: 20150408001025) do
     t.time    "start_time"
     t.integer "num_rounds"
     t.integer "organization_id"
+  end
+
+  create_table "indiv_standings", force: true do |t|
+    t.integer  "position"
+    t.integer  "student_id"
+    t.integer  "team_id"
+    t.integer  "division_id"
+    t.integer  "total_points"
+    t.integer  "lowest_score"
+    t.integer  "adjusted_points"
+    t.float    "accuracy"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "organization_students", force: true do |t|
@@ -129,6 +142,16 @@ ActiveRecord::Schema.define(version: 20150408001025) do
     t.integer "coach_id"
     t.date    "start_date"
     t.date    "end_date"
+  end
+
+  create_table "team_standings", force: true do |t|
+    t.integer  "position"
+    t.integer  "team_id"
+    t.string   "division_id"
+    t.integer  "total_points"
+    t.float    "accuracy"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "teams", force: true do |t|

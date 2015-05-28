@@ -13,6 +13,8 @@ class Student < ActiveRecord::Base
   has_many :organization_students
   has_many :organizations, through: :organization_students
 
+  has_one :indiv_standing
+
   # Validations
   validates_presence_of :first_name, :last_name, :grade
   validates_numericality_of :grade, only_integer: true, greater_than: 1, less_than: 13

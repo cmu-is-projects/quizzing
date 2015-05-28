@@ -1,0 +1,23 @@
+<!--This is the default COACH partial-->
+<!-- First 6col is called primary, second 6col is called secondary -->
+<!-- Bottom Row- 12cols-->
+<div class="row">
+  <%= render partial: "#{header}" unless header.blank? %>
+</div>
+
+<div class="row">
+  <div class="col s6">
+    <!-- primary partial gets displayed here in main div -->
+    <%= render partial: "#{left6}" %>
+  </div>
+  <div class="col s6">
+    <!-- render the sidebar, if it exists -->
+    <%= render partial: "#{right6}" %>
+  </div>
+</div>
+
+<div class="row">
+  <!-- render a set of options, if they exist -->
+  <%= render partial: "#{content}", 
+      locals: {model_name: model_name} unless content.blank? %>
+</div>

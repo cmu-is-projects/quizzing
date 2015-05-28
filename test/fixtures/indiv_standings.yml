@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  position: 1
+  student_id: 1
+  current_team: 1
+  total_points_integer: MyString
+  lowest_score: 1
+  adjusted_points: 1
+  accuracy: 1.5
+
+two:
+  position: 1
+  student_id: 1
+  current_team: 1
+  total_points_integer: MyString
+  lowest_score: 1
+  adjusted_points: 1
+  accuracy: 1.5

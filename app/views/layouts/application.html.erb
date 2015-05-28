@@ -10,8 +10,8 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body>
 
+<body>
   <!-- Navbar goes here -->
 
    <%= render :partial => "partials/top_nav" %>
@@ -20,8 +20,6 @@
      
     <%= render :partial => "partials/side_nav" %>
 
-    
-
       <div id="mainContent" class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
         <!-- Teal page content
 
@@ -29,7 +27,7 @@
           9-columns-wide on large screens,
           8-columns-wide on medium screens,
           12-columns-wide on small screens  -->
-
+        <%= yield %>
         </div>
     </body> 
     
@@ -37,4 +35,4 @@
       <%= render :partial => "partials/footer" %>
     </div>
 
-    </html>
+</html>
