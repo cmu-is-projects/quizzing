@@ -3,7 +3,8 @@ require 'test_helper'
 class IndivStandingTest < ActiveSupport::TestCase
 	should validate_presence_of(:position)
 	should validate_presence_of(:student_id)
-	should validate_presence_of(:current_team)
+	should validate_presence_of(:team_id)
+	should validate_presence_of(:division_id)
 	should validate_presence_of(:total_points)
 	should validate_presence_of(:lowest_score)
 	should validate_presence_of(:adjusted_points)
@@ -30,10 +31,10 @@ class IndivStandingTest < ActiveSupport::TestCase
 	should_not allow_value(1.2345).for(:student_id)
 	should_not allow_value("zzzz").for(:student_id)
 
-	# team_iddivision_id
+	# team_id
 	should allow_value(1).for(:team_id)
 	should allow_value(4).for(:team_id)
-	should allow_value(123456789).team_idfor(:team_id)
+	should allow_value(123456789).for(:team_id)
 
 	should_not allow_value(0).for(:team_id)
 	should_not allow_value(-1).for(:team_id)
@@ -43,7 +44,7 @@ class IndivStandingTest < ActiveSupport::TestCase
 	# division_id
 	should allow_value(1).for(:division_id)
 	should allow_value(4).for(:division_id)
-	should allow_value(123456789).team_idfor(:division_id)
+	should allow_value(123456789).for(:division_id)
 
 	should_not allow_value(0).for(:division_id)
 	should_not allow_value(-1).for(:division_id)

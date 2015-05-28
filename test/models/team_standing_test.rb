@@ -1,12 +1,10 @@
 require 'test_helper'
 
-class IndivStandingTest < ActiveSupport::TestCase
+class TeamStandingTest < ActiveSupport::TestCase
 	should validate_presence_of(:position)
-	should validate_presence_of(:student_id)
-	should validate_presence_of(:current_team)
+	should validate_presence_of(:team_id)
+	should validate_presence_of(:division_id)
 	should validate_presence_of(:total_points)
-	should validate_presence_of(:lowest_score)
-	should validate_presence_of(:adjusted_points)
 	should validate_presence_of(:accuracy)
 
 	# position
@@ -20,20 +18,10 @@ class IndivStandingTest < ActiveSupport::TestCase
 	should_not allow_value("zzzz").for(:position)
 
 
-	# student_id
-	should allow_value(1).for(:student_id)
-	should allow_value(4).for(:student_id)
-	should allow_value(123456789).for(:student_id)
-
-	should_not allow_value(0).for(:student_id)
-	should_not allow_value(-1).for(:student_id)
-	should_not allow_value(1.2345).for(:student_id)
-	should_not allow_value("zzzz").for(:student_id)
-
-	# team_iddivision_id
+	# team_id
 	should allow_value(1).for(:team_id)
 	should allow_value(4).for(:team_id)
-	should allow_value(123456789).team_idfor(:team_id)
+	should allow_value(123456789).for(:team_id)
 
 	should_not allow_value(0).for(:team_id)
 	should_not allow_value(-1).for(:team_id)
@@ -43,7 +31,7 @@ class IndivStandingTest < ActiveSupport::TestCase
 	# division_id
 	should allow_value(1).for(:division_id)
 	should allow_value(4).for(:division_id)
-	should allow_value(123456789).team_idfor(:division_id)
+	should allow_value(123456789).for(:division_id)
 
 	should_not allow_value(0).for(:division_id)
 	should_not allow_value(-1).for(:division_id)
@@ -60,26 +48,6 @@ class IndivStandingTest < ActiveSupport::TestCase
 	should_not allow_value(1.2345).for(:total_points)
 	should_not allow_value("zzzz").for(:total_points)
 
-	# lowest_score
-	should allow_value(1).for(:lowest_score)
-	should allow_value(4).for(:lowest_score)
-	should allow_value(123456789).for(:lowest_score)
-
-	should_not allow_value(0).for(:lowest_score)
-	should_not allow_value(-1).for(:lowest_score)
-	should_not allow_value(1.2345).for(:lowest_score)
-	should_not allow_value("zzzz").for(:lowest_score)
-
-	# adjusted_points
-	should allow_value(1).for(:adjusted_points)
-	should allow_value(4).for(:adjusted_points)
-	should allow_value(123456789).for(:adjusted_points)
-
-	should_not allow_value(0).for(:adjusted_points)
-	should_not allow_value(-1).for(:adjusted_points)
-	should_not allow_value(1.2345).for(:adjusted_points)
-	should_not allow_value("zzzz").for(:adjusted_points)
-
 	# accuracy
 	should allow_value(1).for(:accuracy)
 	should allow_value(0.99).for(:accuracy)
@@ -93,7 +61,7 @@ class IndivStandingTest < ActiveSupport::TestCase
 	should_not allow_value("zzzz").for(:accuracy)
 
 	# scopes
-	context "Creating an IndivStanding context" do
+	context "Creating an TeamStanding context" do
 		setup do
 		  create_TeamStandings
 		end
@@ -107,15 +75,22 @@ class IndivStandingTest < ActiveSupport::TestCase
 		end
 
 		should "show that there are 3 junior division standings" do
-			assert_equal 3, IndivStanding.for_juniors.size
+			assert_equal 3, TeamStanding.for_juniors.size
 		end
 
 		should "show that there are 3 seniorb division standings" do
-			assert_equal 3, IndivStanding.for_seniorb.size
+			assert_equal 3, TeamStanding.for_seniorb.size
 		end 
 
 		should "show that there are 3 senior A division standings" do
-			assert_equal 3, IndivStanding.for_seniors.size
+			assert_equal 3, TeamStanding.for_seniors.size
+		end
+
+		should "show the standing for a given team" do
+			create_team
+			assert_equal TeamStanding.for_team(@team1).team.name, "Test Test"
+			delete_team
+
 		end
 	end
 

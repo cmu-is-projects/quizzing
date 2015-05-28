@@ -125,11 +125,21 @@ FactoryGirl.define do
   factory :indiv_standing do
     position 2
     student_id 1
-    current_team 1
+    team_id 1
+    division_id 1
     total_points 123
     lowest_score 2
     adjusted_points 101
     accuracy 0.85
+  end
+
+  factory :team_standing do
+    position 2
+    team_id 1
+    division_id 1
+    total_points 123
+    accuracy 0.85
+  end
   
 end
 
