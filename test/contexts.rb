@@ -14,6 +14,8 @@ require 'sets/quiz_team_contexts'
 require 'sets/team_coach_contexts'
 require 'sets/extended_quizzes_contexts'
 require 'sets/category_contexts'
+require 'sets/indiv_standing_contexts'
+require 'sets/team_standing_contexts'
 
 module Contexts
   include Contexts::CoachContexts
@@ -31,4 +33,6 @@ module Contexts
   include Contexts::TeamCoachContexts
   include Contexts::ExtendedQuizzesContexts
   include Contexts::CategoryContexts
+  include Contexts::IndivStandingContexts
+  include Contexts::TeamStandingContexts
 end
