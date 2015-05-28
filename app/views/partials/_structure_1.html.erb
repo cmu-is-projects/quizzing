@@ -1,24 +1,18 @@
-<!--This is the default show partial-->
-<div class="row">
-  <div class="small-8 columns">
-    <!-- primary partial gets displayed here in main div -->
-    <%= render partial: "#{primary}" %>
-    <!-- sometimes we want another partial below -->
-    <% unless secondary.nil? %>
-      <p>&nbsp;</p>
-      <%= render partial: "#{secondary}" %>
-    <% end %>
-    
-  </div>
-  <div class="small-4 columns">
-    <!-- render the sidebar, if it exists -->
-    <%= render partial: "#{sidebar}" unless sidebar.blank? %>
-  </div>
-</div>
+<!-- Top Row divided into 8col and 4col, next row has 12 columns-->
+<!-- 8col is called primary, 4col is called secondary -->
+<div class= "row">
+  <%= render partial: "#{header}" unless header.blank? %>
+</div> 
 
 <div class="row">
-  <!-- render a set of options, if they exist -->
-  <%= render partial: "#{options}", 
-      locals: {model_name: model_name,
-      object: object} unless options.blank? %>
+
+  <div class="col s8">
+    <!-- primary partial gets displayed here in main div -->
+    <%= render partial: "#{left8}" %> 
+  </div>
+
+  <div class="col s4">
+    <% render partial: "#{right4}" unless right4.blank? %>
+  </div>
+
 </div>

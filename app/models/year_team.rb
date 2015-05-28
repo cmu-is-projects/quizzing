@@ -13,7 +13,6 @@ class YearTeam
  attr_reader :name, :results
  attr_reader :division
 
-
   def total_yt_points
  	#top down design assuming event_team written with a total_yt_points method
  	  self.results.inject(0){|sum, event_team| sum += event_team.total_et_points}
@@ -58,6 +57,6 @@ class YearTeam
       end
       # sort chronologically by start_date
       sorted = event_quizzes.sort_by{|eq| eq.event.start_date}
-    end
+  end
 
 end
