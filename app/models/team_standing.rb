@@ -1,4 +1,6 @@
 class TeamStanding < ActiveRecord::Base
+		#TODO write test, null objects, fix schema(e.g. team_id)
+
 
 		# Validations
         validates_presence_of :position, :team_id, :total_points, :accuracy
@@ -13,4 +15,13 @@ class TeamStanding < ActiveRecord::Base
         scope :for_juniors, -> { where('division_id = ?', "#{Division.find_by_name('juniors').id}") }
         scope :for_seniors, -> { where('division_id = ?', "#{Division.find_by_name('seniors').id}") }
         scope :for_seniorb, -> { where('division_id = ?', "#{Division.find_by_name('seniorb').id}") }
+
+        def self.for_team(team)
+        	ts = where('team_id = ?', team.id).first
+        	if ts.nil?
+        		return null_team_standing.new
+        	else
+        		return ts
+        	end
+        end
 end

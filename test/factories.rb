@@ -121,6 +121,15 @@ FactoryGirl.define do
     password_confirmation "secret"
     active true
   end
+
+  factory :indiv_standing do
+    position 2
+    student_id 1
+    current_team 1
+    total_points 123
+    lowest_score 2
+    adjusted_points 101
+    accuracy 0.85
   
 end
 
