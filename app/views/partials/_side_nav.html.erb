@@ -1,0 +1,33 @@
+<div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full"><i class="mdi-navigation-menu"></i></a>
+  <ul id="nav-mobile" class="side-nav fixed  blue-grey darken-3">
+    <li class="logo"><%= link_to image_tag("logo.png"), home_path %> </li>
+    <% if (logged_in?) && ((current_user.role? :coach) || (current_user.role? :admin)) %>
+      <li class="bold"><%= link_to dashboards_path do %>
+        <i class="small mdi-action-dashboard"></i>  Dashboard
+      <% end %></li>
+    <% end %>
+
+    <li class="bold"><%= link_to events_path do %>
+    <i class="small mdi-action-event"></i>   Events
+    <% end %></li>
+
+    <li class="bold"><%= link_to teams_path do %>
+    <i class="small mdi-social-group"></i>   Teams
+    <% end %></li>
+
+
+    <li class="bold"><%= link_to students_path do %>
+    <i class="small mdi-social-person"></i>   Students
+    <% end %></li>
+
+    <li class="bold"><%= link_to standings_path do %>
+    <i class="small fa fa-trophy"></i>  Standings
+    <% end %></li>
+
+    <% if (logged_in?) && ((current_user.role? :coach) || (current_user.role? :admin)) %>
+      <li class="bold"><%= link_to settings_path do %>
+        <i class="small mdi-action-settings"></i>   Settings
+      <% end %></li>
+    <% end %>
+  </ul>
+</div>

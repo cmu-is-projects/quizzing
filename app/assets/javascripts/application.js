@@ -14,7 +14,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery_nested_form
-//= require turbolinks
 //= require materialize-sprockets
 //= require best_in_place
 //= require_tree .
@@ -35,3 +34,11 @@ $(document).ready(function() {
   /* Activating Best In Place */
     jQuery(".best_in_place").best_in_place();
 });
+
+$(document).ready(function() {
+    $('.toggle-search').click(function() {
+            $('#search-bar').slideToggle("slow");
+    });
+});
+
+
