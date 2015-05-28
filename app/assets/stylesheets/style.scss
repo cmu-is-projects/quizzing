@@ -4,6 +4,9 @@
     margin-right: auto;
 }
 
+.side-nav.fixed {
+	width: 200px;
+}
 
 .side-nav.fixed a {
 	color: #ffffff;
@@ -29,3 +32,14 @@ div#search-bar {
 	margin-left: auto;
     margin-right: auto;
 }
+
+
+header, main, footer {
+    padding-left: 200px;
+  }
+
+  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+  }
