@@ -1,4 +1,9 @@
 class IndivStanding < ActiveRecord::Base
+
+        # Relationships
+        belongs_to :student
+        belongs_to :team
+        belongs_to :division
         
         # Validations
         validates_presence_of :position, :student_id, :team_id, :division_id, :total_points, :lowest_score, :adjusted_points, :accuracy

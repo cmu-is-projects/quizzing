@@ -4,15 +4,15 @@ class NullIndivStanding
   end
 
   def student_id
-    1
+    null_student.new.id
   end
 
   def team_id
-    1
+    null_team.new.id
   end
 
   def division_id
-    1
+    null_division.new.id
   end
 
   def total_points

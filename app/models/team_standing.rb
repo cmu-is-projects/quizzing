@@ -1,5 +1,9 @@
 class TeamStanding < ActiveRecord::Base
 
+  # Relationships
+  belongs_to :team
+  belongs_to :division
+
 	# Validations
   validates_presence_of :position, :team_id, :division_id, :total_points, :accuracy
 
@@ -23,5 +27,5 @@ class TeamStanding < ActiveRecord::Base
   		return ts
   	end
   end
-  
+
 end

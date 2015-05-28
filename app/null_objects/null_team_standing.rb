@@ -3,16 +3,16 @@ class NullTeamStanding
     1
   end
 
-  def team_id
-    1
+  def team
+    NullTeam.new
   end
 
-  def division_id
-    1
+  def division
+    NullDivision.new
   end
 
   def total_points
-    1234
+    0
   end
 
   def accuracy

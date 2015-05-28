@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class IndivStandingTest < ActiveSupport::TestCase
+
+	should belong_to :student
+	should belong_to :team
+	should belong_to :division
+
 	should validate_presence_of(:position)
 	should validate_presence_of(:student_id)
 	should validate_presence_of(:team_id)

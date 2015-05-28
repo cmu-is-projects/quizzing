@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class TeamStandingTest < ActiveSupport::TestCase
+	
+	should belong_to :team
+	should belong_to :division
+
 	should validate_presence_of(:position)
 	should validate_presence_of(:team_id)
 	should validate_presence_of(:division_id)
