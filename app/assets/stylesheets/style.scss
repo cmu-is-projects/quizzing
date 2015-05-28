@@ -30,12 +30,13 @@
 
 div#search-bar {
 	margin-left: auto;
-    margin-right: auto;
+  margin-right: auto;
+  display: none;
 }
 
 
 header, main, footer {
-    padding-left: 200px;
+    padding-left: 100px;
   }
 
   @media only screen and (max-width : 992px) {
@@ -43,3 +44,8 @@ header, main, footer {
       padding-left: 0;
     }
   }
+
+div.color {
+  background-color: purple;
+  width: 100px;
+}
