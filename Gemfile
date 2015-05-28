@@ -9,6 +9,12 @@ gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.0'
 
+# Use Materialize for css
+gem 'materialize-sass', github: 'mkhairi/materialize-sass'
+
+# Use Font Awesome for icons
+gem 'font-awesome-sass'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -17,9 +23,6 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -39,9 +42,6 @@ gem 'validates_timeliness'
 gem 'simple_form'
 
 gem "nested_form"
-
-# Use foundation for base CSS
-gem 'foundation-rails'
 
 # Use geocoder to get latitude and longitude data
 gem 'geocoder'
@@ -99,6 +99,6 @@ group :test do
   gem 'capybara'
 end
 
-group :production do
-  gem 'pg'
-end
+#group :production do
+#  gem 'pg'
+#end

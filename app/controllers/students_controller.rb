@@ -19,9 +19,11 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
+    @quiz_year = QuizYear.new
     @year_quizzer = YearQuizzer.new(@student)
     @year_event_quizzes = @year_quizzer.results #an array of EventQuizzERS
     @events = Event.all.chronological
+    @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events
     @declared_num_rounds = 6
     @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)
   end

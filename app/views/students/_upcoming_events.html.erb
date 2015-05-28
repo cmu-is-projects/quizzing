@@ -1,0 +1,11 @@
+<h3>Upcoming events</h3>
+
+<% unless @upcoming_events.empty? %>
+<ul class="collection">
+	<% @upcoming_events.each do |event| %>
+		<p></p>
+		<a href="#!" class="collection-item"><%=event.start_date%>	<%=event.organization.name%></a>
+	<%end%>
+<%end%>
+
+<br>

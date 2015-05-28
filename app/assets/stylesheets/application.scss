@@ -9,9 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require foundation_and_overrides
-
  *= require_tree .
  *= require jquery-ui
+
  */
 
+@import 'materialize';
+@import "materialize/components/color";
+$primary-color: color("blue", "lighten-2") !default;
+@import "font-awesome-sprockets";
+@import "font-awesome";

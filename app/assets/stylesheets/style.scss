@@ -1,0 +1,45 @@
+.logo img {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.side-nav.fixed {
+	width: 200px;
+}
+
+.side-nav.fixed a {
+	color: #ffffff;
+}
+
+.side-nav.fixed li:hover {
+	background-color: #263238;
+}
+
+.side-nav.fixed li.logo {
+	padding: 30px;
+}
+
+.side-nav.fixed li.logo:hover {
+	background-color: #37474f;
+}
+
+.side-nav.fixed li {
+	 border-bottom: solid 1px #263238;
+}
+
+div#search-bar {
+	margin-left: auto;
+    margin-right: auto;
+}
+
+
+header, main, footer {
+    padding-left: 200px;
+  }
+
+  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+  }
