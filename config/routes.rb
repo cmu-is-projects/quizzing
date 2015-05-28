@@ -11,6 +11,9 @@ Quizzing::Application.routes.draw do
   resources :teams
   resources :users
   resources :quizzes
+  resources :dashboards
+  resources :settings
+  resources :standings
 
   # named routes
 

@@ -1,62 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Bible Quizzing" %></title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "style" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <%= csrf_meta_tags %>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script src="http://code.highcharts.com/highcharts.js"></script>
-  </head>
+<body>
 
-  <body>
-    <% if !logged_in? %>
-      <div style="float: right; background-color: #cecece; border-radius: 5px;padding-top: 5px; padding-bottom: 5px; padding-left: 7px; padding-right: 7px; margin: 3px;">
-	<%= link_to "Coach's Login", login_url %>
-      </div>
-    <% else %>
-      <div style="float: right; background-color: #cecece; border-radius: 5px;padding-top: 5px; padding-bottom: 5px; padding-left: 7px; padding-right: 7px; margin: 3px;">
-	<%= link_to "Logout "+current_user.user_name, logout_url %>
-      </div>
-    <% end %>
-    <div class= "banner">
-      <%= link_to image_tag('banner_6.png'), home_path %> 
-    </div>
-    <%#= render :partial => "partials/_admin_nav" %>
-    <%= render :partial => "partials/coach_nav" %>
+  <!-- Navbar goes here -->
 
-    <div class="row">
-      <div class="small-12 columns" id="main_content">
-        <%= render :partial => "partials/flash" %>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="small-8 columns">
-        <!-- MAIN CONTENT GOES HERE -->
-        <%= yield %>
-        <%= javascript_include_tag "application" %>
-      </div>
+   <%= render :partial => "partials/top_nav" %>
 
-      <div class="small-1 columns">
-        &nbsp;
-      </div>
+       <!-- Page Layout here -->
+     
+    <%= render :partial => "partials/side_nav" %>
 
-      <div class="small-3 columns">
-        <!-- SIDEBAR CONTENT GOES HERE -->
-      </div>
-    </div>
+      <div id="mainContent" class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
+        <!-- Teal page content
 
-    <footer>
-      <div class="row">
-        <div class="small-6 large-centered columns">
+              This content will be:
+          9-columns-wide on large screens,
+          8-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+
         </div>
-      </div> 
-    </footer>     
-  </body>
 
-</html>
+      </div>
+
+
+
+    </body>
+
+    </html>
