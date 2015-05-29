@@ -1,26 +1,44 @@
 class IndivStanding < ActiveRecord::Base
 
-        # Relationships
-        belongs_to :student
-        belongs_to :team
-        belongs_to :division
-        
-        # Validations
-        validates_presence_of :position, :student_id, :team_id, :division_id, :total_points, :lowest_score, :adjusted_points, :accuracy
+    # Relationships
+    belongs_to :student
+    belongs_to :team
+    belongs_to :division
+    
+    # Validations
+    validates_presence_of :position, :student_id, :team_id, :division_id, :total_points, :lowest_score, :adjusted_points, :accuracy
 
-        validates_numericality_of :position, only_integer: true, greater_than: 0, less_than: 100
-        validates_numericality_of :student_id, only_integer: true, greater_than: 0
-        validates_numericality_of :team_id, only_integer: true, greater_than: 0
-        validates_numericality_of :division_id, only_integer: true, greater_than: 0
-        validates_numericality_of :total_points, only_integer: true, greater_than: 0
-        validates_numericality_of :lowest_score, only_integer: true, greater_than: 0
-        validates_numericality_of :adjusted_points, only_integer: true, greater_than: 0
-        validates_numericality_of :accuracy, greater_than_or_equal_to: 0, less_than: 1.01
+    validates_numericality_of :position, only_integer: true, greater_than: 0, less_than: 100
+    validates_numericality_of :student_id, only_integer: true, greater_than: 0
+    validates_numericality_of :team_id, only_integer: true, greater_than: 0
+    validates_numericality_of :division_id, only_integer: true, greater_than: 0
+    validates_numericality_of :total_points, only_integer: true, greater_than: 0
+    validates_numericality_of :lowest_score, only_integer: true, greater_than: 0
+    validates_numericality_of :adjusted_points, only_integer: true, greater_than: 0
+    validates_numericality_of :accuracy, greater_than_or_equal_to: 0, less_than: 1.01
 
-        # Scopes
-        scope :by_position, -> { order(:position) }
-        scope :for_juniors, -> { where('division_id = ?', "#{Division.find_by_name('juniors').id}") }
-        scope :for_seniors, -> { where('division_id = ?', "#{Division.find_by_name('seniors').id}") }
-        scope :for_seniorb, -> { where('division_id = ?', "#{Division.find_by_name('seniorb').id}") }
+    def self.for_indiv(indiv)
+        is = where('student_id = ?', indiv.id).first
+        if is.nil?
+            return NullIndivStanding.new
+        else
+            return is
+        end
+    end
+
+    def self.for_juniors
+        juniors = where('division_id = ?', "#{Division.find_by_name('juniors').id}").to_a
+        juniors.empty? ? [NullIndivStanding.new] : juniors.sort
+    end
+
+    def self.for_seniors
+        seniors = where('division_id = ?', "#{Division.find_by_name('seniors').id}").to_a
+        seniors.empty? ? [NullIndivStanding.new] : seniors.sort
+    end
+
+    def self.for_seniorb
+        seniorb = where('division_id = ?', "#{Division.find_by_name('seniorb').id}").to_a
+        seniorb.empty? ? [NullIndivStanding.new] : seniorb.sort
+    end
 
 end
