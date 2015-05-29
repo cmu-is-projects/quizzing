@@ -33,13 +33,33 @@ $(function() {
 $(document).ready(function() {
   /* Activating Best In Place */
     jQuery(".best_in_place").best_in_place();
+    $(".button-collapse").sideNav();
 });
 
 
 $(document).ready(function() {
-    $('.toggle-search').click(function() {
+    $('#toggle-search').click(function() {
             $('#search-bar').slideToggle("slow");
     });
 });
+
+
+$(document).ready(function () {
+        var url = window.location;
+        $('.side-nav.fixed li').find('.active').removeClass('active');
+        $('.side-nav.fixed li a').each(function () {
+            if ( this.pathname != "/home" && this.href == url) {
+                $(this).parent().addClass('active');
+            }
+        }); 
+    });
+
+//  $(document).ready(function() {
+//  	$('.side-nav.fixed li').click(function(){
+//     	$(this).addClass('active').siblings().removeClass('active');
+//     });   
+// });
+
+
 
 
