@@ -3,16 +3,16 @@ class NullIndivStanding
     1
   end
 
-  def student_id
-    null_student.new.id
+  def student
+    NullStudent.new
   end
 
-  def team_id
-    null_team.new.id
+  def team
+    NullTeam.new
   end
 
   def division_id
-    null_division.new.id
+    NullDivision.new.id
   end
 
   def total_points
