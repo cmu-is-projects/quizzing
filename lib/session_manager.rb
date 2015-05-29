@@ -10,7 +10,12 @@ module SessionManager
   def set_session_event
     # Documentation: Assumed to be the quiz for today's date or the next one
     e = Event.where("start_date >= ? or (start_date = ? and end_date = ?)", Date.today,Date.yesterday,Date.today).order(:start_date).first
-    session[:event_id] = e.id
+    if e
+      session[:event_id] = e.id
+    else
+      session[:event_id] = nil
+    end
+    
   end
 
   def set_organization_id(user)
