@@ -10,9 +10,16 @@
 			<!-- primary partial gets displayed here in main div -->
 			<%= render partial: "#{left8}" %> 
 		</div>
+    
 		<div class="col s1">&nbsp;</div>
+
 		<div class="col s3">
 			<%= render partial: "#{right4}" unless right4.blank? %>
 		</div>
 	</div>
+
+  <div class="row">
+    <%= render partial: "#{content}" unless content.blank? %>
+  </div>
+
 </div>
