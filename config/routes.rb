@@ -17,8 +17,17 @@ Quizzing::Application.routes.draw do
 
   # named routes
 
-  get "standings/individual" => "standings#individual", as: :indiv_standings
-  get "standings/team" => "standings#team", as: :team_standings
+  # get "standings/individual" => "standings#individual", as: :indiv_standings
+  #get "standings/team" => "standings#team", as: :team_standings
+
+  # Exerimental, adding route to get to indiv_standings
+  get "indiv_standings/juniors" => "indiv_standings#juniors", as: :indiv_standings_j
+  get "indiv_standings/seniors" => "indiv_standings#seniors", as: :indiv_standings_s
+  get "indiv_standings/seniorb" => "indiv_standings#seniorb", as: :indiv_standings_sb
+
+  get "team_standings/juniors" => "indiv_standings#juniors", as: :team_standings_j
+  get "team_standings/seniors" => "indiv_standings#seniors", as: :team_standings_s
+  get "team_standings/seniorb" => "indiv_standings#seniorb", as: :team_standings_sb
 
   get 'user/edit' => 'users#edit', as: :edit_current_user
   get 'login' => 'sessions#new', as: :login

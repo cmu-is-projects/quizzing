@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Student</th>
+      <th>Total Points</th>
+    </tr>
+  </thead>
+
+	<tbody>
+		<th>Seniors</th>
+			<% @seniors.each do |j| %>
+			<tr>
+				<td><%= j.position %></td>
+				<td><%= j.student.name %></td>
+				<td><%= j.total_points %></td>
+			</tr>
+			<% end %>
+	</tbody>
+</table>
