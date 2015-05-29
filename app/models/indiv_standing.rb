@@ -26,18 +26,18 @@ class IndivStanding < ActiveRecord::Base
         end
     end
 
-    def self.for_juniors
-        juniors = where('division_id = ?', "#{Division.find_by_name('juniors').id}").to_a
+    def self.for_juniors(number=1000)
+        juniors = where('division_id = ?', "#{Division.find_by_name('juniors').id}").limit(number).to_a
         juniors.empty? ? [NullIndivStanding.new] : juniors.sort
     end
 
-    def self.for_seniors
-        seniors = where('division_id = ?', "#{Division.find_by_name('seniors').id}").to_a
+    def self.for_seniors(number=1000)
+        seniors = where('division_id = ?', "#{Division.find_by_name('seniors').id}").limit(number).to_a
         seniors.empty? ? [NullIndivStanding.new] : seniors.sort
     end
 
-    def self.for_seniorb
-        seniorb = where('division_id = ?', "#{Division.find_by_name('seniorb').id}").to_a
+    def self.for_seniorb(number=1000)
+        seniorb = where('division_id = ?', "#{Division.find_by_name('seniorb').id}").limit(number).to_a
         seniorb.empty? ? [NullIndivStanding.new] : seniorb.sort
     end
 
