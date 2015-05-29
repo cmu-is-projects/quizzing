@@ -1,0 +1,2 @@
+module IndivStandingsHelper
+end
