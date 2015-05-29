@@ -21,7 +21,7 @@
         <td><%= coach.first_name %></td>
         <td><%= coach.last_name %></td>
         <td><%= coach.phone %></td>
-        <td><%= coach.email %></td>
+        <td><%= coach.user.email %></td>
 	<% if current_user.role?(:admin) %>
         <td><%= link_to 'Show', coach %></td>
         <td><%= link_to 'Edit', edit_coach_path(coach) %></td>

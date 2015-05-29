@@ -7,7 +7,7 @@ class CreateEvents < ActiveRecord::Migration
       t.integer :num_rounds
       t.integer :organization_id
 
-      # t.timestamps
+      t.timestamps
     end
   end
 end

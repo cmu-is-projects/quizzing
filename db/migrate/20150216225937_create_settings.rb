@@ -5,6 +5,9 @@ class CreateSettings < ActiveRecord::Migration
       t.boolean :drop_lowest_score
       t.boolean :roster_lock_toggle
       t.boolean :auto_promote_students
+      t.string :area_name
+      t.string :admin_name
+      t.string :admin_email
 
       # t.timestamps
     end

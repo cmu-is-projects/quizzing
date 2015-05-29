@@ -1,5 +1,7 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action :verify_user_is_area_admin, :only => [:new, :create, :edit, :update, :destroy]
+
 
   # GET /organizations
   # GET /organizations.json

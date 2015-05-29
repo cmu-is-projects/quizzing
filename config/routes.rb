@@ -6,7 +6,6 @@ Quizzing::Application.routes.draw do
   resources :organizations
   resources :quizzes
   resources :student_teams
-  resources :sessions
   resources :students
   resources :teams
   resources :users
@@ -15,12 +14,8 @@ Quizzing::Application.routes.draw do
   resources :settings
   resources :standings
 
-  # named routes
-
-  # get "standings/individual" => "standings#individual", as: :indiv_standings
-  #get "standings/team" => "standings#team", as: :team_standings
-
-  # Exerimental, adding route to get to indiv_standings
+  # NAMED ROUTES
+  # standings routes
   get "indiv_standings/juniors" => "indiv_standings#juniors", as: :indiv_standings_j
   get "indiv_standings/seniors" => "indiv_standings#seniors", as: :indiv_standings_s
   get "indiv_standings/seniorb" => "indiv_standings#seniorb", as: :indiv_standings_sb
@@ -29,18 +24,22 @@ Quizzing::Application.routes.draw do
   get "team_standings/seniors" => "indiv_standings#seniors", as: :team_standings_s
   get "team_standings/seniorb" => "indiv_standings#seniorb", as: :team_standings_sb
 
+  # authentication routes
   get 'user/edit' => 'users#edit', as: :edit_current_user
   get 'login' => 'sessions#new', as: :login
   get 'logout' => 'sessions#destroy', as: :logout
   post   'login'   => 'sessions#create', as: :session_create
   delete 'logout'  => 'sessions#destroy'
+  resources :sessions
+  resources :password_resets
 
-
+  # named routes
+  get 'home' => 'home#home', as: :home
+  get "standings/individual" => "standings#individual", as: :indiv_standings
+  get "standings/team" => "standings#team", as: :team_standings
   patch 'active/:id' => 'students#active', as: :active
   patch 'inactive/:id' => 'students#inactive', as: :inactive
   patch 'toggle_student/:id' => 'students#toggle', as: :toggle
-
-  get 'home' => 'home#home', as: :home
 
   # post "student_teams/:id" => 'students#create_student_team', as: :create_student_team
   # patch "student_teams/:id" => 'students#update_student_team', as: :update_student_team

@@ -4,7 +4,7 @@
 gem 'rails', '4.0.13'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.0'
@@ -67,8 +67,6 @@ gem 'jquery-ui-rails'
 gem 'chronic'
 gem 'time_date_helpers', '0.0.2'
 
-gem 'cancancan'
-gem 'rolify'
 gem 'best_in_place', github: 'cmu-is-projects/best_in_place'
 
 # Additional gems that are very useful in Rails development
@@ -82,6 +80,7 @@ group :development do
   gem 'hirb', '0.7.2'
   gem 'faker', '1.4.3'
   gem 'capistrano', '2.13.5'
+  gem 'letter_opener'
 end
 
 # Gems used only in testing
@@ -99,6 +98,7 @@ group :test do
   gem 'capybara'
 end
 
-#group :production do
-#  gem 'pg'
-#end
+# group :production do
+#   gem 'pg'
+# end
+gem 'pg'
