@@ -12,8 +12,12 @@
 	color: #ffffff;
 }
 
+.side-nav.fixed li.active { 
+    background-color: #263238;
+}
+
 .side-nav.fixed li:hover {
-	background-color: #263238;
+	background-color: #4dd0e1;
 }
 
 .side-nav.fixed li.logo {
@@ -34,18 +38,21 @@ div#search-bar {
   display: none;
 }
 
-
 header, main, footer {
     padding-left: 100px;
-  }
+}
 
-  @media only screen and (max-width : 992px) {
+@media only screen and (max-width : 992px) {
     header, main, footer {
       padding-left: 0;
     }
-  }
+}
 
-div.color {
-  background-color: purple;
-  width: 100px;
+main {
+  min-height: 700px;
+}
+
+
+footer.page-footer {
+ 
 }
