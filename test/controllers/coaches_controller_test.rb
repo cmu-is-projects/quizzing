@@ -18,7 +18,7 @@ class CoachesControllerTest < ActionController::TestCase
 
   test "should create coach" do
     assert_difference('Coach.count') do
-      post :create, coach: { active: @coach.active, email: @coach.email, first_name: @coach.first_name, last_name: @coach.last_name, phone: @coach.phone }
+      post :create, coach: { active: @coach.active, email: @coach.user.email, first_name: @coach.first_name, last_name: @coach.last_name, phone: @coach.phone }
     end
 
     assert_redirected_to coach_path(assigns(:coach))
@@ -35,7 +35,7 @@ class CoachesControllerTest < ActionController::TestCase
   end
 
   test "should update coach" do
-    patch :update, id: @coach, coach: { active: @coach.active, email: @coach.email, first_name: @coach.first_name, last_name: @coach.last_name, phone: @coach.phone }
+    patch :update, id: @coach, coach: { active: @coach.active, email: @coach.user.email, first_name: @coach.first_name, last_name: @coach.last_name, phone: @coach.phone }
     assert_redirected_to coach_path(assigns(:coach))
   end
 

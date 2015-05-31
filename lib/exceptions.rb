@@ -1,5 +1,5 @@
 module Exceptions
-  # a general cmuis error
+  # a general quizzing error
   class Error < StandardError; end
 
   # a custom exception when no database for subdomain
@@ -13,5 +13,5 @@ module Exceptions
 
   # a custom exception when authentication being hammered
   class AttemptedHammering < Error; end
-
+  
 end

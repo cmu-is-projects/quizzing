@@ -13,25 +13,23 @@ class Coach < ActiveRecord::Base
   accepts_nested_attributes_for :user, reject_if: ->(user) { user[:username].blank? }, allow_destroy: true
 
 
-  #Validations 
-  validates_presence_of :user_id, :first_name, :last_name, :email
+  # validations 
+  validates_presence_of :first_name, :last_name
   validates_format_of :phone, with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, allow_nil: :true, message: "should be 10 digits (area code needed) and delimited with dashes only"
-  validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, allow_nil: :false, message: "is not a valid format"
-  validate :user_is_active_in_system, on: :create
   validate :organization_is_active_in_system, on: :create
 
-  #Scopes
+  # scopes
   scope :alphabetical, -> {order("last_name","first_name")}
   scope :active, -> {where(active: true)}
   scope :inactive, -> {where(active: false)}
 
   
-  #Callbacks
+  # callbacks
   before_save :reformat_phone
   before_destroy :is_never_destroyable
   before_update :deactive_user_if_coach_made_inactive
 
-  #Methods
+  # methods
   def name
     return "#{last_name}, #{first_name}"
   end

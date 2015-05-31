@@ -1,32 +1,44 @@
 class SessionsController < ApplicationController
+  include AuthSecurity
+  include SessionManager
+
   def new
   end
 
   def create
-    user = User.find_by_user_name(params[:user_name])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      set_session_event #inherited from application_controller
-      #TODO1:
-      #event_id
-      #TODO:
-      # switch churches methods (changes session variable to that church id)
-      @u_coach = Coach.where(user_id: user.id).first
-      if @u_coach.nil?
-        session[:organization_id] = -1
+    # count the number of authentication attempts
+    adjust_auth_attempts_count
+
+    # find the user by username
+    user = User.find_by_username(params[:username])
+
+    if user
+      # assuming the username matches a user in the system...
+      verify_user_not_timed_out(user)
+      verify_account_not_being_hammered(user, session[:auth_attempts])
+
+      # make sure the user has the right password        
+      if user.authenticate(params[:password])
+        set_session_vars_after_login(user)
+        # connect_to_db(session[:subdomain])
+        current_user
+        send_to_landing_page(session[:subdomain])
       else
-        session[:organization_id] = @u_coach.organization_id
+        handle_failed_attempt
       end
-      session[:user_name] = user.user_name
-      redirect_to home_path, notice: "Logged in!"
     else
-      flash.now.alert = "Username or password is invalid"
-      render "new"
+      handle_failed_attempt
     end
   end
   
   def destroy
-    session[:user_id] = nil
+    clear_session_data
     redirect_to home_path, notice: "Logged out!"
+  end
+
+  private
+  def handle_failed_attempt
+    flash.now.alert = "Username or password is invalid"
+    render "new"
   end
 end
