@@ -61,5 +61,15 @@ $(document).ready(function () {
 // });
 
 
+//layerslider 
+ 
+// jQuery $('document').ready(); function
+$('document').ready(function(){
+
+    // Calling LayerSlider on your selected element after the document loaded
+    $(selector).layerSlider();
+});
+ 
+
 
 
