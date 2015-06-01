@@ -12,7 +12,7 @@ class Organization < ActiveRecord::Base
   has_many :students, through: :organization_students
   has_many :teams
   has_many :events
-  belongs_to :primary_contact, class_name: "Coach", foreign_key: "primary_contact"
+  belongs_to :primary_contact, class_name: "Coach", foreign_key: "primary_contact_id"
 
   #Validations
   validates :name, presence: true

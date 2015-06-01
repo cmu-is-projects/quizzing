@@ -8,6 +8,7 @@ class CreateSettings < ActiveRecord::Migration
       t.string :area_name
       t.string :admin_name
       t.string :admin_email
+      t.text :intro
 
       # t.timestamps
     end
