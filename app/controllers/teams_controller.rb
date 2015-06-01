@@ -23,6 +23,7 @@ class TeamsController < ApplicationController
     @quiz_year = QuizYear.new
     @completed_events = @quiz_year.completed_events
     @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events
+    @team_standings = TeamStandings.for_team(@year_team)
     @declared_num_rounds = 6
     @year_team = YearTeam.new(@team)
     @year_event_quizzes = @year_team.results
