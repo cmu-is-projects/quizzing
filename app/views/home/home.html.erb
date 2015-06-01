@@ -1,11 +1,6 @@
-
-<% if logged_in? && current_user.role?(:coach)%>
-  <%= render :partial => 'coach_home' %>
-<% else %>
   <%= render partial: "partials/structure_2", locals: {
     model_name: nil, 
     header: nil,
-    content: "home_slider",
+    content: "home/slider/home_slider#{rand(2)}",
     left8: "about",   
     right4: "home_events"} %>
-<% end %>
