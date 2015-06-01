@@ -1,6 +1,6 @@
 
 		<h5> Upcoming Events</h5>
-		<table class="bordered, hoverable">
+		<table class="bordered">
 			<tbody>
 				<% @upcoming_count = 0 %>
 				<% @upcoming_events.each do |event| %>
@@ -9,7 +9,7 @@
 							<td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event) %></td>
 							<td><%#= link_to event.organization.name, organization_path(event.organization) %>
 								<%= event.organization.name %>
-							</td>>
+							</td>
 						</tr>
 						<% @upcoming_count += 1 %>
 					<% end %>
@@ -17,7 +17,7 @@
 			</tbody>
 		</table>
 		<h5> Past Events</h5>
-		<table class="bordered, hoverable">
+		<table class="bordered">
 			<tbody>
 				<% @past_count = 0 %>
 				<% @past_events.each do |event| %>
@@ -26,7 +26,7 @@
 							<td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event) %></td>
 							<td><%#= link_to event.organization.name, organization_path(event.organization) %>
 								<%= event.organization.name %>
-							</td>>
+							</td>
 						</tr>
 						<% @past_count += 1 %>
 					<% end %>
