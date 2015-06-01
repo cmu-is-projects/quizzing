@@ -84,7 +84,45 @@ main {
   min-height: 700px;
 }
 
-
-footer.page-footer {
- 
+.mdi-toggle-check-box {
+  color: #8CC739;
 }
+
+.mdi-navigation-cancel {
+  color: #CE0000;
+}
+
+i#top-team-star-icon{
+  color: #fbc02d;
+}
+
+i#most-improved-icon{
+  color: #1a237e;
+}
+
+i#needs-love-icon{
+  color: #c2185b;
+}
+
+td#improvement {
+  color: #8CC739;
+}
+
+.tabs .indicator {
+ background-color: #4dd0e1; 
+}
+ .tabs .tab a {
+        color: #263238;
+}
+
+ .tabs .tab a:hover {
+        background-color: #4dd0e1;
+        color: #ffffff;
+      }
+
+nav {
+  box-shadow: 0px 0px 0px #ffffff;
+}
+
+
+

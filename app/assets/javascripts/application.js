@@ -54,12 +54,10 @@ $(document).ready(function () {
         }); 
     });
 
-//  $(document).ready(function() {
-//  	$('.side-nav.fixed li').click(function(){
-//     	$(this).addClass('active').siblings().removeClass('active');
-//     });   
-// });
 
+  $(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
 
 
 
