@@ -29,7 +29,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: categories; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: categories; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE categories (
@@ -38,10 +38,10 @@ CREATE TABLE categories (
 );
 
 
-ALTER TABLE public.categories OWNER TO profh;
+ALTER TABLE public.categories OWNER TO ngasbarr;
 
 --
--- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE categories_id_seq
@@ -52,17 +52,17 @@ CREATE SEQUENCE categories_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.categories_id_seq OWNER TO profh;
+ALTER TABLE public.categories_id_seq OWNER TO ngasbarr;
 
 --
--- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 
 --
--- Name: coaches; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: coaches; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE coaches (
@@ -78,10 +78,10 @@ CREATE TABLE coaches (
 );
 
 
-ALTER TABLE public.coaches OWNER TO profh;
+ALTER TABLE public.coaches OWNER TO ngasbarr;
 
 --
--- Name: coaches_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: coaches_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE coaches_id_seq
@@ -92,17 +92,17 @@ CREATE SEQUENCE coaches_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.coaches_id_seq OWNER TO profh;
+ALTER TABLE public.coaches_id_seq OWNER TO ngasbarr;
 
 --
--- Name: coaches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: coaches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE coaches_id_seq OWNED BY coaches.id;
 
 
 --
--- Name: divisions; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: divisions; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE divisions (
@@ -114,10 +114,10 @@ CREATE TABLE divisions (
 );
 
 
-ALTER TABLE public.divisions OWNER TO profh;
+ALTER TABLE public.divisions OWNER TO ngasbarr;
 
 --
--- Name: divisions_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: divisions_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE divisions_id_seq
@@ -128,17 +128,17 @@ CREATE SEQUENCE divisions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.divisions_id_seq OWNER TO profh;
+ALTER TABLE public.divisions_id_seq OWNER TO ngasbarr;
 
 --
--- Name: divisions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: divisions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE divisions_id_seq OWNED BY divisions.id;
 
 
 --
--- Name: events; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: events; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE events (
@@ -153,10 +153,10 @@ CREATE TABLE events (
 );
 
 
-ALTER TABLE public.events OWNER TO profh;
+ALTER TABLE public.events OWNER TO ngasbarr;
 
 --
--- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE events_id_seq
@@ -167,17 +167,17 @@ CREATE SEQUENCE events_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.events_id_seq OWNER TO profh;
+ALTER TABLE public.events_id_seq OWNER TO ngasbarr;
 
 --
--- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE events_id_seq OWNED BY events.id;
 
 
 --
--- Name: indiv_standings; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: indiv_standings; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE indiv_standings (
@@ -195,10 +195,10 @@ CREATE TABLE indiv_standings (
 );
 
 
-ALTER TABLE public.indiv_standings OWNER TO profh;
+ALTER TABLE public.indiv_standings OWNER TO ngasbarr;
 
 --
--- Name: indiv_standings_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: indiv_standings_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE indiv_standings_id_seq
@@ -209,17 +209,17 @@ CREATE SEQUENCE indiv_standings_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.indiv_standings_id_seq OWNER TO profh;
+ALTER TABLE public.indiv_standings_id_seq OWNER TO ngasbarr;
 
 --
--- Name: indiv_standings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: indiv_standings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE indiv_standings_id_seq OWNED BY indiv_standings.id;
 
 
 --
--- Name: organization_students; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: organization_students; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE organization_students (
@@ -231,10 +231,10 @@ CREATE TABLE organization_students (
 );
 
 
-ALTER TABLE public.organization_students OWNER TO profh;
+ALTER TABLE public.organization_students OWNER TO ngasbarr;
 
 --
--- Name: organization_students_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: organization_students_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE organization_students_id_seq
@@ -245,17 +245,17 @@ CREATE SEQUENCE organization_students_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.organization_students_id_seq OWNER TO profh;
+ALTER TABLE public.organization_students_id_seq OWNER TO ngasbarr;
 
 --
--- Name: organization_students_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: organization_students_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE organization_students_id_seq OWNED BY organization_students.id;
 
 
 --
--- Name: organizations; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: organizations; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE organizations (
@@ -274,10 +274,10 @@ CREATE TABLE organizations (
 );
 
 
-ALTER TABLE public.organizations OWNER TO profh;
+ALTER TABLE public.organizations OWNER TO ngasbarr;
 
 --
--- Name: organizations_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: organizations_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE organizations_id_seq
@@ -288,17 +288,17 @@ CREATE SEQUENCE organizations_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.organizations_id_seq OWNER TO profh;
+ALTER TABLE public.organizations_id_seq OWNER TO ngasbarr;
 
 --
--- Name: organizations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: organizations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE organizations_id_seq OWNED BY organizations.id;
 
 
 --
--- Name: quiz_teams; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: quiz_teams; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE quiz_teams (
@@ -312,10 +312,10 @@ CREATE TABLE quiz_teams (
 );
 
 
-ALTER TABLE public.quiz_teams OWNER TO profh;
+ALTER TABLE public.quiz_teams OWNER TO ngasbarr;
 
 --
--- Name: quiz_teams_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: quiz_teams_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE quiz_teams_id_seq
@@ -326,17 +326,17 @@ CREATE SEQUENCE quiz_teams_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.quiz_teams_id_seq OWNER TO profh;
+ALTER TABLE public.quiz_teams_id_seq OWNER TO ngasbarr;
 
 --
--- Name: quiz_teams_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: quiz_teams_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE quiz_teams_id_seq OWNED BY quiz_teams.id;
 
 
 --
--- Name: quizzes; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: quizzes; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE quizzes (
@@ -350,10 +350,10 @@ CREATE TABLE quizzes (
 );
 
 
-ALTER TABLE public.quizzes OWNER TO profh;
+ALTER TABLE public.quizzes OWNER TO ngasbarr;
 
 --
--- Name: quizzes_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: quizzes_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE quizzes_id_seq
@@ -364,17 +364,17 @@ CREATE SEQUENCE quizzes_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.quizzes_id_seq OWNER TO profh;
+ALTER TABLE public.quizzes_id_seq OWNER TO ngasbarr;
 
 --
--- Name: quizzes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: quizzes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE quizzes_id_seq OWNED BY quizzes.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE schema_migrations (
@@ -382,10 +382,10 @@ CREATE TABLE schema_migrations (
 );
 
 
-ALTER TABLE public.schema_migrations OWNER TO profh;
+ALTER TABLE public.schema_migrations OWNER TO ngasbarr;
 
 --
--- Name: settings; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: settings; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE settings (
@@ -401,10 +401,10 @@ CREATE TABLE settings (
 );
 
 
-ALTER TABLE public.settings OWNER TO profh;
+ALTER TABLE public.settings OWNER TO ngasbarr;
 
 --
--- Name: settings_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: settings_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE settings_id_seq
@@ -415,17 +415,17 @@ CREATE SEQUENCE settings_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.settings_id_seq OWNER TO profh;
+ALTER TABLE public.settings_id_seq OWNER TO ngasbarr;
 
 --
--- Name: settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE settings_id_seq OWNED BY settings.id;
 
 
 --
--- Name: student_quizzes; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: student_quizzes; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE student_quizzes (
@@ -439,10 +439,10 @@ CREATE TABLE student_quizzes (
 );
 
 
-ALTER TABLE public.student_quizzes OWNER TO profh;
+ALTER TABLE public.student_quizzes OWNER TO ngasbarr;
 
 --
--- Name: student_quizzes_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: student_quizzes_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE student_quizzes_id_seq
@@ -453,17 +453,17 @@ CREATE SEQUENCE student_quizzes_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.student_quizzes_id_seq OWNER TO profh;
+ALTER TABLE public.student_quizzes_id_seq OWNER TO ngasbarr;
 
 --
--- Name: student_quizzes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: student_quizzes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE student_quizzes_id_seq OWNED BY student_quizzes.id;
 
 
 --
--- Name: student_teams; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: student_teams; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE student_teams (
@@ -477,10 +477,10 @@ CREATE TABLE student_teams (
 );
 
 
-ALTER TABLE public.student_teams OWNER TO profh;
+ALTER TABLE public.student_teams OWNER TO ngasbarr;
 
 --
--- Name: student_teams_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: student_teams_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE student_teams_id_seq
@@ -491,17 +491,17 @@ CREATE SEQUENCE student_teams_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.student_teams_id_seq OWNER TO profh;
+ALTER TABLE public.student_teams_id_seq OWNER TO ngasbarr;
 
 --
--- Name: student_teams_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: student_teams_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE student_teams_id_seq OWNED BY student_teams.id;
 
 
 --
--- Name: students; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: students; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE students (
@@ -513,10 +513,10 @@ CREATE TABLE students (
 );
 
 
-ALTER TABLE public.students OWNER TO profh;
+ALTER TABLE public.students OWNER TO ngasbarr;
 
 --
--- Name: students_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: students_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE students_id_seq
@@ -527,17 +527,17 @@ CREATE SEQUENCE students_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.students_id_seq OWNER TO profh;
+ALTER TABLE public.students_id_seq OWNER TO ngasbarr;
 
 --
--- Name: students_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: students_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE students_id_seq OWNED BY students.id;
 
 
 --
--- Name: team_coaches; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: team_coaches; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE team_coaches (
@@ -549,10 +549,10 @@ CREATE TABLE team_coaches (
 );
 
 
-ALTER TABLE public.team_coaches OWNER TO profh;
+ALTER TABLE public.team_coaches OWNER TO ngasbarr;
 
 --
--- Name: team_coaches_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: team_coaches_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE team_coaches_id_seq
@@ -563,17 +563,17 @@ CREATE SEQUENCE team_coaches_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.team_coaches_id_seq OWNER TO profh;
+ALTER TABLE public.team_coaches_id_seq OWNER TO ngasbarr;
 
 --
--- Name: team_coaches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: team_coaches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE team_coaches_id_seq OWNED BY team_coaches.id;
 
 
 --
--- Name: team_standings; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: team_standings; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE team_standings (
@@ -588,10 +588,10 @@ CREATE TABLE team_standings (
 );
 
 
-ALTER TABLE public.team_standings OWNER TO profh;
+ALTER TABLE public.team_standings OWNER TO ngasbarr;
 
 --
--- Name: team_standings_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: team_standings_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE team_standings_id_seq
@@ -602,17 +602,17 @@ CREATE SEQUENCE team_standings_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.team_standings_id_seq OWNER TO profh;
+ALTER TABLE public.team_standings_id_seq OWNER TO ngasbarr;
 
 --
--- Name: team_standings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: team_standings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE team_standings_id_seq OWNED BY team_standings.id;
 
 
 --
--- Name: teams; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: teams; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE teams (
@@ -624,10 +624,10 @@ CREATE TABLE teams (
 );
 
 
-ALTER TABLE public.teams OWNER TO profh;
+ALTER TABLE public.teams OWNER TO ngasbarr;
 
 --
--- Name: teams_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: teams_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE teams_id_seq
@@ -638,17 +638,17 @@ CREATE SEQUENCE teams_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.teams_id_seq OWNER TO profh;
+ALTER TABLE public.teams_id_seq OWNER TO ngasbarr;
 
 --
--- Name: teams_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: teams_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE teams_id_seq OWNED BY teams.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE TABLE users (
@@ -665,10 +665,10 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE public.users OWNER TO profh;
+ALTER TABLE public.users OWNER TO ngasbarr;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: ngasbarr
 --
 
 CREATE SEQUENCE users_id_seq
@@ -679,136 +679,136 @@ CREATE SEQUENCE users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO profh;
+ALTER TABLE public.users_id_seq OWNER TO ngasbarr;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ngasbarr
 --
 
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY coaches ALTER COLUMN id SET DEFAULT nextval('coaches_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY divisions ALTER COLUMN id SET DEFAULT nextval('divisions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY indiv_standings ALTER COLUMN id SET DEFAULT nextval('indiv_standings_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY organization_students ALTER COLUMN id SET DEFAULT nextval('organization_students_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY organizations ALTER COLUMN id SET DEFAULT nextval('organizations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY quiz_teams ALTER COLUMN id SET DEFAULT nextval('quiz_teams_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY quizzes ALTER COLUMN id SET DEFAULT nextval('quizzes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY settings ALTER COLUMN id SET DEFAULT nextval('settings_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY student_quizzes ALTER COLUMN id SET DEFAULT nextval('student_quizzes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY student_teams ALTER COLUMN id SET DEFAULT nextval('student_teams_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY students ALTER COLUMN id SET DEFAULT nextval('students_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY team_coaches ALTER COLUMN id SET DEFAULT nextval('team_coaches_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY team_standings ALTER COLUMN id SET DEFAULT nextval('team_standings_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY teams ALTER COLUMN id SET DEFAULT nextval('teams_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ngasbarr
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
--- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY categories (id, name) FROM stdin;
@@ -820,14 +820,14 @@ COPY categories (id, name) FROM stdin;
 
 
 --
--- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('categories_id_seq', 4, true);
 
 
 --
--- Data for Name: coaches; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: coaches; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY coaches (id, user_id, organization_id, first_name, last_name, phone, active, created_at, updated_at) FROM stdin;
@@ -862,14 +862,14 @@ COPY coaches (id, user_id, organization_id, first_name, last_name, phone, active
 
 
 --
--- Name: coaches_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: coaches_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('coaches_id_seq', 27, true);
 
 
 --
--- Data for Name: divisions; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: divisions; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY divisions (id, name, start_grade, end_grade, active) FROM stdin;
@@ -880,14 +880,14 @@ COPY divisions (id, name, start_grade, end_grade, active) FROM stdin;
 
 
 --
--- Name: divisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: divisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('divisions_id_seq', 3, true);
 
 
 --
--- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY events (id, start_date, end_date, start_time, num_rounds, organization_id, created_at, updated_at) FROM stdin;
@@ -903,14 +903,14 @@ COPY events (id, start_date, end_date, start_time, num_rounds, organization_id, 
 
 
 --
--- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('events_id_seq', 8, true);
 
 
 --
--- Data for Name: indiv_standings; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: indiv_standings; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY indiv_standings (id, "position", student_id, team_id, division_id, total_points, lowest_score, adjusted_points, accuracy, created_at, updated_at) FROM stdin;
@@ -918,14 +918,14 @@ COPY indiv_standings (id, "position", student_id, team_id, division_id, total_po
 
 
 --
--- Name: indiv_standings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: indiv_standings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('indiv_standings_id_seq', 1, false);
 
 
 --
--- Data for Name: organization_students; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: organization_students; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY organization_students (id, organization_id, student_id, start_date, end_date) FROM stdin;
@@ -933,14 +933,14 @@ COPY organization_students (id, organization_id, student_id, start_date, end_dat
 
 
 --
--- Name: organization_students_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: organization_students_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('organization_students_id_seq', 1, false);
 
 
 --
--- Data for Name: organizations; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: organizations; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY organizations (id, name, short_name, street_1, street_2, city, state, zip, latitude, longitude, active, primary_contact_id) FROM stdin;
@@ -965,14 +965,14 @@ COPY organizations (id, name, short_name, street_1, street_2, city, state, zip, 
 
 
 --
--- Name: organizations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: organizations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('organizations_id_seq', 17, true);
 
 
 --
--- Data for Name: quiz_teams; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: quiz_teams; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY quiz_teams (id, quiz_id, team_id, "position", raw_score, points, failed_challenges) FROM stdin;
@@ -4424,14 +4424,14 @@ COPY quiz_teams (id, quiz_id, team_id, "position", raw_score, points, failed_cha
 
 
 --
--- Name: quiz_teams_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: quiz_teams_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('quiz_teams_id_seq', 3444, true);
 
 
 --
--- Data for Name: quizzes; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: quizzes; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY quizzes (id, division_id, event_id, room_num, round_num, active, category_id) FROM stdin;
@@ -5587,14 +5587,14 @@ COPY quizzes (id, division_id, event_id, room_num, round_num, active, category_i
 
 
 --
--- Name: quizzes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: quizzes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('quizzes_id_seq', 1218, true);
 
 
 --
--- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY schema_migrations (version) FROM stdin;
@@ -5624,7 +5624,7 @@ COPY schema_migrations (version) FROM stdin;
 
 
 --
--- Data for Name: settings; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: settings; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY settings (id, roster_lock_date, drop_lowest_score, roster_lock_toggle, auto_promote_students, area_name, admin_name, admin_email, intro) FROM stdin;
@@ -5632,14 +5632,14 @@ COPY settings (id, roster_lock_date, drop_lowest_score, roster_lock_toggle, auto
 
 
 --
--- Name: settings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: settings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('settings_id_seq', 1, false);
 
 
 --
--- Data for Name: student_quizzes; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: student_quizzes; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY student_quizzes (id, student_id, quiz_id, num_correct, num_attempts, num_fouls, score) FROM stdin;
@@ -17071,14 +17071,14 @@ COPY student_quizzes (id, student_id, quiz_id, num_correct, num_attempts, num_fo
 
 
 --
--- Name: student_quizzes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: student_quizzes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('student_quizzes_id_seq', 11424, true);
 
 
 --
--- Data for Name: student_teams; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: student_teams; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY student_teams (id, student_id, team_id, is_captain, active, start_date, end_date) FROM stdin;
@@ -17358,14 +17358,14 @@ COPY student_teams (id, student_id, team_id, is_captain, active, start_date, end
 
 
 --
--- Name: student_teams_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: student_teams_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('student_teams_id_seq', 272, true);
 
 
 --
--- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY students (id, first_name, last_name, grade, active) FROM stdin;
@@ -17645,14 +17645,14 @@ COPY students (id, first_name, last_name, grade, active) FROM stdin;
 
 
 --
--- Name: students_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: students_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('students_id_seq', 272, true);
 
 
 --
--- Data for Name: team_coaches; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: team_coaches; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY team_coaches (id, team_id, coach_id, start_date, end_date) FROM stdin;
@@ -17660,14 +17660,14 @@ COPY team_coaches (id, team_id, coach_id, start_date, end_date) FROM stdin;
 
 
 --
--- Name: team_coaches_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: team_coaches_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('team_coaches_id_seq', 1, false);
 
 
 --
--- Data for Name: team_standings; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: team_standings; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY team_standings (id, "position", team_id, division_id, total_points, accuracy, created_at, updated_at) FROM stdin;
@@ -17675,14 +17675,14 @@ COPY team_standings (id, "position", team_id, division_id, total_points, accurac
 
 
 --
--- Name: team_standings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: team_standings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('team_standings_id_seq', 1, false);
 
 
 --
--- Data for Name: teams; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: teams; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY teams (id, division_id, organization_id, name, active) FROM stdin;
@@ -17772,19 +17772,19 @@ COPY teams (id, division_id, organization_id, name, active) FROM stdin;
 
 
 --
--- Name: teams_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: teams_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('teams_id_seq', 82, true);
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: profh
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: ngasbarr
 --
 
 COPY users (id, username, email, role, password_digest, active, active_after, password_reset_token, password_reset_sent_at, token_type) FROM stdin;
 1	chesstiger91	\N	admin	$2a$10$tLMsZhxUX7DHDuQcYglqkuMj.CznNQ7KlZddjlXSOAzUot1PJP.v2	t	2015-06-01 14:51:22.547577	\N	\N	\N
-2	profh	profh@cmu.edu	admin	$2a$10$A1xRif6Rx2VOm.DF855deuKkL8sET07MmMrZY3ryfE3MCMrbggQ.C	t	2015-06-01 14:51:23.370112	\N	\N	\N
+2	ngasbarr	ngasbarr@cmu.edu	admin	$2a$10$A1xRif6Rx2VOm.DF855deuKkL8sET07MmMrZY3ryfE3MCMrbggQ.C	t	2015-06-01 14:51:23.370112	\N	\N	\N
 3	tmreay	tmreay@example.com	area_admin	$2a$10$gAkWa7tgVRzojCcJj8pM/OyWr4BKOj2vgEJ5ce9Gki4sKSd44y/Sm	t	2015-06-01 14:51:23.460999	\N	\N	\N
 4	djohnson62	djohnson62@example.com	coach	$2a$10$wAxWEPfbC/6eF0Pw8Z0fc.zL1ZF0xRdTCNGCNVcDn8vFxYxPCd3v.	t	2015-06-01 14:51:23.306811	\N	\N	\N
 5	ghudson59	ghudson59@example.com	coach	$2a$10$k4kOTPHGZJ1ayC0NJCf3WO1sB1.2EIxYlPbaolF6YLjuvGGqPGnIC	t	2015-06-01 14:51:23.306811	\N	\N	\N
@@ -17817,14 +17817,14 @@ COPY users (id, username, email, role, password_digest, active, active_after, pa
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ngasbarr
 --
 
 SELECT pg_catalog.setval('users_id_seq', 30, true);
 
 
 --
--- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY categories
@@ -17832,7 +17832,7 @@ ALTER TABLE ONLY categories
 
 
 --
--- Name: coaches_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: coaches_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY coaches
@@ -17840,7 +17840,7 @@ ALTER TABLE ONLY coaches
 
 
 --
--- Name: divisions_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: divisions_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY divisions
@@ -17848,7 +17848,7 @@ ALTER TABLE ONLY divisions
 
 
 --
--- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY events
@@ -17856,7 +17856,7 @@ ALTER TABLE ONLY events
 
 
 --
--- Name: indiv_standings_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: indiv_standings_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY indiv_standings
@@ -17864,7 +17864,7 @@ ALTER TABLE ONLY indiv_standings
 
 
 --
--- Name: organization_students_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: organization_students_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY organization_students
@@ -17872,7 +17872,7 @@ ALTER TABLE ONLY organization_students
 
 
 --
--- Name: organizations_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: organizations_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY organizations
@@ -17880,7 +17880,7 @@ ALTER TABLE ONLY organizations
 
 
 --
--- Name: quiz_teams_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: quiz_teams_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY quiz_teams
@@ -17888,7 +17888,7 @@ ALTER TABLE ONLY quiz_teams
 
 
 --
--- Name: quizzes_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: quizzes_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY quizzes
@@ -17896,7 +17896,7 @@ ALTER TABLE ONLY quizzes
 
 
 --
--- Name: settings_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: settings_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY settings
@@ -17904,7 +17904,7 @@ ALTER TABLE ONLY settings
 
 
 --
--- Name: student_quizzes_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: student_quizzes_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY student_quizzes
@@ -17912,7 +17912,7 @@ ALTER TABLE ONLY student_quizzes
 
 
 --
--- Name: student_teams_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: student_teams_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY student_teams
@@ -17920,7 +17920,7 @@ ALTER TABLE ONLY student_teams
 
 
 --
--- Name: students_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: students_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY students
@@ -17928,7 +17928,7 @@ ALTER TABLE ONLY students
 
 
 --
--- Name: team_coaches_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: team_coaches_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY team_coaches
@@ -17936,7 +17936,7 @@ ALTER TABLE ONLY team_coaches
 
 
 --
--- Name: team_standings_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: team_standings_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY team_standings
@@ -17944,7 +17944,7 @@ ALTER TABLE ONLY team_standings
 
 
 --
--- Name: teams_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: teams_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY teams
@@ -17952,7 +17952,7 @@ ALTER TABLE ONLY teams
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 ALTER TABLE ONLY users
@@ -17960,19 +17960,19 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: profh; Tablespace: 
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: ngasbarr; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: profh
+-- Name: public; Type: ACL; Schema: -; Owner: ngasbarr
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM profh;
-GRANT ALL ON SCHEMA public TO profh;
+REVOKE ALL ON SCHEMA public FROM ngasbarr;
+GRANT ALL ON SCHEMA public TO ngasbarr;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
