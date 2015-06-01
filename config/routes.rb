@@ -12,10 +12,12 @@ Quizzing::Application.routes.draw do
   resources :quizzes
   resources :dashboards
   resources :settings
-  resources :standings
+  #resources :standings
 
   # NAMED ROUTES
   # standings routes
+  get "standings" => "standings#index", as: :standings
+
   get "indiv_standings/juniors" => "indiv_standings#juniors", as: :indiv_standings_j
   get "indiv_standings/seniors" => "indiv_standings#seniors", as: :indiv_standings_s
   get "indiv_standings/seniorb" => "indiv_standings#seniorb", as: :indiv_standings_sb
@@ -35,8 +37,8 @@ Quizzing::Application.routes.draw do
 
   # named routes
   get 'home' => 'home#home', as: :home
-  get "standings/individual" => "standings#individual", as: :indiv_standings
-  get "standings/team" => "standings#team", as: :team_standings
+  #get "standings/individual" => "standings#individual", as: :indiv_standings
+  #get "standings/team" => "standings#team", as: :team_standings
   patch 'active/:id' => 'students#active', as: :active
   patch 'inactive/:id' => 'students#inactive', as: :inactive
   patch 'toggle_student/:id' => 'students#toggle', as: :toggle
