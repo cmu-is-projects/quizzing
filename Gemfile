@@ -101,3 +101,8 @@ end
 # group :production do
 #   gem 'pg'
 # end
+
+#Gem made to use high charts easily
+gem 'lazy_high_charts'
+
+
