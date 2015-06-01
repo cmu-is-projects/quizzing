@@ -1,3 +1,16 @@
+.centered {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    margin-right: -70%;
+    transform: translate(-50%, -50%);
+}
+
+.login {
+  background-image: url('/images/pyramid.jpg') no-repeat scroll left center;
+}
+
 .logo img {
 	display: block;
     margin-left: auto;
