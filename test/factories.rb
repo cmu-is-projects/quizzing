@@ -120,6 +120,7 @@ FactoryGirl.define do
     password_confirmation "secret"
     email { |u| "#{u.username}@example.com".downcase }
     active true
+    active_after Time.now
   end
 
   factory :indiv_standing do

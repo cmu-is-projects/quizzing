@@ -24,7 +24,7 @@ class Team < ActiveRecord::Base
 
   #Validations
   validates_presence_of :division_id, :name, :organization_id
-  validates_uniqueness_of :name, case_sensitive: false
+  # validates_uniqueness_of :name, case_sensitive: false
 
   
   #Scopes

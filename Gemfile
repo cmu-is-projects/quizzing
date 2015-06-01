@@ -3,9 +3,6 @@
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.13'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.0'
 
@@ -98,11 +95,9 @@ group :test do
   gem 'capybara'
 end
 
-# group :production do
-#   gem 'pg'
-# end
 
 #Gem made to use high charts easily
 gem 'lazy_high_charts'
 
-
+gem 'pg'
+# gem 'sqlite3'
