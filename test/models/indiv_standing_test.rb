@@ -109,7 +109,7 @@ class IndivStandingTest < ActiveSupport::TestCase
 		end
 
 		should "shows that standings are listed by position" do
-		  assert_equal 1, IndivStanding.by_position.first.position
+		  assert_equal 1, IndivStanding.first.position
 		end
 
 		should "show that there are 3 junior division standings" do
@@ -123,6 +123,13 @@ class IndivStandingTest < ActiveSupport::TestCase
 		should "show that there are 3 senior A division standings" do
 			assert_equal 3, IndivStanding.for_seniors.size
 		end
+
+		should "show the standing for a given student" do
+			create_student
+			assert_equal IndivStanding.for_indiv(@student1).student_id, @student1.id
+			delete_student
+		end
+
 	end
 
 
