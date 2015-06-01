@@ -3,17 +3,17 @@
     <tr>
       <th data-field="id">Rank</th>
       <th data-field="name">Student</th>
-      <th data-field="price">Cumulative Score</th>
+      <th data-field="price">Score</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @active_students.each do |student| %>
+    <% @top_standings.each do |standing| %>
       <tr>
         <!--Placeholder for when Nick's standing model -->
-        <td>1</td>
-        <td><%= link_to student.name, student_path(student) %></td>
-        <td><%=YearQuizzer.new(student).total_points %></td>
+        <td><%=standing.position %></td>
+        <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+        <td><%=standing.total_points %></td>
       </tr>
     <% end %>
   </tbody>

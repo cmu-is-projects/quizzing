@@ -1,5 +1,5 @@
 <table>
-  <thead>
+  <thead> All Students </thead>
     <tr>
       <th data-field="id">Name</th>
       <th data-field="name">Team</th>
@@ -7,15 +7,31 @@
       <th data-field="price">Grade</th>
     </tr>
   </thead>
-
-  <tbody>
-    <% @active_students.each do |student| %>
-      <tr>
-        <td><%= link_to student.name, student_path(student) %></td>
-        <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
-        <td><%=student.current_organization.name%></td>
-        <td><%=student.grade%></td>
-      </tr>
-    <% end %>
-  </tbody>
+    <tbody>
+      <% @active_students.each do |student| %>
+        <tr>
+          <td><%= link_to student.name, student_path(student) %></td>
+          <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+          <td><%=student.current_organization.name%></td>
+          <td><%=student.grade%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </ul>
 </table>
+
+<div class="digg_pagination">
+  <%= will_paginate @active_students, :container => true %>
+ </div>
+
+<!--  -->
+<!-- <ul class="pagination"> -->
+  <!-- <li class="disabled"><a href="#!"><i class="mdi-navigation-chevron-left"></i></a></li> -->
+  <!-- <li class="active"><a href="#!">1</a></li> -->
+  <!-- <li class="waves-effect"><a href="#!">2</a></li> -->
+  <!-- <li class="waves-effect"><a href="#!">3</a></li> -->
+  <!-- <li class="waves-effect"><a href="#!">4</a></li> -->
+  <!-- <li class="waves-effect"><a href="#!">5</a></li> -->
+  <!-- <li class="waves-effect"><a href="#!"><i class="mdi-navigation-chevron-right"></i></a></li> -->
+<!-- </ul> -->
+

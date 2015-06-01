@@ -10,6 +10,7 @@ class StudentsController < ApplicationController
       @students = Student.all
     end
     @active_students = @students.active.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
+    @top_standings = IndivStanding.for_juniors(12)
     @inactive_students = @students.inactive.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
     @teams = Team.all
     @divisions = Division.active.all
