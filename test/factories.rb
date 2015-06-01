@@ -8,7 +8,6 @@ FactoryGirl.define do
     association :organization
   	first_name "Rob"
   	last_name "Stanton"
-    email { |c| "#{c.first_name}.#{c.last_name}@example.com".downcase }
     phone { rand(10 ** 10).to_s.rjust(10,'0') }
   	active true
   end
@@ -113,13 +112,15 @@ FactoryGirl.define do
   end
 
   factory :user do
-    sequence :user_name do |n|
+    sequence :username do |n|
       "user#{n}"
     end
     role "coach"
     password "secret"
     password_confirmation "secret"
+    email { |u| "#{u.username}@example.com".downcase }
     active true
+    active_after Time.now
   end
 
   factory :indiv_standing do

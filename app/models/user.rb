@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  rolify
   # get modules to help with some functionality
   include QuizHelpers::Validations
   include Activeable
@@ -13,8 +12,9 @@ class User < ActiveRecord::Base
   has_one :coach
   
   #Validations
-  validates_presence_of :user_name, :role
-  validates :user_name, uniqueness: { case_sensitive: false}
+  validates_presence_of :username, :role
+  validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, allow_nil: :false, message: "is not a valid format"
+  validates :username, uniqueness: { case_sensitive: false}
   validates_presence_of :password, on: :create 
   validates_presence_of :password_confirmation, on: :create 
   validates_confirmation_of :password, on: :create, message: "does not match"
@@ -22,19 +22,19 @@ class User < ActiveRecord::Base
   validate :role_is_valid
 
   #Scopes
-  scope :alphabetical, -> {order("user_name")}
+  scope :alphabetical, -> {order("username")}
 
   #Callbacks
   before_destroy :is_never_destroyable
-  before_save :downcase_user_name
+  before_save :downcase_username
 
   #Methods
-  def downcase_user_name
-    self.user_name = self.user_name.downcase
+  def downcase_username
+    self.username = self.username.downcase
   end
 
-  def self.authenticate(user_name,password)
-    find_by_user_name(user_name.downcase).try(:authenticate, password)
+  def self.authenticate(username,password)
+    find_by_username(username.downcase).try(:authenticate, password)
   end
 
   def role?(authorized_role)
@@ -65,6 +65,11 @@ class User < ActiveRecord::Base
 
   def is_coach?
     return true if self.role == 'coach'
+    false
+  end
+
+  def is_guest?
+    return true if self.role == 'guest'
     false
   end
 

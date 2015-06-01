@@ -24,8 +24,8 @@
     <% else %>
       <ul>
       <% cur_coaches.each do |team_coach| %>
-        <% if !team_coach.coach.email.nil? && !team_coach.coach.email.blank? %>
-          <li><%= mail_to team_coach.coach.email, team_coach.coach.proper_name, encode:"javascript" %></li>
+        <% if !team_coach.coach.user.email.nil? && !team_coach.coach.user.email.blank? %>
+          <li><%= mail_to team_coach.coach.user.email, team_coach.coach.proper_name, encode:"javascript" %></li>
         <% else %>
           <li><%= team_coach.coach.proper_name %></li>      
         <% end %><!--if else end-->

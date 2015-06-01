@@ -1,5 +1,0 @@
-module QuizHelpers
-  module TeamScoring
-
-  end #module TeamScoring
-end #module QuizHelpers

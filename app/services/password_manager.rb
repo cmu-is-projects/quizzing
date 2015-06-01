@@ -20,23 +20,36 @@ class PasswordManager
     end
   end
 
-  def send_email
+  def send_reset_email(subdomain)
     generate_token
+    user.token_type = "reset"
     user.password_reset_sent_at = Time.zone.now
     user.save!
-    # PostOffice.reset_password_msg(user).deliver
+    PostOffice.reset_password_msg(user, subdomain).deliver
   end
 
   def expired?
-    user.password_reset_sent_at < 64.minutes.ago
+    if user.token_type == 'new'
+      user.password_reset_sent_at < 8.days.ago
+    else
+      user.password_reset_sent_at < 64.minutes.ago
+    end
   end
 
-private
-
   def generate_token
-    begin
-      user.password_reset_token = SecureRandom.hex
-    end while User.exists?(password_reset_token: user.password_reset_token)
+    user.password_reset_token = SecureRandom.hex
+  end
+
+  def for_new_user(subdomain)
+    generate_token
+    user.token_type = "new"
+    user.password_reset_sent_at = Time.zone.now
+    user.save!
+    if user.role == "coach"
+      PostOffice.new_coach_msg(user, subdomain).deliver
+    else
+      PostOffice.new_admin_msg(user, subdomain).deliver
+    end
   end
 
 end
