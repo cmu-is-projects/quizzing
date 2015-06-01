@@ -1,13 +1,19 @@
 class TeamStandingsController < ApplicationController
+	def index
+		@juniors = TeamStanding.all.for_juniors
+		@seniors = TeamStanding.all.for_seniors
+		@seniorb = TeamStanding.all.for_seniorb
+	end
+
 	def juniors
-		@juniors = TeamStandings.all.for_juniors
+		@juniors = TeamStanding.all.for_juniors
 	end
 
 	def seniors
-		@seniors = TeamStandings.all.for_seniors
+		@seniors = TeamStanding.all.for_seniors
 	end
 
 	def seniorb
-		@seniorb = TeamStandings.all.for_seniorb
+		@seniorb = TeamStanding.all.for_seniorb
 	end
 end
