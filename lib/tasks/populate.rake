@@ -3,9 +3,6 @@ namespace :db do
   # creating a rake task within db namespace called 'populate'
   # executing 'rake db:populate' will cause this script to run
   task :populate => :environment do
-    # Connect to database of choice...
-    # include DatabaseSwitcher
-    # connect_to_db('pgh')
 
     # Drop the old db and recreate from scratch
     Rake::Task['db:drop'].invoke
@@ -19,6 +16,15 @@ namespace :db do
     require 'factory_girl_rails'
 
     p ActiveRecord::Base.configurations["#{Rails.env}"]
+
+    # Connect to database of choice...
+    include DatabaseSwitcher
+    db_selected = 'quizzing_dev'
+    if connect_to_db(db_selected)
+      puts "Connected to #{db_selected}"
+    else
+      puts "Not connected to #{db_selected}"
+    end
 
     # Step 1a: Create an admin and area_admin
     admin = User.new
@@ -132,13 +138,14 @@ namespace :db do
 
     # Step 5: Create 1-3 coaches for each active org
     puts "CREATING COACHES"
+    puts " "
     all_coaches = Array.new
     active_orgs.each do |org|
       coaches = Array.new
       [1,1,1,2,2,2,2,3,3,4].sample.times do |i|
         first_name = Faker::Name.first_name
         last_name = Faker::Name.last_name
-        user = FactoryGirl.create(:user, username: "#{first_name[0]}#{last_name}#{rand(9)+1}")
+        user = FactoryGirl.create(:user, username: "#{first_name[0]}#{last_name}#{rand(98)+1}")
         coach = FactoryGirl.create(:coach, first_name: first_name, last_name: last_name, organization: org, user: user)
         coaches << coach
       end
@@ -238,19 +245,48 @@ namespace :db do
     all_events.each do |event|
       puts "============================"
       puts "EVENT: #{event.start_date}"
-      num_jr_rooms = 8
+      # setup: get rooms, rounds and a team list (repeated 6 times and scrambled)
+      num_jr_rooms = jr_teams.count/5
       num_jr_rounds = (jr_teams.count * 6.0/3/num_jr_rooms).ceil
-      num_sr_rooms = 7
+      puts "Jr rooms: #{num_jr_rooms}; Jr rounds: #{num_jr_rounds}"
+      jr_list = Array.new
+      6.times do |k|
+        jr_tmp = jr_teams.shuffle
+        jr_list << jr_tmp
+      end
+      jr_list.flatten!
+
+      num_sr_rooms = sr_teams.count/4
       num_sr_rounds = (sr_teams.count * 6.0/3/num_sr_rooms).ceil
-      num_srb_rooms = 5
+      puts "Sr rooms: #{num_sr_rooms}; Sr rounds: #{num_sr_rounds}"
+      sr_list = Array.new
+      6.times do |k|
+        sr_tmp = sr_teams.shuffle
+        sr_list << sr_tmp
+      end
+      sr_list.flatten!
+
+      num_srb_rooms = srb_teams.count/4
       num_srb_rounds = (srb_teams.count * 6.0/3/num_srb_rooms).ceil
+      puts "Sr B rooms: #{num_srb_rooms}; Sr B rounds: #{num_srb_rounds}"
+      srb_list = Array.new
+      6.times do |k|
+        srb_tmp = srb_teams.shuffle
+        srb_list << srb_tmp
+      end
+      srb_list.flatten!
 
       num_jr_rounds.times do |r|
         round = r + 1
         num_jr_rooms.times do |x|
           room = x + 1
           quiz = FactoryGirl.create(:quiz, event: event, division: jrs, room_num: room, round_num: round, category: category)
-          puts "Quiz: #{quiz.division.name} #{quiz.room_num}-#{quiz.round_num}"
+          3.times do |m|
+            tm = jr_list.shift
+            # puts "#{quiz.room_num}:#{quiz.round_num} -- #{tm.name}"
+            pos = m + 1
+            FactoryGirl.create(:quiz_team, quiz: quiz, team: tm, position: pos) unless tm.nil?
+          end
         end
       end
 
@@ -259,7 +295,11 @@ namespace :db do
         num_sr_rooms.times do |x|
           room = x + 1
           quiz = FactoryGirl.create(:quiz, event: event, division: srs, room_num: room, round_num: round, category: category)
-          puts "Quiz: #{quiz.division.name} #{quiz.room_num}-#{quiz.round_num}"
+          3.times do |m|
+            tm = sr_list.shift
+            pos = m + 1
+            FactoryGirl.create(:quiz_team, quiz: quiz, team: tm, position: pos) unless tm.nil?
+          end
         end
       end
 
@@ -268,14 +308,50 @@ namespace :db do
         num_srb_rooms.times do |x|
           room = x + 1
           quiz = FactoryGirl.create(:quiz, event: event, division: srb, room_num: room, round_num: round, category: category)
-          puts "Quiz: #{quiz.division.name} #{quiz.room_num}-#{quiz.round_num}"
+          3.times do |m|
+            tm = srb_list.shift
+            pos = m + 1
+            FactoryGirl.create(:quiz_team, quiz: quiz, team: tm, position: pos) unless tm.nil?
+          end
         end
       end
     end
+    # ... now go through and get rid of quizzes with no teams (byes)
+    Quiz.all.each { |quiz| quiz.delete if quiz.teams.empty? }
 
-    # Step 9: Assign teams to each quiz
+    # Step 9: Assign points to students and teams in each quiz
+    Quiz.all.each do |quiz|
+      quiz_teams = quiz.teams
+      quiz_teams.each do |team|
+        raw_score = 20
+        # score the students
+        team.students.each do |student|
+          if student.is_captain?
+            num_correct = [0,1,2,3,3,3,4,4,4,4].sample
+            if num_correct == 4
+              errors = [0,0,0,1,1,1,2].sample
+            else
+              errors = [0,0,1,1,1,2,2,3].sample
+            end
+            num_attempts = num_correct + errors
+            sq = FactoryGirl.create(:student_quiz, student: student, quiz: quiz, num_correct: num_correct, num_attempts: num_attempts)
+          else
+            num_correct = [0,0,0,1,1,1,2,2,3,4].sample
+            errors = [0,0,0,0,0,1,1,2].sample
+            num_attempts = num_correct + errors
+            sq =FactoryGirl.create(:student_quiz, student: student, quiz: quiz, num_correct: num_correct, num_attempts: num_attempts)
+          end
+          puts "Quiz #{quiz.id} -- #{student.name}: #{sq.score}"
+          raw_score += sq.score
+        end
+        # now score the teams
+        raw_score += [-20,-10,-10,0,0,0,10,10,20,20,30].sample
+        points = raw_score/10
+        QuizTeam.where(quiz_id:quiz.id, team_id:team.id).first.update_attribute(:raw_score, raw_score)
+        QuizTeam.where(quiz_id:quiz.id, team_id:team.id).first.update_attribute(:points, points)
+      end
 
-    # Step 10: Assign points to students and teams in each quiz
+    end
 
   end
 end
