@@ -1,11 +1,14 @@
+
 <% @divisions.each do |d| %>
-  <div class= "row">
-    <h4 class="header"> <%= d.name %></h4>
+
+<div class= "row">
+    <div class="card-panel">
+    <h5 class="header"> <%= d.name %></h5>
     <table class="hoverable">
       <thead>
         <tr>
           <th>Name</th>
-          <th>Organization</th>
+          <th>Organization3</th>
         </tr>
       </thead>
 
@@ -24,4 +27,5 @@
       </tbody>
     </table>
   </div>
+</div>
 <% end %>
