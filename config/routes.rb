@@ -18,10 +18,12 @@ Quizzing::Application.routes.draw do
   # standings routes
   get "standings" => "standings#index", as: :standings
 
+  get "indiv_standings" => "indiv_standings#index", as: :indiv_standings
   get "indiv_standings/juniors" => "indiv_standings#juniors", as: :indiv_standings_j
   get "indiv_standings/seniors" => "indiv_standings#seniors", as: :indiv_standings_s
   get "indiv_standings/seniorb" => "indiv_standings#seniorb", as: :indiv_standings_sb
 
+  get "team_standings" => "team_standings#index", as: :team_standings
   get "team_standings/juniors" => "indiv_standings#juniors", as: :team_standings_j
   get "team_standings/seniors" => "indiv_standings#seniors", as: :team_standings_s
   get "team_standings/seniorb" => "indiv_standings#seniorb", as: :team_standings_sb
