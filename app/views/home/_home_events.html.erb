@@ -1,39 +1,35 @@
 
 		<h5> Upcoming Events</h5>
 		<table class="bordered, hoverable">
-			<thead>
-				<tr>
-					<th width="140">Date</th>
-					<th width="280">Location</th>
-				</tr>
-			</thead>
 			<tbody>
+				<% @upcoming_count = 0 %>
 				<% @upcoming_events.each do |event| %>
-				<tr>
-					<td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event) %></td>
-					<td><%#= link_to event.organization.name, organization_path(event.organization) %>
-						<%= event.organization.name %>
-					</td>>
-				</tr>
+					<% if @upcoming_count < 2 %>
+						<tr>
+							<td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event) %></td>
+							<td><%#= link_to event.organization.name, organization_path(event.organization) %>
+								<%= event.organization.name %>
+							</td>>
+						</tr>
+						<% @upcoming_count += 1 %>
+					<% end %>
 				<% end %>
 			</tbody>
 		</table>
 		<h5> Past Events</h5>
 		<table class="bordered, hoverable">
-			<thead>
-				<tr>
-					<th width="140">Date</th>
-					<th width="280">Location</th>
-				</tr>
-			</thead>
 			<tbody>
+				<% @past_count = 0 %>
 				<% @past_events.each do |event| %>
-				<tr>
-					<td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event) %></td>
-					<td><%#= link_to event.organization.name, organization_path(event.organization) %>
-						<%= event.organization.name %>
-					</td>>
-				</tr>
+					<% if @past_count < 2 %>
+						<tr>
+							<td><%= link_to event.start_date.strftime('%B %d, %Y'), event_path(event) %></td>
+							<td><%#= link_to event.organization.name, organization_path(event.organization) %>
+								<%= event.organization.name %>
+							</td>>
+						</tr>
+						<% @past_count += 1 %>
+					<% end %>
 				<% end %>
 			</tbody>
 		</table>
