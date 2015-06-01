@@ -54,22 +54,7 @@ $(document).ready(function () {
         }); 
     });
 
-//  $(document).ready(function() {
-//  	$('.side-nav.fixed li').click(function(){
-//     	$(this).addClass('active').siblings().removeClass('active');
-//     });   
-// });
 
-
-//layerslider 
- 
-// jQuery $('document').ready(); function
-$('document').ready(function(){
-
-    // Calling LayerSlider on your selected element after the document loaded
-    $(selector).layerSlider();
-});
- 
 
 
 
