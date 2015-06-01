@@ -1,0 +1,129 @@
+<h2>Team Standings</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Team</th>
+      <th>Total Points</th>
+    </tr>
+  </thead>
+
+	<tbody>
+		<th>Juniors</th>
+			<% @team_juniors.each do |j| %>
+			<tr>
+				<td><%= j.position %></td>
+				<td><%= j.team.name %></td>
+				<td><%= j.total_points %></td>
+			</tr>
+			<% end %>
+	</tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Team</th>
+      <th>Total Points</th>
+    </tr>
+  </thead>
+
+	<tbody>
+		<th>Seniors</th>
+			<% @team_seniors.each do |j| %>
+			<tr>
+				<td><%= j.position %></td>
+				<td><%= j.team.name %></td>
+				<td><%= j.total_points %></td>
+			</tr>
+			<% end %>
+	</tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Team</th>
+      <th>Total Points</th>
+    </tr>
+  </thead>
+
+	<tbody>
+		<th>Senior B</th>
+			<% @team_seniorb.each do |j| %>
+			<tr>
+				<td><%= j.position %></td>
+				<td><%= j.team.name %></td>
+				<td><%= j.total_points %></td>
+			</tr>
+			<% end %>
+	</tbody>
+</table>
+
+
+
+<h2>Individual</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Student</th>
+      <th>Total Points</th>
+    </tr>
+  </thead>
+
+	<tbody>
+		<th>Juniors</th>
+			<% @indiv_juniors.each do |j| %>
+			<tr>
+				<td><%= j.position %></td>
+				<td><%= j.student.name %></td>
+				<td><%= j.total_points %></td>
+			</tr>
+			<% end %>
+	</tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Student</th>
+      <th>Total Points</th>
+    </tr>
+  </thead>
+
+	<tbody>
+		<th>Seniors</th>
+			<% @indiv_seniors.each do |j| %>
+			<tr>
+				<td><%= j.position %></td>
+				<td><%= j.student.name %></td>
+				<td><%= j.total_points %></td>
+			</tr>
+			<% end %>
+	</tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Student</th>
+      <th>Total Points</th>
+    </tr>
+  </thead>
+
+	<tbody>
+		<th>Senior B</th>
+			<% @indiv_seniorb.each do |j| %>
+			<tr>
+				<td><%= j.position %></td>
+				<td><%= j.student.name %></td>
+				<td><%= j.total_points %></td>
+			</tr>
+			<% end %>
+	</tbody>
+</table>
