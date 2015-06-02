@@ -124,5 +124,14 @@ nav {
     color: #37474f
 }
 
+a#standings-heading{
+  color: #263238;
+}
 
+a#standings-heading:hover {
+  color: #4dd0e1;
+}
 
+.slider ul.indicators li.indicator-item.active {
+    background-color: #5baf59;
+}
