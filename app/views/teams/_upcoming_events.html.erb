@@ -3,7 +3,10 @@
 <% unless @upcoming_events.empty? %>
   <div class="collection">
     <% @upcoming_events.each do |event| %>
-      <li class="collection-item"><div><%=event.organization.name%><a href="#!" class="secondary-content"><i><%= event.start_date %></i></a></div></li>
+      <div class="collection-item blue-grey lighten-5">
+      	<div><%=event.organization.name%><a href="#!" class="secondary-content"><i><%= event.start_date %></i></a>
+      	</div>
+      </div>
     <% end %>
   </div>
 
