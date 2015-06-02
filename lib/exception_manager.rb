@@ -4,6 +4,11 @@ module ExceptionManager
     redirect_to root_url(:host => request.domain)
   end
 
+  def no_connection_established
+    flash[:error] = "The database is currently unavailable. Please contact the overall administrator for assistance."
+    redirect_to root_url(:host => request.domain)
+  end
+
   def no_reset_token
     flash[:error] = "The password reset token is either invalid or has expired."
     redirect_to home_path
