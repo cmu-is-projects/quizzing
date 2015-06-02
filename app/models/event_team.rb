@@ -5,16 +5,29 @@ class EventTeam
     @event = event
     @students = team.students
     @division = team.division
+    @event_host = event.organization.name
     @quiz_teams = get_all_quiz_teams_for_team_in_this_event
   end
 
-  attr_reader :event, :team, :students, :name, :quiz_teams, :division
+  attr_reader :event, :team, :students, :name, :quiz_teams, :division, :event_host
 
-  def total_et_points
-    #Top down; go to QuizTeam
+  def total_points
     quiz_teams.inject(0){|sum, quiz_team| sum += (quiz_team.points.nil? ? 0 : quiz_team.points)}
-    #according to the above, quiz teams with nil points receive a score or 0; 
-    #according to Bible Quizzing rules, teams that compete in this event receive at least a score of 1
+  end
+
+  def total_raw_score
+    quiz_teams.inject(0){|sum, quiz_team| sum += (quiz_team.raw_score.nil? ? 0 : quiz_team.raw_score)}
+  end
+
+  def accuracy
+    eq_array = students.map{|s| EventQuizzer.new(s,event)}
+    total_correct = eq_array.map{|s| s.student_quizzes.inject(0){|sum,sq| sum+=sq.num_correct}}.sum
+    total_attempts = eq_array.map{|s| s.student_quizzes.inject(0){|sum,sq| sum+=sq.num_attempts}}.sum
+    if total_attempts.zero?
+      acc_rate = 0.0
+    else
+      acc_rate = (total_correct.to_f / total_attempts).round(3)
+    end
   end
   
   def get_all_quiz_teams_for_team_in_this_event
