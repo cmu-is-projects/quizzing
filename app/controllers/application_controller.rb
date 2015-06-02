@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
   rescue_from Exceptions::NoPasswordResetToken, with: :no_reset_token
   rescue_from Exceptions::UserIsTimedOut, with: :user_timed_out
   rescue_from Exceptions::AttemptedHammering, with: :stop_hammering
+  rescue_from Exceptions::ConnectionNotEstablished, with: no_connection_established
 
   private
   # Handling authentication

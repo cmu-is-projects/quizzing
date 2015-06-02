@@ -9,8 +9,17 @@ module DatabaseSwitcher
     session[:subdomain] = subdomain
   end
 
+  def verify_database(db_name)
+    current_databases = SETTINGS[:database_list]
+    if current_databases.include?(db_name)
+      return true
+    else
+      raise Exceptions::ConnectionNotEstablished
+    end
+  end
+
   def verify_subdomain(subdomain)
-    allowed_subdomains = ['home', 'westpa', 'pgh', 'erie', 'altoona', 'ovd', 'central', 'greatlakes', 'pnw', 'cmd', 'westcanada', 'metro', 'centralcanada']
+    allowed_subdomains = SETTINGS[:database_list]
     if subdomain.blank?
       return "quizzing_dev"
     elsif allowed_subdomains.include?(subdomain)
