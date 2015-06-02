@@ -24,9 +24,9 @@ Quizzing::Application.routes.draw do
   get "indiv_standings/seniorb" => "indiv_standings#seniorb", as: :indiv_standings_sb
 
   get "team_standings" => "team_standings#index", as: :team_standings
-  get "team_standings/juniors" => "indiv_standings#juniors", as: :team_standings_j
-  get "team_standings/seniors" => "indiv_standings#seniors", as: :team_standings_s
-  get "team_standings/seniorb" => "indiv_standings#seniorb", as: :team_standings_sb
+  get "team_standings/juniors" => "team_standings#juniors", as: :team_standings_j
+  get "team_standings/seniors" => "team_standings#seniors", as: :team_standings_s
+  get "team_standings/seniorb" => "team_standings#seniorb", as: :team_standings_sb
 
   # authentication routes
   get 'user/edit' => 'users#edit', as: :edit_current_user
