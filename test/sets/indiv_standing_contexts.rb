@@ -15,6 +15,14 @@ module Contexts
       @divisions.delete
     end
 
+    def create_student
+      @student1 = FactoryGirl.create(:student, first_name: "Timmy", last_name: "Turner", grade: 5, active: true)
+    end
+
+    def delete_student
+      @student1.delete
+    end
+
   	def create_IndivStandings
       create_divisions
       #create 3 standings for division 1

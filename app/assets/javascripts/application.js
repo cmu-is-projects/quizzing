@@ -55,6 +55,9 @@ $(document).ready(function () {
     });
 
 
+  $(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
 
 $(document).ready(function(){
       $('.slider').slider({full_width: false});

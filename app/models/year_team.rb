@@ -13,27 +13,38 @@ class YearTeam
  attr_reader :name, :results
  attr_reader :division
 
-  def total_yt_points
+  def total_points
  	#top down design assuming event_team written with a total_yt_points method
- 	  self.results.inject(0){|sum, event_team| sum += event_team.total_et_points}
+ 	  self.results.inject(0){|sum, event_team| sum += event_team.total_points}
+  end
+
+  def total_accuracy
+    eq_array = Array.new 
+    results.each{ |et| eq_array << et.students.map{|s| EventQuizzer.new(s,et.event)} }
+    eq_array = eq_array.flatten
+    total_correct = eq_array.map{|s| s.student_quizzes.inject(0){|sum,sq| sum+=sq.num_correct}}.sum
+    total_attempts = eq_array.map{|s| s.student_quizzes.inject(0){|sum,sq| sum+=sq.num_attempts}}.sum
+    if total_attempts.zero?
+      acc_rate = 0.0
+    else
+      acc_rate = (total_correct.to_f / total_attempts).round(3)
+    end
   end
 
   # Class method to get all the year_teams for a particular year and division
   def self.get_all_teams_for_division_for_year(division, quiz_year=QuizYear.new)
-    #top down design assuming "get_all_teams_who_quizzed_in_year" written
     teams_this_year = self.get_all_teams_who_quizzed_in_year(quiz_year)
     teams = Array.new
     teams_this_year.each do |team_id|
       year_team = YearTeam.new(Team.find(team_id), quiz_year)
       teams << year_team if year_team.division == division
     end
-    sorted = teams.sort_by{|yt| yt.total_yt_points}.reverse  
+    sorted = teams.sort_by{|yt| yt.total_points}.reverse  
   end
 
   private
   def self.get_all_teams_who_quizzed_in_year(quiz_year)
     tmp = Array.new
-    #top down design assuming self.find_scored_events_for_year(quiz_year) working
     events = self.find_scored_events_for_year(quiz_year)
     events.each do |event|
       tmp << QuizTeam.for_event(event).map(&:team_id).uniq
