@@ -100,6 +100,7 @@ gem 'lazy_high_charts'
 
 gem 'pg'
 
+#gem sqlite3
 # group :production do
 #   gem 'pg'
 # end
