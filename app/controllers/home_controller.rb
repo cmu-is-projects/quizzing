@@ -3,6 +3,7 @@ class HomeController < ApplicationController
     # all events for right now
     @events = Event.all 
     @upcoming_events = Event.upcoming.chronological.to_a
+    @past_events = Event.past.chronological.to_a
 
     @divisions = Division.all.active
 

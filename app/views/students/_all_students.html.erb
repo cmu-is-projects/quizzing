@@ -1,21 +1,50 @@
-<table>
-  <thead>
-    <tr>
-      <th data-field="id">Name</th>
-      <th data-field="name">Team</th>
-      <th data-field="price">Org</th>
-      <th data-field="price">Grade</th>
-    </tr>
-  </thead>
+<h5>All Students</h5>
+<ul class="tabs">
+  <li class="tab col s2"><a class="active" href="#division1">Junior</a></li>
+  <li class="tab col s2"><a href="#division2">Senior B</a></li>
+  <li class="tab col s2"><a href="#division3">Senior B</a></li>
+</ul>
+<div class="card blue-grey lighten-5">
+  <div class="card-content black-text">
+    <div class="divider"></div>
+      <table class="responsive-table">
+        <thead>
+          <tr>
+            <th data-field="id">Name</th>
+            <th data-field="name">Team</th>
+            <th data-field="price">Org</th>
+            <th data-field="price">Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @active_students.each do |student| %>
+            <tr>
+              <td><%= link_to student.name, student_path(student) %></td>
+              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+              <td><%=student.current_organization.name%></td>
+              <td><%=student.grade%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+      <div class="card-action">
+        <div class="digg_pagination">
+          <%= will_paginate @active_students, :container => true %>
+        </div>
+      </div>
+  </div>
+</div>
 
-  <tbody>
-    <% @active_students.each do |student| %>
-      <tr>
-        <td><%= link_to student.name, student_path(student) %></td>
-        <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
-        <td><%=student.current_organization.name%></td>
-        <td><%=student.grade%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<!--  -->
+<!-- <ul class="pagination"> -->
+  <!-- <li class="disabled"><a href="#!"><i class="mdi-navigation-chevron-left"></i></a></li> -->
+  <!-- <li class="active"><a href="#!">1</a></li> -->
+  <!-- <li class="waves-effect"><a href="#!">2</a></li> -->
+  <!-- <li class="waves-effect"><a href="#!">3</a></li> -->
+  <!-- <li class="waves-effect"><a href="#!">4</a></li> -->
+  <!-- <li class="waves-effect"><a href="#!">5</a></li> -->
+  <!-- <li class="waves-effect"><a href="#!"><i class="mdi-navigation-chevron-right"></i></a></li> -->
+<!-- </ul> -->
+

@@ -10,6 +10,7 @@ class StudentsController < ApplicationController
       @students = Student.all
     end
     @active_students = @students.active.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
+    @top_standings = IndivStanding.for_juniors(7)
     @inactive_students = @students.inactive.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
     @teams = Team.all
     @divisions = Division.active.all
@@ -23,6 +24,7 @@ class StudentsController < ApplicationController
     @year_quizzer = YearQuizzer.new(@student)
     @year_event_quizzes = @year_quizzer.results #an array of EventQuizzERS
     @events = Event.all.chronological
+    @top_standings = IndivStanding.for_juniors(3)
     @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events
     @declared_num_rounds = 6
     @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)

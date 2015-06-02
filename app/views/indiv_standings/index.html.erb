@@ -1,1 +1,101 @@
-<h3>Yup, you've reached the indiv_standings index page.</h3>
+<div class="container">
+
+	<h2>Individual Standings</h2>
+	<div class="row">
+		<div class="col s12">
+			<ul class="tabs">
+				<li class="tab col s2"><a class="active" href="#division1">Junior</a></li>
+				<li class="tab col s2"><a href="#division2">Senior</a></li>
+				<li class="tab col s2"><a href="#division3">Senior B</a></li>
+			</ul>
+		</div>
+
+		<div id="division1" class="col s12">
+			<div class="row">
+				<div class="col 12 m12">
+					<div class="card blue-grey lighten-5">
+						<div class="card-content black-text">
+							<table>
+								<thead>
+									<th> Student Name </th>
+									<th> Rank </th>
+									<th> Total Points </th>
+									<th> Accuracy </th>
+								</thead>
+								<tbody>
+									<% @juniors.each do |j| %>
+									<tr> 
+										<td><%= j.student.name %></td>
+										<td><%= j.position %></td>
+										<td><%= j.total_points %></td>
+										<td><%= j.accuracy %></td>
+									</tr>
+									<% end %>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="division2" class="col s12">
+			<div class="row">
+				<div class="col 12 m12">
+					<div class="card blue-grey lighten-5">
+						<div class="card-content black-text">
+							<table>
+								<thead>
+									<th> Student Name </th>
+									<th> Rank </th>
+									<th> Total Points </th>
+									<th> Accuracy </th>
+								</thead>
+								<tbody>
+									<% @seniors.each do |j| %>
+									<tr> 
+										<td><%= j.student.name %></td>
+										<td><%= j.position %></td>
+										<td><%= j.total_points %></td>
+										<td><%= j.accuracy %></td>
+									</tr>
+									<% end %>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="division3" class="col s12">
+			<div class="row">
+				<div class="col 12 m12">
+					<div class="card blue-grey lighten-5">
+						<div class="card-content black-text">
+							<table>
+								<thead>
+									<th> Student Name </th>
+									<th> Rank </th>
+									<th> Total Points </th>
+									<th> Accuracy </th>
+								</thead>
+								<tbody>
+									<% @seniorb.each do |j| %>
+									<tr> 
+										<td><%= j.student.name %></td>
+										<td><%= j.position %></td>
+										<td><%= j.total_points %></td>
+										<td><%= j.accuracy %></td>
+									</tr>
+									<% end %>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
