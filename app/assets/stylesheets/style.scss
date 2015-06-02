@@ -1,31 +1,27 @@
 .digg_pagination {
-  background: white;
   cursor: default;
-  padding-top: 2em;}
+}
   .digg_pagination a, .digg_pagination span, .digg_pagination em {
-    padding: 0.2em 0.5em;
     display: block;
     float: left;}
   .digg_pagination .disabled {
-    color: #999999;
-    line-height: 1;}
+    color: #999999;}
   .digg_pagination .current {
     font-style: normal;
     font-weight: bold;
     color: white;
     background-color: #4dd0e1;
-    display: inline-block;
+    display: inline;
+    text-align: center;
     width: 1.4em;
-    height: 1.4em;
-    line-height: 1;
+    height: 1.4em;;
     -moz-border-radius: 1em;
     -webkit-border-radius: 1em;
     border-radius: 1em;
     }
   .digg_pagination a {
     text-decoration: none;
-    color: black;
-    line-height: 1;}
+    color: black;}
     .digg_pagination a:hover, .digg_pagination a:focus {
       color: #000033;
       border-color: #000033; }
@@ -122,6 +118,10 @@ td#improvement {
 
 nav {
   box-shadow: 0px 0px 0px #ffffff;
+}
+
+  .card .card-action a {
+    color: #37474f
 }
 
 
