@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 .centered {
     margin: 0;
     position: absolute;
@@ -11,7 +11,7 @@
 .login {
   background-image: url('/images/pyramid.jpg') no-repeat scroll left center;
 }
-=======
+
 .digg_pagination {
   cursor: default;
 }
@@ -135,9 +135,18 @@ nav {
   box-shadow: 0px 0px 0px #ffffff;
 }
 
+<<<<<<< HEAD
   .card .card-action a {
     color: #37474f
 }
 
+=======
+a#standings-heading{
+  color: #263238;
+}
+>>>>>>> 9129f8a7b4e6302fee28216cd7a7d444c91eafa0
 
+a#standings-heading:hover {
+  color: #4dd0e1;
+}
 
