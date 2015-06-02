@@ -99,6 +99,7 @@ end
 #   gem 'pg'
 # end
 gem 'pg'
-# gem 'sqlite3'
+
+gem 'sqlite3'
 
 
