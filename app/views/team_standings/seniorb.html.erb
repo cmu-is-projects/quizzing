@@ -2,18 +2,20 @@
   <thead>
     <tr>
       <th>Position</th>
-      <th>Student</th>
-      <th>Total Points</th>
+      <th>Team</th>
+      <th>Points</th>
+      <th>Accuracy</th>
     </tr>
   </thead>
 
 	<tbody>
-		<th>Senior B</th>
-			<% @seniorb.each do |j| %>
+		<th>Seniors</th>
+			<% @seniorb.each do |sb| %>
 			<tr>
-				<td><%= j.position %></td>
-				<td><%= j.student.name %></td>
-				<td><%= j.total_points %></td>
+				<td><%= sb.position %></td>
+				<td><%=	sb.team.name %></td>
+				<td><%= sb.total_points %></td>
+				<td><%= sb.accuracy %></td>
 			</tr>
 			<% end %>
 	</tbody>
