@@ -101,3 +101,4 @@ gem 'lazy_high_charts'
 
 gem 'pg'
 # gem 'sqlite3'
+

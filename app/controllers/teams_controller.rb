@@ -12,6 +12,7 @@ class TeamsController < ApplicationController
     @current_user = @current_user
     @teams = Team.all
     @active_teams = @teams.active.sort_by! {|n| n.name}
+    @top_standings = TeamStanding.for_juniors(7)
     @inactive_teams = @teams.inactive.sort_by! {|n| n.name}
     @divisions = @teams.active.map {|d| d.division}.uniq
   end
@@ -22,8 +23,12 @@ class TeamsController < ApplicationController
     @teams =Team.all
     @quiz_year = QuizYear.new
     @completed_events = @quiz_year.completed_events
+<<<<<<< HEAD
     @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events 
     @team_quiz = QuizTeam.for_team(@team) #quizzes for the team
+=======
+    @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events
+>>>>>>> 515198a9af403b89b41bde635fc048b731760757
     @declared_num_rounds = 6
     @year_team = YearTeam.new(@team)
     @year_event_quizzes = @year_team.results

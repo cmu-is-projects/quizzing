@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .centered {
     margin: 0;
     position: absolute;
@@ -10,6 +11,35 @@
 .login {
   background-image: url('/images/pyramid.jpg') no-repeat scroll left center;
 }
+=======
+.digg_pagination {
+  cursor: default;
+}
+  .digg_pagination a, .digg_pagination span, .digg_pagination em {
+    display: block;
+    float: left;}
+  .digg_pagination .disabled {
+    color: #999999;}
+  .digg_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+    background-color: #4dd0e1;
+    display: inline;
+    text-align: center;
+    width: 1.4em;
+    height: 1.4em;;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    }
+  .digg_pagination a {
+    text-decoration: none;
+    color: black;}
+    .digg_pagination a:hover, .digg_pagination a:focus {
+      color: #000033;
+      border-color: #000033; }
+>>>>>>> 515198a9af403b89b41bde635fc048b731760757
 
 .logo img {
 	display: block;
@@ -103,6 +133,10 @@ td#improvement {
 
 nav {
   box-shadow: 0px 0px 0px #ffffff;
+}
+
+  .card .card-action a {
+    color: #37474f
 }
 
 
