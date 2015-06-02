@@ -99,6 +99,9 @@ end
 #   gem 'pg'
 # end
 gem 'pg'
-# gem 'sqlite3'
+
+gem 'sqlite3'
+
+gem 'lazy_high_charts'
 
 
