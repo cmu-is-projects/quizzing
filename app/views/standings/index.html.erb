@@ -1,6 +1,7 @@
 <div class="container">
 
-<h2>Team Standings</h2>
+<%= link_to team_standings_path, id: "standings-heading" do %>
+<h2>Team Standings</h2><%end%>
 <div class="row">
     <div class="col s12">
       <ul class="tabs">
@@ -14,7 +15,7 @@
               <div class="col 12 m12">
                 <div class="card blue-grey lighten-5">
                   <div class="card-content black-text">
-                      <table class="responsive-table">
+                      <table class="centered">
                        <thead>
                           <tr>
                             <th>Rank</th>
@@ -51,7 +52,7 @@
               <div class="col 12 m12">
                 <div class="card blue-grey lighten-5">
                   <div class="card-content black-text">
-                      <table class="responsive-table">
+                      <table class="centered">
                        <thead>
                           <tr>
                             <th>Rank</th>
@@ -88,7 +89,7 @@
               <div class="col 12 m12">
                 <div class="card blue-grey lighten-5">
                   <div class="card-content black-text">
-                      <table class="responsive-table">
+                      <table class="centered">
                        <thead>
                           <tr>
                             <th>Rank</th>
@@ -121,7 +122,8 @@
   </div>
 
 
-  <h2>Individual Standings</h2>
+<%= link_to indiv_standings_path, id: "standings-heading" do %>
+<h2>Individual Standings</h2><%end%>
 <div class="row">
     <div class="col s12">
       <ul class="tabs">
@@ -132,10 +134,10 @@
     </div>
     <div id="indiv1" class="col s12">
       <div class="row">
-              <div class="col 12 m12">
+              <div class="col m12">
                 <div class="card blue-grey lighten-5">
-                  <div class="card-content black-text">
-                      <table class="responsive-table">
+                  <div id="standings-table" class="card-content black-text">
+                      <table class ="centered">
                        <thead>
                           <tr>
                             <th>Rank</th>
@@ -171,7 +173,7 @@
               <div class="col 12 m12">
                 <div class="card blue-grey lighten-5">
                   <div class="card-content black-text">
-                      <table class="responsive-table">
+                      <table class="centered">
                        <thead>
                           <tr>
                             <th>Rank</th>
@@ -208,7 +210,7 @@
               <div class="col 12 m12">
                 <div class="card blue-grey lighten-5">
                   <div class="card-content black-text">
-                      <table class="responsive-table">
+                      <table class="centered">
                        <thead>
                           <tr>
                             <th>Rank</th>
