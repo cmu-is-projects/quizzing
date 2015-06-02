@@ -18,9 +18,7 @@
             <tr>
               <td><%= link_to team.name, team_path(team) %></td>
               <td><%= team.organization.name %></td>
-              <% if can? :update, team %>
-                  <td><%= link_to 'Edit', edit_team_path(team), class: "button tiny radius" %></td>
-              <% end %>
+
             </tr>
           <% end %>
         <%end%>

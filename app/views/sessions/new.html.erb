@@ -3,21 +3,33 @@
 		<div class="card blue-grey darken-1">
             <div class="card-content white-text">
 			<span class="card-title">Login</span>
+				<div class="col s12">
 
 				<%= form_tag(session_create_path, method: :post) do %>
-					<br>
-					<%= label_tag :username %>
-					<%= text_field_tag 'username' %>
-					<br>
-					<%= label_tag :password %>
-					<%= password_field_tag 'password' %>
+					<div class="row">
+						<div class="input-field col s12">
+							<%= label_tag :username %>
+							<%= text_field_tag 'username' %>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="input-field col s12">
+							<%= label_tag :password %>
+							<%= password_field_tag 'password' %>
+						</div>
+					</div>
+
+					<div align="right">	
+						<%= submit_tag "Log in", class: :"mdi-content-send right, btn waves-effect waves-light" %>    
+					</div>
 				<% end %>
-
-            	<div align="right">	
-					<%= submit_tag "Log in" %>    
-				</div>
-            </div>
-
+			</div>
+			</div>
 		</div>
 	</div>
 </div>
+
+
+
+
