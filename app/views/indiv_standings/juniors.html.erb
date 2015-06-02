@@ -3,7 +3,11 @@
     <tr>
       <th>Position</th>
       <th>Student</th>
-      <th>Total Points</th>
+      <th>Team</th>
+      <th>Points</th>
+      <th>Low</th>
+      <th>Adjusted</th>
+      <th>Accuracy</th>
     </tr>
   </thead>
 
@@ -13,7 +17,11 @@
 			<tr>
 				<td><%= j.position %></td>
 				<td><%= j.student.name %></td>
+				<td><%=	j.student.current_team.name %></td>
 				<td><%= j.total_points %></td>
+				<td><%= j.lowest_score %></td>
+				<td><%= j.adjusted_points%></td>
+				<td><%= j.accuracy %></td>
 			</tr>
 			<% end %>
 	</tbody>
