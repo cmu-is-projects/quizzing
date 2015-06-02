@@ -1,1 +1,107 @@
-<h3>Yup, you've reached the indiv_standings index page.</h3>
+<div class="container">
+
+	<h2>Individual Standings</h2>
+	<div class="row">
+		<div class="col s12">
+			<ul class="tabs">
+				<li class="tab col s2"><a class="active" href="#division1">Junior</a></li>
+				<li class="tab col s2"><a href="#division2">Senior</a></li>
+				<li class="tab col s2"><a href="#division3">Senior B</a></li>
+			</ul>
+		</div>
+
+		<div id="division1" class="col s7">
+			<div class="row">
+				<div class="col 7 m7">
+					<% @juniors.each do |j| %>
+					<div class="card blue-grey lighten-5">
+						<div class="card-content black-text">
+							<span class="card-title black-text">Team Name</span>
+							<div class="divider"></div>
+							<table>
+								<tbody>
+									<tr> 
+										<td> Rank: </td>
+										<td><%= j.position %></td>
+									</tr>
+									<tr>
+										<td>Total Points:</td>
+										<td><%= j.total_points %></td>
+									</tr>
+									<tr>
+										<td> Accuracy: </td>
+										<td><%= j.accuracy %></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+		<div id="division2" class="col s7">
+			<div class="row">
+				<div class="col 7 m7">
+					<% @seniors.each do |j| %>
+					<div class="card blue-grey lighten-5">
+						<div class="card-content black-text">
+							<span class="card-title black-text">Team Name</span>
+							<div class="divider"></div>
+							<table>
+								<tbody>
+									<tr> 
+										<td> Rank: </td>
+										<td><%= j.position %></td>
+									</tr>
+									<tr>
+										<td>Total Points:</td>
+										<td><%= j.total_points %></td>
+									</tr>
+									<tr>
+										<td> Accuracy: </td>
+										<td><%= j.accuracy %></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+		<div id="division3" class="col s7">
+			<div class="row">
+				<div class="col 7 m7">
+					<% @seniorb.each do |j| %>
+					<div class="card blue-grey lighten-5">
+						<div class="card-content black-text">
+							<span class="card-title black-text">Team Name</span>
+							<div class="divider"></div>
+							<table>
+								<tbody>
+									<tr> 
+										<td> Rank: </td>
+										<td><%= j.position %></td>
+									</tr>
+									<tr>
+										<td>Total Points:</td>
+										<td><%= j.total_points %></td>
+									</tr>
+									<tr>
+										<td> Accuracy: </td>
+										<td><%= j.accuracy %></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>

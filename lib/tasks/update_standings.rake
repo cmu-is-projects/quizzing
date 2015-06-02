@@ -4,7 +4,7 @@ namespace :db do
 
     # Iterate through list of databases to test if updates needed
     include DatabaseSwitcher
-    db_selected = 'quizzing_dev'
+    db_selected = 'pgh'
     if connect_to_db(db_selected)
       puts "Connected to #{db_selected}"
     else
