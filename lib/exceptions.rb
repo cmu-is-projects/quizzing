@@ -5,6 +5,9 @@ module Exceptions
   # a custom exception when no database for subdomain
   class NoDatabaseExists < Error; end
 
+  # a custom exception when db connection could not be established
+  class ConnectionNotEstablished < Error; end
+
   # a custom exception when no password reset token found
   class NoPasswordResetToken < Error; end
 
