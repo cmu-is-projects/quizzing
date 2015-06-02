@@ -2,8 +2,9 @@
   <thead>
     <tr>
       <th>Position</th>
-      <th>Student</th>
-      <th>Total Points</th>
+      <th>Team</th>
+      <th>Points</th>
+      <th>Accuracy</th>
     </tr>
   </thead>
 
@@ -12,8 +13,9 @@
 			<% @juniors.each do |j| %>
 			<tr>
 				<td><%= j.position %></td>
-				<td><%= j.student.name %></td>
+				<td><%=	j.team.name %></td>
 				<td><%= j.total_points %></td>
+				<td><%= j.accuracy %></td>
 			</tr>
 			<% end %>
 	</tbody>
