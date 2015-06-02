@@ -98,9 +98,9 @@ end
 #Gem made to use high charts easily
 gem 'lazy_high_charts'
 
-gem 'pg'
+gem 'sqlite3'
 
-#gem sqlite3
+gem 'pg'
 # group :production do
 #   gem 'pg'
 # end
