@@ -37,7 +37,7 @@ class StudentsController < ApplicationController
 
       f.yAxis [
         {:title => {:text => "Quiz Scores", :margin => 70} },
-        {:title => {:text => "Population in Millions"}, :opposite => true},
+        {:title => {:text => ""}, :opposite => true},
       ]
 
 
