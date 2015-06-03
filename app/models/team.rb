@@ -52,7 +52,7 @@ class Team < ActiveRecord::Base
 
   def self.for_seniors(number=1000, organization=nil)
     if organization.nil?
-      seniorss = where('division_id = ?', "#{Division.find_by_name('seniors').id}").limit(number).to_a
+      seniors = where('division_id = ?', "#{Division.find_by_name('seniors').id}").limit(number).to_a
     else
       seniors = where('division_id = ? and organization_id = ?', "#{Division.find_by_name('seniors').id}", organization.id).limit(number).to_a      
     end
