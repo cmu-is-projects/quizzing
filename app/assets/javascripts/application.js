@@ -20,6 +20,7 @@
 //= require highcharts/highstock
 //= require highcharts/highcharts                                                           
 //= require highcharts/highcharts-more
+//= require exporting
 
 //from datatables
 // $(document).ready( function () {
