@@ -28,20 +28,21 @@ class TeamsController < ApplicationController
     @declared_num_rounds = 6
     @year_team = YearTeam.new(@team)
     @year_event_quizzes = @year_team.results
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(:text => "Population vs GDP For 5 Big Countries [2009]")
-      f.xAxis(:categories => [@completed_events])
-      f.series(:name => "GDP in Billions", :yAxis => 0, :data => [14119, 5068, 4985, 3339, 2656])
-      f.series(:name => "Population in Millions", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
+    @events_xAxis = @quiz_year.completed_events.to_a
+    @chart = LazyHighCharts::HighChart.new('graph', :style=>"height:400px") do |f|
+      f.title(:text => "Team Performance")
+      f.xAxis(:categories => @events_xAxis)
+      f.series(:name => "Event1", :yAxis => 0, :data => [14119, 5068, 4985, 3339, 2656])
+      f.series(:name => "Event2", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
 
       f.yAxis [
-        {:title => {:text => "GDP in Billions", :margin => 70} },
-        {:title => {:text => "Population in Millions"}, :opposite => true},
+        {:title => {:text => "Quiz Scores", :margin => 70} },
+        {:title => {:text => ""}, :opposite => true},
       ]
 
-      f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
-      f.chart({:defaultSeriesType=>"column"})
-    end
+
+      f.chart({:defaultSeriesType=>"line"})
+    end 
   end
 
   # GET /teams/new

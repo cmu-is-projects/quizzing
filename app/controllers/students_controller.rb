@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
     @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events
     @declared_num_rounds = 6
     @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+    @chart = LazyHighCharts::HighChart.new('graph', :style=>"height:400px") do |f|
       f.title(:text => "Performance")
       f.xAxis(:categories => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
