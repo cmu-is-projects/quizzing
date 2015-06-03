@@ -33,6 +33,7 @@ class SessionsController < ApplicationController
   
   def destroy
     clear_session_data
+    reset_session
     redirect_to home_path, notice: "Logged out!"
   end
 

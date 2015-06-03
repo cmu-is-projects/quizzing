@@ -20,6 +20,8 @@ class EventsController < ApplicationController
   def show
     @quizzes = @event.quizzes.sort{|a,b| a.round_num <=> b.round_num}
     @divisions = Division.all.active
+    # @jr = @divisions.find_by_name('juniors').id 
+    # @junior_team_results = EventTeam.get_all_teams_for_event_and_division(@event, @jr)
   end
 
   # GET /events/new

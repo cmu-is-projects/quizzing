@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526164201) do
+ActiveRecord::Schema.define(version: 20150603152538) do
 
   create_table "categories", force: true do |t|
     t.string "name"
@@ -121,9 +121,10 @@ ActiveRecord::Schema.define(version: 20150526164201) do
     t.integer "student_id"
     t.integer "team_id"
     t.boolean "is_captain", default: false
-    t.boolean "active",     default: true
+    t.boolean "present",    default: true
     t.date    "start_date"
     t.date    "end_date"
+    t.integer "seat"
   end
 
   create_table "students", force: true do |t|

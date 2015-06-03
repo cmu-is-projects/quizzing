@@ -96,7 +96,7 @@ group :test do
 end
 
 # Database gems
-gem 'pg' # for everything...
+#gem 'pg' # for everything...
 # group :development, :test do
 #   gem 'sqlite3'
 # end
@@ -106,3 +106,5 @@ gem 'pg' # for everything...
 
 # Gem made to use high charts easily
 gem 'lazy_high_charts'
+
+gem 'sqlite3'
