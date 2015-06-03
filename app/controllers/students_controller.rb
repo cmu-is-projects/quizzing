@@ -40,8 +40,7 @@ class StudentsController < ApplicationController
       f.series(:name => "Student Performance", :yAxis => 0, :data => @performance)
 
       f.yAxis [
-        {:title => {:text => "Quiz Scores", :margin => 70} },
-        {:title => {:text => ""}, :opposite => true},
+        {:title => {:text => "Quiz Scores", :margin => 70} }
       ]
 
 
