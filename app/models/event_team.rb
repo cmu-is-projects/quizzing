@@ -44,7 +44,7 @@ class EventTeam
     end
     # returned a sorted array of event_teams in descending order of average points
     # (until end when avg and total align, averages rule the day in reporting results)
-    sorted = teams.sort_by{|et| et.total_et_points}.reverse
+    sorted = teams.sort_by{|et| et.total_points}.reverse
   end
 
   def self.get_all_teams_for_event_and_division(event, division)
@@ -54,6 +54,6 @@ class EventTeam
       in_division << event_team if event_team.division == division
     end
     # resort just to be safe...
-    final = in_division.sort_by{|et| et.total_et_points}.reverse 
+    final = in_division.sort_by{|et| et.total_points}.reverse 
   end
 end #class EventTeam

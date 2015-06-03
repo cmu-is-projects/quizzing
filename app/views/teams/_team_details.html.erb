@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<h3><%= @team.name %> </h3>
+
+<p>
+  <strong>Grade - Division:</strong>
+  <%= "#{@team.division.name}" %>
+</p>
+
+<p>
+  <strong>Cumulative Points:</strong>
+  <%= "#{@team.team_standing.total_points}" %>
+</p>
+
+<p>
+  <strong>Average Accuracy:</strong>
+  <!--TODO: make use of the below from the controller; format it correctly-->
+  <%= "#{@team.team_standing.accuracy}" %>
+</p>
+
