@@ -15,19 +15,27 @@
 				<div class="col 12 m12">
 					<div class="card blue-grey lighten-5">
 						<div class="card-content black-text">
-							<table>
+							<table class="centered striped">
 								<thead>
-									<th> Student Name </th>
-									<th> Rank </th>
-									<th> Total Points </th>
-									<th> Accuracy </th>
+									<tr>
+										<th>Rank</th>
+										<th>Student</th>
+										<th>Team</th>
+										<th>Points</th>
+										<th>Low</th>
+										<th>Adjusted</th>
+										<th>Accuracy</th>
+									</tr>
 								</thead>
 								<tbody>
 									<% @juniors.each do |j| %>
-									<tr> 
-										<td><%= j.student.name %></td>
+									<tr>
 										<td><%= j.position %></td>
+										<td><%= j.student.name %></td>
+										<td><%=	j.student.current_team.name %></td>
 										<td><%= j.total_points %></td>
+										<td><%= j.lowest_score %></td>
+										<td><%= j.adjusted_points%></td>
 										<td><%= j.accuracy %></td>
 									</tr>
 									<% end %>
@@ -44,20 +52,28 @@
 				<div class="col 12 m12">
 					<div class="card blue-grey lighten-5">
 						<div class="card-content black-text">
-							<table>
+							<table class="centered striped">
 								<thead>
-									<th> Student Name </th>
-									<th> Rank </th>
-									<th> Total Points </th>
-									<th> Accuracy </th>
+									<tr>
+										<th>Rank</th>
+										<th>Student</th>
+										<th>Team</th>
+										<th>Points</th>
+										<th>Low</th>
+										<th>Adjusted</th>
+										<th>Accuracy</th>
+									</tr>
 								</thead>
 								<tbody>
-									<% @seniors.each do |j| %>
-									<tr> 
-										<td><%= j.student.name %></td>
-										<td><%= j.position %></td>
-										<td><%= j.total_points %></td>
-										<td><%= j.accuracy %></td>
+									<% @seniors.each do |s| %>
+									<tr>
+										<td><%= s.position %></td>
+										<td><%= s.student.name %></td>
+										<td><%=	s.student.current_team.name %></td>
+										<td><%= s.total_points %></td>
+										<td><%= s.lowest_score %></td>
+										<td><%= s.adjusted_points%></td>
+										<td><%= s.accuracy %></td>
 									</tr>
 									<% end %>
 								</tbody>
@@ -73,20 +89,28 @@
 				<div class="col 12 m12">
 					<div class="card blue-grey lighten-5">
 						<div class="card-content black-text">
-							<table>
+							<table class="centered striped">
 								<thead>
-									<th> Student Name </th>
-									<th> Rank </th>
-									<th> Total Points </th>
-									<th> Accuracy </th>
+									<tr>
+										<th>Rank</th>
+										<th>Student</th>
+										<th>Team</th>
+										<th>Points</th>
+										<th>Low</th>
+										<th>Adjusted</th>
+										<th>Accuracy</th>
+									</tr>
 								</thead>
 								<tbody>
-									<% @seniorb.each do |j| %>
-									<tr> 
-										<td><%= j.student.name %></td>
-										<td><%= j.position %></td>
-										<td><%= j.total_points %></td>
-										<td><%= j.accuracy %></td>
+									<% @seniorb.each do |sb| %>
+									<tr>
+										<td><%= sb.position %></td>
+										<td><%= sb.student.name %></td>
+										<td><%=	sb.student.current_team.name %></td>
+										<td><%= sb.total_points %></td>
+										<td><%= sb.lowest_score %></td>
+										<td><%= sb.adjusted_points%></td>
+										<td><%= sb.accuracy %></td>
 									</tr>
 									<% end %>
 								</tbody>

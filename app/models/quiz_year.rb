@@ -16,6 +16,10 @@ class QuizYear #refers to academic bible quizzing year
     (start_date..end_date).cover?(date)
   end
 
+  def span
+    "#{start_date.year} - #{end_date.year}"
+  end
+
   def this_yr_events
     # return an array of all events scheduled for this academic bible quizzing year
     Event.all.select {|e| e.start_date >= @start_date && e.start_date <= @end_date}.sort_by{|e| e.start_date && e.end_date}
