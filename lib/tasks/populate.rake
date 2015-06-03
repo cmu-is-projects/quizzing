@@ -140,8 +140,15 @@ namespace :db do
     puts "CREATING COACHES"
     puts " "
     all_coaches = Array.new
+    
     active_orgs.each do |org|
       coaches = Array.new
+      # one fixed coach, Tim Daigle
+      if org.short_name == "ACAC"
+        user = FactoryGirl.create(:user, username: "tdaigle")
+        coach = FactoryGirl.create(:coach, first_name: "Tim", last_name: "Daigle", organization: org, user: user)
+        coaches << coach
+      end
       [1,1,1,2,2,2,2,3,3,4].sample.times do |i|
         first_name = Faker::Name.first_name
         last_name = Faker::Name.last_name
@@ -204,7 +211,7 @@ namespace :db do
         captain = n.zero?
         student = FactoryGirl.create(:student, first_name: first_name, last_name: last_name, grade: grade)
         jr_student_count += 1 if student
-        FactoryGirl.create(:student_team, student: student, team: team, is_captain: captain, start_date: Date.new(2014,9,1))
+        FactoryGirl.create(:student_team, student: student, team: team, is_captain: captain, start_date: Date.new(2014,9,1), seat: n+1)
       end
     end
 
@@ -218,7 +225,7 @@ namespace :db do
         captain = n.zero?
         student = FactoryGirl.create(:student, first_name: first_name, last_name: last_name, grade: grade)
         sr_student_count += 1 if student
-        FactoryGirl.create(:student_team, student: student, team: team, is_captain: captain, start_date: Date.new(2014,9,1))
+        FactoryGirl.create(:student_team, student: student, team: team, is_captain: captain, start_date: Date.new(2014,9,1), seat: n+1)
       end
     end
 
@@ -232,7 +239,7 @@ namespace :db do
         captain = n.zero?
         student = FactoryGirl.create(:student, first_name: first_name, last_name: last_name, grade: grade)
         srb_student_count += 1 if student
-        FactoryGirl.create(:student_team, student: student, team: team, is_captain: captain, start_date: Date.new(2014,9,1))
+        FactoryGirl.create(:student_team, student: student, team: team, is_captain: captain, start_date: Date.new(2014,9,1), seat: n+1)
       end
     end
     puts "Junior students: #{jr_student_count}"
