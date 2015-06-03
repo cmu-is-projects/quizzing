@@ -1,11 +1,9 @@
 
 .centered {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 55%;
-    margin-right: -70%;
-    transform: translate(-50%, -50%);
+  width:500px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left; 
 }
 
 .login {
