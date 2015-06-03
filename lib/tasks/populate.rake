@@ -204,7 +204,7 @@ namespace :db do
         captain = n.zero?
         student = FactoryGirl.create(:student, first_name: first_name, last_name: last_name, grade: grade)
         jr_student_count += 1 if student
-        FactoryGirl.create(:student_team, student: student, team: team, is_captain: captain, start_date: Date.new(2014,9,1))
+        FactoryGirl.create(:student_team, student: student, team: team, is_captain: captain, start_date: Date.new(2014,9,1), seat: jr_student_count)
       end
     end
 
@@ -218,7 +218,7 @@ namespace :db do
         captain = n.zero?
         student = FactoryGirl.create(:student, first_name: first_name, last_name: last_name, grade: grade)
         sr_student_count += 1 if student
-        FactoryGirl.create(:student_team, student: student, team: team, is_captain: captain, start_date: Date.new(2014,9,1))
+        FactoryGirl.create(:student_team, student: student, team: team, is_captain: captain, start_date: Date.new(2014,9,1), seat: sr_student_count)
       end
     end
 
@@ -232,7 +232,7 @@ namespace :db do
         captain = n.zero?
         student = FactoryGirl.create(:student, first_name: first_name, last_name: last_name, grade: grade)
         srb_student_count += 1 if student
-        FactoryGirl.create(:student_team, student: student, team: team, is_captain: captain, start_date: Date.new(2014,9,1))
+        FactoryGirl.create(:student_team, student: student, team: team, is_captain: captain, start_date: Date.new(2014,9,1), seat: srb_student_count)
       end
     end
     puts "Junior students: #{jr_student_count}"
