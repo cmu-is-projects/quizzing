@@ -13,6 +13,7 @@ class StudentsController < ApplicationController
     @top_standings = IndivStanding.for_juniors(7)
     @inactive_students = @students.inactive.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
     @teams = Team.all
+    @three_divisions = @students.active.map {|d| d.current_team.division}.uniq
     @divisions = Division.active.all
     @new_students = Student.new_students
   end

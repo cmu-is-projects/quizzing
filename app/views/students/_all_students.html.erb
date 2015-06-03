@@ -1,41 +1,105 @@
 <h5>All Students</h5>
-<ul class="tabs">
-  <li class="tab col s2"><a class="active" href="#division1">Junior</a></li>
-  <li class="tab col s2"><a href="#division2">Senior B</a></li>
-  <li class="tab col s2"><a href="#division3">Senior B</a></li>
-</ul>
-<div class="card blue-grey lighten-5">
-  <div class="card-content black-text">
-    <div class="divider"></div>
-      <table class="responsive-table">
-        <thead>
-          <tr>
-            <th data-field="id">Name</th>
-            <th data-field="name">Team</th>
-            <th data-field="price">Org</th>
-            <th data-field="price">Grade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @active_students.each do |student| %>
+<div id="division1" class="col s12">
+  <div class="card blue-grey lighten-5">
+    <div class="card-content black-text">
+      <div class="divider"></div>
+        <table class="responsive-table">
+          <thead>
             <tr>
-              <td><%= link_to student.name, student_path(student) %></td>
-              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
-              <td><%=student.current_organization.name%></td>
-              <td><%=student.grade%></td>
+              <th data-field="id">Name</th>
+              <th data-field="name">Team</th>
+              <th data-field="price">Grade</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <br>
-      <div class="card-action">
-        <div class="digg_pagination">
-          <%= will_paginate @active_students, :container => true %>
+          </thead>
+          <tbody>
+            <% @active_students.each do |student| %>
+              <% if student.current_team.division == @divisions[0]%>
+                <tr>
+                  <td><%= link_to student.name, student_path(student) %></td>
+                  <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+                  <td><%=student.grade%></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+        <div class="card-action">
+          <div class="digg_pagination">
+            <%= will_paginate @active_students, :container => true %>
+          </div>
         </div>
-      </div>
+    </div>
   </div>
 </div>
 
+<div id="division2" class="col s12">
+  <div class="card blue-grey lighten-5">
+    <div class="card-content black-text">
+      <div class="divider"></div>
+        <table class="responsive-table">
+          <thead>
+            <tr>
+              <th data-field="id">Name</th>
+              <th data-field="name">Team</th>
+              <th data-field="price">Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @active_students.each do |student| %>
+              <% if student.current_team.division == @divisions[1]%>
+                <tr>
+                  <td><%= link_to student.name, student_path(student) %></td>
+                  <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+                  <td><%=student.grade%></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+        <div class="card-action">
+          <div class="digg_pagination">
+            <%= will_paginate @active_students, :container => true %>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="division3" class="col s12">
+  <div class="card blue-grey lighten-5">
+    <div class="card-content black-text">
+      <div class="divider"></div>
+        <table class="responsive-table">
+          <thead>
+            <tr>
+              <th data-field="id">Name</th>
+              <th data-field="name">Team</th>
+              <th data-field="price">Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @active_students.each do |student| %>
+              <% if student.current_team.division == @divisions[2]%>
+                <tr>
+                  <td><%= link_to student.name, student_path(student) %></td>
+                  <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+                  <td><%=student.grade%></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+        <div class="card-action">
+          <div class="digg_pagination">
+            <%= will_paginate @active_students, :container => true %>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
 
 <!--  -->
 <!-- <ul class="pagination"> -->
