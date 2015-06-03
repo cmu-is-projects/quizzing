@@ -1,0 +1,5 @@
+<% if @event.start_date > Date.today %>
+  <h3><%= "#{@event.start_date.strftime('%B, %Y')} Quiz" %> </h3>
+<% else %>
+  <h3><%= "#{@event.start_date.strftime('%B, %Y')} Quiz Results" %> </h3>
+<% end %>
