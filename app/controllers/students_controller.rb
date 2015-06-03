@@ -13,6 +13,7 @@ class StudentsController < ApplicationController
     @top_standings = IndivStanding.for_juniors(7)
     @inactive_students = @students.inactive.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
     @teams = Team.all
+    @three_divisions = @students.active.map {|d| d.current_team.division}.uniq
     @divisions = Division.active.all
     @new_students = Student.new_students
   end
@@ -28,12 +29,15 @@ class StudentsController < ApplicationController
     @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events
     @declared_num_rounds = 6
     @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)
-    @chart = LazyHighCharts::HighChart.new('graph', :style=>"height:400px") do |f|
+
+    @x_axis = YearQuizzer.find_scored_events_for_year(@quiz_year).map {|e| e.start_date.strftime('%b')}
+    @year_quizzes = YearQuizzer.find_scored_events_for_year(@quiz_year).map
+    @events = @year_quizzes.map{ |e| EventQuizzer.new(@student, e)}
+    @performance = @events.map{|e| e.total_points}
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => "Performance")
-      f.xAxis(:categories => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
-      f.series(:name => "Event1", :yAxis => 0, :data => [14119, 5068, 4985, 3339, 2656])
-      f.series(:name => "Event2", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
+      f.xAxis(:categories => @x_axis)
+      f.series(:name => "Student Performance", :yAxis => 0, :data => @performance)
 
       f.yAxis [
         {:title => {:text => "Quiz Scores", :margin => 70} },

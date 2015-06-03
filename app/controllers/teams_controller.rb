@@ -28,12 +28,16 @@ class TeamsController < ApplicationController
     @declared_num_rounds = 6
     @year_team = YearTeam.new(@team)
     @year_event_quizzes = @year_team.results
-    @events_xAxis = @quiz_year.completed_events.to_a
+    @quizevents_xAxis = @quiz_year.completed_events.to_a
+    @quizscores_yAxis = @team_quiz.to_a
     @chart = LazyHighCharts::HighChart.new('graph', :style=>"height:400px") do |f|
       f.title(:text => "Team Performance")
       f.xAxis(:categories => @events_xAxis)
-      f.series(:name => "Event1", :yAxis => 0, :data => [14119, 5068, 4985, 3339, 2656])
-      f.series(:name => "Event2", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
+
+      @team_quiz.each do |q|  
+        f.series(:name => q.team.name, :yAxis => 0, :data => q.quizzes.to_a)
+        f.series(:name => "Event2", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
+      end
 
       f.yAxis [
         {:title => {:text => "Quiz Scores", :margin => 70} },
