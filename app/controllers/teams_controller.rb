@@ -27,21 +27,39 @@ class TeamsController < ApplicationController
     @team_quiz = QuizTeam.for_team(@team) #quizzes for the team
     @declared_num_rounds = 6
     @year_team = YearTeam.new(@team)
-    @year_event_quizzes = @year_team.results
+
+
+    #line graph for performances
+
+    @x_axis = YearTeam.find_scored_events_for_year(@quiz_year).map {|e| e.start_date.strftime('%b')}
+    
+    #y_axis for team
+    @year_quizzes = YearTeam.find_scored_events_for_year(@quiz_year).map
+    @events = @year_quizzes.map{ |e| EventTeam.new(@team, e)}
+    @performance = @events.map{|e| e.total_points}
+
+    #y_axis for highest team score 
+
+
+    #y_axis for average team score
+
+
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(:text => "Population vs GDP For 5 Big Countries [2009]")
-      f.xAxis(:categories => [@completed_events])
-      f.series(:name => "GDP in Billions", :yAxis => 0, :data => [14119, 5068, 4985, 3339, 2656])
-      f.series(:name => "Population in Millions", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
+      f.title(:text => "Team Performance")
+      f.xAxis(:categories => @x_axis)
+
+      f.series(:name => @team.name, :yAxis => 0, :data => @performance)
+      f.series(:name => "Highest" + @team.division.name + "Score", :yAxis => 0, :data => [510, 137, 1490, 81, 65])
+      f.series(:name => "Average Team Score", :yAxis => 0, :data => [310, 127, 1340, 81, 65])
+
 
       f.yAxis [
-        {:title => {:text => "GDP in Billions", :margin => 70} },
-        {:title => {:text => "Population in Millions"}, :opposite => true},
+        {:title => {:text => "Quiz Scores", :margin => 70} }
       ]
 
-      f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
-      f.chart({:defaultSeriesType=>"column"})
-    end
+
+      f.chart({:defaultSeriesType=>"line"})
+    end 
   end
 
   # GET /teams/new
