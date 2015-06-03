@@ -26,6 +26,16 @@ class IndivStanding < ActiveRecord::Base
         end
     end
 
+    def self.find_top_student(student)
+        if student.current_team.division.name == "juniors"
+            return team.for_juniors.first
+        elsif student.current_team.division.name == "seniors"
+            return team.for_seniors.first
+        else
+            return team.for_seniorb.first
+        end
+    end
+
     def self.for_juniors(number=1000)
         juniors = where('division_id = ?', "#{Division.find_by_name('juniors').id}").limit(number).to_a
         juniors.empty? ? [NullIndivStanding.new] : juniors.sort
