@@ -29,7 +29,7 @@ class Team < ActiveRecord::Base
   
   #Scopes
   scope :alphabetical, -> {order("name")}
-  scope :for_division, -> (division) { where(division_id: division.id)}
+  # scope :for_division, -> (division) { where(division_id: division.id)}
 
 
   #Methods
@@ -39,6 +39,36 @@ class Team < ActiveRecord::Base
   # Callbacks
   before_destroy :verify_that_there_are_no_scored_quizzes_for_team_this_year
 
+
+
+  def self.for_juniors(number=1000, organization=nil)
+    if organization.nil?
+      juniors = where('division_id = ?', "#{Division.find_by_name('juniors').id}").limit(number).to_a
+    else
+      juniors = where('division_id = ? and organization_id = ?', "#{Division.find_by_name('juniors').id}", organization.id).limit(number).to_a      
+    end
+      juniors.empty? ? [NullTeam.new] : juniors.sort_by{|t| t.name}
+  end
+
+  def self.for_seniors(number=1000, organization=nil)
+    if organization.nil?
+      seniorss = where('division_id = ?', "#{Division.find_by_name('seniors').id}").limit(number).to_a
+    else
+      seniors = where('division_id = ? and organization_id = ?', "#{Division.find_by_name('seniors').id}", organization.id).limit(number).to_a      
+    end
+      seniors.empty? ? [NullTeam.new] : seniors.sort_by{|t| t.name}
+  end
+
+  def self.for_seniorb(number=1000, organization=nil)
+    if organization.nil?
+      seniorb = where('division_id = ?', "#{Division.find_by_name('seniorb').id}").limit(number).to_a
+    else
+      seniorb = where('division_id = ? and organization_id = ?', "#{Division.find_by_name('seniorb').id}", organization.id).limit(number).to_a      
+    end
+      seniorb.empty? ? [NullTeam.new] : seniorb.sort_by{|t| t.name}
+  end 
+
+  
   # Methods
   # Returns active teams that are not at capacity in accordance with student's grade and organization
   def self.not_at_capacity(student=nil, organization=nil, division=nil)
