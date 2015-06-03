@@ -23,12 +23,12 @@
 
       <tbody>
         <% @event_div_teams.each do |t| %>
-          <% unless t.total_et_points == 0 %><!--Didn't compete so don't show-->
+          <% unless t.total_points == 0 %><!--Didn't compete so don't show-->
           <tr>
             <% rank_counter+=1 %><!--first team's rank outputted as 1-->
             <td align="center"><%= rank_counter %></td>
             <td align="center"><%= link_to t.name, team_path(t.team) %></td>
-            <td align="center"><%= t.total_et_points %></td>
+            <td align="center"><%= t.total_points %></td>
           </tr>
           <% end %><!--unless loop-->
         <% end %><!--t loop-->
