@@ -95,12 +95,14 @@ group :test do
   gem 'capybara'
 end
 
-#Gem made to use high charts easily
-gem 'lazy_high_charts'
-
-gem 'sqlite3'
-
-gem 'pg'
+# Database gems
+gem 'pg' # for everything...
+# group :development, :test do
+#   gem 'sqlite3'
+# end
 # group :production do
 #   gem 'pg'
 # end
+
+# Gem made to use high charts easily
+gem 'lazy_high_charts'
