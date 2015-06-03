@@ -85,7 +85,8 @@ FactoryGirl.define do
   	association :student
   	association :team
   	is_captain false
-  	active true
+    seat 1
+  	present true
   	start_date Date.today
   	end_date nil
   end

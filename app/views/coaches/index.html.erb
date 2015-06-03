@@ -32,10 +32,10 @@
                   <th>Attendance</th>
                 </thead>
                 <tbody>
-                  <% i.students.each do |s| %>
+                  <% i.students.by_seat.each do |s| %>
                   <tr>
                     <td><%= s.proper_name %></td>
-                    <% if s.active? %>
+                    <% if s.present? %>
                     <td><i class="mdi-toggle-check-box tiny"></i></td>
                     <% else %>
                     <td><i class="mdi-navigation-cancel tiny"></i></td>
