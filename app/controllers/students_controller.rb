@@ -23,24 +23,20 @@ class StudentsController < ApplicationController
   def show
     @quiz_year = QuizYear.new
     @year_quizzer = YearQuizzer.new(@student)
-    @year_event_quizzes = @year_quizzer.results #an array of EventQuizzERS
+    @year_event_quizzes = @year_quizzer.results  
     @events = Event.all.chronological
     @top_standings = IndivStanding.for_juniors(3)
-    @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events
-    @declared_num_rounds = 6
     @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)
-    @x_axis = YearQuizzer.find_scored_events_for_year(@quiz_year).map {|e| e.start_date.strftime('%b')}
     @year_quizzes = YearQuizzer.find_scored_events_for_year(@quiz_year).map
-    @events = @year_quizzes.map{ |e| EventQuizzer.new(@student, e)}
-    @performance = @events.map{|e| e.total_points}
+    @x_axis = @year_quizzes.map {|e| e.start_date.strftime('%b')} #x-values
+    @performance = @year_quizzes.map{ |e| EventQuizzer.new(@student, e)}.map{|p| p.total_points}
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => "Performance")
       f.xAxis(:categories => @x_axis)
       f.series(:name => "Student Performance", :yAxis => 0, :data => @performance)
 
       f.yAxis [
-        {:title => {:text => "Quiz Scores", :margin => 70} },
-        {:title => {:text => ""}, :opposite => true},
+        {:title => {:text => "Quiz Scores", :margin => 70}, :min => 0, :max => 540 }
       ]
 
 
