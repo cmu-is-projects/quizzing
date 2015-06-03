@@ -27,17 +27,30 @@ class TeamsController < ApplicationController
     @team_quiz = QuizTeam.for_team(@team) #quizzes for the team
     @declared_num_rounds = 6
     @year_team = YearTeam.new(@team)
-    @year_event_quizzes = @year_team.results
-    @quizevents_xAxis = @quiz_year.completed_events.to_a
-    @quizscores_yAxis = @team_quiz.to_a
-    @chart = LazyHighCharts::HighChart.new('graph', :style=>"height:400px") do |f|
-      f.title(:text => "Team Performance")
-      f.xAxis(:categories => @events_xAxis)
 
-      @team_quiz.each do |q|  
-        f.series(:name => q.team.name, :yAxis => 0, :data => q.quizzes.to_a)
-        f.series(:name => "Event2", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
-      end
+
+    #line graph for performances
+
+    @x_axis = YearTeam.find_scored_events_for_year(@quiz_year).map {|e| e.start_date.strftime('%b')}
+    
+    #y_axis for team
+    @year_quizzes = YearTeam.find_scored_events_for_year(@quiz_year).map
+    @events = @year_quizzes.map{ |e| EventTeam.new(@team, e)}
+    @performance = @events.map{|e| e.total_points}
+
+    #y_axis for highest team score 
+
+    #y_axis for average team score
+    
+
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title(:text => "Team Performance")
+      f.xAxis(:categories => @x_axis)
+
+      f.series(:name => @team.name, :yAxis => 0, :data => @performance)
+      f.series(:name => "Highest Team Score", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
+      f.series(:name => "Average Team Score", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
+
 
       f.yAxis [
         {:title => {:text => "Quiz Scores", :margin => 70} },
