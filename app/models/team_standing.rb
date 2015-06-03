@@ -44,6 +44,7 @@ class TeamStanding < ActiveRecord::Base
     elsif team.division.name =="seniors"
       return team.for_seniors.first
     else return team.for_seniorb.first
+    end
   end
 
 
