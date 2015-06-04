@@ -49,8 +49,11 @@ class TeamStanding < ActiveRecord::Base
 
 
     def self.show_top_four(team)
-      TeamStanding.find_topteam(team)
-       
+      if TeamStanding.find_topteam(team).(4).include?
+        return TeamStanding.find_topteam(team).(4)
+      else 
+        TeamStanding.find_topteam(team).(3) 
+        return nil 
     end
 
 end
