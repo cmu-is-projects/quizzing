@@ -54,7 +54,7 @@ class TeamsController < ApplicationController
       f.xAxis(:categories => @x_axis)
 
       f.series(:name => @team.name, :yAxis => 0, :data => @performance)
-      f.series(:name => "Top " + @team.division.name.capitalize[0...-1] + " Team Score", :yAxis => 0, :data => @top_performance)
+      f.series(:name => "Top " + @team.division.name.capitalize[0...-1] + " Team Score", :yAxis => 0, :data => @performance)
       f.series(:name => "Average Score for Event", :yAxis => 0, :data => @average_scores)
 
 
