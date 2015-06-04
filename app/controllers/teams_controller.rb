@@ -45,6 +45,7 @@ class TeamsController < ApplicationController
 
 
     #y_axis for average team score
+
     @average_scores = EventTeam.get_average_score(@team.division)
 
 

@@ -1,5 +1,5 @@
 
-\class Student < ActiveRecord::Base
+class Student < ActiveRecord::Base
   # get modules to help with some functionality
   include QuizHelpers::Validations
   include Activeable
