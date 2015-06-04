@@ -45,6 +45,7 @@ class TeamsController < ApplicationController
 
 
     #y_axis for average team score
+    @average_scores = EventTeam.get_average_score(@team.division)
 
 
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
@@ -52,8 +53,8 @@ class TeamsController < ApplicationController
       f.xAxis(:categories => @x_axis)
 
       f.series(:name => @team.name, :yAxis => 0, :data => @performance)
-      f.series(:name => "Highest " + @team.division.name + " Team Score", :yAxis => 0, :data => @top_performance)
-      f.series(:name => "Average Team Score", :yAxis => 0, :data => [310, 127, 1340, 81, 65])
+      f.series(:name => "Highest " + @team.division.name.capitalize[0...-1] + " Team Score", :yAxis => 0, :data => @top_performance)
+      f.series(:name => "Average Team Score", :yAxis => 0, :data => @average_scores)
 
 
       f.yAxis [

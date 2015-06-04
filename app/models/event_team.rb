@@ -56,4 +56,31 @@ class EventTeam
     # resort just to be safe...
     final = in_division.sort_by{|et| et.total_points}.reverse 
   end
+
+  def self.get_average_score(division)
+    average_scores = Array.new
+    for Event.all.each do |e|
+      score = 0
+      for EventTeam.get_all_teams_for_event_and_division(e, division).each do |t|
+        score = score + EventTeam.new(t,e).total_points
+      end
+      a = EventTeam.get_all_teams_for_event(e).length
+      score= score/a
+      average_scores << score
+    end 
+    return average_scores
+  end
+
+
+
+
+
 end #class EventTeam
+
+
+
+
+
+
+
+
