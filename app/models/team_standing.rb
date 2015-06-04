@@ -54,6 +54,7 @@ class TeamStanding < ActiveRecord::Base
       else 
         TeamStanding.find_topteam(team).(3) 
         return nil 
+      end
     end
 
 end
