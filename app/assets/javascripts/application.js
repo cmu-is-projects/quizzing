@@ -66,19 +66,19 @@ $(document).ready(function(){
       $('.slider').slider({full_width: false});
     });
 
-$(document).ready(function() {
-    $('.present-icon').click(function(event){
-      event.preventDefault();
-      var icon = $('#present-icon');
-      if(icon.hasClass('mdi-toggle-check-box')){
-        icon.removeClass('mdi-toggle-check-box ');
-        icon.addClass('mdi-navigation-cancel');
-      }
-      else {
-        icon.removeClass('mdi-navigation-cancel');
-        icon.addClass('mdi-toggle-check-box');
-      }
-    });
-});
+// $(document).ready(function() {
+//     $('.present-icon').click(function(event){
+//       event.preventDefault();
+//       var icon = $('#present-icon');
+//       if(icon.hasClass('mdi-toggle-check-box')){
+//         icon.removeClass('mdi-toggle-check-box ');
+//         icon.addClass('mdi-navigation-cancel');
+//       }
+//       else {
+//         icon.removeClass('mdi-navigation-cancel');
+//         icon.addClass('mdi-toggle-check-box');
+//       }
+//     });
+// });
 
 

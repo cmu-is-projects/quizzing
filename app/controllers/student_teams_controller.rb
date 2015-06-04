@@ -37,6 +37,20 @@ class StudentTeamsController < ApplicationController
     # end
   end
 
+  def toggle
+    @student_team = StudentTeam.find(params[:id])
+    @coach = Coach.find(params[:coach_id])
+    if params[:present] == true
+      @student_team.present = true
+    else
+      @student_team.present = false
+    end
+    @student_team.save!
+    @teams = Team.for_juniors(1000, @coach.organization)
+    # @senior_teams = Team.for_seniors(1000, @coach.organization)
+    # @seniorb_teams = Team.for_seniorb(1000, @coach.organization)
+  end
+
   private
   def student_team_params
     params.require(:student_team).permit(:is_captain, :active, :team_id, :student_id)

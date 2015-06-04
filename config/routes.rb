@@ -43,7 +43,9 @@ Quizzing::Application.routes.draw do
   #get "standings/team" => "standings#team", as: :team_standings
   patch 'active/:id' => 'students#active', as: :active
   patch 'inactive/:id' => 'students#inactive', as: :inactive
-  patch 'toggle_student/:id' => 'students#toggle', as: :toggle
+  # patch 'toggle_student/:id' => 'students#toggle', as: :toggle
+  patch 'toggle_attendance/:id' => 'student_teams#toggle', as: :toggle
+ 
 
   # post "student_teams/:id" => 'students#create_student_team', as: :create_student_team
   # patch "student_teams/:id" => 'students#update_student_team', as: :update_student_team

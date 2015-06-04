@@ -13,20 +13,27 @@
     <div class="divider"></div>
     <table>
       <thead>
-        <th> Seat </th>
+        <th>Seat </th>
         <th>Student Name</th>
         <th>Attendance</th>
       </thead>
       <tbody>
+        <% i.reload %>
         <% i.student_teams.by_seat.each do |s| %>
         <tr>
           <td><%= s.seat %></td>
           <td><%= s.student.proper_name %></td>
-          <% if s.present? %>
-          <td><a class= "present-icon" href="#"><i id="present-icon" class="mdi-toggle-check-box tiny"></i></a></td>
-          <% else %>
-          <td><a class="present-icon" href="#"><i id="present-icon" class= "mdi-navigation-cancel tiny"></i></a></td>
-          <% end %>
+          <td>
+            <% if s.present == true %>
+              <%= link_to toggle_path(s, present: true, coach_id: @coach.id), remote: true, method: 'patch' do %>
+                <i class="mdi-toggle-check-box tiny"></i>
+              <% end %>
+            <% else %>
+              <%= link_to toggle_path(s, present: false, coach_id: @coach.id), remote: true, method: 'patch' do %>
+                <i class="mdi-navigation-cancel tiny"></i>
+              <% end %>
+            <% end %>
+          </td>
         </tr>
         <% end %>
       </tbody>

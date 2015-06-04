@@ -9,14 +9,16 @@
       </ul>
     </div>
   </div>
-
+    
     <div id="division1" class="col s12">
       <div class="row">
         <!-- Junior Teams Column -->
+       
         <div class="col 4 m6">
-          <%= render(:partial => "team_cards", :locals => {:team => @junior_teams})%>
+         <div id="team_cards">
+            <%= render(:partial => "team_cards", :locals => {:team => @junior_teams})%>
+          </div>
         </div>
-
         <!-- Stats Column -->
         <div class="col 3 m5">
           <%= render 'stat_cards' %>
