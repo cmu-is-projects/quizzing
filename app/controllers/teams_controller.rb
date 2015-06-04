@@ -52,7 +52,7 @@ class TeamsController < ApplicationController
       f.xAxis(:categories => @x_axis)
 
       f.series(:name => @team.name, :yAxis => 0, :data => @performance)
-      f.series(:name => "Highest " + @team.division.name + " Score", :yAxis => 0, :data => @top_performance)
+      f.series(:name => "Highest " + @team.division.name + " Team Score", :yAxis => 0, :data => @top_performance)
       f.series(:name => "Average Team Score", :yAxis => 0, :data => [310, 127, 1340, 81, 65])
 
 
