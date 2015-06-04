@@ -59,7 +59,7 @@ class EventTeam
 
   def self.get_average_score(division)
     average_scores = Array.new
-    Event.past.all.each do |e|
+    Event.past.chronological.all.each do |e|
       score = 0
       count = 0
       EventTeam.get_all_teams_for_event_and_division(e, division).each do |t|
@@ -72,6 +72,18 @@ class EventTeam
     return average_scores
   end
 
+  def self.get_top_score(division)
+    top_scores = Array.new
+    Event.past.chronological.all.each do |e|
+      scores = Array.new
+      EventTeam.get_all_teams_for_event_and_division(e, division).each do |t|
+        scores << EventTeam.new(t.team,e).total_points
+      end
+      scores.sort_by(&:to_i).reverse
+      top_scores << scores.first 
+    end 
+    return top_scores
+  end
 
 
 
