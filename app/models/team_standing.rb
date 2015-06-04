@@ -40,10 +40,10 @@ class TeamStanding < ActiveRecord::Base
 
   def self.find_topteam(team)
     if team.division.name =="juniors"
-      return team.for_juniors.first
+      return TeamStanding.for_juniors.first
     elsif team.division.name =="seniors"
-      return team.for_seniors.first
-    else return team.for_seniorb.first
+      return TeamStanding.for_seniors.first
+    else return TeamStanding.for_seniorb.first
     end
   end
 

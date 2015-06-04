@@ -39,6 +39,9 @@ class TeamsController < ApplicationController
     @performance = @events.map{|e| e.total_points}
 
     #y_axis for highest team score 
+    @top_team = TeamStanding.find_topteam(@team).team
+    @top_events = @year_quizzes.map{ |e| EventTeam.new(@top_team, e)}
+    @top_performance = @top_events.map{|d| d.total_points}
 
 
     #y_axis for average team score
@@ -49,7 +52,7 @@ class TeamsController < ApplicationController
       f.xAxis(:categories => @x_axis)
 
       f.series(:name => @team.name, :yAxis => 0, :data => @performance)
-      f.series(:name => "Highest" + @team.division.name + "Score", :yAxis => 0, :data => [510, 137, 1490, 81, 65])
+      f.series(:name => "Highest " + @team.division.name + " Score", :yAxis => 0, :data => @top_performance)
       f.series(:name => "Average Team Score", :yAxis => 0, :data => [310, 127, 1340, 81, 65])
 
 
