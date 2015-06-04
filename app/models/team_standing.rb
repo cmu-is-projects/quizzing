@@ -38,15 +38,20 @@ class TeamStanding < ActiveRecord::Base
       seniorb.empty? ? [NullTeamStanding.new] : seniorb.sort
     end
 
-  def self.find_topteam(team)
-    if team.division.name =="juniors"
-      return TeamStanding.for_juniors.first
-    elsif team.division.name =="seniors"
-      return TeamStanding.for_seniors.first
-    else return TeamStanding.for_seniorb.first
+    def self.find_topteam(team)
+      if team.division.name =="juniors"
+        return TeamStanding.for_juniors
+      elsif team.division.name =="seniors"
+        return TeamStanding.for_seniors
+      else return TeamStanding.for_seniorb
+      end
     end
-  end
 
+
+    def self.show_top_four(team)
+      TeamStanding.find_topteam(team)
+       
+    end
 
 end
 
