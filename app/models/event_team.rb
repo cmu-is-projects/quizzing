@@ -31,7 +31,7 @@ class EventTeam
   end
   
   def get_all_quiz_teams_for_team_in_this_event
-    quiz_teams = QuizTeam.for_team(team).for_event(event).by_round_num.to_a
+    quiz_teams = QuizTeam.for_team(@team).for_event(@event).by_round_num.to_a
   end
 
   #Necessary for event details page
@@ -59,13 +59,14 @@ class EventTeam
 
   def self.get_average_score(division)
     average_scores = Array.new
-    Event.all.each do |e|
+    Event.past.all.each do |e|
       score = 0
+      count = 0
       EventTeam.get_all_teams_for_event_and_division(e, division).each do |t|
-        score += EventTeam.new(t,e).total_points
+        score += EventTeam.new(t.team,e).total_points
+        count += 1
       end
-      a = EventTeam.get_all_teams_for_event(e).length
-      score= score / a
+      score = score / count
       average_scores << score
     end 
     return average_scores
