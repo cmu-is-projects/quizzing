@@ -28,11 +28,11 @@ class IndivStanding < ActiveRecord::Base
 
     def self.find_top_student(student)
         if student.current_team.division.name == "juniors"
-            return team.for_juniors.first
+            return IndivStanding.for_juniors.first
         elsif student.current_team.division.name == "seniors"
-            return team.for_seniors.first
+            return student.for_seniors.first
         else
-            return team.for_seniorb.first
+            return student.for_seniorb.first
         end
     end
 

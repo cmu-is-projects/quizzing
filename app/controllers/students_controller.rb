@@ -11,7 +11,6 @@ class StudentsController < ApplicationController
     end
     @active_students = @students.active.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
     @top_standings = IndivStanding.for_juniors(7)
-    @inactive_students = @students.inactive.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
     @teams = Team.all
     @three_divisions = @students.active.map {|d| d.current_team.division}.uniq
     @divisions = Division.active.all
@@ -30,10 +29,13 @@ class StudentsController < ApplicationController
     @year_quizzes = YearQuizzer.find_scored_events_for_year(@quiz_year).map
     @x_axis = @year_quizzes.map {|e| e.start_date.strftime('%b')} #x-values
     @performance = @year_quizzes.map{ |e| EventQuizzer.new(@student, e)}.map{|p| p.total_points}
+    @top_student = IndivStanding.find_top_student(@student).student
+    @top_performance = @year_quizzes.map {|e| EventQuizzer.new(@top_student, e)}.map{|p| p.total_points}
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => "Performance")
       f.xAxis(:categories => @x_axis)
-      f.series(:name => "Student Performance", :yAxis => 0, :data => @performance)
+      f.series(:name => "Top Student Performance", :color => "#c3dadd" , :yAxis => 0, :data => @top_performance)
+      f.series(:name => @student.first_name + " Performance", :color => "#00bcd4", :yAxis => 0, :data => @performance)
 
       f.yAxis [
         {:title => {:text => "Quiz Scores", :margin => 70}, :min => 0, :max => 540 }
