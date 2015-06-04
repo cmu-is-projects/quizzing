@@ -12,7 +12,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @juniors.each do |student| %>
+            <% @active_students.each do |student| %>
               <tr>
                 <td><%= link_to student.name, student_path(student) %></td>
                 <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
@@ -24,7 +24,7 @@
         <br>
         <div class="card-action">
           <div class="digg_pagination">
-            <%= will_paginate @juniors, :container => true %>
+            <%= will_paginate @active_students, :container => true %>
           </div>
         </div>
     </div>
