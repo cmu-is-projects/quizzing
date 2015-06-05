@@ -42,27 +42,39 @@ class TeamsController < ApplicationController
     @top_scores = EventTeam.get_top_score(@team.division)
 
 
-    #y_axis for average team score
-
+    #y_axis for average team scores
     @average_scores = EventTeam.get_average_score(@team.division)
 
 
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+    @performance_chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => "Team Performance")
       f.xAxis(:categories => @x_axis)
 
       f.series(:name => @team.name, :yAxis => 0, :data => @performance)
-      f.series(:name => "Top " + @team.division.name.capitalize[0...-1] + " Team Score", :yAxis => 0, :data => @top_scores)
-      f.series(:name => "Average Score for Event", :yAxis => 0, :data => @average_scores)
-
-
+      f.series(:name => "Top Scores for " + @team.division.name.capitalize[0...-1] + " Division", :yAxis => 0, :data => @top_scores)
+      f.series(:name => "Averaged Scores for "+ @team.division.name.capitalize[0...-1] + " Division", :yAxis => 0, :data => @average_scores)
       f.yAxis [
         {:title => {:text => "Quiz Scores", :margin => 70} }
       ]
-
-
       f.chart({:defaultSeriesType=>"line"})
     end 
+
+    #bar graph for individual team members 
+    @member_chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title(:text => "Population vs GDP For 5 Big Countries [2009]")
+      f.xAxis(:categories => ["United States", "Japan", "China", "Germany", "France"])
+      f.series(:name => "GDP in Billions", :yAxis => 0, :data => [14119, 5068, 4985, 3339, 2656])
+      f.series(:name => "Population in Millions", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
+
+      f.yAxis [
+        {:title => {:text => "GDP in Billions", :margin => 70} },
+        {:title => {:text => "Population in Millions"}, :opposite => true},
+      ]
+
+      f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+      f.chart({:defaultSeriesType=>"column"})
+    end
+    
   end
 
   # GET /teams/new
