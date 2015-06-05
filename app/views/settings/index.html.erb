@@ -1,0 +1,17 @@
+<div class="container">
+	<h3>Settings</h3>
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey">
+            <div class="card-content white-text">
+              <span class="card-title">Update Standings for <%= sub = request.subdomain.humanize %></span>
+              <p>Choosing this option will recalculate the standings for the entire <%= sub %> division.  This may take a few minutes.</p>
+            </div>
+            <div class="card-action center-align">
+				<%= link_to update_standings_path, class: "waves-effect waves-light btn-large white-text" do %>
+				<i class="mdi-navigation-refresh"></i>&nbsp;Update Standings Now<% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
