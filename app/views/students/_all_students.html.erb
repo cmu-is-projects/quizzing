@@ -12,7 +12,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @active_students.each do |student| %>
+            <% @juniors.each do |student| %>
               <tr>
                 <td><%= link_to student.name, student_path(student) %></td>
                 <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
@@ -22,11 +22,6 @@
           </tbody>
         </table>
         <br>
-        <div class="card-action">
-          <div class="digg_pagination">
-            <%= will_paginate @active_students, :container => true %>
-          </div>
-        </div>
     </div>
   </div>
 </div>
@@ -44,23 +39,16 @@
             </tr>
           </thead>
           <tbody>
-            <% @active_students.each do |student| %>
-              <% if student.current_team.division == @divisions[1]%>
-                <tr>
-                  <td><%= link_to student.name, student_path(student) %></td>
-                  <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
-                  <td><%=student.grade%></td>
-                </tr>
-              <% end %>
+            <% @seniors.each do |student| %>
+              <tr>
+                <td><%= link_to student.name, student_path(student) %></td>
+                <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+                <td><%=student.grade%></td>
+              </tr>
             <% end %>
           </tbody>
         </table>
         <br>
-        <div class="card-action">
-          <div class="digg_pagination">
-            <%= will_paginate @active_students, :container => true %>
-          </div>
-        </div>
     </div>
   </div>
 </div>
@@ -78,23 +66,16 @@
             </tr>
           </thead>
           <tbody>
-            <% @active_students.each do |student| %>
-              <% if student.current_team.division == @divisions[2]%>
-                <tr>
-                  <td><%= link_to student.name, student_path(student) %></td>
-                  <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
-                  <td><%=student.grade%></td>
-                </tr>
-              <% end %>
+            <% @seniorb.each do |student| %>
+              <tr>
+                <td><%= link_to student.name, student_path(student) %></td>
+                <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+                <td><%=student.grade%></td>
+              </tr>
             <% end %>
           </tbody>
         </table>
         <br>
-        <div class="card-action">
-          <div class="digg_pagination">
-            <%= will_paginate @active_students, :container => true %>
-          </div>
-        </div>
 <!--   -->
     </div>
   </div>

@@ -10,7 +10,12 @@ class StudentsController < ApplicationController
       @students = Student.all
     end
     @active_students = @students.active.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
-    @top_standings = IndivStanding.for_juniors(7)
+    @juniors = IndivStanding.for_juniors.map{|j| j.student}
+    @seniors = IndivStanding.for_seniors.map{|j| j.student}
+    @seniorb = IndivStanding.for_seniorb.map{|j| j.student}
+    @junior_standings = IndivStanding.for_juniors(7)
+    @senior_standings = IndivStanding.for_seniors(7)
+    @seniorb_standings = IndivStanding.for_seniorb(7)
     @teams = Team.all
     @three_divisions = @students.active.map {|d| d.current_team.division}.uniq
     @divisions = Division.active.all
@@ -31,6 +36,7 @@ class StudentsController < ApplicationController
     @performance = @year_quizzes.map{ |e| EventQuizzer.new(@student, e)}.map{|p| p.total_points}
     @top_student = IndivStanding.find_top_student(@student).student
     @top_performance = @year_quizzes.map {|e| EventQuizzer.new(@top_student, e)}.map{|p| p.total_points}
+    @junior_standings = IndivStanding.for_juniors(4)
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => "Performance")
       f.xAxis(:categories => @x_axis)
