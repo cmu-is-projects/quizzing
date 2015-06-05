@@ -11,12 +11,24 @@
             </tr>
           </thead>
           <tbody>
-            <% @junior_standings.each do |standing| %>
-              <tr>
-                <td><%=standing.position %></td>
-                <td><%= link_to standing.student.name, student_path(standing.student) %></td>
-                <td><%=standing.total_points %></td>
-              </tr>
+            <% @top_four.each do |standing| %>
+              <% if standing == @student_standing and @student_standing.position > 4 %>
+                <tr>
+                  <td></td>
+                  <td>...</td>
+                </tr>
+                <tr>
+                  <td><%=standing.position %></td>
+                  <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+                  <td><%=standing.total_points %></td>
+                </tr>
+              <%else%>
+                <tr>
+                  <td><%=standing.position %></td>
+                  <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+                  <td><%=standing.total_points %></td>
+                </tr>
+              <%end%>
             <% end %>
           </tbody>
         </table>

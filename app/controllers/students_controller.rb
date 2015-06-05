@@ -9,22 +9,18 @@ class StudentsController < ApplicationController
     else
       @students = Student.all
     end
-    @active_students = @students.active.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
-    @juniors = IndivStanding.for_juniors.map{|j| j.student}
-    @seniors = IndivStanding.for_seniors.map{|j| j.student}
-    @seniorb = IndivStanding.for_seniorb.map{|j| j.student}
+    @juniors = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.last_name}
+    @seniors = IndivStanding.for_seniors.map{|j| j.student}.sort_by! {|n| n.last_name}
+    @seniorb = IndivStanding.for_seniorb.map{|j| j.student}.sort_by! {|n| n.last_name}
     @junior_standings = IndivStanding.for_juniors(7)
     @senior_standings = IndivStanding.for_seniors(7)
     @seniorb_standings = IndivStanding.for_seniorb(7)
-    @teams = Team.all
-    @three_divisions = @students.active.map {|d| d.current_team.division}.uniq
-    @divisions = Division.active.all
-    @new_students = Student.new_students
   end
 
   # GET /students/1
   # GET /students/1.json
   def show
+    @student_standing = IndivStanding.for_indiv(@student)
     @quiz_year = QuizYear.new
     @year_quizzer = YearQuizzer.new(@student)
     @year_event_quizzes = @year_quizzer.results  
@@ -34,9 +30,9 @@ class StudentsController < ApplicationController
     @year_quizzes = YearQuizzer.find_scored_events_for_year(@quiz_year).map
     @x_axis = @year_quizzes.map {|e| e.start_date.strftime('%b')} #x-values
     @performance = @year_quizzes.map{ |e| EventQuizzer.new(@student, e)}.map{|p| p.total_points}
-    @top_student = IndivStanding.find_top_student(@student).student
+    @top_student = IndivStanding.find_top_student(@student).first.student
     @top_performance = @year_quizzes.map {|e| EventQuizzer.new(@top_student, e)}.map{|p| p.total_points}
-    @junior_standings = IndivStanding.for_juniors(4)
+    @top_four = IndivStanding.show_top_four(@student)
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => "Performance")
       f.xAxis(:categories => @x_axis)
