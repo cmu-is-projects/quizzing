@@ -138,6 +138,48 @@ ALTER SEQUENCE divisions_id_seq OWNED BY divisions.id;
 
 
 --
+-- Name: event_summaries; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+--
+
+CREATE TABLE event_summaries (
+    id integer NOT NULL,
+    event_id integer,
+    division_id integer,
+    avg_student_points double precision,
+    avg_team_points double precision,
+    max_student_points integer,
+    max_team_points integer,
+    max_student_id integer,
+    max_team_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.event_summaries OWNER TO profh;
+
+--
+-- Name: event_summaries_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+--
+
+CREATE SEQUENCE event_summaries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.event_summaries_id_seq OWNER TO profh;
+
+--
+-- Name: event_summaries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+--
+
+ALTER SEQUENCE event_summaries_id_seq OWNED BY event_summaries.id;
+
+
+--
 -- Name: events; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
 --
 
@@ -715,6 +757,13 @@ ALTER TABLE ONLY divisions ALTER COLUMN id SET DEFAULT nextval('divisions_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: profh
 --
 
+ALTER TABLE ONLY event_summaries ALTER COLUMN id SET DEFAULT nextval('event_summaries_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+--
+
 ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
 
 
@@ -894,6 +943,42 @@ COPY divisions (id, name, start_grade, end_grade, active) FROM stdin;
 --
 
 SELECT pg_catalog.setval('divisions_id_seq', 3, true);
+
+
+--
+-- Data for Name: event_summaries; Type: TABLE DATA; Schema: public; Owner: profh
+--
+
+COPY event_summaries (id, event_id, division_id, avg_student_points, avg_team_points, max_student_points, max_team_points, max_student_id, max_team_id, created_at, updated_at) FROM stdin;
+22	1	1	214	91	480	122	\N	\N	2015-06-08 23:52:20.147891	2015-06-08 23:52:20.147891
+23	1	2	219	74	470	111	\N	\N	2015-06-08 23:52:24.675272	2015-06-08 23:52:24.675272
+24	1	3	210	87	420	116	\N	\N	2015-06-08 23:52:29.369309	2015-06-08 23:52:29.369309
+25	2	1	207	87	470	120	\N	\N	2015-06-08 23:52:34.266601	2015-06-08 23:52:34.266601
+26	2	2	244	80	470	124	\N	\N	2015-06-08 23:52:38.917975	2015-06-08 23:52:38.917975
+27	2	3	219	91	430	120	\N	\N	2015-06-08 23:52:43.378462	2015-06-08 23:52:43.378462
+28	3	1	211	90	470	129	\N	\N	2015-06-08 23:52:48.067875	2015-06-08 23:52:48.067875
+29	3	2	218	73	480	111	\N	\N	2015-06-08 23:52:52.616649	2015-06-08 23:52:52.616649
+30	3	3	207	86	500	104	\N	\N	2015-06-08 23:52:57.125096	2015-06-08 23:52:57.125096
+31	4	1	201	88	500	133	\N	\N	2015-06-08 23:53:01.592156	2015-06-08 23:53:01.592156
+32	4	2	219	72	460	117	\N	\N	2015-06-08 23:53:05.991235	2015-06-08 23:53:05.991235
+33	4	3	207	86	500	111	\N	\N	2015-06-08 23:53:10.495368	2015-06-08 23:53:10.495368
+34	5	1	203	86	480	120	\N	\N	2015-06-08 23:53:14.903043	2015-06-08 23:53:14.903043
+35	5	2	222	74	440	113	\N	\N	2015-06-08 23:53:19.300885	2015-06-08 23:53:19.300885
+36	5	3	206	85	450	119	\N	\N	2015-06-08 23:53:23.671758	2015-06-08 23:53:23.671758
+37	6	1	190	82	460	114	\N	\N	2015-06-08 23:53:28.20409	2015-06-08 23:53:28.20409
+38	6	2	215	74	460	114	\N	\N	2015-06-08 23:53:32.620113	2015-06-08 23:53:32.620113
+39	6	3	202	84	460	119	\N	\N	2015-06-08 23:53:37.101212	2015-06-08 23:53:37.101212
+40	7	1	214	91	430	128	\N	\N	2015-06-08 23:53:41.518955	2015-06-08 23:53:41.518955
+41	7	2	218	72	490	113	\N	\N	2015-06-08 23:53:45.913871	2015-06-08 23:53:45.913871
+42	7	3	209	87	490	131	\N	\N	2015-06-08 23:53:50.243	2015-06-08 23:53:50.243
+\.
+
+
+--
+-- Name: event_summaries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+--
+
+SELECT pg_catalog.setval('event_summaries_id_seq', 42, true);
 
 
 --
@@ -1368,7 +1453,6 @@ COPY quiz_teams (id, quiz_id, team_id, "position", raw_score, points, failed_cha
 170	57	78	2	180	18	0	2
 172	58	6	1	200	20	0	1
 173	58	32	2	190	19	0	2
-461	157	48	2	\N	\N	0	\N
 176	61	18	2	150	15	0	2
 177	61	9	3	70	7	0	3
 180	62	63	3	140	14	0	1
@@ -4602,6 +4686,7 @@ COPY quiz_teams (id, quiz_id, team_id, "position", raw_score, points, failed_cha
 3325	1130	19	1	180	18	0	1
 3344	1136	30	2	80	8	0	3
 3347	1137	48	2	160	16	0	1
+461	157	48	2	170	17	0	1
 \.
 
 
@@ -5776,6 +5861,8 @@ COPY schema_migrations (version) FROM stdin;
 20150526164201
 20150603152303
 20150603152538
+20150608150246
+20150608195357
 \.
 
 
@@ -17383,6 +17470,14 @@ ALTER TABLE ONLY coaches
 
 ALTER TABLE ONLY divisions
     ADD CONSTRAINT divisions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: event_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+--
+
+ALTER TABLE ONLY event_summaries
+    ADD CONSTRAINT event_summaries_pkey PRIMARY KEY (id);
 
 
 --
