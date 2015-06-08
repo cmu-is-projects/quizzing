@@ -15,6 +15,12 @@ class TeamsController < ApplicationController
     @top_standings = TeamStanding.for_juniors(7)
     @inactive_teams = @teams.inactive.sort_by! {|n| n.name}
     @divisions = @teams.active.map {|d| d.division}.uniq
+    @junior_teams = TeamStanding.for_juniors.map{|j| j.team}.sort_by! {|n| n.name}.first(10)
+    @senior_teams = TeamStanding.for_seniors.map{|j| j.team}.sort_by! {|n| n.name}.first(10)
+    @seniorb_teams = TeamStanding.for_seniorb.map{|j| j.team}.sort_by! {|n| n.name}.first(10)
+    @junior_standings = TeamStanding.for_juniors(7)
+    @senior_standings = TeamStanding.for_seniors(7)
+    @seniorb_standings = TeamStanding.for_seniorb(7)
   end
 
   # GET /teams/1
