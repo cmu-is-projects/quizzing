@@ -21,6 +21,7 @@ class TeamsController < ApplicationController
   # GET /teams/1.json
   def show
     @teams =Team.all
+    @students = @team.current_students
     @quiz_year = QuizYear.new
     @completed_events = @quiz_year.completed_events
     @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events 
@@ -30,18 +31,13 @@ class TeamsController < ApplicationController
 
 
     #line graph for performances
-
     @x_axis = YearTeam.find_scored_events_for_year(@quiz_year).map {|e| e.start_date.strftime('%b')}
-    
     #y_axis for team
     @year_quizzes = YearTeam.find_scored_events_for_year(@quiz_year).map
     @events = @year_quizzes.map{ |e| EventTeam.new(@team, e)}
     @performance = @events.map{|e| e.total_points}
-
     #y_axis for highest team score 
     @top_scores = EventTeam.get_top_score(@team.division)
-
-
     #y_axis for average team scores
     @average_scores = EventTeam.get_average_score(@team.division)
 
@@ -59,22 +55,29 @@ class TeamsController < ApplicationController
       f.chart({:defaultSeriesType=>"line"})
     end 
 
-    #bar graph for individual team members 
-    @member_chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(:text => "Population vs GDP For 5 Big Countries [2009]")
-      f.xAxis(:categories => ["United States", "Japan", "China", "Germany", "France"])
-      f.series(:name => "GDP in Billions", :yAxis => 0, :data => [14119, 5068, 4985, 3339, 2656])
-      f.series(:name => "Population in Millions", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
+    #bar graph for individual team members
 
-      f.yAxis [
-        {:title => {:text => "GDP in Billions", :margin => 70} },
-        {:title => {:text => "Population in Millions"}, :opposite => true},
-      ]
+    # @member_chart = LazyHighCharts::HighChart.new('bar') do |f|
+    #   f.title(:text => "Individual Member Scores")
+    #   f.xAxis(:categories => @x_axis)
+    #   f.series(:name => "Score", :yAxis => 0, :data => [14119, 5068, 4985, 3339, 2656])
 
-      f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
-      f.chart({:defaultSeriesType=>"column"})
+    #   f.chart({:defaultSeriesType=>"bar"})
+    # end
+
+    @students.each do |s|
+      eval %Q{
+        @member_chart#{s.id} = LazyHighCharts::HighChart.new('bar') do |f|
+          f.title(:text => "Individual Member Scores")
+          f.xAxis(:categories => @x_axis)
+          @student_performance = @year_quizzes.map{ |e| EventQuizzer.new(s, e)}.map{|p| p.total_points}
+          f.series(:name => "Score", :yAxis => 0, :data => [14119, 5068, 4985, 3339, 2656])
+
+          f.chart({:defaultSeriesType=>"bar"})
+        end
+      }
     end
-    
+
   end
 
   # GET /teams/new
