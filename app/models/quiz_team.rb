@@ -8,6 +8,8 @@ class QuizTeam < ActiveRecord::Base
 
   validate :quiz_is_active_in_system
   validate :team_is_active_in_system
+  validates :place, inclusion: { in: [1,2,3], message: "must be 1, 2, or 3", allow_blank: true }
+
 
   scope :by_round_num, -> { joins(:quiz).order('round_num') }
 
