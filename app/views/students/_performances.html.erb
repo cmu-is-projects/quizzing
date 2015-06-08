@@ -1,3 +1,19 @@
-<div class="card blue-grey darken-1">
-	<%= high_chart("some_id", @chart) %>
+<ul class="tabs">
+  <li class="tab col s2"><a class="active" href="#performance">Performance</a></li>
+  <li class="tab col s2"><a href="#wins">Wins</a></li>
+</ul>
+
+<div id= "performance" class="row">
+	<div class="card blue-grey darken-1">
+		<%= high_chart("some_id", @chart) %>
+	</div>
 </div>
+
+
+<%#have to figure out which teams competed in an event, figure out what students competed on that
+team, then which student got the highest score, and which student got the second highest score%>
+<!-- <div id= "wins" class="row">
+	<div class="card blue-grey darken-1">
+		<%#= high_chart("some_id", @chart) %>
+	</div>
+</div> -->
