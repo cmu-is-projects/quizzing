@@ -34,10 +34,10 @@ class StudentsController < ApplicationController
     #@average_scores = EventQuizzer.get_average_score(@student_division)
     @top_four = IndivStanding.show_top_four(@student)
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(:text => "Performance")
+      f.title(:text => "Student Performance")
       f.xAxis(:categories => @x_axis)
       f.series(:name => "Top Student Performance", :color => "#c3dadd" , :data => @top_scores)
-      f.series(:name => @student.first_name + " Performance", :color => "#00bcd4", :data => @performance)
+      f.series(:name => @student.proper_name + " Performance", :color => "#00bcd4", :data => @performance)
       #f.series(:name => "Average Performance", :data => @average_scores)
       f.yAxis [
         {:title => {:text => "Quiz Scores", :margin => 70}, :min => 0, :max => 540 }
