@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603152538) do
+ActiveRecord::Schema.define(version: 20150608150246) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "categories", force: true do |t|
     t.string "name"
@@ -86,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150603152538) do
     t.integer "raw_score"
     t.integer "points"
     t.integer "failed_challenges", default: 0
+    t.integer "place"
   end
 
   create_table "quizzes", force: true do |t|
