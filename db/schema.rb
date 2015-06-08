@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 20150608150246) do
     t.string  "zip"
     t.decimal "latitude"
     t.decimal "longitude"
-    t.boolean "active",             default: true
-    t.integer "primary_contact_id"
+    t.boolean "active",          default: true
+    t.integer "primary_contact"
   end
 
   create_table "quiz_teams", force: true do |t|
@@ -109,7 +109,6 @@ ActiveRecord::Schema.define(version: 20150608150246) do
     t.string  "area_name"
     t.string  "admin_name"
     t.string  "admin_email"
-    t.text    "intro"
   end
 
   create_table "student_quizzes", force: true do |t|
