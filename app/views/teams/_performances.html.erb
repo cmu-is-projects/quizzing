@@ -21,7 +21,7 @@
 
 		<% count =0 %>
         <% @students.each do |s| %>
-			<div id=<%= "graph#{count}" %> >
+			<div id=<%= "graph#{count}"%> class="col s12">
 				<%= high_chart("some_other_id#{s.id}", eval("@member_chart#{s.id}")) %>
 			</div>
 			<% count +=1 %>
