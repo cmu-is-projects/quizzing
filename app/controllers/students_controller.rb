@@ -20,39 +20,39 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
+    @student_division = @student.current_team.division
     @student_standing = IndivStanding.for_indiv(@student)
     @quiz_year = QuizYear.new
     @year_quizzer = YearQuizzer.new(@student)
-    @year_event_quizzes = @year_quizzer.results  
-    @events = Event.all.chronological
     @top_standings = IndivStanding.for_juniors(3)
-    @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)
     @year_quizzes = YearQuizzer.find_scored_events_for_year(@quiz_year).map
     @x_axis = @year_quizzes.map {|e| e.start_date.strftime('%b')} #x-values
-    @performance = @year_quizzes.map{ |e| EventQuizzer.new(@student, e)}.map{|p| p.total_points}
+    @events = @year_quizzes.map{ |e| EventQuizzer.new(@student, e)}
+    @performance = @events.map{|p| p.total_points}
     @top_student = IndivStanding.find_top_student(@student).first.student
-    @top_scores = EventQuizzer.get_top_score(@student.current_team.division)
-    @average_scores = EventQuizzer.get_average_score(@student.current_team.division)
+    #@top_scores = EventQuizzer.get_top_score(@student_division)
+    #@average_scores = EventQuizzer.get_average_score(@student_division)
     @top_four = IndivStanding.show_top_four(@student)
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title(:text => "Performance")
       f.xAxis(:categories => @x_axis)
       f.series(:name => "Top Student Performance", :color => "#c3dadd" , :data => @top_scores)
       f.series(:name => @student.first_name + " Performance", :color => "#00bcd4", :data => @performance)
-      f.series(:name => "Average Performance", :data => @average_scores)
+      #f.series(:name => "Average Performance", :data => @average_scores)
       f.yAxis [
         {:title => {:text => "Quiz Scores", :margin => 70}, :min => 0, :max => 540 }
       ]
       f.chart({:defaultSeriesType=>"line"})
     end 
 
-    @win_chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.xAxis(:categories => @x_axis)
-      f.series(:name => @student.first_name + " First Place Wins", :color => "#00bcd4", :data => @performance)
-      f.yAxis [
-        {:title => {:text => "Wins", :margin => 70}, :min => 0, :max => 540 }
-      ]
-      f.chart({:defaultSeriesType=>"column"})
-    end 
+    # @win_chart = LazyHighCharts::HighChart.new('graph') do |f|
+    #   f.xAxis(:categories => @x_axis)
+    #   f.series(:name => @student.first_name + " First Place Wins", :color => "#00bcd4", :data => @performance)
+    #   f.yAxis [
+    #     {:title => {:text => "Wins", :margin => 70}, :min => 0, :max => 540 }
+    #   ]
+    #   f.chart({:defaultSeriesType=>"column"})
+    # end 
   end
 
   # GET /students/new
