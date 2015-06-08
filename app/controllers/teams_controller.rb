@@ -27,12 +27,14 @@ class TeamsController < ApplicationController
   # GET /teams/1.json
   def show
     @teams =Team.all
+    @team_standing = TeamStanding.for_team(@team)
     @quiz_year = QuizYear.new
     @completed_events = @quiz_year.completed_events
     @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events 
     @team_quiz = QuizTeam.for_team(@team) #quizzes for the team
     @declared_num_rounds = 6
     @year_team = YearTeam.new(@team)
+    @top_four = TeamStanding.show_top_four(@team)
 
 
     #line graph for performances
