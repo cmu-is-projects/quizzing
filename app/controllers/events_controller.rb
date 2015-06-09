@@ -20,11 +20,14 @@ class EventsController < ApplicationController
   def show
     @quizzes = @event.quizzes.sort{|a,b| a.round_num <=> b.round_num}
     @divisions = Division.all.active
+    @juniors = Division.find_by_name("juniors")
+    @senior_a = Division.find_by_name("seniors")
+    @senior_b = Division.find_by_name("seniorb")
     @total_room_num = Quiz.maximum(:room_num)
-    @round_num = Quiz.for_division(@divisions.first).maximum(:round_num)
-    @somthing = Quiz.find_by_event_id_and_room_num_and_round_num(@event,@total_room_num,@round_num)
-    # @jr = @divisions.find_by_name('juniors').id 
-    # @junior_team_results = EventTeam.get_all_teams_for_event_and_division(@event, @jr)
+    @senior_a_round_num = Quiz.for_division(@senior_a).maximum(:round_num)
+    @senior_b_round_num = Quiz.for_division(@senior_b).maximum(:round_num)
+    @junior_round_num = Quiz.for_division(@juniors).maximum(:round_num)
+    @matrix = Quiz.find_by_event_id_and_room_num_and_round_num(@event.id,@total_room_num,@round_num)
   end
 
   # GET /events/new
