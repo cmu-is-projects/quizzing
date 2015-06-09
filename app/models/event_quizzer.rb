@@ -47,8 +47,12 @@ class EventQuizzer
     all_students_at_event = StudentQuiz.for_event(event).map(&:student_id).uniq
     quizzers = Array.new
     all_students_at_event.each do |stu_id|
-      event_quizzer = EventQuizzer.new(Student.find(stu_id), event)
-      quizzers << event_quizzer
+      stu = Student.find(stu_id)
+      unless stu.nil?
+        event_quizzer = EventQuizzer.new(stu, event)
+        quizzers << event_quizzer
+      end
+
     end
     # returned a sorted array of event_quizzers in descending order of average points
     # (until end when avg and total align, averages rule the day in reporting results)
