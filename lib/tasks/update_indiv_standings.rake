@@ -23,6 +23,7 @@ namespace :db do
         standing.lowest_score = yr_quizzer.lowest_points
         standing.adjusted_points = yr_quizzer.adjusted_points
         standing.accuracy = yr_quizzer.total_accuracy
+        standing.organization_id = yr_quizzer.quizzer.current_organization.id
         if standing.save!
           puts "#{position}. #{yr_quizzer.quizzer.name} standing saved"
         else

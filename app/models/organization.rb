@@ -14,6 +14,8 @@ class Organization < ActiveRecord::Base
   has_many :events
   belongs_to :primary_contact, class_name: "Coach", foreign_key: "primary_contact_id"
 
+  has_many :indiv_standings
+
   #Validations
   validates :name, presence: true
   validates :state, inclusion: { in: (STATES_LIST.map{|a,b| a} + STATES_LIST.map { |a,b| b }), message: "is not valid state", allow_blank: true }
