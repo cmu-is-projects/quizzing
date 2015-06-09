@@ -68,6 +68,16 @@ class Team < ActiveRecord::Base
       seniorb.empty? ? [NullTeam.new] : seniorb.sort_by{|t| t.name}
   end 
 
+  def self.find_teams(team)
+    if team.division.name =="juniors"
+      return Team.for_juniors
+    elsif team.division.name =="seniors"
+      return Team.for_seniors
+    else return Team.for_seniorb
+    end
+  end
+
+
   
   # Methods
   # Returns active teams that are not at capacity in accordance with student's grade and organization
