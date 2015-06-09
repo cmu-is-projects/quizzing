@@ -1,0 +1,182 @@
+<div id= "division1" class="row">
+	<div class="col s8">
+		<h5>All Students</h5>
+		<div class="card blue-grey lighten-5">
+		  <div class="card-content black-text">
+		    <div class="divider"></div>
+		      <table class="responsive-table">
+		        <thead>
+		          <tr>
+		            <th data-field="id">Name</th>
+		            <th data-field="name">Team</th>
+		            <th data-field="price">Grade</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <% @juniors.each do |student| %>
+		            <tr>
+		              <td><%= link_to student.name, student_path(student) %></td>
+		              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+		              <td><%=student.grade%></td>
+		            </tr>
+		          <% end %>
+		        </tbody>
+		      </table>
+		      <br>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col s1">&nbsp;</div>
+
+	<div class="col s3">
+		<h5>Top Students</h5>
+		<div class="card blue-grey lighten-5">
+		  <div class="card-content black-text">
+		    <div class="divider"></div>
+		      <table class="responsive-table">
+		        <thead>
+		          <tr>
+		            <th data-field="id">Rank</th>
+		            <th data-field="name">Student</th>
+		            <th data-field="price">Score</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <% @junior_standings.each do |standing| %>
+		            <tr>
+		              <td><%=standing.position %></td>
+		              <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+		              <td><%=standing.total_points %></td>
+		            </tr>
+		          <% end %>
+		        </tbody>
+		      </table>
+		      <br>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<div id= "division2" class="row">
+	<div class="col s8">
+		<h5>All Students</h5>
+		<div class="card blue-grey lighten-5">
+		  <div class="card-content black-text">
+		    <div class="divider"></div>
+		      <table class="responsive-table">
+		        <thead>
+		          <tr>
+		            <th data-field="id">Name</th>
+		            <th data-field="name">Team</th>
+		            <th data-field="price">Grade</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <% @seniors.each do |student| %>
+		            <tr>
+		              <td><%= link_to student.name, student_path(student) %></td>
+		              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+		              <td><%=student.grade%></td>
+		            </tr>
+		          <% end %>
+		        </tbody>
+		      </table>
+		      <br>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col s1">&nbsp;</div>
+
+	<div class="col s3">
+		<h5>Top Students</h5>
+		<div class="card blue-grey lighten-5">
+		  <div class="card-content black-text">
+		    <div class="divider"></div>
+		      <table class="responsive-table">
+		        <thead>
+		          <tr>
+		            <th data-field="id">Rank</th>
+		            <th data-field="name">Student</th>
+		            <th data-field="price">Score</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <% @senior_standings.each do |standing| %>
+		            <tr>
+		              <td><%=standing.position %></td>
+		              <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+		              <td><%=standing.total_points %></td>
+		            </tr>
+		          <% end %>
+		        </tbody>
+		      </table>
+		      <br>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<div id= "division3" class="row">
+	<div class="col s8">
+		<h5>All Students</h5>
+		<div class="card blue-grey lighten-5">
+		  <div class="card-content black-text">
+		    <div class="divider"></div>
+		      <table class="responsive-table">
+		        <thead>
+		          <tr>
+		            <th data-field="id">Name</th>
+		            <th data-field="name">Team</th>
+		            <th data-field="price">Grade</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <% @seniorb.each do |student| %>
+		            <tr>
+		              <td><%= link_to student.name, student_path(student) %></td>
+		              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+		              <td><%=student.grade%></td>
+		            </tr>
+		          <% end %>
+		        </tbody>
+		      </table>
+		      <br>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col s1">&nbsp;</div>
+
+	<div class="col s3">
+		<h5>Top Students</h5>
+		<div class="card blue-grey lighten-5">
+		  <div class="card-content black-text">
+		    <div class="divider"></div>
+		      <table class="responsive-table">
+		        <thead>
+		          <tr>
+		            <th data-field="id">Rank</th>
+		            <th data-field="name">Student</th>
+		            <th data-field="price">Score</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <% @seniorb_standings.each do |standing| %>
+		            <tr>
+		              <td><%=standing.position %></td>
+		              <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+		              <td><%=standing.total_points %></td>
+		            </tr>
+		          <% end %>
+		        </tbody>
+		      </table>
+		      <br>
+		  </div>
+		</div>
+	</div>
+</div>
+
+
+

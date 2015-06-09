@@ -28,6 +28,11 @@ Quizzing::Application.routes.draw do
   get "team_standings/seniors" => "team_standings#seniors", as: :team_standings_s
   get "team_standings/seniorb" => "team_standings#seniorb", as: :team_standings_sb
 
+  get "update_area_standings" => "settings#update_area_standings", as: :update_area_standings
+  get "update_indiv_standings" => "settings#update_indiv_standings", as: :update_indiv_standings
+  get "update_team_standings" => "settings#update_team_standings", as: :update_team_standings
+
+
   # authentication routes
   get 'user/edit' => 'users#edit', as: :edit_current_user
   get 'login' => 'sessions#new', as: :login

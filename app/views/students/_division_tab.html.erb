@@ -1,5 +1,11 @@
 <ul class="tabs">
-  <li class="tab col s2"><a class="active" href="#division1">Junior</a></li>
-  <li class="tab col s2"><a href="#division2">Senior</a></li>
-  <li class="tab col s2"><a href="#division3">Senior B</a></li>
+	<%if Division.all.exists?(1)%>
+  		<li class="tab col s2"><a class="active" href="#division1">Junior</a></li>
+  	<%end%>
+  	<%if Division.all.exists?(2)%>
+  		<li class="tab col s2"><a href="#division2">Senior</a></li>
+  	<%end%>
+  	<%if Division.all.exists?(3)%>
+  		<li class="tab col s2"><a href="#division3">Senior B</a></li>
+  	<%end%>
 </ul>

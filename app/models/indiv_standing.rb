@@ -28,11 +28,11 @@ class IndivStanding < ActiveRecord::Base
 
     def self.find_top_student(student)
         if student.current_team.division.name == "juniors"
-            return team.for_juniors.first
+            return IndivStanding.for_juniors
         elsif student.current_team.division.name == "seniors"
-            return team.for_seniors.first
+            return IndivStanding.for_seniors
         else
-            return team.for_seniorb.first
+            return IndivStanding.for_seniorb
         end
     end
 
@@ -63,5 +63,16 @@ class IndivStanding < ActiveRecord::Base
       seniorb.empty? ? [NullIndivStanding.new] : seniorb.sort
     end 
 
+
+    def self.show_top_four(student)
+        student_standing = IndivStanding.for_indiv(student)
+        if IndivStanding.find_top_student(student)[0..3].include?(student_standing)
+          return IndivStanding.find_top_student(student)[0..3]
+        else 
+          top3 = IndivStanding.find_top_student(student)[0..2]
+          top3.append(student_standing)
+          return top3
+        end
+    end
 
 end

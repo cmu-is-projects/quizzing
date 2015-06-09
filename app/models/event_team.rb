@@ -31,7 +31,7 @@ class EventTeam
   end
   
   def get_all_quiz_teams_for_team_in_this_event
-    quiz_teams = QuizTeam.for_team(team).for_event(event).by_round_num.to_a
+    quiz_teams = QuizTeam.for_team(@team).for_event(@event).by_round_num.to_a
   end
 
   #Necessary for event details page
@@ -56,4 +56,44 @@ class EventTeam
     # resort just to be safe...
     final = in_division.sort_by{|et| et.total_points}.reverse 
   end
+
+  def self.get_average_score(division)
+    average_scores = Array.new
+    Event.past.chronological.all.each do |e|
+      score = 0
+      count = 0
+      EventTeam.get_all_teams_for_event_and_division(e, division).each do |t|
+        score += EventTeam.new(t.team,e).total_points
+        count += 1
+      end
+      score = score / count
+      average_scores << score
+    end 
+    return average_scores
+  end
+
+  def self.get_top_score(division)
+    top_scores = Array.new
+    Event.past.chronological.all.each do |e|
+      scores = Array.new
+      EventTeam.get_all_teams_for_event_and_division(e, division).each do |t|
+        scores << EventTeam.new(t.team,e).total_points
+      end
+      scores.sort_by(&:to_i).reverse
+      top_scores << scores.first 
+    end 
+    return top_scores
+  end
+
+
+
+
 end #class EventTeam
+
+
+
+
+
+
+
+

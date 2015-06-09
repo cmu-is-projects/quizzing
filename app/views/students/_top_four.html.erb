@@ -1,0 +1,37 @@
+<h5>Top Students</h5>
+  <div class="card blue-grey lighten-5">
+    <div class="card-content black-text">
+      <div class="divider"></div>
+        <table class="responsive-table">
+          <thead>
+            <tr>
+              <th data-field="id">Rank</th>
+              <th data-field="name">Student</th>
+              <th data-field="price">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @top_four.each do |standing| %>
+              <% if standing == @student_standing and @student_standing.position > 4 %>
+                <tr>
+                  <td></td>
+                  <td>...</td>
+                </tr>
+                <tr>
+                  <td><%=standing.position %></td>
+                  <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+                  <td><%=standing.total_points %></td>
+                </tr>
+              <%else%>
+                <tr>
+                  <td><%=standing.position %></td>
+                  <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+                  <td><%=standing.total_points %></td>
+                </tr>
+              <%end%>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+    </div>
+  </div>
