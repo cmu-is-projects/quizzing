@@ -1,27 +1,6 @@
 <table class = "bordered">
 	<tr>
 		<td>
-			<div class = "col m10">
-				<font size = "7">
-					<%= @student.proper_name %>
-				</font>
-			</div>
-			<div class = "col m2">
-				<p class = "small">
-					<i class="small mdi-action-turned-in"></i>
-					<br>
-					<font size = "1"><strong>3 WINS</strong></font>
-					<br>
-					<br>
-					<i class="small mdi-action-turned-in-not"></i>
-					<br>
-					<font size = "1"><strong>2 WINS</strong></font>
-				<p>
-			</div>
-		</td>
-	</tr>
-	<tr>
-		<td>
 		  <font size = "1"><strong>CURRENT TEAM</strong></font>
 		  <br>
 		  <font size = "4"><%=@student.current_team.name %></font>
@@ -48,4 +27,3 @@
 			<font size = "4"><%= "#{@accuracy_percentage}%"%></font>
 	</tr>
 </table>
-

@@ -6,14 +6,16 @@
 	</div> 
 
 	<div class="row">
-		<div class="col s8">
+		<div class="col s7">
 			<!-- primary partial gets displayed here in main div -->
 			<%= render partial: "#{left8}"%> 
 		</div>
-    
-		<div class="col s1">&nbsp;</div>
 
-		<div class="col s3">
+		<div class ="col s1">
+			&nbsp;
+		</div>
+
+		<div class="col s4">
 			<%= render partial: "#{right4}" unless right4.blank? %>
 		</div>
 	</div>

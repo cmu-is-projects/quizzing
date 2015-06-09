@@ -1,15 +1,12 @@
-<p id="notice"><%= notice %></p>
-<h3><%= @team.name %> </h3>
 
-<p>
-  <strong>Grade - Division:</strong>
-  <%= "#{@team.division.name.capitalize}" %>
-</p>
+	<p>
+	  <strong>Division:</strong>
+	  <%= "#{@team.division.name.capitalize}" %>
+	</p>
 
-<br>
+	<br>
 
-<p class = "small">
-	<font size = "5">&nbsp;<%= @team.team_standing.total_points%> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;<%= "#{@accuracy_percentage}%"%></font><br>
-	total points &nbsp;&nbsp;&nbsp;&nbsp;average accuracy
-</p>
-
+	<p class = "small">
+		<font size = "5">&nbsp;<%= @team.team_standing.total_points%> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;<%= "#{@accuracy_percentage}%"%></font><br>
+		total points &nbsp;&nbsp;&nbsp;&nbsp;average accuracy
+	</p>
