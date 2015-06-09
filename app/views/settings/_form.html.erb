@@ -1,0 +1,32 @@
+<%= simple_form_for(@setting) do |f| %>
+  <fieldset>
+    <% if @setting.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
+
+        <ul>
+        <% @setting.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.input :roster_lock_date, label: "Roster Lock Date", as: :string, :input_html => {:class => "datepicker"} %>
+    <br>
+    <%= f.input :drop_lowest_score, as: :select %><br>
+    <%= f.input :roster_lock_toggle, as: :select %><br>
+    <%= f.input :auto_promote_students, as: :select %><br>
+    <%= f.input :area_name %><br>
+    <%= f.input :admin_name %><br>
+    <%= f.input :admin_email %><br>
+    <%= f.input :intro %><br>
+
+
+    <div class="form-actions">
+      <%= f.submit nil, class: 'button' %>
+      <%= link_to 'Cancel', settings_path, :class => 'button secondary' %>
+    </div>
+
+  </fieldset>
+<% end %>
