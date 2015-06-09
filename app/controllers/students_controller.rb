@@ -24,6 +24,7 @@ class StudentsController < ApplicationController
     @student_standing = IndivStanding.for_indiv(@student)
     @quiz_year = QuizYear.new
     @year_quizzer = YearQuizzer.new(@student)
+    @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)
     @top_standings = IndivStanding.for_juniors(3)
     @year_quizzes = YearQuizzer.find_scored_events_for_year(@quiz_year).map
     @x_axis = @year_quizzes.map {|e| e.start_date.strftime('%b')} #x-values
