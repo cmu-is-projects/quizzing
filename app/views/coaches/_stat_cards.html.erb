@@ -1,64 +1,66 @@
 <div class="card white">
-            <div class="card-content black-text">
-              <span class="card-title black-text"><i id="top-team-star-icon"class="fa fa-star-o"></i> Top Students </span>
-              <div class="divider"></div>
-              <table class="center">
-                <thead>
-                  <th> Rank </th>
-                  <th> Student Name </th>
-                  <th> Total Points </th>
-                  <th> Accuracy </th>
-                </thead>
-                <tbody>
-                  <% standing.first(5).each do |s| %>
-                  <tr>
-                    <td><%= s.position %></td>
-                    <td><%= s.student.proper_name %></td>
-                    <td><%= s.total_points %></td>
-                    <td><%= s.accuracy %></td>
-                  </tr>
-                  <% end %>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td align="left"><a class ="activator" href="#"> More <i class="fa fa-angle-double-right"></i></a></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+  <div class="card-content black-text">
+    <span class="card-title black-text"><i id="top-team-star-icon"class="fa fa-star-o"></i> Top Students </span>
+    <div class="divider"></div>
+    <table class="center">
+      <thead>
+        <th> Rank </th>
+        <th> Student Name </th>
+        <th> Total Points </th>
+        <th> Accuracy </th>
+      </thead>
+      <tbody>
+        <% standing.first(5).each do |s| %>
+        <tr>
+          <td><%= s.position %></td>
+          <td><%= s.student.proper_name %></td>
+          <td><%= s.total_points %></td>
+          <td><%= s.accuracy %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td align="left"><a class ="activator" href="#"> More <i class="fa fa-angle-double-right"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
+<!-- add if statement to hide if empty -->
+<div class="card white">
+  <div class="card-content black-text">
+    <span class="card-title black-text"><i id="most-improved-icon" class="fa fa-thumbs-o-up"></i> Most Improved </span>
+    <div class="divider"></div>
+    <table class="center">
+      <thead>
+        <th> Student Name </th>
+        <th> Total Points </th>
+        <th> Point Increase </th>
+        <th> Accuracy </th>
+      </thead>
+      <tbody>
+        <% standing.first(5).each do |s| %>
+        <tr>
+          <td><%= s.student.proper_name %></td>
+          <td><%= s.total_points %></td>
+          <td class="improvement">+100</td>
+          <td><%= s.accuracy %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td align="left"><a class ="activator" href="#"> More <i class="fa fa-angle-double-right"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-
-          <div class="card white">
-            <div class="card-content black-text">
-              <span class="card-title black-text"><i id="most-improved-icon" class="fa fa-thumbs-o-up"></i> Most Improved </span>
-              <div class="divider"></div>
-              <table class="responsive-table">
-                <tbody>
-                  <tr>
-                    <td>Alexa Smith</td>
-                    <td>750</td>
-                    <td id="improvement">+100</td>
-                    <td>80%</td>
-                  </tr>
-                  <tr>
-                    <td>Alan Smith</td>
-                    <td>650</td> 
-                    <td id="improvement">+100</td>
-                    <td>75%</td>
-                  </tr>
-                  <tr>
-                    <td>Chriss Smith</td>
-                    <td>600</td>
-                    <td id="improvement">+100</td>
-                    <td>70%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
 
           <div class="card white">
             <div class="card-content black-text">

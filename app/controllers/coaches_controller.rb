@@ -9,9 +9,9 @@ class CoachesController < ApplicationController
     @senior_teams = Team.for_seniors(1000, @coach.organization)
     @seniorb_teams = Team.for_seniorb(1000, @coach.organization)
     @coaches = Coach.alphabetical.active.all
-    @top_juniors = IndivStanding.for_juniors(10)
-    @top_seniors = IndivStanding.for_seniors(10)
-    @top_seniorb = IndivStanding.for_seniorb(10)
+    @top_juniors = IndivStanding.for_juniors(10, @coach.organization)
+    @top_seniors = IndivStanding.for_seniors(10, @coach.organization)
+    @top_seniorb = IndivStanding.for_seniorb(10, @coach.organization)
   end
 
   def show
