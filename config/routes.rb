@@ -32,6 +32,7 @@ Quizzing::Application.routes.draw do
   get "update_indiv_standings" => "settings#update_indiv_standings", as: :update_indiv_standings
   get "update_team_standings" => "settings#update_team_standings", as: :update_team_standings
 
+
   # authentication routes
   get 'user/edit' => 'users#edit', as: :edit_current_user
   get 'login' => 'sessions#new', as: :login

@@ -28,6 +28,7 @@ class TeamsController < ApplicationController
   def show
     @teams =Team.all
     @team_standing = TeamStanding.for_team(@team)
+    @students = @team.current_students
     @quiz_year = QuizYear.new
     @completed_events = @quiz_year.completed_events
     @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events 
@@ -39,39 +40,42 @@ class TeamsController < ApplicationController
 
 
     #line graph for performances
-
     @x_axis = YearTeam.find_scored_events_for_year(@quiz_year).map {|e| e.start_date.strftime('%b')}
-    
     #y_axis for team
     @year_quizzes = YearTeam.find_scored_events_for_year(@quiz_year).map
     @events = @year_quizzes.map{ |e| EventTeam.new(@team, e)}
     @performance = @events.map{|e| e.total_points}
-
     #y_axis for highest team score 
     @top_scores = EventSummary.for_division(@team.division).chronological.map{|e| e.max_team_points}
-
-
     #y_axis for average team score
-
     @average_scores = EventSummary.for_division(@team.division).chronological.map{|e| e.avg_team_points}
 
-
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+    @performance_chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => "Team Performance")
       f.xAxis(:categories => @x_axis)
-
       f.series(:name => @team.name + " Performance", :yAxis => 0, :color => "#0d47a1", :data => @performance)
       f.series(:name => "Top " + @team.division.name.capitalize[0...-1] + " Team Scores", :color => "#00bcd4", :yAxis => 0, :data => @top_scores)
-      f.series(:name => "Average Score for Event", :yAxis => 0, :color => "#a6b8ba", :data => @average_scores)
-
-
+      f.series(:name => "Averaged Scores for "+ @team.division.name.capitalize[0...-1] + " Division", :yAxis => 0, :color => "#a6b8ba", :data => @average_scores)
       f.yAxis [
         {:title => {:text => "Quiz Scores", :margin => 70} }
       ]
-
-
       f.chart({:defaultSeriesType=>"line"})
     end 
+
+    #bar graph for individual team members
+    @students.each do |s|
+      @student_performance = @year_quizzes.map{ |e| EventQuizzer.new(s, e)}.map{|p| p.total_points}
+      eval %Q{
+        @member_chart#{s.id} = LazyHighCharts::HighChart.new('bar') do |f|
+          f.title(:text => "Individual Member Scores")
+          f.xAxis(:categories => @x_axis)
+          f.series(:name => "Score", :yAxis => 0, :data => @student_performance)
+
+          f.chart({:defaultSeriesType=>"bar"})
+        end
+      }
+    end
+
   end
 
   # GET /teams/new
