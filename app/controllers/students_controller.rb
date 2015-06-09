@@ -9,39 +9,51 @@ class StudentsController < ApplicationController
     else
       @students = Student.all
     end
-    @active_students = @students.active.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
-    @top_standings = IndivStanding.for_juniors(7)
-    @inactive_students = @students.inactive.paginate(:page => params[:page]).per_page(10).sort_by! {|n| n.last_name}
-    @teams = Team.all
-    @three_divisions = @students.active.map {|d| d.current_team.division}.uniq
-    @divisions = Division.active.all
-    @new_students = Student.new_students
+    @juniors = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.last_name}.first(10)
+    @seniors = IndivStanding.for_seniors.map{|j| j.student}.sort_by! {|n| n.last_name}.first(10)
+    @seniorb = IndivStanding.for_seniorb.map{|j| j.student}.sort_by! {|n| n.last_name}.first(10)
+    @junior_standings = IndivStanding.for_juniors(7)
+    @senior_standings = IndivStanding.for_seniors(7)
+    @seniorb_standings = IndivStanding.for_seniorb(7)
   end
 
   # GET /students/1
   # GET /students/1.json
   def show
+    @student_division = @student.current_team.division
+    @student_standing = IndivStanding.for_indiv(@student)
     @quiz_year = QuizYear.new
     @year_quizzer = YearQuizzer.new(@student)
-    @year_event_quizzes = @year_quizzer.results  
-    @events = Event.all.chronological
-    @top_standings = IndivStanding.for_juniors(3)
     @accuracy_percentage = (@year_quizzer.total_accuracy*100.0).round(1)
+    @top_standings = IndivStanding.for_juniors(3)
     @year_quizzes = YearQuizzer.find_scored_events_for_year(@quiz_year).map
     @x_axis = @year_quizzes.map {|e| e.start_date.strftime('%b')} #x-values
-    @performance = @year_quizzes.map{ |e| EventQuizzer.new(@student, e)}.map{|p| p.total_points}
+    @events = @year_quizzes.map{ |e| EventQuizzer.new(@student, e)}
+    @performance = @events.map{|p| p.total_points}
+    @top_student = IndivStanding.find_top_student(@student).first.student
+    @top_scores = EventSummary.for_division(@student_division).chronological.map{|e| e.max_student_points}
+    @average_scores = EventSummary.for_division(@student_division).chronological.map{|e| e.avg_student_points}
+    @top_four = IndivStanding.show_top_four(@student)
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(:text => "Performance")
+      f.title(:text => "Student Performance")
       f.xAxis(:categories => @x_axis)
-      f.series(:name => "Student Performance", :yAxis => 0, :data => @performance)
-
+      f.series(:name => @student.proper_name + " Performance", :color => "#0d47a1", :yAxis => 0, :data => @performance)
+      f.series(:name => "Top " + @student.current_team.division.name.capitalize[0...-1] + " Student Scores", :color => "#00bcd4", :yAxis => 0, :data => @top_scores)
+      f.series(:name => "Average Score for Event", :yAxis => 0, :color => "#a6b8ba", :data => @average_scores)
       f.yAxis [
         {:title => {:text => "Quiz Scores", :margin => 70}, :min => 0, :max => 540 }
       ]
-
-
       f.chart({:defaultSeriesType=>"line"})
     end 
+
+    # @win_chart = LazyHighCharts::HighChart.new('graph') do |f|
+    #   f.xAxis(:categories => @x_axis)
+    #   f.series(:name => @student.first_name + " First Place Wins", :color => "#00bcd4", :data => @performance)
+    #   f.yAxis [
+    #     {:title => {:text => "Wins", :margin => 70}, :min => 0, :max => 540 }
+    #   ]
+    #   f.chart({:defaultSeriesType=>"column"})
+    # end 
   end
 
   # GET /students/new

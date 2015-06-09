@@ -66,8 +66,47 @@ class EventQuizzer
       in_division << event_quizzer if event_quizzer.division == division
     end
     # resort just to be safe...
-    final = in_division.sort_by{|eq| eq.average_points}.reverse 
+    final = in_division.sort_by{|eq| eq.total_points}.reverse 
   end
+
+  def self.get_average_score(division)
+    average_scores = Array.new
+    Event.past.chronological.all.each do |e|
+      score = 0
+      count = 0
+      EventQuizzer.get_all_quizzers_for_event_and_division(e, division).each do |t|
+        score += EventQuizzer.new(t.quizzer,e).total_points
+        count += 1
+      end
+      score = score / count
+      average_scores << score
+    end 
+    return average_scores
+  end
+
+  # def self.get_top_score(division)
+  #   top_scores = Array.new
+  #   Event.past.chronological.all.each do |e|
+  #     scores = Array.new
+  #     EventQuizzer.get_all_quizzers_for_event_and_division(e, division).each do |t|
+  #       scores << EventQuizzer.new(t.quizzer,e).total_points
+  #     end
+  #     scores.sort_by(&:to_i).reverse
+  #     top_scores << scores.first 
+  #   end 
+  #   return top_scores
+  # end
+
+  def self.get_top_score(division)
+    top_scores = Array.new
+    Event.past.chronological.all.each do |e|
+      quizzers = EventQuizzer.get_all_quizzers_for_event_and_division(e, division)
+      top_scores << quizzers.first.total_points
+    end 
+    return top_scores
+  end
+
+
 
   private
   def get_team_for_event

@@ -78,6 +78,10 @@ div#search-bar {
   display: none;
 }
 
+p.small {
+    line-height: 90%;
+}
+
 header, main, footer {
     padding-left: 100px;
 }
@@ -98,6 +102,14 @@ main {
 
 .mdi-navigation-cancel {
   color: #CE0000;
+}
+
+.mdi-action-turned-in {
+  color: #0d47a1;
+}
+
+.mdi-action-turned-in-not {
+  color: #b71c1c
 }
 
 i#top-team-star-icon{

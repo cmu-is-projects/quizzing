@@ -6,14 +6,10 @@
   <%= "#{@team.division.name.capitalize}" %>
 </p>
 
-<p>
-  <strong>Cumulative Points:</strong>
-  <%= "#{@team.team_standing.total_points}" %>
-</p>
+<br>
 
-<p>
-  <strong>Average Accuracy:</strong>
-  <!--TODO: make use of the below from the controller; format it correctly-->
-  <%= "#{@team.team_standing.accuracy}" %>
+<p class = "small">
+	<font size = "5">&nbsp;<%= @team.team_standing.total_points%> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;<%= "#{@accuracy_percentage}%"%></font><br>
+	total points &nbsp;&nbsp;&nbsp;&nbsp;average accuracy
 </p>
 
