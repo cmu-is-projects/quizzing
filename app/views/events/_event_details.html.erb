@@ -1,14 +1,4 @@
 
-  <strong>Date:</strong>
-  <%= @event.start_date.strftime('%B %d, %Y') %> <%= "- #{@event.end_date.strftime('%B %d, %Y')}" %> <br /><br />
-
-  <strong>Start Time:</strong>
-  <%= @event.start_time.strftime('%l:%M AM') %>
-  <br /><br />
-
-
-  <strong>Address:</strong>
-  <%= "#{@event.organization.street_1}, #{@event.organization.city}, #{@event.organization.state}, #{@event.organization.zip}" %><br /><br />
 
 
   <!-- TODO: how to do this? put code in model or controller -->

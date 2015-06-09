@@ -56,15 +56,6 @@ class TeamsController < ApplicationController
     end 
 
     #bar graph for individual team members
-
-    # @member_chart = LazyHighCharts::HighChart.new('bar') do |f|
-    #   f.title(:text => "Individual Member Scores")
-    #   f.xAxis(:categories => @x_axis)
-    #   f.series(:name => "Score", :yAxis => 0, :data => [14119, 5068, 4985, 3339, 2656])
-
-    #   f.chart({:defaultSeriesType=>"bar"})
-    # end
-
     @students.each do |s|
       @student_performance = @year_quizzes.map{ |e| EventQuizzer.new(s, e)}.map{|p| p.total_points}
       eval %Q{

@@ -19,6 +19,7 @@ class Quiz < ActiveRecord::Base
   #Scopes
   scope :active, -> {where(active: true)}
   scope :inactive, -> {where(active: false)}
+  scope :for_division, ->(division){where(division_id: division.id) }
 
   #Callbacks
   validate :event_is_active_in_system
