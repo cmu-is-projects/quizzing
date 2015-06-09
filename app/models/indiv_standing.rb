@@ -64,5 +64,4 @@ class IndivStanding < ActiveRecord::Base
       seniorb.empty? ? [NullIndivStanding.new] : seniorb.sort
     end 
 
-
   end
