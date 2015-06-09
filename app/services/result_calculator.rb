@@ -13,6 +13,7 @@ module ResultCalculator
       tmp = [student.proper_name,last_result.total_points, diff, last_result.accuracy]
       improved << tmp
     end
+    improved = improved.sort_by{|i| i[2]}.reverse
     return improved
   end
 end
