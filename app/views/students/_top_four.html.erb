@@ -19,13 +19,13 @@
                 </tr>
                 <tr>
                   <td><%=standing.position %></td>
-                  <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+                  <td><%= link_to standing.student.proper_name, student_path(standing.student) %></td>
                   <td><%=standing.total_points %></td>
                 </tr>
               <%else%>
                 <tr>
                   <td><%=standing.position %></td>
-                  <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+                  <td><%= link_to standing.student.proper_name, student_path(standing.student) %></td>
                   <td><%=standing.total_points %></td>
                 </tr>
               <%end%>
