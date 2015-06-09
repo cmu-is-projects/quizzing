@@ -11,6 +11,9 @@ namespace :db do
 
       # Update team standings
       Rake::Task['db:update_team_standings'].invoke(db_selected)
+
+      # Update event summaries
+      Rake::Task['db:update_event_summaries'].invoke(db_selected)  
     end
   end
 end
