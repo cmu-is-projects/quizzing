@@ -29,7 +29,7 @@ class Student < ActiveRecord::Base
 
   # Methods
   def name
-    return "#{last_name}, #{first_name}"
+    return "#{first_name} #{last_name}"
   end
 
   def proper_name
