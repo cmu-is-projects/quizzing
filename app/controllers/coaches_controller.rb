@@ -9,9 +9,17 @@ class CoachesController < ApplicationController
     @senior_teams = Team.for_seniors(1000, @coach.organization)
     @seniorb_teams = Team.for_seniorb(1000, @coach.organization)
     @coaches = Coach.alphabetical.active.all
-    @top_juniors = IndivStanding.for_juniors(10, @coach.organization)
-    @top_seniors = IndivStanding.for_seniors(10, @coach.organization)
-    @top_seniorb = IndivStanding.for_seniorb(10, @coach.organization)
+
+    @top_juniors = IndivStanding.for_juniors(10)
+    @top_seniors = IndivStanding.for_seniors(10)
+    @top_seniorb = IndivStanding.for_seniorb(10)
+
+    # @top_juniors = IndivStanding.for_juniors(10, @coach.organization)
+    # @top_seniors = IndivStanding.for_seniors(10, @coach.organization)
+    # @top_seniorb = IndivStanding.for_seniorb(10, @coach.organization)
+    @improved_juniors = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("juniors"))
+    @improved_seniors = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("seniors"))
+    @improved_seniorb = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("seniorb"))
   end
 
   def show

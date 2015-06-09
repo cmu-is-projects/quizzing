@@ -19,7 +19,9 @@
 
         <!-- Stats Column -->
         <div class="col 6 m6">
-          <%= render(:partial => "stat_cards", :locals => {:standing => @top_juniors})%>
+          <%= render(:partial => "top_students", :locals => {:top_standings => @top_juniors})%>
+          <%= render(:partial => "most_improved", :locals => {:most_improved => @improved_juniors})%>
+          <%= render(:partial => "needs_love")%>
         </div>
       </div>
     </div>
@@ -32,7 +34,9 @@
         </div>
       <!-- Stats Column -->
         <div class="col 6 m6">
-         <%= render(:partial => "stat_cards", :locals => {:standing => @top_seniors})%>
+          <%= render(:partial => "top_students", :locals => {:top_standings => @top_seniors})%>
+          <%= render(:partial => "most_improved", :locals => {:most_improved => @improved_seniors})%>
+          <%= render(:partial => "needs_love")%>
         </div>
       </div>
     </div>
@@ -46,7 +50,9 @@
      
       <!-- Stats Column -->
         <div class="col 6 m6">
-         <%= render(:partial => "stat_cards", :locals => {:standing => @top_seniorb})%>
+         <%= render(:partial => "top_students", :locals => {:top_standings => @top_seniorb})%>
+         <%= render(:partial => "most_improved", :locals => {:most_improved => @improved_seniorb})%>
+         <%= render(:partial => "needs_love")%>
         </div>
       </div>
     </div>

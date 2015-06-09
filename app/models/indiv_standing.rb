@@ -28,51 +28,27 @@ class IndivStanding < ActiveRecord::Base
 
     def self.find_top_student(student)
         if student.current_team.division.name == "juniors"
-            return IndivStanding.for_juniors
+            return team.for_juniors.first
         elsif student.current_team.division.name == "seniors"
-            return IndivStanding.for_seniors
+            return team.for_seniors.first
         else
-            return IndivStanding.for_seniorb
+            return team.for_seniorb.first
         end
     end
 
-    def self.for_juniors(number=1000, organization=nil)
-      if organization.nil?
+    def self.for_juniors(number=1000)
         juniors = where('division_id = ?', "#{Division.find_by_name('juniors').id}").limit(number).to_a
-      else
-        juniors = where('division_id = ? and organization_id = ?', "#{Division.find_by_name('juniors').id}", organization.id).limit(number).to_a      
-      end
-      juniors.empty? ? [NullIndivStanding.new] : juniors.sort
+        juniors.empty? ? [NullIndivStanding.new] : juniors.sort
     end
 
-    def self.for_seniors(number=1000, organization=nil)
-      if organization.nil?
+    def self.for_seniors(number=1000)
         seniors = where('division_id = ?', "#{Division.find_by_name('seniors').id}").limit(number).to_a
-      else
-        seniors = where('division_id = ? and organization_id = ?', "#{Division.find_by_name('seniors').id}", organization.id).limit(number).to_a      
-      end
-      seniors.empty? ? [NullIndivStanding.new] : seniors.sort
+        seniors.empty? ? [NullIndivStanding.new] : seniors.sort
     end
 
-    def self.for_seniorb(number=1000, organization=nil)
-      if organization.nil?
+    def self.for_seniorb(number=1000)
         seniorb = where('division_id = ?', "#{Division.find_by_name('seniorb').id}").limit(number).to_a
-      else
-        seniorb = where('division_id = ? and organization_id = ?', "#{Division.find_by_name('seniorb').id}", organization.id).limit(number).to_a      
-      end
-      seniorb.empty? ? [NullIndivStanding.new] : seniorb.sort
-    end 
-
-
-    def self.show_top_four(student)
-        student_standing = IndivStanding.for_indiv(student)
-        if IndivStanding.find_top_student(student)[0..3].include?(student_standing)
-          return IndivStanding.find_top_student(student)[0..3]
-        else 
-          top3 = IndivStanding.find_top_student(student)[0..2]
-          top3.append(student_standing)
-          return top3
-        end
+        seniorb.empty? ? [NullIndivStanding.new] : seniorb.sort
     end
 
 end
