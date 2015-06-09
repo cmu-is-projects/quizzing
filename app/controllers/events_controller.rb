@@ -18,18 +18,26 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    if @event.end_date.past? || (@event.end_date.present? && !@event.quizzes.map{|q| q.quiz_teams.map(&:points)}.empty?)
-      # get event results
-      @team_results
-      @individual_results
-    else
-      # get event details
-    end
+    # TODO: Replace the live code below with revised code (when result_calculator complete)
+    # if @event.end_date.past? || (@event.end_date.present? && !@event.quizzes.map{|q| q.quiz_teams.map(&:points)}.empty?)
+    #   # get event results
+    #   @team_results
+    #   @individual_results
+    # else
+    #   # get event details
+    # end
 
-    # @quizzes = @event.quizzes.sort{|a,b| a.round_num <=> b.round_num}
-    # @divisions = Division.all.active
-    # @jr = @divisions.find_by_name('juniors').id 
-    # @junior_team_results = EventTeam.get_all_teams_for_event_and_division(@event, @jr)
+    @quizzes = @event.quizzes.sort{|a,b| a.round_num <=> b.round_num}
+    @divisions = Division.all.active
+    @juniors = Division.find_by_name("juniors")
+    @senior_a = Division.find_by_name("seniors")
+    @senior_b = Division.find_by_name("seniorb")
+    @total_room_num = Quiz.maximum(:room_num)
+    @senior_a_round_num = Quiz.for_division(@senior_a).maximum(:round_num)
+    @senior_b_round_num = Quiz.for_division(@senior_b).maximum(:round_num)
+    @junior_round_num = Quiz.for_division(@juniors).maximum(:round_num)
+    @matrix = Quiz.find_by_event_id_and_room_num_and_round_num(@event.id,@total_room_num,@round_num)
+
   end
 
   # GET /events/new
