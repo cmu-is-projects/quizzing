@@ -37,19 +37,32 @@ class IndivStanding < ActiveRecord::Base
         end
     end
 
-    def self.for_juniors(number=1000)
+    def self.for_juniors(number=1000, organization=nil)
+      if organization.nil?
         juniors = where('division_id = ?', "#{Division.find_by_name('juniors').id}").limit(number).to_a
-        juniors.empty? ? [NullIndivStanding.new] : juniors.sort
+      else
+        juniors = where('division_id = ? and organization_id = ?', "#{Division.find_by_name('juniors').id}", organization.id).limit(number).to_a      
+      end
+      juniors.empty? ? [NullIndivStanding.new] : juniors.sort
     end
 
-    def self.for_seniors(number=1000)
+    def self.for_seniors(number=1000, organization=nil)
+      if organization.nil?
         seniors = where('division_id = ?', "#{Division.find_by_name('seniors').id}").limit(number).to_a
-        seniors.empty? ? [NullIndivStanding.new] : seniors.sort
+      else
+        seniors = where('division_id = ? and organization_id = ?', "#{Division.find_by_name('seniors').id}", organization.id).limit(number).to_a      
+      end
+      seniors.empty? ? [NullIndivStanding.new] : seniors.sort
     end
 
-    def self.for_seniorb(number=1000)
+    def self.for_seniorb(number=1000, organization=nil)
+      if organization.nil?
         seniorb = where('division_id = ?', "#{Division.find_by_name('seniorb').id}").limit(number).to_a
-        seniorb.empty? ? [NullIndivStanding.new] : seniorb.sort
-    end
+      else
+        seniorb = where('division_id = ? and organization_id = ?', "#{Division.find_by_name('seniorb').id}", organization.id).limit(number).to_a      
+      end
+      seniorb.empty? ? [NullIndivStanding.new] : seniorb.sort
+    end 
 
-end
+
+  end
