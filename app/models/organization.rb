@@ -47,6 +47,10 @@ class Organization < ActiveRecord::Base
   def current_students
     self.organization_students.current.map{|st| st.student}
   end
+
+  def current_students_for_division(division)
+    self.organization_students.current.map{|st| st.student if st.student.current_team.division == division}.compact
+  end
   
   private
   #TODO - test
