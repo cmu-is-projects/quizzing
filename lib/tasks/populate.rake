@@ -357,8 +357,12 @@ namespace :db do
         QuizTeam.where(quiz_id:quiz.id, team_id:team.id).first.update_attribute(:raw_score, raw_score)
         QuizTeam.where(quiz_id:quiz.id, team_id:team.id).first.update_attribute(:points, points)
       end
-
+      # go back and add place for each team
+      # count = 0
+      # quiz_teams = quiz.teams.includes(:quiz_teams).order('quiz_teams.points desc').each do |t|
+      #   count += 1
+      #   QuizTeam.where(quiz_id:quiz.id, team_id:t.id).first.update_attribute(:place, count)
+      # end
     end
-
   end
 end

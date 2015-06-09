@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   #Relationships
   has_many :quizzes
   belongs_to :organization
+  has_one :event_summary
 
   #Validations
   validates_presence_of :start_date, :end_date, :start_time, :num_rounds
@@ -16,7 +17,7 @@ class Event < ActiveRecord::Base
   #Scopes
   scope :chronological, -> { order("start_date", "end_date") }
   scope :upcoming,      -> { where("start_date >= ?", Date.today) }
-  scope :past,          -> { where("end_date < ?", Date.today) }
+  scope :past,          -> { where("end_date <= ?", Date.today) }
 
   private
   def organization_is_active_in_system

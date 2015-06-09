@@ -55,6 +55,7 @@ FactoryGirl.define do
   	raw_score nil
   	points nil
   	failed_challenges 0
+    place nil
   end
 
   factory :quiz do
