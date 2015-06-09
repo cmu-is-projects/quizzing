@@ -18,8 +18,16 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @quizzes = @event.quizzes.sort{|a,b| a.round_num <=> b.round_num}
-    @divisions = Division.all.active
+    if @event.end_date.past? || (@event.end_date.present? && !@event.quizzes.map{|q| q.quiz_teams.map(&:points)}.empty?)
+      # get event results
+      @team_results
+      @individual_results
+    else
+      # get event details
+    end
+
+    # @quizzes = @event.quizzes.sort{|a,b| a.round_num <=> b.round_num}
+    # @divisions = Division.all.active
     # @jr = @divisions.find_by_name('juniors').id 
     # @junior_team_results = EventTeam.get_all_teams_for_event_and_division(@event, @jr)
   end
