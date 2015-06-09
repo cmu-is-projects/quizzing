@@ -13,13 +13,13 @@
     <div id="division1" class="col s12">
       <div class="row">
         <!-- Junior Teams Column -->
-        <div class="col 4 m6">
+        <div class="col 6 m6">
           <%= render(:partial => "team_cards", :locals => {:team => @junior_teams})%>
         </div>
 
         <!-- Stats Column -->
-        <div class="col 3 m5">
-          <%= render 'stat_cards' %>
+        <div class="col 6 m6">
+          <%= render(:partial => "stat_cards", :locals => {:standing => @top_juniors})%>
         </div>
       </div>
     </div>
@@ -27,26 +27,27 @@
     <div id="division2" class="col s12">
       <div class="row">
        <!-- Senior Teams Column -->
-        <div class="col 4 m6">
+        <div class="col 6 m6">
           <%= render(:partial => "team_cards", :locals => {:team => @senior_teams})%>
         </div>
-      </div>
       <!-- Stats Column -->
-      <div class="col 3 m5">
-        <%= render 'stat_cards' %>
+        <div class="col 6 m6">
+         <%= render(:partial => "stat_cards", :locals => {:standing => @top_seniors})%>
+        </div>
       </div>
     </div>
 
     <div id="division3" class="col s12">
       <div class="row">
        <!-- Senior Teams Column -->
-        <div class="col 4 m6">
+        <div class="col 6 m6">
           <%= render(:partial => "team_cards", :locals => {:team => @seniorb_teams})%>
         </div>
-      </div>
+     
       <!-- Stats Column -->
-      <div class="col 3 m5">
-        <%= render 'stat_cards' %>
+        <div class="col 6 m6">
+         <%= render(:partial => "stat_cards", :locals => {:standing => @top_seniorb})%>
+        </div>
       </div>
     </div>
 
