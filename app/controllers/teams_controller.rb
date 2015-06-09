@@ -34,6 +34,7 @@ class TeamsController < ApplicationController
     @team_quiz = QuizTeam.for_team(@team) #quizzes for the team
     @declared_num_rounds = 6
     @year_team = YearTeam.new(@team)
+    @accuracy_percentage = (@year_team.total_accuracy*100.0).round(1)
     @top_four = TeamStanding.show_top_four(@team)
 
 
@@ -47,21 +48,21 @@ class TeamsController < ApplicationController
     @performance = @events.map{|e| e.total_points}
 
     #y_axis for highest team score 
-    @top_scores = EventTeam.get_top_score(@team.division)
+    @top_scores = EventSummary.for_division(@team.division).chronological.map{|e| e.max_team_points}
 
 
     #y_axis for average team score
 
-    @average_scores = EventTeam.get_average_score(@team.division)
+    @average_scores = EventSummary.for_division(@team.division).chronological.map{|e| e.avg_team_points}
 
 
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => "Team Performance")
       f.xAxis(:categories => @x_axis)
 
-      f.series(:name => @team.name, :yAxis => 0, :data => @performance)
-      f.series(:name => "Top " + @team.division.name.capitalize[0...-1] + " Team Score", :yAxis => 0, :data => @top_scores)
-      f.series(:name => "Average Score for Event", :yAxis => 0, :data => @average_scores)
+      f.series(:name => @team.name + " Performance", :yAxis => 0, :color => "#0d47a1", :data => @performance)
+      f.series(:name => "Top " + @team.division.name.capitalize[0...-1] + " Team Scores", :color => "#00bcd4", :yAxis => 0, :data => @top_scores)
+      f.series(:name => "Average Score for Event", :yAxis => 0, :color => "#a6b8ba", :data => @average_scores)
 
 
       f.yAxis [
