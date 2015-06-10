@@ -32,11 +32,15 @@ class EventsController < ApplicationController
     @juniors = Division.find_by_name("juniors")
     @senior_a = Division.find_by_name("seniors")
     @senior_b = Division.find_by_name("seniorb")
-    @total_room_num = Quiz.maximum(:room_num)
+    @total_room_num = Quiz.maximum(:room_num).to_i
     @senior_a_round_num = Quiz.for_division(@senior_a).maximum(:round_num)
     @senior_b_round_num = Quiz.for_division(@senior_b).maximum(:round_num)
     @junior_round_num = Quiz.for_division(@juniors).maximum(:round_num)
-    @matrix = Quiz.find_by_event_id_and_room_num_and_round_num(@event.id,@total_room_num,@round_num)
+    @junior_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @juniors)
+    @senior_a_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @senior_a)
+    @senior_b_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @senior_b)
+
+
 
   end
 

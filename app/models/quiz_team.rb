@@ -2,7 +2,7 @@ class QuizTeam < ActiveRecord::Base
   # get module to help with some functionality
   include QuizHelpers::Validations
   include QuizHelpers::TeamScoring
-
+  
   belongs_to :team
   belongs_to :quiz
 

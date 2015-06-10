@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   include QuizHelpers::Validations
 
+
   #Relationships
   has_many :quizzes
   belongs_to :organization
