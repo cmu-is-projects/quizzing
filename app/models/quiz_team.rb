@@ -11,6 +11,7 @@ class QuizTeam < ActiveRecord::Base
   validates :place, inclusion: { in: [1,2,3], message: "must be 1, 2, or 3", allow_blank: true }
 
   scope :by_round_num, -> { joins(:quiz).order('round_num') }
+  scope :by_place, -> { order(:place) }
 
   # TODO?: Need to calculate points from raw scores, challenges, and fouls
   before_save :retreive_qt_points
