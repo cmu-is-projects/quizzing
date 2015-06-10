@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603152538) do
+ActiveRecord::Schema.define(version: 20150608195357) do
 
   create_table "categories", force: true do |t|
     t.string "name"
@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(version: 20150603152538) do
     t.integer "start_grade"
     t.integer "end_grade"
     t.boolean "active",      default: true
+  end
+
+  create_table "event_summaries", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "division_id"
+    t.float    "avg_student_points"
+    t.float    "avg_team_points"
+    t.integer  "max_student_points"
+    t.integer  "max_team_points"
+    t.integer  "max_student_id"
+    t.integer  "max_team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
@@ -86,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150603152538) do
     t.integer "raw_score"
     t.integer "points"
     t.integer "failed_challenges", default: 0
+    t.integer "place"
   end
 
   create_table "quizzes", force: true do |t|

@@ -79,7 +79,7 @@ div#search-bar {
 }
 
 header, main, footer {
-    padding-left: 200px;
+    padding-left: 100px;
 }
 
 @media only screen and (max-width : 992px) {
@@ -88,9 +88,7 @@ header, main, footer {
     }
 }
 
-.container {
-  width: 85%;
-}
+
 main {
   min-height: 700px;
 }
@@ -159,3 +157,25 @@ p.subtitle {
 }
 
 
+ /* form label color */
+   .input-field label {
+     color: #4dd0e1;
+     font-size: 20px;
+   }
+
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: #4dd0e1;
+   }
+
+
+ /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid #4dd0e1;
+     box-shadow: 0 1px 0 0 #4dd0e1;
+   }
+
+   .input.string {
+      color: #000
+   }
+ 

@@ -5,6 +5,7 @@ class Division < ActiveRecord::Base
   #Relationships
   has_many :quizzes
   has_many :teams 
+  has_many :event_summaries
 
   # Validations
   validates_presence_of :name
