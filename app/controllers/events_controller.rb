@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :schedule]
 
   # GET /events
   # GET /events.json
@@ -28,6 +28,10 @@ class EventsController < ApplicationController
     @senior_b_round_num = Quiz.for_division(@senior_b).maximum(:round_num)
     @junior_round_num = Quiz.for_division(@juniors).maximum(:round_num)
     @matrix = Quiz.find_by_event_id_and_room_num_and_round_num(@event.id,@total_room_num,@round_num)
+  end
+
+  def schedule
+    @total_round_num = @event.quizzes.map{|q| q.round_num}.max
   end
 
   # GET /events/new

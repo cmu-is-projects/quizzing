@@ -1,12 +1,22 @@
-
-	<p>
-	  <strong>Division:</strong>
-	  <%= "#{@team.division.name.capitalize}" %>
-	</p>
-
-	<br>
-
-	<p class = "small">
-		<font size = "5">&nbsp;<%= @team.team_standing.total_points%> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;<%= "#{@accuracy_percentage}%"%></font><br>
-		total points &nbsp;&nbsp;&nbsp;&nbsp;average accuracy
-	</p>
+<table class = "bordered">
+	<tr>
+		<td>
+		  <font size = "1"><strong>CURRENT DIVISION</strong></font>
+		  <br>
+		  <font size = "4"><%= "#{@team.division.name.capitalize}" %></font>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<font size = "1"><strong>TOTAL POINTS</strong></font>
+			<br>
+			<font size = "4"><%= @team.team_standing.total_points%> </font>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<font size = "1"><strong>AVERAGE ACCURACY</strong></font>
+			<br>
+			<font size = "4"><%= "#{@accuracy_percentage}%"%></font>
+	</tr>
+</table>

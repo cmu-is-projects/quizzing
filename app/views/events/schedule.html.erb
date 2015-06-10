@@ -1,0 +1,38 @@
+<div class="container">
+  <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header">Junior</div>
+      <div class="collapsible-body">
+      	<table class="striped responsive">
+          <thead>
+            <tr>
+                <th>Round</th>
+                <th>Room</th>
+                <th>Position 1</th>
+                <th>Position 2</th>
+                <th>Position 3</th>
+            </tr>
+          </thead>
+          <tbody>
+          	<% count=1 %>
+    	    	<% round = @total_round_num %>
+    	    	<% while round >= count %>
+    	    	  <tr>
+    	    	    <td><%= count %></td>
+    	    	  </tr>
+    	    	  <% count+=1 %>
+    	    	<% end %>
+          </tbody>
+        </table>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header">Senior</div>
+      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    </li>
+    <li>
+      <div class="collapsible-header">SeniorB</div>
+      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    </li>
+  </ul>
+</div>
