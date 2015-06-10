@@ -14,7 +14,7 @@
       <div class="row">
         <!-- Junior Teams Column -->
         <div class="col 6 m6" >
-          <%= render(:partial => "team_cards", :locals => {:team => @junior_teams, division: 'junior'})%>
+          <%= render(:partial => "junior_team_cards")%>
         </div>
 
         <!-- Stats Column -->
@@ -30,7 +30,7 @@
       <div class="row">
        <!-- Senior Teams Column -->
         <div class="col 6 m6">
-          <%= render(:partial => "team_cards", :locals => {:team => @senior_teams, division: 'senior'})%>
+          <%= render(:partial => "senior_team_cards")%>
         </div>
       <!-- Stats Column -->
         <div class="col 6 m6">
@@ -45,7 +45,7 @@
       <div class="row">
        <!-- Senior Teams Column -->
         <div class="col 6 m6">
-          <%= render(:partial => "team_cards", :locals => {:team => @seniorb_teams, division: 'seniorb'})%>
+          <%= render(:partial => "seniorb_team_cards")%>
         </div>
      
       <!-- Stats Column -->

@@ -1,3 +1,7 @@
-$('div#junior_team_cards').replaceWith('<%= j render(:partial => "coaches/team_cards") %>');
-$('div#senior_team_cards').replaceWith('<%= j render(:partial => "coaches/team_cards") %>');
-$('div#seniorb_team_cards').replaceWith('<%= j render(:partial => "coaches/team_cards") %>');
+<% if @changed == "junior" %>
+$('div#junior_team_cards').replaceWith('<%= j render(:partial => "coaches/junior_team_cards") %>');
+<% elsif @changed == "senior" %>
+$('div#senior_team_cards').replaceWith('<%= j render(:partial => "coaches/senior_team_cards") %>');
+<% else %>
+$('div#seniorb_team_cards').replaceWith('<%= j render(:partial => "coaches/seniorb_team_cards") %>');
+<% end %>
