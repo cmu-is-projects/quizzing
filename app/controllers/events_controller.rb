@@ -42,6 +42,8 @@ class EventsController < ApplicationController
 
   def schedule
     @total_round_num = @event.quizzes.map{|q| q.round_num}.max
+    @junior_teams = Team.where(division_id: 1).alphabetical
+    @team = Team.first #NEEDS TO BE THROUGH A FORM
   end
 
   # GET /events/new

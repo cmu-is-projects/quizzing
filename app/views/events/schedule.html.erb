@@ -1,5 +1,12 @@
 <div class="container">
-  <ul class="collapsible" data-collapsible="accordion">
+<!--   <label>Teams</label>
+  <select class="browser-default" onchange= "f.submit">
+    <option value="" disabled selected>Select your team</option>
+    <%#=@junior_teams.each do |j| %>
+      <option value= "#{j.team_id}"><%#=j.name%></option>
+    <%#end%>
+  </select> -->
+<ul class="collapsible" data-collapsible="accordion">
     <li>
       <div class="collapsible-header">Junior</div>
       <div class="collapsible-body">
@@ -19,6 +26,7 @@
     	    	<% while round >= count %>
     	    	  <tr>
     	    	    <td><%= count %></td>
+                <td><%=@team.name%></td>
     	    	  </tr>
     	    	  <% count+=1 %>
     	    	<% end %>
@@ -35,4 +43,4 @@
       <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
     </li>
   </ul>
-</div>
+</div> 
