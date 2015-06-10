@@ -1,3 +1,5 @@
+
+<div id="<%= division %>_team_cards">
 <% team.each do |i| %>
 <div class="card blue-grey lighten-5">
   <div class="subtitle card-content black-text">
@@ -22,11 +24,21 @@
         <tr>
           <td><%= s.seat %></td>
           <td><%= s.student.proper_name %></td>
-          <% if s.present? %>
-          <td><a class= "present-icon" href="#"><i id="present-icon" class="mdi-toggle-check-box tiny"></i></a></td>
-          <% else %>
-          <td><a class="present-icon" href="#"><i id="present-icon" class= "mdi-navigation-cancel tiny"></i></a></td>
-          <% end %>
+            <% if s.present == true %>
+               <td><%= link_to toggle_path(s, present: false, coach_id: @coach.id), remote: true, method: 'patch' do %>
+                <i class="mdi-toggle-check-box tiny"></i>
+              <% end %>
+              </td>
+            <% elsif s.present == false %>
+              <td><%= link_to toggle_path(s, present: true, coach_id: @coach.id), remote: true, method: 'patch' do %>
+                <i class="mdi-navigation-cancel tiny"></i>
+                <% end %>
+              </td>
+           <% else %>
+              <td>
+                <i class="mdi-action-report-problem tiny"></i>
+              </td>
+            <% end %>
         </tr>
         <% end %>
       </tbody>
@@ -34,3 +46,4 @@
   </div>
 </div>
 <% end %>
+</div>
