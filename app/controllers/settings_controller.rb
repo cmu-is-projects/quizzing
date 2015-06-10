@@ -8,8 +8,9 @@ class SettingsController < ApplicationController
 	end
   
   	def update
+  		@setting = Setting.first
     	if @setting.update(setting_params)
-      		redirect_to @setting, notice: "Settings were updated in the system."
+      		redirect_to settings_url, notice: "Settings were updated in the system."
     	else
       		render action: 'edit'
     	end
@@ -39,6 +40,6 @@ class SettingsController < ApplicationController
 	end
 
 	def setting_params
-      params.permit(:drop_lowest_score, :roster_lock_date, :auto_promote_students, :area_name, :admin_name, :admin_email, :intro)
+      params.require(:setting).permit(:drop_lowest_score, :roster_lock_date, :roster_lock_toggle, :auto_promote_students, :area_name, :admin_name, :admin_email, :intro)
     end
 end
