@@ -1,0 +1,33 @@
+<div class="card white">
+  <div class="card-content black-text">
+    <table class="centered">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Team</th>
+          <th>Total Points</th>
+          <th>Accuracy </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% team.each do |j| %>
+        <tr>
+          <td><%= j.position %></td>
+          <td><%= link_to j.team.name, team_path(j.team) %></td>
+          <td><%= j.total_points %></td>
+          <td><%= j.accuracy %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td align="left"><%= link_to team_standings_path  do %> 
+            More <i class="fa fa-angle-double-right"></i>
+            <% end %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+ 

@@ -1,0 +1,48 @@
+<div id="senior_team_cards">
+<% @senior_teams.each do |i| %>
+<div class="card blue-grey lighten-5">
+  <div class="subtitle card-content black-text">
+    <span class="card-title black-text">
+      <div class="row">
+        <div class="col m8"><%= i.name %></div>
+        <div class="col m4">
+          <p class="subtitle"> Rank: <%= TeamStanding.for_team(i).position %> </p> 
+          <p class="subtitle"> Points: <%= TeamStanding.for_team(i).total_points%></p>
+        </div>
+      </div>
+    </span>
+    <div class="divider"></div>
+    <table class="center">
+      <thead>
+        <th> Seat </th>
+        <th>Student Name</th>
+        <th>Attendance</th>
+      </thead>
+      <tbody>
+        <% i.student_teams.by_seat.each do |s| %>
+        <tr>
+          <td><%= s.seat %></td>
+          <td><%= s.student.proper_name %></td>
+            <% if s.present == true %>
+               <td><%= link_to toggle_path(s, present: false, coach_id: @coach.id, division: 'senior'), remote: true, method: 'patch' do %>
+                <i class="mdi-toggle-check-box tiny"></i>
+              <% end %>
+              </td>
+            <% elsif s.present == false %>
+              <td><%= link_to toggle_path(s, present: true, coach_id: @coach.id, division: 'senior'), remote: true, method: 'patch' do %>
+                <i class="mdi-navigation-cancel tiny"></i>
+                <% end %>
+              </td>
+           <% else %>
+              <td>
+                <i class="mdi-action-report-problem tiny"></i>
+              </td>
+            <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+</div>

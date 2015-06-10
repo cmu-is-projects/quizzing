@@ -1,0 +1,30 @@
+<div class="card white">
+  <div class="card-content black-text">
+    <span class="card-title black-text"><i id="top-team-star-icon"class="fa fa-star-o"></i> Top Students </span>
+    <div class="divider"></div>
+    <table class="center more">
+      <thead>
+        <th> Rank </th>
+        <th> Student Name </th>
+        <th> Total Points </th>
+        <th> Accuracy </th>
+      </thead>
+      <tbody>
+        <% top_standings.first(5).each do |s| %>
+        <tr>
+          <td><%= s.position %></td>
+          <td><%= s.student.proper_name %></td>
+          <td><%= s.total_points %></td>
+          <td><%= s.accuracy %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td align="left"><a class="more" href="#"> More <i class="fa fa-angle-double-right"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

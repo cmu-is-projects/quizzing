@@ -1,0 +1,30 @@
+<div class="card white">
+	<div class="card-content black-text">
+		<table class="striped center">
+			<thead>
+				<tr>
+					<th>Rank</th>
+					<th>Student</th>
+					<th>Team</th>
+					<th>Points</th>
+					<th>Low</th>
+					<th>Adjusted</th>
+					<th>Accuracy</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% individual.each do |j| %>
+				<tr>
+					<td><%= j.position %></td>
+					<td><%= link_to j.student.proper_name, student_path(j.student) %></td>
+					<td><%= link_to j.student.current_team.name, team_path(j.student.current_team) %></td>
+					<td><%= j.total_points %></td>
+					<td><%= j.lowest_score %></td>
+					<td><%= j.adjusted_points%></td>
+					<td><%= j.accuracy %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
