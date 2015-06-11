@@ -8,9 +8,10 @@
     </span></p>
     <p><span class="card-title black-text">
       Division:&nbsp;&nbsp;&nbsp;
-      <%= "#{@student.current_team.division.name.capitalize}" %>&nbsp;&nbsp;
+      <%= "#{get_division_name_for_views(@student.current_team.division)}" %>&nbsp;&nbsp;
       <%= "(grade #{@student.grade})" %>
     </span></p>
+    <div class="divider"></div>
     <br />
     <table class="responsive-table hoverable">
       <tr>

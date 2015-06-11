@@ -22,7 +22,7 @@
         <% i.student_teams.by_seat.each do |s| %>
         <tr>
           <td><%= s.seat %></td>
-          <td><%= s.student.proper_name %></td>
+          <td><%= link_to s.student.proper_name, student_path(s) %></td>
             <% if s.present == true %>
                <td><%= link_to toggle_path(s, present: false, coach_id: @coach.id, division: 'seniorb'), remote: true, method: 'patch' do %>
                 <i class="mdi-toggle-check-box tiny"></i>
