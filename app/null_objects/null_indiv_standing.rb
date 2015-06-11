@@ -11,6 +11,22 @@ class NullIndivStanding
     NullTeam.new
   end
 
+  def student_name
+    "N/A"
+  end
+
+  def team_name
+    "N/A"
+  end
+
+  def student_id
+    "#"
+  end
+
+  def team_id
+    "#"
+  end
+
   def division_id
     NullDivision.new.id
   end

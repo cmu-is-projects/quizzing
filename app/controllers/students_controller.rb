@@ -30,7 +30,8 @@ class StudentsController < ApplicationController
     @x_axis = @year_quizzes.map {|e| e.start_date.strftime('%b')} #x-values
     @events = @year_quizzes.map{ |e| EventQuizzer.new(@student, e)}
     @performance = @events.map{|p| p.total_points}
-    @top_student = IndivStanding.find_top_student(@student).first.student
+    # @top_student = IndivStanding.find_top_student(@student).first.student
+    @top_student = IndivStanding.find_top_student(@student).student
     @top_scores = EventSummary.for_division(@student_division).chronological.map{|e| e.max_student_points}
     @average_scores = EventSummary.for_division(@student_division).chronological.map{|e| e.avg_student_points}
     @top_four = IndivStanding.show_top_four(@student)

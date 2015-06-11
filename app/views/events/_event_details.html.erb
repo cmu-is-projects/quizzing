@@ -67,6 +67,7 @@
         </thead>
 
         <tbody>
+          <% room_count=1 %>
           <% round_count=1 %>
           <% count_m = 0 %>
           <% round = @senior_b_round_num.to_i %>
@@ -74,15 +75,16 @@
             <tr>
               <td> <%= round_count %></td>
                 <% while round_count == @senior_b_matrix[count_m][0] %>
-                  <td>
-                    round number:<%= @senior_b_matrix[count_m][0] %><br>
-                    room number: <%= @senior_b_matrix[count_m][1] %><br>
-                    <%= @senior_b_matrix[count_m][2].team.name %><br>
-                    <%= @senior_b_matrix[count_m][3].team.name %><br>
-                    <%= @senior_b_matrix[count_m][4].team.name %><br>
-                  </td>
-                <% count_m +=1 %>
-              <% end %>
+                    <td>
+                      round#:<%= @senior_b_matrix[count_m][0] %><br>
+                      room#: <%= @senior_b_matrix[count_m][1] %><br>
+                      <%= @senior_b_matrix[count_m][2].team.name %><br>
+                      <%= @senior_b_matrix[count_m][3].team.name %><br>
+                      <%= @senior_b_matrix[count_m][4].team.name %><br>
+                    </td>
+                  <% count_m +=1 %>
+
+              <%end %>
             <% round_count+=1 %>
             </tr>
           <% end %>

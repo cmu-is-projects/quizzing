@@ -1,0 +1,52 @@
+<div class="card white">
+  <div class="card-content black-text">
+    <span class="card-title black-text"><i id="top-team-star-icon"class="fa fa-star-o"></i> Student Rankings </span>
+    <div class="divider"></div>
+    <table class="center more hoverable">
+      <thead>
+        <th> Rank </th>
+        <th> Student Name </th>
+        <th> Total Points </th>
+        <th> Accuracy </th>
+      </thead>
+      <tbody>
+      <% @top_four.each do |standing| %>
+        <% if standing == @student_standing and @student_standing.position > 5 %>
+          <tr>
+            <td>&nbsp;</td>
+            <td>...</td>
+            <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr class="highlight">
+            <td><%= standing.position %></td>
+            <td><%= standing.student_name %></td>
+            <td><%= standing.total_points %></td>
+            <td><%= number_with_precision standing.accuracy %></td>
+          </tr>
+        <% elsif standing == @student_standing and @student_standing.position < 6 %>
+          <tr class="highlight">
+            <td><%= standing.position %></td>
+            <td><%= standing.student_name %></td>
+            <td><%= standing.total_points %></td>
+            <td><%= number_with_precision standing.accuracy %></td>
+          </tr>
+        <%else%>
+          <tr>
+            <td><%= standing.position %></td>
+            <td><%= link_to(standing.student_name, student_path(standing.student_id)) %></td>
+            <td><%= standing.total_points %></td>
+            <td><%= number_with_precision standing.accuracy %></td>
+          </tr>
+        <% end %>
+      <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <!-- <td align="left"><a class="more" href="#"> More <i class="fa fa-angle-double-right"></i></a></td> -->
+          <td align="left"><%= link_to(raw('More <i class="fa fa-angle-double-right"></i>'), indiv_standings_path) %> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
