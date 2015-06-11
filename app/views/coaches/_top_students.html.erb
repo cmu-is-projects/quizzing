@@ -12,7 +12,7 @@
       <tbody>
         <% count = 0 %>
         <% top_standings.each do |s| %>
-          <% if count < 6 %>
+          <% if count < 5 %>
             <tr>
               <td><%= s.position %></td>
               <td><%= s.student_name %></td>
@@ -29,12 +29,14 @@
           <% end %>
           <% count += 1 %>
         <% end %>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td align="left"><a class="more-top-students" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
-        </tr>
+        <% if top_standings.length >= 6 %> 
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td align="left"><a class="more-top-students" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

@@ -11,23 +11,39 @@
         <th> Accuracy </th>
       </thead>
       <tbody>
-        <% most_improved.first(5).each do |s| %>
-        <tr>
-          <% s.each do |i| %>
+        <% count = 0 %>
+        <% most_improved.each do |s| %>
+        <% if count < 5 %>
+          <tr>
+            <% s.each do |i| %>
             <% if i.to_f <= 1 && i.to_f > 0 %>
               <td><%= number_with_precision i %></td>
             <% else %>
               <td><%= i %></td>
             <% end %>
+            <% end %>
+          </tr>
+          <% else %>
+          <tr class="more-improved-students">
+            <% s.each do |i| %>
+            <% if i.to_f <= 1 && i.to_f > 0 %>
+              <td><%= number_with_precision i %></td>
+            <% else %>
+              <td><%= i %></td>
+            <% end %>
+            <% end %>
+            </tr>
           <% end %>
-        </tr>
+          <% count += 1 %>
         <% end %>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td align="left"><a class ="activator" href="#"> More <i class="fa fa-angle-double-right"></i></a></td>
-        </tr>
+        <% if most_improved.length >= 6 %> 
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td align="left"><a class="more-improved-students" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
