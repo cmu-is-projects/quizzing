@@ -190,3 +190,14 @@ table.center th{
 tr.show-more{
   display: none;
 }
+
+tr.highlight{
+  background-color: #e3f2fd;
+}
+
+td.right{
+  text-align: right;
+  margin-left: 0px;
+  padding-right: 5px;
+
+}

@@ -13,9 +13,9 @@
         <% top_standings.first(5).each do |s| %>
         <tr>
           <td><%= s.position %></td>
-          <td><%= s.student.proper_name %></td>
+          <td><%= s.student_name %></td>
           <td><%= s.total_points %></td>
-          <td><%= s.accuracy %></td>
+          <td><%= number_with_precision s.accuracy %></td>
         </tr>
         <% end %>
         <tr>

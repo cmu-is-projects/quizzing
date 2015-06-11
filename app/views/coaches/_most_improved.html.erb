@@ -14,7 +14,11 @@
         <% most_improved.first(5).each do |s| %>
         <tr>
           <% s.each do |i| %>
-            <td><%= i %></td>
+            <% if i.to_f <= 1 && i.to_f > 0 %>
+              <td><%= number_with_precision i %></td>
+            <% else %>
+              <td><%= i %></td>
+            <% end %>
           <% end %>
         </tr>
         <% end %>
