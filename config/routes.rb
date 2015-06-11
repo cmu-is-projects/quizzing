@@ -34,7 +34,7 @@ Quizzing::Application.routes.draw do
 
   #New page for event schedule
   get "events/schedule/:id" => "events#schedule", as: :schedule
-
+  
   # authentication routes
   get 'user/edit' => 'users#edit', as: :edit_current_user
   get 'login' => 'sessions#new', as: :login
