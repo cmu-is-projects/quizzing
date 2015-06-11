@@ -34,12 +34,14 @@ class EventsController < ApplicationController
   def schedule
     @total_round_num = @event.quizzes.map{|q| q.round_num}.max
     @team = Team.all.to_a[32] #NEEDS TO BE THROUGH A FORM
-    @division1 = Division.first
-    @division2 = Division.all.to_a[1]
-    @division3 = Division.all.to_a[2]
-    @junior_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division1)
-    @senior_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division2)
-    @seniorb_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division3)
+    @division1 = Division.all.to_a[1]
+    @junior_teams = Team.all.where(division_id: 1)
+    #@division2 = Division.all.to_a[1]
+    #@division3 = Division.all.to_a[2]
+    #@junior_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division1)
+    #@senior_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division2)
+    #@seniorb_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division3)
+    @matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division1)
   end
 
   # GET /events/new

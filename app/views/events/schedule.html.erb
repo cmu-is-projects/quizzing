@@ -1,212 +1,73 @@
 <div class="container">
-<!--   <label>Teams</label>
+  <label>Teams</label>
   <select class="browser-default" onchange= "f.submit">
     <option value="" disabled selected>Select your team</option>
-    <%#=@junior_teams.each do |j| %>
-      <option value= "#{j.team_id}"><%#=j.name%></option>
-    <%#end%>
-  </select> -->
-<ul class="collapsible" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header">Junior</div>
-      <div class="collapsible-body">
-      	<table class="striped responsive">
-          <thead>
-            <tr>
-                <th>Round</th>
-                <th>Room</th>
-                <th>Position 1</th>
-                <th>Position 2</th>
-                <th>Position 3</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% count=1 %>
-            <% @junior_matrix.each do |m|%>
-              <%if m[0] > count%>
-                <tr>
-                  <td><%=count%></td>
-                  <td>N/A</td>
-                  <td>BYE</td>
-                  <td>BYE</td>
-                  <td>BYE</td>
-                </tr>
-                <%count += 1%>
-              <%end%>
-              <%if m[2].team_id == @team.id%>
-                <tr>
-                  <td><%=m[0]%></td>
-                  <td><%=m[1]%></td>
-                  <td><strong><%=m[2].team_id%></strong></td>
-                  <td><%=m[3].team_id%></td>
-                  <td><%=m[4].team_id%></td>
-                </tr>
-                <%count += 1%>
-              <% elsif m[3].team_id == @team.id%>
-                <tr>
-                  <td><%=m[0]%></td>
-                  <td><%=m[1]%></td>
-                  <td><%=m[2].team_id%></td> 
-                  <td><strong><%=m[3].team_id%></strong></td>
-                  <td><%=m[4].team_id%></td>
-                </tr>
-                <%count += 1%>
-              <% elsif m[4].team_id == @team.id%>
-                <tr>
-                  <td><%=m[0]%></td>
-                  <td><%=m[1]%></td>
-                  <td><%=m[2].team_id%></td>
-                  <td><%=m[3].team_id%></td>
-                  <td><strong><%=m[4].team_id%></strong></td>
-                </tr>
-                <%count += 1%>
-              <%elsif count == @total_round_num && m == @junior_matrix.last %>
-                <tr>
-                  <td><%=count%></td>
-                  <td>N/A</td>
-                  <td>BYE</td>
-                  <td>BYE</td>
-                  <td>BYE</td>
-                </tr>
-              <%end%>
-            <%end%>
-          </tbody>
-        </table>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header">Senior</div>
-      <div class="collapsible-body">
-        <table class="striped responsive">
-          <thead>
-            <tr>
-                <th>Round</th>
-                <th>Room</th>
-                <th>Position 1</th>
-                <th>Position 2</th>
-                <th>Position 3</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% count=1 %>
-            <% @senior_matrix.each do |m|%>
-              <%if m[0] > count%>
-                <tr>
-                  <td><%=count%></td>
-                  <td>N/A</td>
-                  <td>BYE</td>
-                  <td>BYE</td>
-                  <td>BYE</td>
-                </tr>
-                <%count += 1%>
-              <%end%>
-              <%if m[2].team_id == @team.id%>
-                <tr>
-                  <td><%=m[0]%></td>
-                  <td><%=m[1]%></td>
-                  <td><strong><%=m[2].team_id%></strong></td>
-                  <td><%=m[3].team_id%></td>
-                  <td><%=m[4].team_id%></td>
-                </tr>
-                <%count += 1%>
-              <% elsif m[3].team_id == @team.id%>
-                <tr>
-                  <td><%=m[0]%></td>
-                  <td><%=m[1]%></td>
-                  <td><%=m[2].team_id%></td> 
-                  <td><strong><%=m[3].team_id%></strong></td>
-                  <td><%=m[4].team_id%></td>
-                </tr>
-                <%count += 1%>
-              <% elsif m[4].team_id == @team.id%>
-                <tr>
-                  <td><%=m[0]%></td>
-                  <td><%=m[1]%></td>
-                  <td><%=m[2].team_id%></td>
-                  <td><%=m[3].team_id%></td>
-                  <td><strong><%=m[4].team_id%></strong></td>
-                </tr>
-                <%count += 1%>
-              <%elsif count == @total_round_num && m == @senior_matrix.last %>
-                <tr>
-                  <td><%=count%></td>
-                  <td>N/A</td>
-                  <td>BYE</td>
-                  <td>BYE</td>
-                  <td>BYE</td>
-                </tr>
-              <%end%>
-            <%end%>
-          </tbody>
-        </table>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header">SeniorB</div>
-      <div class="collapsible-body">
-        <table class="striped responsive">
-          <thead>
-            <tr>
-                <th>Round</th>
-                <th>Room</th>
-                <th>Position 1</th>
-                <th>Position 2</th>
-                <th>Position 3</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% count=1 %>
-            <% @seniorb_matrix.each do |m|%>
-              <%if m[0] > count%>
-                <tr>
-                  <td><%=count%></td>
-                  <td>N/A</td>
-                  <td>BYE</td>
-                  <td>BYE</td>
-                  <td>BYE</td>
-                </tr>
-                <%count += 1%>
-              <%end%>
-              <%if m[2].team_id == @team.id%>
-                <tr>
-                  <td><%=m[0]%></td>
-                  <td><%=m[1]%></td>
-                  <td><strong><%=m[2].team_id%></strong></td>
-                  <td><%=m[3].team_id%></td>
-                  <td><%=m[4].team_id%></td>
-                </tr>
-                <%count += 1%>
-              <% elsif m[3].team_id == @team.id%>
-                <tr>
-                  <td><%=m[0]%></td>
-                  <td><%=m[1]%></td>
-                  <td><%=m[2].team_id%></td> 
-                  <td><strong><%=m[3].team_id%></strong></td>
-                  <td><%=m[4].team_id%></td>
-                </tr>
-                <%count += 1%>
-              <% elsif m[4].team_id == @team.id%>
-                <tr>
-                  <td><%=m[0]%></td>
-                  <td><%=m[1]%></td>
-                  <td><%=m[2].team_id%></td>
-                  <td><%=m[3].team_id%></td>
-                  <td><strong><%=m[4].team_id%></strong></td>
-                </tr>
-                <%count += 1%>
-              <%elsif count == @total_round_num && m == @seniorb_matrix.last %>
-                <tr>
-                  <td><%=count%></td>
-                  <td>N/A</td>
-                  <td>BYE</td>
-                  <td>BYE</td>
-                  <td>BYE</td>
-                </tr>
-              <%end%>
-            <%end%>
-          </tbody>
-        </table>
-      </div>
-    </li>
-  </ul>
-</div> 
+    <%=@junior_teams.each do |j| %>
+      <option value= "#{j.team_id}"><%=j.name%></option>
+    <%end%>
+  </select>
+
+
+
+<table class="striped responsive">
+  <thead>
+    <tr>
+        <th>Round</th>
+        <th>Room</th>
+        <th>Position 1</th>
+        <th>Position 2</th>
+        <th>Position 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% count=1 %>
+    <% @matrix.each do |m|%>
+      <%if m[0] > count%>
+        <tr>
+          <td><%=count%></td>
+          <td>N/A</td>
+          <td>BYE</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <%count += 1%>
+      <%end%>
+      <%if m[2].team_id == @team.id%>
+        <tr>
+          <td><%=m[0]%></td>
+          <td><%=m[1]%></td>
+          <td><strong><%=m[2].team.name%></strong></td>
+          <td><%=m[3].team.name%></td>
+          <td><%=m[4].team.name%></td>
+        </tr>
+        <%count += 1%>
+      <% elsif m[3].team_id == @team.id%>
+        <tr>
+          <td><%=m[0]%></td>
+          <td><%=m[1]%></td>
+          <td><%=m[2].team.name%></td> 
+          <td><strong><%=m[3].team.name%></strong></td>
+          <td><%=m[4].team.name%></td>
+        </tr>
+        <%count += 1%>
+      <% elsif m[4].team_id == @team.id%>
+        <tr>
+          <td><%=m[0]%></td>
+          <td><%=m[1]%></td>
+          <td><%=m[2].team.name%></td>
+          <td><%=m[3].team.name%></td>
+          <td><strong><%=m[4].team.name%></strong></td>
+        </tr>
+        <%count += 1%>
+      <%elsif count == @total_round_num && m == @matrix.last %>
+        <tr>
+          <td><%=count%></td>
+          <td>N/A</td>
+          <td>BYE</td>
+          <td></td>
+          <td></td>
+        </tr>
+      <%end%>
+    <%end%>
+  </tbody>
+</table>
