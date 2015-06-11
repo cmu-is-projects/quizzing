@@ -1,3 +1,4 @@
+<div class="row">
 <div class="card white">
   <div class="card-content black-text">
     <span class="card-title black-text"><i id="top-team-star-icon"class="fa fa-star-o"></i> Team Rankings </span>
@@ -48,5 +49,25 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+</div>
+
+<div class="row">
+  <div class="card white">
+    <p><span class="card-title black-text">
+      Team Members
+    </span></p>
+
+    <table>
+        <thead>
+        </thead>
+
+        <tbody>
+          <% @students.each do |s| %>
+          <tr><td><%= link_to s.proper_name, student_path(s.id) %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
   </div>
 </div>
