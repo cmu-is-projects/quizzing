@@ -13,28 +13,9 @@
 		<div id="division1" class="col s12">
 			<div class="row">
 				<div class="col 12 m12">
-					<div class="card blue-grey lighten-5">
-						<div class="card-content black-text">
-							<table class="centered striped">
-								<thead>
-									<th> Rank </th>
-									<th> Team Name </th>
-									<th> Total Points </th>
-									<th> Accuracy </th>
-								</thead>
-								<tbody>
-									<% @juniors.each do |j| %>
-									<tr> 
-										<td><%= j.position %></td>
-										<td><%= j.team.name %></td>
-										<td><%= j.total_points %></td>
-										<td><%= j.accuracy %></td>
-									</tr>
-									<% end %>
-								</tbody>
-							</table>
-						</div>
-					</div>
+
+				<%= render(:partial => "team_standings", :locals => {:team => @juniors})%>
+					
 				</div>
 			</div>
 		</div>
@@ -42,28 +23,7 @@
 		<div id="division2" class="col s12">
 			<div class="row">
 				<div class="col 12 m12">
-					<div class="card blue-grey lighten-5">
-						<div class="card-content black-text">
-							<table class="centered striped">
-								<thead>
-									<th> Rank </th>
-									<th> Team Name </th>
-									<th> Total Points </th>
-									<th> Accuracy </th>
-								</thead>
-								<tbody>
-									<% @seniors.each do |j| %>
-									<tr> 
-										<td><%= j.position %></td>
-										<td><%= j.team.name %></td>
-										<td><%= j.total_points %></td>
-										<td><%= j.accuracy %></td>
-									</tr>
-									<% end %>
-								</tbody>
-							</table>
-						</div>
-					</div>
+					<%= render(:partial => "team_standings", :locals => {:team => @seniors})%>
 				</div>
 			</div>
 		</div>
@@ -71,28 +31,7 @@
 		<div id="division3" class="col s12">
 			<div class="row">
 				<div class="col 12 m12">
-					<div class="card blue-grey lighten-5">
-						<div class="card-content black-text">
-							<table class="centered striped">
-								<thead>
-									<th> Rank </th>
-									<th> Team Name </th>
-									<th> Total Points </th>
-									<th> Accuracy </th>
-								</thead>
-								<tbody>
-									<% @seniorb.each do |j| %>
-									<tr> 
-										<td><%= j.position %></td>
-										<td><%= j.team.name %></td>
-										<td><%= j.total_points %></td>
-										<td><%= j.accuracy %></td>
-									</tr>
-									<% end %>
-								</tbody>
-							</table>
-						</div>
-					</div>
+					<%= render(:partial => "team_standings", :locals => {:team => @seniorb})%>
 				</div>
 			</div>
 		</div>

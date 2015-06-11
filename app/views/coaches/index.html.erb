@@ -8,220 +8,53 @@
         <li class="tab col s2"><a href="#division3">Senior B</a></li>
       </ul>
     </div>
+  </div>
 
     <div id="division1" class="col s12">
       <div class="row">
         <!-- Junior Teams Column -->
-        <div class="col 4 m6">
-          <% @junior_teams.each do |i| %>
-          <div class="card blue-grey lighten-5">
-            <div class="card-content black-text">
-              <span class="card-title black-text">
-                <div class="row">
-                  <div class="col m8"><%= i.name %></div>
-                  <div class="col m4">
-                    <p class="subtitle"> Rank: <%= TeamStanding.for_team(i).position %> </p> 
-                    <p class="subtitle"> Points: <%= TeamStanding.for_team(i).total_points%></p>
-                  </div>
-                </div>
-              </span>
-              <div class="divider"></div>
-              <table>
-                <thead>
-                  <th> Seat </th>
-                  <th>Student Name</th>
-                  <th>Attendance</th>
-                </thead>
-                <tbody>
-                  <% i.student_teams.by_seat.each do |s| %>
-                  <tr>
-                    <td><%= s.seat %></td>
-                    <td><%= s.student.proper_name %></td>
-                    <% if s.present? %>
-                    <td><i class="mdi-toggle-check-box tiny"></i></td>
-                    <% else %>
-                    <td><i class="mdi-navigation-cancel tiny"></i></td>
-                    <% end %>
-                  </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <% end %>
+        <div class="col 6 m6" >
+          <%= render(:partial => "junior_team_cards")%>
         </div>
 
         <!-- Stats Column -->
-        <div class="col 3 m5">
-
-          <div class="card white">
-            <div class="card-content black-text">
-              <span class="card-title black-text"><i id="top-team-star-icon"class="fa fa-star-o"></i> Top Students </span>
-              <div class="divider"></div>
-              <table class="responsive-table">
-                <tbody>
-                  <tr>
-                    <td>Alvin Smith</td>
-                    <td>750</td>
-                    <td>80%</td>
-                  </tr>
-                  <tr>
-                    <td>Alan Smith</td>
-                    <td>650</td> 
-                    <td>75%</td>
-                  </tr>
-                  <tr>
-                    <td>Chriss Smith</td>
-                    <td>600</td>
-                    <td>70%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div class="card white">
-            <div class="card-content black-text">
-              <span class="card-title black-text"><i id="most-improved-icon" class="fa fa-thumbs-o-up"></i> Most Improved </span>
-              <div class="divider"></div>
-              <table class="responsive-table">
-                <tbody>
-                  <tr>
-                    <td>Alexa Smith</td>
-                    <td>750</td>
-                    <td id="improvement">+100</td>
-                    <td>80%</td>
-                  </tr>
-                  <tr>
-                    <td>Alan Smith</td>
-                    <td>650</td> 
-                    <td id="improvement">+100</td>
-                    <td>75%</td>
-                  </tr>
-                  <tr>
-                    <td>Chriss Smith</td>
-                    <td>600</td>
-                    <td id="improvement">+100</td>
-                    <td>70%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div class="card white">
-            <div class="card-content black-text">
-              <span class="card-title black-text"><i id="needs-love-icon" class="fa fa-heart-o"></i> Needs Love </span>
-              <div class="divider"></div>
-              <table class="responsive-table">
-                <tbody>
-                  <tr>
-                    <td>Alexa Smith</td>
-                    <td>750</td>
-                    <td>80%</td>
-                  </tr>
-                  <tr>
-                    <td>Alan Smith</td>
-                    <td>650</td> 
-                    <td>75%</td>
-                  </tr>
-                  <tr>
-                    <td>Chriss Smith</td>
-                    <td>600</td>
-                    <td>70%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+        <div class="col 6 m6">
+          <%= render(:partial => "top_students", :locals => {:top_standings => @top_juniors})%>
+          <%= render(:partial => "most_improved", :locals => {:most_improved => @improved_juniors})%>
+          <%= render(:partial => "needs_love")%>
         </div>
       </div>
     </div>
 
     <div id="division2" class="col s12">
       <div class="row">
-              <div class="col 4 m6">
-              <% @senior_teams.each do |i| %>
-                <div class="card blue-grey lighten-5">
-            <div class="card-content black-text">
-              <span class="card-title black-text">
-                <div class="row">
-                  <div class="col m8"><%= i.name %></div>
-                  <div class="col m4">
-                    <p class="subtitle"> Rank: <%= TeamStanding.for_team(i).position %> </p> 
-                    <p class="subtitle"> Points: <%= TeamStanding.for_team(i).total_points%></p>
-                  </div>
-                </div>
-              </span>
-              <div class="divider"></div>
-              <table>
-                <thead>
-                  <th> Seat </th>
-                  <th>Student Name</th>
-                  <th>Attendance</th>
-                </thead>
-                <tbody>
-                  <% i.student_teams.by_seat.each do |s| %>
-                  <tr>
-                    <td><%= s.seat %></td>
-                    <td><%= s.student.proper_name %></td>
-                    <% if s.present? %>
-                    <td><i class="mdi-toggle-check-box tiny"></i></td>
-                    <% else %>
-                    <td><i class="mdi-navigation-cancel tiny"></i></td>
-                    <% end %>
-                  </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <% end %>
+       <!-- Senior Teams Column -->
+        <div class="col 6 m6">
+          <%= render(:partial => "senior_team_cards")%>
         </div>
+      <!-- Stats Column -->
+        <div class="col 6 m6">
+          <%= render(:partial => "top_students", :locals => {:top_standings => @top_seniors})%>
+          <%= render(:partial => "most_improved", :locals => {:most_improved => @improved_seniors})%>
+          <%= render(:partial => "needs_love")%>
         </div>
-        </div>
-
+      </div>
+    </div>
 
     <div id="division3" class="col s12">
       <div class="row">
-              <div class="col 4 m6">
-              <% @seniorb_teams.each do |i| %>
-                <div class="card blue-grey lighten-5">
-            <div class="card-content black-text">
-              <span class="card-title black-text">
-                <div class="row">
-                  <div class="col m8"><%= i.name %></div>
-                  <div class="col m4">
-                    <p class="subtitle"> Rank: <%= TeamStanding.for_team(i).position %> </p> 
-                    <p class="subtitle"> Points: <%= TeamStanding.for_team(i).total_points%></p>
-                  </div>
-                </div>
-              </span>
-              <div class="divider"></div>
-              <table>
-                <thead>
-                  <th> Seat </th>
-                  <th>Student Name</th>
-                  <th>Attendance</th>
-                </thead>
-                <tbody>
-                  <% i.student_teams.by_seat.each do |s| %>
-                  <tr>
-                    <td><%= s.seat %></td>
-                    <td><%= s.student.proper_name %></td>
-                    <% if s.present? %>
-                    <td><i class="mdi-toggle-check-box tiny"></i></td>
-                    <% else %>
-                    <td><i class="mdi-navigation-cancel tiny"></i></td>
-                    <% end %>
-                  </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <% end %>
+       <!-- Senior Teams Column -->
+        <div class="col 6 m6">
+          <%= render(:partial => "seniorb_team_cards")%>
         </div>
+     
+      <!-- Stats Column -->
+        <div class="col 6 m6">
+         <%= render(:partial => "top_students", :locals => {:top_standings => @top_seniorb})%>
+         <%= render(:partial => "most_improved", :locals => {:most_improved => @improved_seniorb})%>
+         <%= render(:partial => "needs_love")%>
         </div>
-        </div>
+      </div>
+    </div>
+
 </div>

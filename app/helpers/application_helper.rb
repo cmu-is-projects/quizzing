@@ -17,6 +17,16 @@ module ApplicationHelper
     Team.active.not_at_capacity(student, student.current_organization).map{|t| ["#{t.name} - (#{t.division.name})", t.id] }
   end
 
+  def get_division_name_for_views(division)
+    if division.id == 1
+      "Juniors"
+    elsif division.id == 2
+      "Seniors"
+    else
+      "Senior B"
+    end
+  end
+
 end
 
 

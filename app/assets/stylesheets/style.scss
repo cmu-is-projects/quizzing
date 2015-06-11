@@ -166,8 +166,39 @@ a#standings-heading:hover {
 
 p.subtitle {
   font-size: 16px;
+  
+}
+
+.card .card-content p.subtitle {
+  margin: -15px;
+  
+}
+
+.center {
+  text-align: center;
+}
+ 
+table.center td{
+  text-align: center;
+}
+
+table.center th{
+  text-align: center;
 }
 
 .card .card-content p.settings {
   margin: 0px;
+
+}
+
+tr.show-more{
+  display: none;
+}
+
+tr.highlight{
+  background-color: #e3f2fd;
+}
+
+td.right{
+  text-align: right;
 }

@@ -1,0 +1,29 @@
+<div class="card white">
+  <div id="standings-table" class="card-content black-text">
+    <table class ="centered">
+     <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Student Name</th>
+        <th>Total Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% individual.each do |j| %>
+      <tr>
+        <td><%= j.position %></td>
+        <td><%= link_to j.student.proper_name, student_path(j.student) %></td>
+        <td><%= j.total_points %></td>
+      </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td align="left"><%= link_to indiv_standings_path  do %> 
+          More <i class="fa fa-angle-double-right"></i>
+          <% end %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

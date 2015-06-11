@@ -1,4 +1,4 @@
-module ResultCalculator
+module ResultCalculator  
   def self.find_most_improved(organization, division)
     students = organization.current_students_for_division(division)
     events = Event.past.chronological

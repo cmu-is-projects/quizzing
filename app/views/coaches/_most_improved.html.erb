@@ -1,0 +1,34 @@
+<!-- add if statement to hide if empty -->
+<div class="card white">
+  <div class="card-content black-text">
+    <span class="card-title black-text"><i id="most-improved-icon" class="fa fa-thumbs-o-up"></i> Most Improved </span>
+    <div class="divider"></div>
+    <table class="center">
+      <thead>
+        <th> Student Name </th>
+        <th> Total Points </th>
+        <th> Point Increase </th>
+        <th> Accuracy </th>
+      </thead>
+      <tbody>
+        <% most_improved.first(5).each do |s| %>
+        <tr>
+          <% s.each do |i| %>
+            <% if i.to_f <= 1 && i.to_f > 0 %>
+              <td><%= number_with_precision i %></td>
+            <% else %>
+              <td><%= i %></td>
+            <% end %>
+          <% end %>
+        </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td align="left"><a class ="activator" href="#"> More <i class="fa fa-angle-double-right"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
