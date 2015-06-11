@@ -1,12 +1,44 @@
+<div class="card white">
+  <div class="card-content black-text">
+    <span class="card-title black-text"><h4><%= @team.name %></h4></span>
+    <div class="divider"></div>
+    <p><span class="card-title black-text">
+      Current Team:&nbsp;&nbsp;&nbsp;
+      <%= link_to @team.name, team_path(@team) %>
+    </span></p>
+    <p><span class="card-title black-text">
+      Division:&nbsp;&nbsp;&nbsp;
+      <%= "#{get_division_name_for_views(@team.division)}" %>&nbsp;&nbsp;
+    </span></p>
+    <div class="divider"></div>
+    <br />
+    <table class="responsive-table hoverable">
+      <tr>
+        <td align="right" width="50"><font size = "5">&nbsp;<%= @team.team_standing.total_points%></font></td>
+        <td><p class="small">&nbsp;&nbsp;total points</p></td>
+      </tr>
+      <tr>
+        <td align="right" width="50"><font size = "5">&nbsp;<%= number_with_precision @team.team_standing.accuracy%></font></td>
+        <td><p class="small">&nbsp;&nbsp;accuracy rate</p></td>
+      </tr>
+    </table>
 
-	<p>
-	  <strong>Division:</strong>
-	  <%= "#{@team.division.name.capitalize}" %>
-	</p>
+    <div class="divider"></div>
 
-	<br>
+    <p><span class="card-title black-text">
+      Team Members
+    </span></p>
 
-	<p class = "small">
-		<font size = "5">&nbsp;<%= @team.team_standing.total_points%> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;<%= "#{@accuracy_percentage}%"%></font><br>
-		total points &nbsp;&nbsp;&nbsp;&nbsp;average accuracy
-	</p>
+    <table>
+        <thead>
+        </thead>
+
+        <tbody>
+          <% @students.each do |s| %>
+          <td><%= link_to s.proper_name, student_path(s.id) %>
+          </td>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>
