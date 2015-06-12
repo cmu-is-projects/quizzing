@@ -28,21 +28,33 @@
         <tbody>
           <% round_count=1 %>
           <% count_m = 0 %>
-          <% round = @senior_a_round_num.to_i %>
-          <% while round > round_count %>
+          <% room_count =1 %>
+          <% round = @senior_a_round_num.to_i%>
+          <% while round >= round_count %>
             <tr>
               <td> <%= round_count %></td>
                 <% while round_count == @senior_a_matrix[count_m][0] %>
-                  <td>
-                    round number:<%= @senior_a_matrix[count_m][0] %><br>
-                    room number: <%= @senior_a_matrix[count_m][1] %><br>
-                    <%= @senior_a_matrix[count_m][2].team.name %><br>
-                    <%= @senior_a_matrix[count_m][3].team.name %><br>
-                    <%= @senior_a_matrix[count_m][4].team.name %><br>
-                  </td>
-                <% count_m +=1 %>
-              <% end %>
-            <% round_count+=1 %>
+
+                  <!-- checks if array has the right room number -->
+                  <% if room_count == @senior_a_matrix[count_m][1] %>
+                    <td>
+                      round#:<%= @senior_a_matrix[count_m][0] %><br>
+                      room#: <%= @senior_a_matrix[count_m][1] %><br>
+                      <%= @senior_a_matrix[count_m][2].team.name %><br>
+                      <%= @senior_a_matrix[count_m][3].team.name %><br>
+                      <%= @senior_a_matrix[count_m][4].team.name %><br>
+                    </td>
+                    <% room_count +=1 %>
+                  <% else %>
+                    <td></td>
+                    <% room_count +=1 %> 
+                  <% end %>
+
+                  <% count_m +=1 %>
+                <% end %>
+
+            <% room_count =0 %>
+            <% round_count +=1 %>
             </tr>
           <% end %>
         </tbody>
