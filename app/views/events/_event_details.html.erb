@@ -30,10 +30,10 @@
           <% count_m = 0 %>
           <% room_count =1 %>
           <% round = @senior_a_round_num.to_i%>
-          <% while round > round_count %>
+          <% while round >= round_count %>
             <tr>
               <td> <%= round_count %></td>
-                <% while round_count == @senior_a_matrix[count_m][0] %>
+                <% while (@senior_a_matrix[count_m] != nil) && (round_count == @senior_a_matrix[count_m][0]) %>
 
                   <!-- checks if array has the right room number -->
                   <% if room_count == @senior_a_matrix[count_m][1] %>
