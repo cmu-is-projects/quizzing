@@ -15,14 +15,14 @@
           <% if count < 5 %>
             <tr>
               <td><%= s.position %></td>
-              <td><%= s.student_name %></td>
+              <td><%= link_to s.student.proper_name, student_path(s.student) %></td>
               <td><%= s.total_points %></td>
               <td><%= number_with_precision s.accuracy %></td>
             </tr>
           <% else %>
             <tr class="more-top-students">
               <td><%= s.position %></td>
-              <td><%= s.student_name %></td>
+              <td><%= link_to s.student.proper_name, student_path(s.student) %></td>
               <td><%= s.total_points %></td>
               <td><%= number_with_precision s.accuracy %></td>
             </tr>
