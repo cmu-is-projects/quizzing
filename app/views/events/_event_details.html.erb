@@ -30,7 +30,7 @@
           <% count_m = 0 %>
           <% room_count =1 %>
           <% round = @senior_a_round_num.to_i%>
-          <% while round >= round_count %>
+          <% while round > round_count %>
             <tr>
               <td> <%= round_count %></td>
                 <% while round_count == @senior_a_matrix[count_m][0] %>
@@ -52,10 +52,9 @@
 
                   <% count_m +=1 %>
                 <% end %>
-
+            </tr>
             <% room_count =0 %>
             <% round_count +=1 %>
-            </tr>
           <% end %>
         </tbody>
       </table>
