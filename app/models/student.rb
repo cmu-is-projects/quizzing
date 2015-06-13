@@ -7,8 +7,8 @@ class Student < ActiveRecord::Base
 
   attr_accessor :team_id
 
-  # pg_search index
-  multisearchable :against => [:first_name, :last_name]
+  # pg_search
+  pg_search_scope :search_by_name, :against => [:first_name, :last_name]
 
   # Relationships
   has_many :student_quizzes
