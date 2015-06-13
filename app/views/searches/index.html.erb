@@ -1,0 +1,12 @@
+<div class='container'>
+<% res = @results %>
+<% numstu = res.size %>
+<h3>Search</h3>
+<h6><%= numstu == 0 ? "Sorry, no one here named #{params[:q]}.  Womp womp." : "Found #{numstu.to_s} students:" %></h6>
+<% res.each do |r| %>
+	<% s = Student.find_by_id(r.searchable_id) %>
+	<%= link_to r.content, s %>
+	<br />
+<% end %>
+
+</div>

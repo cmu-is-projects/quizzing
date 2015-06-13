@@ -3,8 +3,12 @@ class Student < ActiveRecord::Base
   # get modules to help with some functionality
   include QuizHelpers::Validations
   include Activeable
+  include PgSearch
 
   attr_accessor :team_id
+
+  # pg_search index
+  multisearchable :against => [:first_name, :last_name]
 
   # Relationships
   has_many :student_quizzes
