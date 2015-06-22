@@ -44,7 +44,7 @@
               <% @junior_standings.each do |standing| %>
                 <tr>
                   <td><%=standing.position %></td>
-                  <td><%= link_to standing.team.name, student_path(standing.team) %></td>
+                  <td><%= link_to standing.team.name, team_path(standing.team) %></td>
                   <td><%=standing.total_points %></td>
                 </tr>
               <% end %>
@@ -102,7 +102,7 @@
               <% @senior_standings.each do |standing| %>
                 <tr>
                   <td><%=standing.position %></td>
-                  <td><%= link_to standing.team.name, student_path(standing.team) %></td>
+                  <td><%= link_to standing.team.name, team_path(standing.team) %></td>
                   <td><%=standing.total_points %></td>
                 </tr>
               <% end %>
@@ -160,7 +160,7 @@
               <% @seniorb_standings.each do |standing| %>
                 <tr>
                   <td><%=standing.position %></td>
-                  <td><%= link_to standing.team.name, student_path(standing.team) %></td>
+                  <td><%= link_to standing.team.name, team_path(standing.team) %></td>
                   <td><%=standing.total_points %></td>
                 </tr>
               <% end %>
