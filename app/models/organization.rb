@@ -14,6 +14,8 @@ class Organization < ActiveRecord::Base
   has_many :events
   belongs_to :primary_contact, class_name: "Coach", foreign_key: "primary_contact_id"
 
+  has_many :indiv_standings
+
   #Validations
   validates :name, presence: true
   validates :state, inclusion: { in: (STATES_LIST.map{|a,b| a} + STATES_LIST.map { |a,b| b }), message: "is not valid state", allow_blank: true }
@@ -44,6 +46,10 @@ class Organization < ActiveRecord::Base
   # Methods
   def current_students
     self.organization_students.current.map{|st| st.student}
+  end
+
+  def current_students_for_division(division)
+    self.organization_students.current.map{|st| st.student if st.student.current_team.division == division}.compact
   end
   
   private

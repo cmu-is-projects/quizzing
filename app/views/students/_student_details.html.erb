@@ -1,29 +1,54 @@
-<p id="notice"><%= notice %></p>
-<h3><%= @student.proper_name %> </h3>
+<div class="col s8">
+	<p id="notice"><%= notice %></p>
+	<h3><%= @student.proper_name %> </h3>
 
-<p>
-  <strong>Current Team:</strong>
-  <%= @student.current_team.name %>
-</p>
+	<p>
+	  <strong>Current Team:</strong>
+	  <%= @student.current_team.name %>
+	</p>
 
-<p>
-  <strong>Grade - Division:</strong>
-  <%= "#{@student.grade} - #{@student.current_team.division.name}" %>
-</p>
+	<p>
+	  <strong>Grade - Division:</strong>
+	  <%= "#{@student.grade} - #{@student.current_team.division.name.capitalize}" %>
+	</p>
 
-<p>
-  <strong>Cumulative Points:</strong>
-  <%= @year_quizzer.total_points %>
-</p>
-
-<p>
-  <strong>Average Accuracy:</strong>
-  <!--TODO: make use of the below from the controller; format it correctly-->
-  <%= "#{@accuracy_percentage}%" %>
-</p>
-
-<br>
+	<br>
 
 
 
-
+<!-- TO DO THIS NEEDS TO BE CHANGED -->
+	<table class = "centered">
+		<colgroup>
+	       <col span="1" style="width: 20%;">
+	       <col span="1" style="width: 20%;">
+	       <col span="1" style="width: 60%;">
+    	</colgroup>
+    	<tr>
+    	</tr>
+		    <p class = "small">
+				<font size = "5">&nbsp;<%= @student.indiv_standing.total_points%> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;<%= "#{@accuracy_percentage}%"%></font><br>
+				total points &nbsp;&nbsp;&nbsp;&nbsp;average accuracy
+			</p>
+		<tr>
+			<td>
+				<p class = "small">
+					<font size = "1">&nbsp;1st place</font><br><br>
+					&nbsp;
+					<i class="small mdi-action-turned-in"></i>
+					<br>
+					3 wins
+				</p>
+			</td>
+			<td>
+				<p class = "small">
+					<font size = "1">2nd place</font><br><br>
+					&nbsp;&nbsp;<i class="small mdi-action-turned-in-not"></i><br>
+					2 wins
+				</p>
+			</td>
+			<td>
+				&nbsp;
+			</td>
+		</tr>
+	</table>
+</div>

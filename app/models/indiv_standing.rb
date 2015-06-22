@@ -4,6 +4,7 @@ class IndivStanding < ActiveRecord::Base
     belongs_to :student
     belongs_to :team
     belongs_to :division
+    belongs_to :organization
     
     # Validations
     validates_presence_of :position, :student_id, :team_id, :division_id, :total_points, :lowest_score, :adjusted_points, :accuracy
@@ -28,27 +29,60 @@ class IndivStanding < ActiveRecord::Base
 
     def self.find_top_student(student)
         if student.current_team.division.name == "juniors"
-            return team.for_juniors.first
+            return for_juniors.first
         elsif student.current_team.division.name == "seniors"
-            return team.for_seniors.first
+            return for_seniors.first
         else
-            return team.for_seniorb.first
+            return for_seniorb.first
         end
     end
 
-    def self.for_juniors(number=1000)
-        juniors = where('division_id = ?', "#{Division.find_by_name('juniors').id}").limit(number).to_a
-        juniors.empty? ? [NullIndivStanding.new] : juniors.sort
+    def self.show_top_four(student)
+      if student.current_team.division.name == "juniors"
+        list = for_juniors(5)
+      elsif student.current_team.division.name == "seniors"
+        list = for_seniors(5)
+      else
+        list = for_seniorb(5)
+      end
+      stu = for_student(student)
+      unless list.include?(stu)
+        list.pop
+        list << stu
+      end
+      return list
     end
 
-    def self.for_seniors(number=1000)
-        seniors = where('division_id = ?', "#{Division.find_by_name('seniors').id}").limit(number).to_a
-        seniors.empty? ? [NullIndivStanding.new] : seniors.sort
+    def self.for_juniors(number=1000, organization=nil)
+      if organization.nil?
+        juniors = where('indiv_standings.division_id = 1').order(:position).joins(:student,:team).select("indiv_standings.*, concat(students.first_name,' ',students.last_name) as student_name, students.id as student_id, teams.name as team_name, teams.id as team_id").limit(number).to_a
+      else
+        juniors = where('indiv_standings.division_id = 1 and indiv_standings.organization_id = ?', organization.id).order(:position).joins(:student,:team).select("indiv_standings.*, concat(students.first_name,' ',students.last_name) as student_name, students.id as student_id, teams.name as team_name, teams.id as team_id").limit(number).to_a      
+      end
+      juniors.empty? ? [NullIndivStanding.new] : juniors
     end
 
-    def self.for_seniorb(number=1000)
-        seniorb = where('division_id = ?', "#{Division.find_by_name('seniorb').id}").limit(number).to_a
-        seniorb.empty? ? [NullIndivStanding.new] : seniorb.sort
+    def self.for_seniors(number=1000, organization=nil)
+      if organization.nil?
+        seniors = where('indiv_standings.division_id = 2').order(:position).joins(:student,:team).select("indiv_standings.*, concat(students.first_name,' ',students.last_name) as student_name, students.id as student_id, teams.name as team_name, teams.id as team_id").limit(number).to_a
+      else
+        seniors = where('indiv_standings.division_id = 2 and indiv_standings.organization_id = ?', organization.id).order(:position).joins(:student,:team).select("indiv_standings.*, concat(students.first_name,' ',students.last_name) as student_name, students.id as student_id, teams.name as team_name, teams.id as team_id").limit(number).to_a      
+      end
+      seniors.empty? ? [NullIndivStanding.new] : seniors
     end
 
-end
+    def self.for_seniorb(number=1000, organization=nil)
+      if organization.nil?
+        seniorb = where('indiv_standings.division_id = 3').limit(number).order(:position).joins(:student,:team).select("indiv_standings.*, concat(students.first_name,' ',students.last_name) as student_name, students.id as student_id, teams.name as team_name, teams.id as team_id").to_a
+      else
+        seniorb = where('indiv_standings.division_id = 3 and indiv_standings.organization_id = ?', organization.id).order(:position).joins(:student,:team).select("indiv_standings.*, concat(students.first_name,' ',students.last_name) as student_name, students.id as student_id, teams.name as team_name, teams.id as team_id").limit(number).to_a      
+      end
+      seniorb.empty? ? [NullIndivStanding.new] : seniorb
+    end 
+
+    def self.for_student(student)
+      juniors = where('indiv_standings.student_id = ?', student.id).joins(:student,:team).select("indiv_standings.*, concat(students.first_name,' ',students.last_name) as student_name, students.id as student_id, teams.name as team_name, teams.id as team_id").first      
+      juniors.nil? ? NullIndivStanding.new : juniors
+    end
+
+  end

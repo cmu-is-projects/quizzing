@@ -12,6 +12,8 @@ Quizzing::Application.routes.draw do
   resources :quizzes
   resources :dashboards
   resources :settings
+  resources :divisions
+  resources :categories
   #resources :standings
 
   # NAMED ROUTES
@@ -33,6 +35,7 @@ Quizzing::Application.routes.draw do
   get "update_team_standings" => "settings#update_team_standings", as: :update_team_standings
   
 
+
   # authentication routes
   get 'user/edit' => 'users#edit', as: :edit_current_user
   get 'login' => 'sessions#new', as: :login
@@ -48,7 +51,10 @@ Quizzing::Application.routes.draw do
   #get "standings/team" => "standings#team", as: :team_standings
   patch 'active/:id' => 'students#active', as: :active
   patch 'inactive/:id' => 'students#inactive', as: :inactive
-  patch 'toggle_student/:id' => 'students#toggle', as: :toggle
+  patch 'toggle_attendance/:id' => 'student_teams#toggle', as: :toggle
+  patch 'toggle_division/:id' => 'divisions#toggle_division', as: :toggle_division
+  patch 'toggle_quiz_question/:id' => 'categories#toggle_quiz_question', as: :toggle_quiz_question
+  # patch 'toggle_student/:id' => 'students#toggle', as: :toggle
 
   # post "student_teams/:id" => 'students#create_student_team', as: :create_student_team
   # patch "student_teams/:id" => 'students#update_student_team', as: :update_student_team

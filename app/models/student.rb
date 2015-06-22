@@ -1,9 +1,10 @@
+
 class Student < ActiveRecord::Base
   # get modules to help with some functionality
   include QuizHelpers::Validations
   include Activeable
 
-  attr_accessor :team_id
+  # attr_accessor :team_id
 
   # Relationships
   has_many :student_quizzes

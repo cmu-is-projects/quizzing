@@ -67,7 +67,16 @@ $(document).ready(function(){
     });
 
 
+
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15 // Creates a dropdown of 15 years to control year
   });
+
+// binding for best in place
+$(document).ready(function() {
+  /* Activating Best in Place */
+  jQuery(".best_in_place").best_in_place()
+  });
+
+

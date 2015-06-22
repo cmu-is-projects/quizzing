@@ -17,7 +17,8 @@ class Quiz < ActiveRecord::Base
   validates_numericality_of :event_id, :division_id, :round_num, :room_num, only_integer: true, greater_than: 0
 
   #Scopes
-  scope :for_division, ->(division) { where(division_id: division.id) }
+  scope :for_division, ->(division){where(division_id: division.id) }
+  scope :by_round_and_room, -> { order("round_num, room_num") }
 
   #Callbacks
   validate :event_is_active_in_system

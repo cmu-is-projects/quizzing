@@ -1,0 +1,19 @@
+<!-- Top Row divided into 8col and 4col, next row has 12 columns-->
+<!-- 8col is called primary, 4col is called secondary -->
+<div class="container">	
+	<div class= "row">
+	 		<%= render partial: "#{header}" unless header.blank? %>
+	</div> 
+
+	<div class="row">
+		<div class="col s12">
+			<!-- primary partial gets displayed here in main div -->
+			<%= render partial: "#{primary}" %> 
+		</div>
+	</div>
+
+  <div class="row">
+    <%= render partial: "#{content}" unless content.blank? %>
+  </div>
+
+</div>

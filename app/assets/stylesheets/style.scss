@@ -78,6 +78,10 @@ div#search-bar {
   display: none;
 }
 
+p.small {
+    line-height: 90%;
+}
+
 header, main, footer {
     padding-left: 100px;
 }
@@ -99,6 +103,14 @@ main {
 
 .mdi-navigation-cancel {
   color: #CE0000;
+}
+
+.mdi-action-turned-in {
+  color: #0d47a1;
+}
+
+.mdi-action-turned-in-not {
+  color: #b71c1c
 }
 
 i#top-team-star-icon{
@@ -151,9 +163,12 @@ a#standings-heading:hover {
 
 p.subtitle {
   font-size: 16px;
+  
 }
-.card .card-content p {
+
+.card .card-content p.subtitle {
   margin: -15px;
+  
 }
 
 
@@ -179,3 +194,36 @@ p.subtitle {
       color: #000
    }
  
+
+.center {
+  text-align: center;
+}
+ 
+table.center td{
+  text-align: center;
+}
+
+table.center th{
+  text-align: center;
+}
+
+.card .card-content p.settings {
+  margin: 0px;
+
+}
+
+tr.show-more{
+  display: none;
+}
+
+tr.highlight{
+  background-color: #e3f2fd;
+}
+
+td.right{
+  text-align: right;
+}
+
+div#edit_card {
+  background-color: #FFF;
+}

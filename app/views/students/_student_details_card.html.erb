@@ -1,0 +1,37 @@
+<div class="card white">
+  <div class="card-content black-text">
+    <span class="card-title black-text"><h4><%= @student.proper_name %></h4></span>
+    <div class="divider"></div>
+    <p><span class="card-title black-text">
+      Current Team:&nbsp;&nbsp;&nbsp;
+      <%= link_to @student.current_team.name, team_path(@student.current_team) %>
+    </span></p>
+    <p><span class="card-title black-text">
+      Division:&nbsp;&nbsp;&nbsp;
+      <%= "#{get_division_name_for_views(@student.current_team.division)}" %>&nbsp;&nbsp;
+      <%= "(grade #{@student.grade})" %>
+    </span></p>
+    <div class="divider"></div>
+    <br />
+    <table class="responsive-table hoverable">
+      <tr>
+        <td align="right" width="50"><font size = "5">&nbsp;<%= @student.indiv_standing.total_points%></font></td>
+        <td><p class="small">&nbsp;&nbsp;total points</p></td>
+      </tr>
+      <tr>
+        <td align="right" width="50"><font size = "5">&nbsp;<%= @student.indiv_standing.lowest_score%></font></td>
+        <td><p class="small">&nbsp;&nbsp;lowest score</p></td>
+      </tr>
+      <tr>
+        <td align="right" width="50"><font size = "5">&nbsp;<%= @student.indiv_standing.adjusted_points%></font></td>
+        <td><p class="small">&nbsp;&nbsp;adjusted points</p></td>
+      </tr>
+      <tr>
+        <td align="right" width="50"><font size = "5">&nbsp;<%= number_with_precision @student.indiv_standing.accuracy%></font></td>
+        <td><p class="small">&nbsp;&nbsp;accuracy rate</p></td>
+      </tr>
+    </table>
+
+
+  </div>
+</div>

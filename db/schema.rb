@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150608195357) do
+ActiveRecord::Schema.define(version: 20150611172653) do
 
   create_table "categories", force: true do |t|
-    t.string "name"
+    t.string  "name"
+    t.boolean "active"
   end
 
   create_table "coaches", force: true do |t|
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150608195357) do
     t.float    "accuracy"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   create_table "organization_students", force: true do |t|
