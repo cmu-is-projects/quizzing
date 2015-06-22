@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609171234) do
+ActiveRecord::Schema.define(version: 20150613015137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "fuzzystrmatch"
 
   create_table "categories", force: true do |t|
     t.string "name"
@@ -95,6 +96,16 @@ ActiveRecord::Schema.define(version: 20150609171234) do
     t.boolean "active",             default: true
     t.integer "primary_contact_id"
   end
+
+  create_table "pg_search_documents", force: true do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "pg_search_documents", ["searchable_id", "searchable_type"], name: "index_pg_search_documents_on_searchable_id_and_searchable_type", using: :btree
 
   create_table "quiz_teams", force: true do |t|
     t.integer "quiz_id"
