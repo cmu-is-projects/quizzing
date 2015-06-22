@@ -1,44 +1,45 @@
+<div class="container">
+  <!-- TODO: add organization to event, change dates to american style mm/dd/yyyy -->
+  <%= simple_form_for @event, html: { class: 'form-horizontal' } do |f| %>
+    <div class ="row">
+      <% if @event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-<!-- TODO: add organization to event, change dates to american style mm/dd/yyyy -->
-<%= simple_form_for @event, html: { class: 'form-horizontal' } do |f| %>
-  <div class ="row">
-    <% if @event.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-        <ul>
-        <% @event.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-  <div class ="small-6 columns">
-      <%= f.input :start_date, label: "Start Date", as: :string, :input_html => {:class => "datepicker"} %>
-      <br>
-      <%= f.input :end_date, label: "End Date", as: :string, :input_html => {:class => "datepicker"} %>
-      <br>
-      <% if @event.start_time.nil? %>
-      <%= f.input :start_time, collection: options_for_time_select %>
-      <% elsif !@event.start_time.nil? %>
-      <%= f.input :start_time, collection: options_for_time_select, selected: f.object.start_time.strftime("%H:%M:%S")  %>
+          <ul>
+          <% @event.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      <br>
-      <%= f.input :num_rounds, as: :string %>
-      <br>
-      <%= f.association :organization %>
 
-      <div class="form-actions">
-      <%= f.submit nil, class: 'button radius' %>
-      <%= link_to 'Cancel', events_path, class: 'button secondary radius' %>
-      </div>
-  </div>
+    <div class ="small-6 columns">
+        <%= f.input :start_date, label: "Start Date", as: :string, :input_html => {:class => "datepicker"} %>
+        <br>
+        <%= f.input :end_date, label: "End Date", as: :string, :input_html => {:class => "datepicker"} %>
+        <br>
+        <% if @event.start_time.nil? %>
+        <%= f.input :start_time, collection: options_for_time_select %>
+        <% elsif !@event.start_time.nil? %>
+        <%= f.input :start_time, collection: options_for_time_select, selected: f.object.start_time.strftime("%H:%M:%S")  %>
+        <% end %>
+        <br>
+        <%= f.input :num_rounds, as: :string %>
+        <br>
+        <%= f.association :organization %>
 
-  <div class="small-1 columns"></div>
+        <div class="form-actions">
+        <%= f.submit nil, class: 'button radius' %>
+        <%= link_to 'Cancel', events_path, class: 'button secondary radius' %>
+        </div>
+    </div>
 
-  <div class="small-5 columns">
-    <%# render :partial => "event_teams" unless @event_teams.nil? || @event_teams.empty? %>
-  </div>
-  </div>
-<% end %>
+    <div class="small-1 columns"></div>
+
+    <div class="small-5 columns">
+      <%# render :partial => "event_teams" unless @event_teams.nil? || @event_teams.empty? %>
+    </div>
+    </div>
+  <% end %>
+</div>

@@ -55,7 +55,7 @@ class TeamsController < ApplicationController
       f.xAxis(:categories => @x_axis)
       f.series(:name => @team.name + " Performance", :yAxis => 0, :color => "#0d47a1", :data => @performance)
       f.series(:name => "Top " + @team.division.name.capitalize[0...-1] + " Team Scores", :color => "#00bcd4", :yAxis => 0, :data => @top_scores)
-      f.series(:name => "Averaged Scores for "+ @team.division.name.capitalize[0...-1] + " Division", :yAxis => 0, :color => "#a6b8ba", :data => @average_scores)
+      f.series(:name => "Averaged Team Scores for "+ @team.division.name.capitalize[0...-1] + " Division", :yAxis => 0, :color => "#a6b8ba", :data => @average_scores)
       f.yAxis [
         {:title => {:text => "Quiz Scores", :margin => 70} }
       ]
@@ -70,7 +70,9 @@ class TeamsController < ApplicationController
           f.title(:text => "Individual Member Scores")
           f.xAxis(:categories => @x_axis)
           f.series(:name => "Score", :yAxis => 0, :data => @student_performance)
-
+          f.yAxis(
+            :min => 0, :max => 500
+          )
           f.chart({:defaultSeriesType=>"bar"})
         end
       }
