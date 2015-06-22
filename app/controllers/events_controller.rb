@@ -32,9 +32,12 @@ class EventsController < ApplicationController
   end
 
   def schedule
+    #@team = Team.find(params[:team_id])
+    #@team = Team.find_by(id: team_params[:id])
+    #@team = Team.find_by(id: params[:team_id])
     @total_round_num = @event.quizzes.map{|q| q.round_num}.max
     @team = Team.all.to_a[32] #NEEDS TO BE THROUGH A FORM
-    @division1 = Division.all.to_a[1]
+    @division1 = @team.division
     @junior_teams = Team.all.where(division_id: 1)
     #@division2 = Division.all.to_a[1]
     #@division3 = Division.all.to_a[2]
@@ -124,7 +127,7 @@ class EventsController < ApplicationController
       params[:event][:end_date] = convert_to_date(params[:event][:end_date]) unless params[:event][:end_date].blank?
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    #Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       convert_start_and_end_dates
       params.require(:event).permit(:start_date, :end_date, :start_time, :num_rounds, :organization_id, quiz_attributes: [:id, :event_id, :division_id, :category_id, :round_num, :room_num, :active])

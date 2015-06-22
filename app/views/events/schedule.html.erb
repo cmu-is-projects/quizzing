@@ -1,11 +1,36 @@
 <div class="container">
-  <label>Teams</label>
-  <select class="browser-default" onchange= "f.submit">
-    <option value="" disabled selected>Select your team</option>
-    <%=@junior_teams.each do |j| %>
-      <option value= "#{j.team_id}"><%=j.name%></option>
-    <%end%>
-  </select>
+  <div class ="row">
+    <%= form_for(@team, :html => { :method => :get }) do |f| %>
+
+      <div class ="row">
+        <div class ="input-field col 10">
+          <%= f.text_field :name %>
+          <!-- <input id="setting_area_name" name="setting[area_name]" type="text"/> -->
+          <label for="team_name">Team Name</label>
+        </div>
+      </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, class: 'btn large', value: 'Submit' %>
+    </div>
+
+    <% end %>
+  </div>
+
+  <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
