@@ -23,11 +23,15 @@ class EventsController < ApplicationController
     @juniors = Division.find_by_name("juniors")
     @senior_a = Division.find_by_name("seniors")
     @senior_b = Division.find_by_name("seniorb")
-    @total_room_num = Quiz.maximum(:room_num)
+    @total_room_num = Quiz.maximum(:room_num).to_i
     @senior_a_round_num = Quiz.for_division(@senior_a).maximum(:round_num)
     @senior_b_round_num = Quiz.for_division(@senior_b).maximum(:round_num)
-    @junior_round_num = Quiz.for_division(@juniors).maximum(:round_num)
-    @matrix = Quiz.find_by_event_id_and_room_num_and_round_num(@event.id,@total_room_num,@round_num)
+    @juniors_round_num = Quiz.for_division(@juniors).maximum(:round_num)
+    @juniors_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @juniors)
+    @senior_a_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @senior_a)
+    @senior_b_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @senior_b)
+
+
 
   end
 
@@ -35,15 +39,29 @@ class EventsController < ApplicationController
     #@team = Team.find(params[:team_id])
     #@team = Team.find_by(id: team_params[:id])
     #@team = Team.find_by(id: params[:team_id])
+    if params[:divsion_id].nil?
+      @division_id = Division.first.id
+    else
+      @division_id = params[:divsion_id]
+    end
+    @divisions = Division.all
+
     @total_round_num = @event.quizzes.map{|q| q.round_num}.max
-    @team = Team.all.to_a[32] #NEEDS TO BE THROUGH A FORM
-    @division1 = @team.division
-    @junior_teams = Team.all.where(division_id: 1)
+    @teams = Team.for_division(Division.find(@division_id)).alphabetical #NEEDS TO BE THROUGH A FORM
+
+    # @division1 = @teams.first.division
+    # @junior_teams = Team.all.where(division_id: 1)
+    if params[:team_id].nil?
+      @team_id = @teams.first.id
+    else
+      @team_id = params[:team_id]
+    end
+    @team = Team.find(@team_id) 
     #@division2 = Division.all.to_a[1]
     #@division3 = Division.all.to_a[2]
     #@junior_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division1)
     #@senior_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division2)
-    #@seniorb_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division3)
+     #@seniorb_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division3)
     @matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division1)
   end
 

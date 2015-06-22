@@ -2,6 +2,7 @@ class Quiz < ActiveRecord::Base
   # get modules to help with some functionality
   include QuizHelpers::Validations
   include Activeable
+  include MatrixGenerator
 
   #Relationships
   belongs_to :event

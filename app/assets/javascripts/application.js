@@ -66,8 +66,45 @@ $(document).ready(function(){
       $('.slider').slider({full_width: false});
     });
 
+$(document).ready(function() {
+    $('tr.more-top-students').hide();
+    $('a.more-top-students').click(function(event) {
+        event.preventDefault();
+        $('tr.more-top-students').fadeToggle('fast', function() {
+          if( $('tr.more-top-students').is(':visible') ) {
+           $('a.more-top-students').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more-top-students').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
 
-$('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
+$(document).ready(function() {
+    $('tr.more-improved-students').hide();
+    $('a.more-improved-students').click(function(event) {
+        event.preventDefault();
+        $('tr.more-improved-students').fadeToggle('fast', function() {
+          if( $('tr.more-improved-students').is(':visible') ) {
+           $('a.more-improved-students').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more-improved-students').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
+
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+
+  $(document).ready(function() {
+    $('select#team_switch').change(function(){
+      $(this).closest("form").submit();
+    });
   });

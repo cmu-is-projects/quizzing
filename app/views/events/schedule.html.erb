@@ -1,17 +1,24 @@
 <div class="container">
   <div class ="row">
-    <%= form_for(@team, :html => { :method => :get }) do |f| %>
+    <%= form_tag schedule_path(@event), method: :get do  %>
+      <div class ="row">
+        <div class ="input-field col 10">
+          <%= select_tag :division_id, options_from_collection_for_select(@divisions, 'id', 'name') %>
+          <!-- <input id="setting_area_name" name="setting[area_name]" type="text"/> -->
+          <label for="division_id"> Division</label>
+        </div>
+      </div>
 
       <div class ="row">
         <div class ="input-field col 10">
-          <%= f.text_field :name %>
+          <%= select_tag :team_id, options_from_collection_for_select(@teams, 'id', 'name'), id: 'team_switch' %>
           <!-- <input id="setting_area_name" name="setting[area_name]" type="text"/> -->
-          <label for="team_name">Team Name</label>
+          <label for="team_id"> Team</label>
         </div>
       </div>
 
     <div class="form-actions">
-      <%= f.submit nil, class: 'btn large', value: 'Submit' %>
+      <%# submit nil, class: 'btn large', value: 'Submit' %>
     </div>
 
     <% end %>

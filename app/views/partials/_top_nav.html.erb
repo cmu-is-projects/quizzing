@@ -9,9 +9,16 @@
     </ul>
 
     <ul class="right">
-        <li id="toggle-search"><i class="fa fa-search right left"></i></li>
-        <li><%= link_to login_path do %> Login
-    	   <% end %></li>
+        <li id="toggle-search"><i class="fa fa-search right left"></i>  Search </li>
+        <% if logged_in? %>
+          <li><%= link_to logout_path do %>
+    		    <i class="fa fa-sign-out right left"></i>Logout
+    	     <% end %></li>
+        <% else %>
+          <li><%= link_to login_path do %>
+            <i class="fa fa-sign-in right left"></i>Login
+          <% end %></li>
+        <% end %>
     </ul>
     </div>
   </div>

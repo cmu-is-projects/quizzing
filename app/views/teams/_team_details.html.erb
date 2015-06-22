@@ -1,22 +1,38 @@
-<table class = "bordered">
-	<tr>
-		<td>
-		  <font size = "1"><strong>CURRENT DIVISION</strong></font>
-		  <br>
-		  <font size = "4"><%= "#{@team.division.name.capitalize}" %></font>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<font size = "1"><strong>TOTAL POINTS</strong></font>
-			<br>
-			<font size = "4"><%= @team.team_standing.total_points%> </font>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<font size = "1"><strong>AVERAGE ACCURACY</strong></font>
-			<br>
-			<font size = "4"><%= "#{@accuracy_percentage}%"%></font>
-	</tr>
-</table>
+  <div class="card white">
+
+    <div class="card-content black-text">
+      <span class="card-title black-text"><h4><%= @team.name %></h4></span>
+      <div class="divider"></div>
+      <p><span class="card-title black-text">
+        Division:&nbsp;&nbsp;&nbsp;
+        <%= "#{get_division_name_for_views(@team.division)}" %>&nbsp;&nbsp;
+      </span></p>
+      <div class="divider"></div>
+      <br />
+      <table class="responsive-table">
+        <tr>
+          <td align="right" width="50"><font size = "5">&nbsp;<%= @team.team_standing.total_points%></font></td>
+          <td><p class="small">&nbsp;&nbsp;total points</p></td>
+        </tr>
+        <tr>
+          <td align="right" width="50"><font size = "5">&nbsp;<%= number_with_precision @team.team_standing.accuracy%></font></td>
+          <td><p class="small">&nbsp;&nbsp;accuracy rate</p></td>
+        </tr>
+      </table>
+
+      <div class="divider"></div>
+
+      <div class="card-content">
+        <span class="card-title activator black-text">Team Members <i class="fa fa-angle-double-up"></i></i></span>
+      </div>
+
+      <div class="card-reveal">
+        <span class="card-title black-text">Team Members<i class="mdi-navigation-close right"></i></span>
+        <% @students.each do |s| %>
+          <%= link_to s.proper_name, student_path(s.id) %> <br />
+        <% end %>
+      </div>
+
+    </div>
+
+  </div>
