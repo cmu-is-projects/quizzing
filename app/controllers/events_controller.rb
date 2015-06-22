@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :schedule]
 
   # GET /events
   # GET /events.json
@@ -18,15 +18,6 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    # TODO: Replace the live code below with revised code (when result_calculator complete)
-    # if @event.end_date.past? || (@event.end_date.present? && !@event.quizzes.map{|q| q.quiz_teams.map(&:points)}.empty?)
-    #   # get event results
-    #   @team_results
-    #   @individual_results
-    # else
-    #   # get event details
-    # end
-
     @quizzes = @event.quizzes.sort{|a,b| a.round_num <=> b.round_num}
     @divisions = Division.all.active
     @juniors = Division.find_by_name("juniors")
@@ -42,6 +33,19 @@ class EventsController < ApplicationController
 
 
 
+  end
+
+  def schedule
+    @total_round_num = @event.quizzes.map{|q| q.round_num}.max
+    @team = Team.all.to_a[32] #NEEDS TO BE THROUGH A FORM
+    @division1 = Division.all.to_a[1]
+    @junior_teams = Team.all.where(division_id: 1)
+    #@division2 = Division.all.to_a[1]
+    #@division3 = Division.all.to_a[2]
+    #@junior_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division1)
+    #@senior_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division2)
+    #@seniorb_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division3)
+    @matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division1)
   end
 
   # GET /events/new
