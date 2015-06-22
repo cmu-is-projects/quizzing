@@ -66,7 +66,6 @@ $(document).ready(function(){
       $('.slider').slider({full_width: false});
     });
 
-
 $(document).ready(function() {
     $('tr.more-top-students').hide();
     $('a.more-top-students').click(function(event) {
@@ -99,3 +98,19 @@ $(document).ready(function() {
     });
   });
 
+
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+
+  $(document).ready(function() {
+    $('select#team_switch').change(function(){
+      $(this).closest("form").submit();
+    });
+  });
+
+  $(document).ready(function() {
+    $('select#division_switch').change(function(){
+      $(this).closest("form").submit();
+    });
+  });
