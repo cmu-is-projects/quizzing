@@ -3,7 +3,7 @@ class SearchesController < ApplicationController
 	def index
 		@results = Student.search_by_name(params[:q])
 		if @results.size < 1
-			#redirect_to home_url
+			redirect_to request.referer, notice: 'No students found.'
 		elsif @results.size < 2
 			redirect_to Student.find_by_id(@results.first)
 		else
