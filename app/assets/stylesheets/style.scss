@@ -128,8 +128,13 @@ td#improvement {
   color: #8CC739;
 }
 
+.tabs {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 .tabs .indicator {
  background-color: #4dd0e1; 
+ height: 3px; 
 }
  .tabs .tab a {
         color: #263238;
