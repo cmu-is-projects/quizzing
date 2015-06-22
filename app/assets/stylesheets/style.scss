@@ -42,6 +42,7 @@
 	display: block;
     margin-left: auto;
     margin-right: auto;
+    height: 100px;
 }
 
 .side-nav.fixed {
@@ -61,7 +62,7 @@
 }
 
 .side-nav.fixed li.logo {
-	padding: 30px;
+    padding: 25px 15px 55px 15px;
 }
 
 .side-nav.fixed li.logo:hover {
