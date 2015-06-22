@@ -12,6 +12,8 @@ Quizzing::Application.routes.draw do
   resources :quizzes
   resources :dashboards
   resources :settings
+  resources :divisions
+  resources :categories
   #resources :standings
 
   # NAMED ROUTES
@@ -37,7 +39,7 @@ Quizzing::Application.routes.draw do
 
   #New page for event schedule
   get "events/schedule/:id" => "events#schedule", as: :schedule
-  
+
   # authentication routes
   get 'user/edit' => 'users#edit', as: :edit_current_user
   get 'login' => 'sessions#new', as: :login
@@ -54,6 +56,8 @@ Quizzing::Application.routes.draw do
   patch 'active/:id' => 'students#active', as: :active
   patch 'inactive/:id' => 'students#inactive', as: :inactive
   patch 'toggle_attendance/:id' => 'student_teams#toggle', as: :toggle
+  patch 'toggle_division/:id' => 'divisions#toggle_division', as: :toggle_division
+  patch 'toggle_quiz_question/:id' => 'categories#toggle_quiz_question', as: :toggle_quiz_question
   # patch 'toggle_student/:id' => 'students#toggle', as: :toggle
 
   # post "student_teams/:id" => 'students#create_student_team', as: :create_student_team

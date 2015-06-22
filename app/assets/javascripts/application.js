@@ -66,6 +66,19 @@ $(document).ready(function(){
       $('.slider').slider({full_width: false});
     });
 
+
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+
+// binding for best in place
+$(document).ready(function() {
+  /* Activating Best in Place */
+  jQuery(".best_in_place").best_in_place()
+  });
+
+
 $(document).ready(function() {
     $('tr.more-top-students').hide();
     $('a.more-top-students').click(function(event) {
@@ -114,3 +127,4 @@ $(document).ready(function() {
       $(this).closest("form").submit();
     });
   });
+

@@ -1,6 +1,8 @@
 class SettingsController < ApplicationController
 	def index
 		@setting = Setting.first
+		@divisions = Division.all 
+		@categories = Category.all
 	end
 
 	def edit
@@ -38,6 +40,7 @@ class SettingsController < ApplicationController
 			redirect_to settings_url, notice: 'Team standings are now being updated.'
 		end
 	end
+
 
 	def setting_params
       params.require(:setting).permit(:drop_lowest_score, :roster_lock_date, :roster_lock_toggle, :auto_promote_students, :area_name, :admin_name, :admin_email, :intro)
