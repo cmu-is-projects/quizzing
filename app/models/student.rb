@@ -4,7 +4,7 @@ class Student < ActiveRecord::Base
   include Activeable
   include PgSearch
 
-  attr_accessor :team_id
+  # attr_accessor :team_id
 
   # pg_search
   pg_search_scope :search_by_name,

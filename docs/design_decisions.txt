@@ -1,0 +1,4 @@
+Issues:
+
+1. Coaches Dashboard - Three partials for each division
+The reason it was decided to create three partials ('_junior_team_cards', '_senior_team_cards', '_seniorb_team_cards') due to ajax issues. In the toggle.js.erb in StudentTeams passes in a division param called @changed to suggest which partial to render.

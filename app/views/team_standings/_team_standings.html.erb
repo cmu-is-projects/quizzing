@@ -1,0 +1,25 @@
+<div class="card white">
+  <div class="card-content black-text">
+    <table class="center striped">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Team</th>
+          <th>Total Points</th>
+          <th>Accuracy </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% team.each do |j| %>
+        <tr>
+          <td><%= j.position %></td>
+          <td><%= link_to j.team.name, team_path(j.team) %></td>
+          <td><%= j.total_points %></td>
+          <td><%= j.accuracy %></td>
+        </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+ 

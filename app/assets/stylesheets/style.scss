@@ -82,6 +82,10 @@ p.small {
     line-height: 90%;
 }
 
+.ui-helper-center {
+    text-align: center;
+}
+
 header, main, footer {
     padding-left: 100px;
 }
@@ -105,11 +109,11 @@ main {
 }
 
 .mdi-action-turned-in {
-  color: #0d47a1;
+  color: #e3ba0c;
 }
 
 .mdi-action-turned-in-not {
-  color: #b71c1c
+  color: #c0c0c0
 }
 
 i#top-team-star-icon{
@@ -128,8 +132,13 @@ td#improvement {
   color: #8CC739;
 }
 
+.tabs {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 .tabs .indicator {
  background-color: #4dd0e1; 
+ height: 3px; 
 }
  .tabs .tab a {
         color: #263238;
@@ -162,8 +171,39 @@ a#standings-heading:hover {
 
 p.subtitle {
   font-size: 16px;
+  
+}
+
+.card .card-content p.subtitle {
+  margin: -15px;
+  
+}
+
+.center {
+  text-align: center;
+}
+ 
+table.center td{
+  text-align: center;
+}
+
+table.center th{
+  text-align: center;
 }
 
 .card .card-content p.settings {
   margin: 0px;
+
+}
+
+tr.show-more{
+  display: none;
+}
+
+tr.highlight{
+  background-color: #e3f2fd;
+}
+
+td.right{
+  text-align: right;
 }

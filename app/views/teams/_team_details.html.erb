@@ -1,15 +1,38 @@
-<p id="notice"><%= notice %></p>
-<h3><%= @team.name %> </h3>
+  <div class="card white">
 
-<p>
-  <strong>Grade - Division:</strong>
-  <%= "#{@team.division.name.capitalize}" %>
-</p>
+    <div class="card-content black-text">
+      <span class="card-title black-text"><h4><%= @team.name %></h4></span>
+      <div class="divider"></div>
+      <p><span class="card-title black-text">
+        Division:&nbsp;&nbsp;&nbsp;
+        <%= "#{get_division_name_for_views(@team.division)}" %>&nbsp;&nbsp;
+      </span></p>
+      <div class="divider"></div>
+      <br />
+      <table class="responsive-table">
+        <tr>
+          <td align="right" width="50"><font size = "5">&nbsp;<%= @team.team_standing.total_points%></font></td>
+          <td><p class="small">&nbsp;&nbsp;total points</p></td>
+        </tr>
+        <tr>
+          <td align="right" width="50"><font size = "5">&nbsp;<%= number_with_precision @team.team_standing.accuracy%></font></td>
+          <td><p class="small">&nbsp;&nbsp;accuracy rate</p></td>
+        </tr>
+      </table>
 
-<br>
+      <div class="divider"></div>
 
-<p class = "small">
-	<font size = "5">&nbsp;<%= @team.team_standing.total_points%> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;<%= "#{@accuracy_percentage}%"%></font><br>
-	total points &nbsp;&nbsp;&nbsp;&nbsp;average accuracy
-</p>
+      <div class="card-content">
+        <span class="card-title activator black-text">Team Members <i class="fa fa-angle-double-up"></i></i></span>
+      </div>
 
+      <div class="card-reveal">
+        <span class="card-title black-text">Team Members<i class="mdi-navigation-close right"></i></span>
+        <% @students.each do |s| %>
+          <%= link_to s.proper_name, student_path(s.id) %> <br />
+        <% end %>
+      </div>
+
+    </div>
+
+  </div>

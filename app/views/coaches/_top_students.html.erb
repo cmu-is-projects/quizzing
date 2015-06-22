@@ -1,0 +1,43 @@
+<div class="card white">
+  <div class="card-content black-text">
+    <span class="card-title black-text"><i id="top-team-star-icon"class="fa fa-star-o"></i> Top Students </span>
+    <div class="divider"></div>
+    <table class="center">
+      <thead>
+        <th> Rank </th>
+        <th> Student Name </th>
+        <th> Total Points </th>
+        <th> Accuracy </th>
+      </thead>
+      <tbody>
+        <% count = 0 %>
+        <% top_standings.each do |s| %>
+          <% if count < 5 %>
+            <tr>
+              <td><%= s.position %></td>
+              <td><%= link_to s.student.proper_name, student_path(s.student) %></td>
+              <td><%= s.total_points %></td>
+              <td><%= number_with_precision s.accuracy %></td>
+            </tr>
+          <% else %>
+            <tr class="more-top-students">
+              <td><%= s.position %></td>
+              <td><%= link_to s.student.proper_name, student_path(s.student) %></td>
+              <td><%= s.total_points %></td>
+              <td><%= number_with_precision s.accuracy %></td>
+            </tr>
+          <% end %>
+          <% count += 1 %>
+        <% end %>
+        <% if top_standings.length >= 6 %> 
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td align="left"><a class="more-top-students" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

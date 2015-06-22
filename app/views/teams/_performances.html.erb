@@ -4,13 +4,15 @@
 	</div>
 </div>	
 <br>
-<div class="row">
+
+<!-- Individual team member performance bar graph -->
+<!-- <div class="row">
 	<div class="card">
 		<div class="col s12">
 			<ul class="tabs">
 				<% count = 0%>
 		        <% @students.each do |s| %>
-				<li class="tab col s3"><a href="<%= "#graph#{count}" %>" ><%= s.first_name %> <%= s.last_name %></a></li>
+				<li class="tab col s3"><a href="<%= "#graph#{count}" %>" ><%= s.first_name %> <%= s.last_name[0]%>.</a></li>
 				<% count +=1 %>
 		    	<% end %>
 			</ul>
@@ -20,11 +22,11 @@
 
 		<% count =0 %>
         <% @students.each do |s| %>
-			<div id=<%= "graph#{count}"%> class="col s12">
+			<div id=<%= "graph#{count}"%>>
 				<%= high_chart("some_other_id#{s.id}", eval("@member_chart#{s.id}")) %>
 			</div>
 			<% count +=1 %>
 		<% end %>
 
 	</div>
-</div>
+</div> -->
