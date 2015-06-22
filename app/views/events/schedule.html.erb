@@ -1,13 +1,29 @@
 <div class="container">
-  <label>Teams</label>
-  <select class="browser-default" onchange= "f.submit">
-    <option value="" disabled selected>Select your team</option>
-    <%=@junior_teams.each do |j| %>
-      <option value= "#{j.team_id}"><%=j.name%></option>
-    <%end%>
-  </select>
+  <br>
+  <div class ="row">
+    <%= form_tag schedule_path(@event), method: :get do  %>
+      <div class ="row">
+        <div class ="input-field col 10">
+          <%= select_tag :division_id, options_from_collection_for_select(@divisions, 'id', 'name', selected: @division_id), id: 'division_switch' %>
+          <!-- <input id="setting_area_name" name="setting[area_name]" type="text"/> -->
+          <label for="division_id">Select Division</label>
+        </div>
+      </div>
 
+      <div class ="row">
+        <div class ="input-field col 10">
+          <%= select_tag :team_id, options_from_collection_for_select(@teams, 'id', 'name', selected: @team_id), id: 'team_switch' %>
+          <!-- <input id="setting_area_name" name="setting[area_name]" type="text"/> -->
+          <label for="team_id">Select Team</label>
+        </div>
+      </div>
 
+    <div class="form-actions">
+      <%# submit nil, class: 'btn large', value: 'Submit' %>
+    </div>
+
+    <% end %>
+  </div>
 
 <table class="striped responsive">
   <thead>
