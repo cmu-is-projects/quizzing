@@ -9,9 +9,16 @@
     </ul>
 
     <ul class="right">
-        <li id="toggle-search"><i class="fa fa-search right left"></i></li>
-        <li><%= link_to login_path do %> Login
-    	   <% end %></li>
+        <li id="toggle-search"><i class="fa fa-search right left"></i>  Search </li>
+        <% if logged_in? %>
+          <li><%= link_to logout_path do %>
+    		    <i class="fa fa-sign-out right left"></i>Logout
+    	     <% end %></li>
+        <% else %>
+          <li><%= link_to login_path do %>
+            <i class="fa fa-sign-in right left"></i>Login
+          <% end %></li>
+        <% end %>
     </ul>
     </div>
   </div>
@@ -20,17 +27,15 @@
   <div class="row white-text blue-grey darken-3" id="search-bar">
     <div class="container">
       <div class="nav-wrapper">
-        <form action="https://www.google.com/search" method="get">
-          <input class="form-control" type="text" name="q" placeholder="Search ...">
+        <%= form_tag search_students_path, method: :get do %>
+          <%= text_field_tag :q, params[:q], placeholder: 'Search students...' %>
+        <% end %>
+<!--         <form action="/search" method="get">
+          <input class="form-control" type="text" name="q" placeholder="Search Students...">
           <input type="hidden" name="as_sitesearch">
-        </form>
+        </form> -->
       </div>
     </div>
   </div>
 
 </header>
-
-
-
-
-

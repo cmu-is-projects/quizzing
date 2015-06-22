@@ -82,6 +82,10 @@ p.small {
     line-height: 90%;
 }
 
+.ui-helper-center {
+    text-align: center;
+}
+
 header, main, footer {
     padding-left: 100px;
 }
@@ -106,11 +110,11 @@ main {
 }
 
 .mdi-action-turned-in {
-  color: #0d47a1;
+  color: #e3ba0c;
 }
 
 .mdi-action-turned-in-not {
-  color: #b71c1c
+  color: #c0c0c0
 }
 
 i#top-team-star-icon{
@@ -129,8 +133,13 @@ td#improvement {
   color: #8CC739;
 }
 
+.tabs {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 .tabs .indicator {
  background-color: #4dd0e1; 
+ height: 3px; 
 }
  .tabs .tab a {
         color: #263238;

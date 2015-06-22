@@ -21,7 +21,7 @@ class SettingsController < ApplicationController
 		area = request.subdomain
 		unless area.nil?
 			HardWorker.perform_async(area)
-			redirect_to settings_url, notice: 'Standings are now being updated.'
+			redirect_to settings_url, notice: 'All standings are now being updated.'
 		end
 	end
 
@@ -29,7 +29,7 @@ class SettingsController < ApplicationController
 		area = request.subdomain
 		unless area.nil?
 			IndivWorker.perform_async(area)
-			redirect_to settings_url, notice: 'Standings are now being updated.'
+			redirect_to settings_url, notice: 'Individual standings are now being updated.'
 		end
 	end
 
@@ -37,7 +37,7 @@ class SettingsController < ApplicationController
 		area = request.subdomain
 		unless area.nil?
 			TeamWorker.perform_async(area)
-			redirect_to settings_url, notice: 'Standings are now being updated.'
+			redirect_to settings_url, notice: 'Team standings are now being updated.'
 		end
 	end
 

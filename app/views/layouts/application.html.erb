@@ -7,13 +7,8 @@
   <%= stylesheet_link_tag    "application" %>
   <%= stylesheet_link_tag    "style" %>
   <%= javascript_include_tag "application" %>
-
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
-
-
-
-
-
 
 <body>
   <!-- Navbar goes here -->
@@ -23,7 +18,11 @@
        <!-- Page Layout here -->
      
     <%= render :partial => "partials/side_nav" %>
+
     <main>
+      <div class="container">
+        <%= render :partial => "partials/flash" %>
+      </div>
      <!-- Note that "m8 l9" was added -->
         <!-- Teal page content
 

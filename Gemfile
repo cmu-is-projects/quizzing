@@ -110,3 +110,6 @@ gem 'lazy_high_charts'
 # Use Sidekiq for async rake task processing
 gem 'sidekiq'
 
+# Use pgsearch for search awesomeness
+gem 'pg_search'
+

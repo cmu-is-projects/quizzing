@@ -35,6 +35,11 @@ Quizzing::Application.routes.draw do
   get "update_team_standings" => "settings#update_team_standings", as: :update_team_standings
   
 
+  # Search stuff
+  get "search" => "searches#index", as: :search_students
+
+  #New page for event schedule
+  get "events/schedule/:id" => "events#schedule", as: :schedule
 
   # authentication routes
   get 'user/edit' => 'users#edit', as: :edit_current_user

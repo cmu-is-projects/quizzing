@@ -13,26 +13,51 @@
   <li>
     <div class="collapsible-header"><i></i>Senior A</div>
     <div class="collapsible-body">
-      <table class="striped responsive">
+      <table class="striped responsive-table">
         <thead>
           <tr>
               <th>Round</th>
               <% count = @total_room_num.to_i%>
               <% while count != 0 %>
-                <th>Room <%= 8-count+1 %></th>
+                <th>Room <%= @total_room_num-count+1 %></th>
                 <% count -= 1%>
               <% end %>
           </tr>
         </thead>
 
         <tbody>
-          <% count=1 %>
-          <% round = @senior_a_round_num.to_i %>
-          <% while round >= count %>
+          <% count_m = 0 %> <!-- count for matrix -->
+          <% room_count =1 %> <!-- count for room -->
+          <% round_count=1 %> <!-- count for rount -->
+          <% round = @senior_a_round_num.to_i%> <!-- total # of rounds -->
+          <% while round >= round_count %>
             <tr>
-              <td> <%= count %></td>
+              <td> <%= round_count %></td>
+
+                <!-- checks for nil objects and the right round number -->
+                <% while (@senior_a_matrix[count_m] != nil) && (round_count == @senior_a_matrix[count_m][0]) %>
+
+                  <!-- checks if array has the right room number -->
+                  <% if room_count == @senior_a_matrix[count_m][1] %>
+                    <td>
+                      <!-- if you want to check if its the right room number and round number: -->                      
+<!--                       round#:<%= @senior_a_matrix[count_m][0] %><br>
+                      room#: <%= @senior_a_matrix[count_m][1] %><br> -->
+                      <%= @senior_a_matrix[count_m][2].team.name %><br>
+                      <%= @senior_a_matrix[count_m][3].team.name %><br>
+                      <%= @senior_a_matrix[count_m][4].team.name %><br>
+                    </td>
+                    <% room_count +=1 %>
+                  <% else %>
+                    <td></td>
+                    <% room_count +=1 %> 
+                  <% end %>
+
+                  <% count_m +=1 %>
+                <% end %>
             </tr>
-            <% count+=1 %>
+            <% room_count =1 %>
+            <% round_count +=1 %>
           <% end %>
         </tbody>
       </table>
@@ -43,15 +68,109 @@
   <li>
     <div class="collapsible-header"><i></i>Senior B</div>
     <div class="collapsible-body">
-      <p>Lorem ipsum dolor sit amet.</p>
+      <table class="striped responsive-table">
+        <thead>
+          <tr>
+              <th>Round</th>
+              <% count = @total_room_num.to_i%>
+              <% while count != 0 %>
+                <th>Room <%= @total_room_num-count+1 %></th>
+                <% count -= 1%>
+              <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% count_m = 0 %> <!-- count for matrix -->
+          <% room_count =1 %> <!-- count for room -->
+          <% round_count=1 %> <!-- count for rount -->
+          <% round = @senior_b_round_num.to_i%> <!-- total # of rounds -->
+          <% while round >= round_count %>
+            <tr>
+              <td> <%= round_count %></td>
+
+                <!-- checks for nil objects and the right round number -->
+                <% while (@senior_b_matrix[count_m] != nil) && (round_count == @senior_b_matrix[count_m][0]) %>
+
+                  <!-- checks if array has the right room number -->
+                  <% if room_count == @senior_b_matrix[count_m][1] %>
+                    <td>
+                      <!-- if you want to check if its the right room number and round number: -->
+<!--                       round#:<%= @senior_b_matrix[count_m][0] %><br>
+                      room#: <%= @senior_b_matrix[count_m][1] %><br> -->
+                      <%= @senior_b_matrix[count_m][2].team.name %><br>
+                      <%= @senior_b_matrix[count_m][3].team.name %><br>
+                      <%= @senior_b_matrix[count_m][4].team.name %><br>
+                    </td>
+                    <% room_count +=1 %>
+                  <% else %>
+                    <td></td>
+                    <% room_count +=1 %> 
+                  <% end %>
+
+                  <% count_m +=1 %>
+                <% end %>
+            </tr>
+            <% room_count =1 %>
+            <% round_count +=1 %>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </li>
 
   <!--Senior A Matrix -->
   <li>
-    <div class="collapsible-header"><i</i>Junior</div>
+    <div class="collapsible-header"><i</i>Juniors</div>
     <div class="collapsible-body">
-      <p>Lorem ipsum dolor sit amet.</p>
+      <table class="striped responsive-table">
+        <thead>
+          <tr>
+              <th>Round</th>
+              <% count = @total_room_num.to_i%>
+              <% while count != 0 %>
+                <th>Room <%= @total_room_num-count+1 %></th>
+                <% count -= 1%>
+              <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% count_m = 0 %> <!-- count for matrix -->
+          <% room_count =1 %> <!-- count for room -->
+          <% round_count=1 %> <!-- count for rount -->
+          <% round = @juniors_round_num.to_i%> <!-- total # of rounds -->
+          <% while round >= round_count %>
+            <tr>
+              <td> <%= round_count %></td>
+
+                <!-- checks for nil objects and the right round number -->
+                <% while (@juniors_matrix[count_m] != nil) && (round_count == @juniors_matrix[count_m][0]) %>
+
+                  <!-- checks if array has the right room number -->
+                  <% if room_count == @juniors_matrix[count_m][1] %>
+                    <td>
+                      <!-- if you want to check if its the right room number and round number: -->
+<!--                       round#:<%= @juniors_matrix[count_m][0] %><br>
+                      room#: <%= @juniors_matrix[count_m][1] %><br> -->
+                      <%= @juniors_matrix[count_m][2].team.name %><br>
+                      <%= @juniors_matrix[count_m][3].team.name %><br>
+                      <%= @juniors_matrix[count_m][4].team.name %><br>
+                    </td>
+                    <% room_count +=1 %>
+                  <% else %>
+                    <td></td>
+                    <% room_count +=1 %> 
+                  <% end %>
+
+                  <% count_m +=1 %>
+                <% end %>
+            </tr>
+            <% room_count =1 %>
+            <% round_count +=1 %>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </li>
 </ul>
