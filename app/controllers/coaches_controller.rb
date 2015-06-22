@@ -4,7 +4,12 @@ class CoachesController < ApplicationController
   # before_action :verify_user_is_area_admin, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @coach = current_user.coach
+    if current_user.coach.nil?
+      @coach = Coach.first
+    else
+      @coach = current_user.coach
+    end
+    # @coach = current_user.coach
     @junior_teams = Team.for_juniors(1000, @coach.organization)
     @senior_teams = Team.for_seniors(1000, @coach.organization)
     @seniorb_teams = Team.for_seniorb(1000, @coach.organization)

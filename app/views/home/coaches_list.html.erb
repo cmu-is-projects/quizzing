@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="card blue-grey lighten-5">
+    <div class="card-content black-text">
+      <h5 class="header"> Coaches </h5>
+      <table class="stripped">
+        <thead>
+          <tr>
+              <th data-field="id">Name</th>
+              <th data-field="name">Organization</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @coaches.each do |c| %>
+          <tr>
+            <td><%= c.proper_name %></td>
+            <td><%= c.organization.name %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

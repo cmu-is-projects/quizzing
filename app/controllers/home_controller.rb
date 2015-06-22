@@ -5,6 +5,8 @@ class HomeController < ApplicationController
     @upcoming_events = Event.upcoming.chronological.to_a
     @past_events = Event.past.chronological.to_a
 
+    @coaches = Coach.all
+
     @divisions = Division.all.active
 
     if(current_user.role == "coach")
