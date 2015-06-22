@@ -1,0 +1,11 @@
+<div class='container'>
+<% stu= @results %>
+<% numstu = stu.size %>
+<h3>Search</h3>
+<h6><%= "Found #{numstu.to_s} students:" %></h6>
+<% stu.each do |s| %>
+	<%= link_to s.first_name + " " + s.last_name, s %>
+	<br />
+<% end %>
+
+</div>
