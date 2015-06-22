@@ -1,18 +1,20 @@
-<div class="col s8">
-	<p id="notice"><%= notice %></p>
-	<h3><%= @student.proper_name %> </h3>
 
-	<p>
-	  <strong>Current Team:</strong>
-	  <%= @student.current_team.name %>
-	</p>
+<p>
+  <strong>Current Team:</strong>
+  <%= @student.current_team.name %>
+</p>
 
-	<p>
-	  <strong>Grade - Division:</strong>
-	  <%= "#{@student.grade} - #{@student.current_team.division.name.capitalize}" %>
-	</p>
+<p>
+  <strong>Division:</strong>
+  <%= "#{@student.current_team.division.name.capitalize}" %>
+</p>
 
-	<br>
+<p>
+	<strong>Grade:</strong>
+	<%"#{@student.grade}"%>
+</p>
+
+<br>
 
 
 
@@ -51,4 +53,3 @@
 			</td>
 		</tr>
 	</table>
-</div>

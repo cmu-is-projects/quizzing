@@ -19,13 +19,21 @@
                 </tr>
                 <tr>
                   <td><%=standing.position %></td>
+<<<<<<< HEAD
+                  <td><%= link_to standing.student.proper_name, student_path(standing.student) %></td>
+=======
                   <td><%= link_to standing.student_name, student_path(standing.student_id) %></td>
+>>>>>>> fbcb4ecbaeac1d0d7ad6ddb043e82369c4619825
                   <td><%=standing.total_points %></td>
                 </tr>
               <%else%>
                 <tr>
                   <td><%=standing.position %></td>
+<<<<<<< HEAD
+                  <td><%= link_to standing.student.proper_name, student_path(standing.student) %></td>
+=======
                   <td><%= link_to standing.student_name, student_path(standing.student_id) %></td>
+>>>>>>> fbcb4ecbaeac1d0d7ad6ddb043e82369c4619825
                   <td><%=standing.total_points %></td>
                 </tr>
               <%end%>

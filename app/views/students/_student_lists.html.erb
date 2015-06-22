@@ -15,7 +15,7 @@
 		        <tbody>
 		          <% @juniors.each do |student| %>
 		            <tr>
-		              <td><%= link_to student.name, student_path(student) %></td>
+		              <td><%= link_to student.proper_name, student_path(student) %></td>
 		              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
 		              <td><%=student.grade%></td>
 		            </tr>
@@ -46,7 +46,7 @@
 		          <% @junior_standings.each do |standing| %>
 		            <tr>
 		              <td><%=standing.position %></td>
-		              <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+		              <td><%= link_to standing.student.proper_name, student_path(standing.student) %></td>
 		              <td><%=standing.total_points %></td>
 		            </tr>
 		          <% end %>
@@ -75,7 +75,7 @@
 		        <tbody>
 		          <% @seniors.each do |student| %>
 		            <tr>
-		              <td><%= link_to student.name, student_path(student) %></td>
+		              <td><%= link_to student.proper_name, student_path(student) %></td>
 		              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
 		              <td><%=student.grade%></td>
 		            </tr>
@@ -106,7 +106,7 @@
 		          <% @senior_standings.each do |standing| %>
 		            <tr>
 		              <td><%=standing.position %></td>
-		              <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+		              <td><%= link_to standing.student.proper_name, student_path(standing.student) %></td>
 		              <td><%=standing.total_points %></td>
 		            </tr>
 		          <% end %>
@@ -135,7 +135,7 @@
 		        <tbody>
 		          <% @seniorb.each do |student| %>
 		            <tr>
-		              <td><%= link_to student.name, student_path(student) %></td>
+		              <td><%= link_to student.proper_name, student_path(student) %></td>
 		              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
 		              <td><%=student.grade%></td>
 		            </tr>
@@ -166,7 +166,7 @@
 		          <% @seniorb_standings.each do |standing| %>
 		            <tr>
 		              <td><%=standing.position %></td>
-		              <td><%= link_to standing.student.name, student_path(standing.student) %></td>
+		              <td><%= link_to standing.student.proper_name, student_path(standing.student) %></td>
 		              <td><%=standing.total_points %></td>
 		            </tr>
 		          <% end %>
