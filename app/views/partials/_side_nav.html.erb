@@ -1,5 +1,6 @@
   <ul id="nav-mobile" class="side-nav fixed  blue-grey darken-3">
-    <li class="logo"><%= link_to image_tag("logo.png"), home_path %> </li>
+    <li class="logo"><%= link_to image_tag("logo_with_name.png"), home_path %></li>
+
     <% if (logged_in?) && ((current_user.role? :coach) || (current_user.role? :admin)) %>
       <li class="bold"><%= link_to coaches_path do %>
         <i class="small mdi-action-dashboard"></i>  Dashboard
