@@ -98,7 +98,7 @@ end
 # Database gems
 gem 'pg' # for everything...
 # group :development, :test do
-#   gem 'sqlite3'
+   # gem 'sqlite3'
 # end
 # group :production do
 #   gem 'pg'
@@ -109,3 +109,7 @@ gem 'lazy_high_charts'
 
 # Use Sidekiq for async rake task processing
 gem 'sidekiq'
+
+# Use pgsearch for search awesomeness
+gem 'pg_search'
+

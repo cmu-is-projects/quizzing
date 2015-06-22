@@ -67,6 +67,18 @@ $(document).ready(function(){
     });
 
 
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+
+// binding for best in place
+$(document).ready(function() {
+  /* Activating Best in Place */
+  jQuery(".best_in_place").best_in_place()
+  });
+
+
 $(document).ready(function() {
     $('tr.more-top-students').hide();
     $('a.more-top-students').click(function(event) {
@@ -96,6 +108,23 @@ $(document).ready(function() {
           }           
         });
         
+    });
+  });
+
+
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+
+  $(document).ready(function() {
+    $('select#team_switch').change(function(){
+      $(this).closest("form").submit();
+    });
+  });
+
+  $(document).ready(function() {
+    $('select#division_switch').change(function(){
+      $(this).closest("form").submit();
     });
   });
 

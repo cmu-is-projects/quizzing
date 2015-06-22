@@ -1,10 +1,16 @@
-
 class Student < ActiveRecord::Base
   # get modules to help with some functionality
   include QuizHelpers::Validations
   include Activeable
+  include PgSearch
 
   # attr_accessor :team_id
+
+  # pg_search
+  pg_search_scope :search_by_name,
+                  :against => [:first_name, :last_name],
+                  :using =>[:tsearch, :dmetaphone]
+                  #dmetaphone doesn't work
 
   # Relationships
   has_many :student_quizzes
