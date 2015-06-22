@@ -30,25 +30,27 @@ class EventsController < ApplicationController
     @juniors_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @juniors)
     @senior_a_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @senior_a)
     @senior_b_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @senior_b)
-
-
-
   end
 
   def schedule
     #@team = Team.find(params[:team_id])
     #@team = Team.find_by(id: team_params[:id])
     #@team = Team.find_by(id: params[:team_id])
-    if params[:divsion_id].nil?
+    if params[:division_id].nil?
       @division_id = Division.first.id
     else
-      @division_id = params[:divsion_id]
+      @division_id = params[:division_id]
     end
     @divisions = Division.all
-
     @total_round_num = @event.quizzes.map{|q| q.round_num}.max
-    @teams = Team.for_division(Division.find(@division_id)).alphabetical #NEEDS TO BE THROUGH A FORM
-
+    @division = Division.find(@division_id)
+    if @division.name == "juniors"
+      @teams = Team.for_juniors
+    elsif @division.name == "seniors"
+      @teams = Team.for_seniors
+    elsif @division.name == "seniorb"
+      @teams = Team.for_seniorb
+    end
     # @division1 = @teams.first.division
     # @junior_teams = Team.all.where(division_id: 1)
     if params[:team_id].nil?
@@ -61,8 +63,8 @@ class EventsController < ApplicationController
     #@division3 = Division.all.to_a[2]
     #@junior_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division1)
     #@senior_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division2)
-     #@seniorb_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division3)
-    @matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division1)
+    #@seniorb_matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division3)
+    @matrix = MatrixGenerator.get_matrix_for_event_and_division(@event, @division)
   end
 
   # GET /events/new

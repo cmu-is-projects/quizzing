@@ -108,3 +108,9 @@ $(document).ready(function() {
       $(this).closest("form").submit();
     });
   });
+
+  $(document).ready(function() {
+    $('select#division_switch').change(function(){
+      $(this).closest("form").submit();
+    });
+  });
