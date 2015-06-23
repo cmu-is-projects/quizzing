@@ -23,13 +23,33 @@
               <tr>
                 <td><%=t.name%></td>
                 <td><%=get_division_name_for_views(t.division)%></td>
-                <td></td>
+                <% if t.active == true %>
+                  <td><%= link_to toggle_team_path(t, active: false), remote: true, method: 'patch' do %>
+                  <i class="mdi-toggle-check-box tiny"></i>
+                  <% end %>
+                  </td>
+                <% else %>
+                  <td><%= link_to toggle_team_path(t, active: true), remote: true, method: 'patch' do %>
+                    <i class="mdi-navigation-cancel tiny"></i>
+                    <% end %>
+                  </td>
+                <% end %>
               </tr>
             <% else %>
               <tr class="more-teams">
                 <td><%=t.name%></td>
                 <td><%=get_division_name_for_views(t.division)%></td>
-                <td></td>
+                <% if t.active == true %>
+                  <td><%= link_to toggle_team_path(t, active: false), remote: true, method: 'patch' do %>
+                  <i class="mdi-toggle-check-box tiny"></i>
+                  <% end %>
+                  </td>
+                <% else %>
+                  <td><%= link_to toggle_team_path(t, active: true), remote: true, method: 'patch' do %>
+                    <i class="mdi-navigation-cancel tiny"></i>
+                    <% end %>
+                  </td>
+                <% end %>
               </tr>
             <% end %>
           <% count += 1 %>
