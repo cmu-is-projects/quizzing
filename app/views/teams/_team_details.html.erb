@@ -27,20 +27,19 @@
       </div>
 
       <div class="card-reveal">
-        <span class="card-title black-text">Team Members<i class="mdi-navigation-close right"></i></span>
+        <span class="card-title black-text"><%= @team.name %> Team Members<i class="mdi-navigation-close right"></i></span>
         <table>
           <thead>
             <tr>
+                <th>Seating</th>
                 <th>Name</th>
-                <th>Positiion</th>
             </tr>
           </thead>
-
           <tbody>
-            <% @students_by_position.each do |s| %>
+            <% @students_by_seat.each do |s| %>
               <tr>
-                <td><%= link_to s.proper_name, student_path(s.id) %> <br /></td>
-                <td><%= s.indiv_standing.position %></td>
+                <td><%= s.seat%></td>
+                <td><%= link_to  s.student.proper_name, student_path(s.student.id) %> </td>
               </tr>
             <%end%>
           </tbody>
