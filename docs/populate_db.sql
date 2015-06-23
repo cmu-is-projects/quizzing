@@ -22,7 +22,34 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+--
+-- Name: fuzzystrmatch; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS fuzzystrmatch WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION fuzzystrmatch; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance between strings';
+
+
 SET search_path = public, pg_catalog;
+
+--
+-- Name: pg_search_dmetaphone(text); Type: FUNCTION; Schema: public; Owner: profh
+--
+
+CREATE FUNCTION pg_search_dmetaphone(text) RETURNS text
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+  SELECT array_to_string(ARRAY(SELECT dmetaphone(unnest(regexp_split_to_array($1, E'\\s+')))), ' ')
+$_$;
+
+
+ALTER FUNCTION public.pg_search_dmetaphone(text) OWNER TO profh;
 
 SET default_tablespace = '';
 
@@ -338,6 +365,43 @@ ALTER TABLE public.organizations_id_seq OWNER TO profh;
 --
 
 ALTER SEQUENCE organizations_id_seq OWNED BY organizations.id;
+
+
+--
+-- Name: pg_search_documents; Type: TABLE; Schema: public; Owner: profh; Tablespace: 
+--
+
+CREATE TABLE pg_search_documents (
+    id integer NOT NULL,
+    content text,
+    searchable_id integer,
+    searchable_type character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.pg_search_documents OWNER TO profh;
+
+--
+-- Name: pg_search_documents_id_seq; Type: SEQUENCE; Schema: public; Owner: profh
+--
+
+CREATE SEQUENCE pg_search_documents_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pg_search_documents_id_seq OWNER TO profh;
+
+--
+-- Name: pg_search_documents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: profh
+--
+
+ALTER SEQUENCE pg_search_documents_id_seq OWNED BY pg_search_documents.id;
 
 
 --
@@ -787,6 +851,13 @@ ALTER TABLE ONLY organization_students ALTER COLUMN id SET DEFAULT nextval('orga
 --
 
 ALTER TABLE ONLY organizations ALTER COLUMN id SET DEFAULT nextval('organizations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: profh
+--
+
+ALTER TABLE ONLY pg_search_documents ALTER COLUMN id SET DEFAULT nextval('pg_search_documents_id_seq'::regclass);
 
 
 --
@@ -1577,6 +1648,21 @@ COPY organizations (id, name, short_name, street_1, street_2, city, state, zip, 
 --
 
 SELECT pg_catalog.setval('organizations_id_seq', 17, true);
+
+
+--
+-- Data for Name: pg_search_documents; Type: TABLE DATA; Schema: public; Owner: profh
+--
+
+COPY pg_search_documents (id, content, searchable_id, searchable_type, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: pg_search_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
+--
+
+SELECT pg_catalog.setval('pg_search_documents_id_seq', 1, false);
 
 
 --
@@ -6121,6 +6207,9 @@ COPY schema_migrations (version) FROM stdin;
 20150608150246
 20150608195357
 20150609171234
+20150610182159
+20150613014911
+20150613015137
 \.
 
 
@@ -6129,6 +6218,7 @@ COPY schema_migrations (version) FROM stdin;
 --
 
 COPY settings (id, roster_lock_date, drop_lowest_score, roster_lock_toggle, auto_promote_students, area_name, admin_name, admin_email, intro) FROM stdin;
+1	2015-06-23	t	t	t	Pittsburgh Area Quizzing	Tommy Reay	tmreay@example.com	I am Arthur, King of the Britons.
 \.
 
 
@@ -6136,7 +6226,7 @@ COPY settings (id, roster_lock_date, drop_lowest_score, roster_lock_toggle, auto
 -- Name: settings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: profh
 --
 
-SELECT pg_catalog.setval('settings_id_seq', 1, false);
+SELECT pg_catalog.setval('settings_id_seq', 1, true);
 
 
 --
@@ -17771,6 +17861,14 @@ ALTER TABLE ONLY organizations
 
 
 --
+-- Name: pg_search_documents_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
+--
+
+ALTER TABLE ONLY pg_search_documents
+    ADD CONSTRAINT pg_search_documents_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: quiz_teams_pkey; Type: CONSTRAINT; Schema: public; Owner: profh; Tablespace: 
 --
 
@@ -17848,6 +17946,13 @@ ALTER TABLE ONLY teams
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_pg_search_documents_on_searchable_id_and_searchable_type; Type: INDEX; Schema: public; Owner: profh; Tablespace: 
+--
+
+CREATE INDEX index_pg_search_documents_on_searchable_id_and_searchable_type ON pg_search_documents USING btree (searchable_id, searchable_type);
 
 
 --
