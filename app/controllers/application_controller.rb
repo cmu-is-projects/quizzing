@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include DatabaseSwitcher
   
   # check which database to use...
+
   before_action :determine_correct_database #if Rails.env.production?
 
   # Prevent CSRF attacks by raising an exception.
