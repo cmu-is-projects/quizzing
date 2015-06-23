@@ -1,0 +1,28 @@
+<div id="organizations">
+  <div class="card blue-grey lighten-5">
+    <div class="subtitle card-content black-text">
+      <span class="card-title black-text">
+        <div class="row">
+          <div class="col m8">Organizations</div>
+          <div class="col m4">
+            <p class="subtitle"> Total: <%=@organizations.size%> </p> 
+          </div>
+        </div>
+      </span>
+      <div class="divider"></div>
+      <table class="center">
+        <thead>
+          <th>Name</th>
+          <th>Active</th>
+        </thead>
+        <tbody>
+          <% @organizations.each do |o| %>
+            <tr>
+              <td><%=o.name%></td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
