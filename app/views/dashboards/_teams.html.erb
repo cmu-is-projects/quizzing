@@ -1,0 +1,48 @@
+<div id="students">
+  <div class="card blue-grey lighten-5">
+    <div class="subtitle card-content black-text">
+      <span class="card-title black-text">
+        <div class="row">
+          <div class="col m8"><i class="small mdi-social-group"></i> Teams</div>
+          <div class="col m4">
+            <p class="subtitle"> Total: <%=team_type.size%> </p> 
+          </div>
+        </div>
+      </span>
+      <div class="divider"></div>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Division</th>
+          <th>Active</th>
+        </thead>
+        <tbody>
+          <% count = 0 %>
+          <% team_type.each do |t| %>
+            <% if count < 5 %>
+              <tr>
+                <td><%=t.name%></td>
+                <td><%=get_division_name_for_views(t.division)%></td>
+                <td></td>
+              </tr>
+            <% else %>
+              <tr class="more-teams">
+                <td><%=t.name%></td>
+                <td><%=get_division_name_for_views(t.division)%></td>
+                <td></td>
+              </tr>
+            <% end %>
+          <% count += 1 %>
+          <% end %>
+          <% if team_type.length >= 6 %> 
+          <tr>
+            <td></td>
+            <td></td>
+            <td align="left"><a class="more-teams" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -37,7 +37,7 @@ Quizzing::Application.routes.draw do
   # dashboards and settings
 
   get "coach_dashboard" => "coaches#index", as: :coach_dashboard
-  get "area_admin_dashboard" => "home#index", as: :area_admin_dashboard
+  get "area_admin_dashboard" => "home#area_admin_dashboard", as: :area_admin_dashboard
   get "admin_dashboard" => "home#index", as: :admin_dashboard
 
   # get "coach_settings" => "coaches#index", as: :coach_settings

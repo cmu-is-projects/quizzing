@@ -63,6 +63,7 @@ class HomeController < ApplicationController
     @all_senior_teams = Team.for_seniors
     @seniorb = IndivStanding.for_seniorb.map{|j| j.student}.sort_by! {|n| n.first_name}
     @all_seniorb_teams = Team.for_seniorb
+    render template: 'dashboards/area_admin_dashboard'
   end
   
 end

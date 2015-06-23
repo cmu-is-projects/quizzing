@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   # check which database to use...
 
   before_action :determine_correct_database #if Rails.env.production?
+  before_action :current_settings
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -59,4 +60,9 @@ class ApplicationController < ActionController::Base
     redirect_to home_path, alert: "You need to be a coach to access this page." unless current_user.is_coach?
   end
 
+  def current_settings
+    @current_settings = Setting.first
+  end
+  helper_method :current_settings
+  
 end

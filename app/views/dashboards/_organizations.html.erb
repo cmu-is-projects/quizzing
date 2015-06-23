@@ -1,0 +1,44 @@
+<div id="organizations">
+  <div class="card blue-grey lighten-5">
+    <div class="subtitle card-content black-text">
+      <span class="card-title black-text">
+        <div class="row">
+          <div class="col m8"><i class="fa fa-home small"></i> Organizations</div>
+          <div class="col m4">
+            <p class="subtitle"> Total: <%=@organizations.size%> </p> 
+          </div>
+        </div>
+      </span>
+      <div class="divider"></div>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Active</th>
+        </thead>
+        <tbody>
+        <% count = 0 %>
+        <% @organizations.each do |o| %>
+          <% if count < 5 %>
+            <tr>
+              <td><%=o.name%></td>
+              <td></td>
+            </tr>
+          <% else %>
+             <tr class="more-organizations">
+              <td><%=o.name%></td>
+              <td></td>
+            </tr>
+          <%end %>
+          <% count += 1 %>          
+        <% end %>
+        <% if @organizations.length >= 6 %> 
+          <tr>
+            <td></td>
+            <td align="left"><a class="more-organizations" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div id="students">
+  <div class="card blue-grey lighten-5">
+    <div class="subtitle card-content black-text">
+      <span class="card-title black-text">
+        <div class="row">
+          <div class="col m8"><i class="small mdi-social-person"></i> Students</div>
+          <div class="col m4">
+            <p class="subtitle"> Total: <%=student_type.size%> </p>
+          </div>
+        </div>
+      </span>
+      <div class="divider"></div>
+      <table>
+        <thead>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Grade</th>
+          <th>Active</th>
+        </thead>
+        <tbody>
+          <% count = 0 %>
+          <% student_type.each do |s| %>
+            <% if count < 5 %>
+              <tr>
+                <td><%=s.first_name%></td>
+                <td><%=s.last_name%></td>
+                <td><%=s.grade%></td>
+                <td></td>
+              </tr>
+            <% else %>
+              <tr class="more-students">
+                <td><%=s.first_name%></td>
+                <td><%=s.last_name%></td>
+                <td><%=s.grade%></td>
+                <td></td>
+              </tr>
+            <% end %>
+            <% count += 1 %>
+          <%end%>
+          <% if student_type.length >= 6 %> 
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td align="left"><a class="more-students" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
   <ul id="nav-mobile" class="side-nav fixed  blue-grey darken-3">
     <li class="logo"><%= link_to image_tag("logo_with_name.png"), home_path %></li>
 
-    <% if (logged_in?) && ((current_user.role? :coach) || (current_user.role? :admin)) %>
+    <% if (logged_in?) && (current_user.role? :coach)%>
       <li class="bold"><%= link_to coach_dashboard_path do %>
         <i class="small mdi-action-dashboard"></i>  Dashboard
       <% end %></li>
@@ -34,7 +34,7 @@
     <i class="small fa fa-trophy"></i>  Standings
     <% end %></li>
 
-    <% if (logged_in?) && ((current_user.role? :coach) || (current_user.role? :admin)) %>
+    <% if (logged_in?) && ((current_user.role? :coach) || (current_user.role? :area_admin)) %>
       <li class="bold"><%= link_to settings_path do %>
         <i class="small mdi-action-settings"></i>   Settings
       <% end %></li>

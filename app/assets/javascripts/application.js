@@ -111,6 +111,70 @@ $(document).ready(function() {
     });
   });
 
+$(document).ready(function() {
+    $('tr.more-organizations').hide();
+    $('a.more-organizations').click(function(event) {
+        event.preventDefault();
+        $('tr.more-organizations').fadeToggle('fast', function() {
+          if( $('tr.more-organizations').is(':visible') ) {
+           $('a.more-organizations').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more-organizations').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
+$(document).ready(function() {
+    $('tr.more-coaches').hide();
+    $('a.more-coaches').click(function(event) {
+        event.preventDefault();
+        $('tr.more-coaches').fadeToggle('fast', function() {
+          if( $('tr.more-coaches').is(':visible') ) {
+           $('a.more-coaches').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more-coaches').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
+$(document).ready(function() {
+    $('tr.more-students').hide();
+    $('a.more-students').click(function(event) {
+        event.preventDefault();
+        $('tr.more-students').fadeToggle('fast', function() {
+          if( $('tr.more-students').is(':visible') ) {
+           $('a.more-students').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more-students').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
+$(document).ready(function() {
+    $('tr.more-teams').hide();
+    $('a.more-teams').click(function(event) {
+        event.preventDefault();
+        $('tr.more-teams').fadeToggle('fast', function() {
+          if( $('tr.more-teams').is(':visible') ) {
+           $('a.more-teams').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more-teams').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
 
   $(document).ready(function() {
     $('select').material_select();
@@ -127,4 +191,5 @@ $(document).ready(function() {
       $(this).closest("form").submit();
     });
   });
+
 
