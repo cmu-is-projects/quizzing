@@ -15,6 +15,7 @@ class CoachesController < ApplicationController
     @improved_juniors = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("juniors"))
     @improved_seniors = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("seniors"))
     @improved_seniorb = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("seniorb"))
+    render template: 'dashboards/coach_dashboard'
   end
 
   def show

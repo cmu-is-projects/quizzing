@@ -34,6 +34,16 @@ Quizzing::Application.routes.draw do
   get "update_indiv_standings" => "settings#update_indiv_standings", as: :update_indiv_standings
   get "update_team_standings" => "settings#update_team_standings", as: :update_team_standings
 
+  # dashboards and settings
+
+  get "coach_dashboard" => "coaches#index", as: :coach_dashboard
+  get "area_admin_dashboard" => "home#index", as: :area_admin_dashboard
+  get "admin_dashboard" => "home#index", as: :admin_dashboard
+
+  # get "coach_settings" => "coaches#index", as: :coach_settings
+  # get "area_admin_settings" => "home#index", as: :area_admin_settings
+  # get "admin_settings" => "home#index", as: :admin_settings
+
   # Search stuff
   get "search" => "searches#index", as: :search_students
 

@@ -2,7 +2,17 @@
     <li class="logo"><%= link_to image_tag("logo_with_name.png"), home_path %></li>
 
     <% if (logged_in?) && ((current_user.role? :coach) || (current_user.role? :admin)) %>
-      <li class="bold"><%= link_to coaches_path do %>
+      <li class="bold"><%= link_to coach_dashboard_path do %>
+        <i class="small mdi-action-dashboard"></i>  Dashboard
+      <% end %></li>
+
+    <% elsif (logged_in?) && (current_user.role? :area_admin) %>
+      <li class="bold"><%= link_to area_admin_dashboard_path do %>
+        <i class="small mdi-action-dashboard"></i>  Dashboard
+      <% end %></li>
+
+    <% elsif (logged_in?) && (current_user.role? :admin) %>
+      <li class="bold"><%= link_to admin_dashboard_path do %>
         <i class="small mdi-action-dashboard"></i>  Dashboard
       <% end %></li>
     <% end %>
