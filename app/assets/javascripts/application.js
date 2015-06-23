@@ -127,6 +127,7 @@ $(document).ready(function() {
     });
   });
 
+
 $(document).ready(function() {
     $('tr.more-coaches').hide();
     $('a.more-coaches').click(function(event) {

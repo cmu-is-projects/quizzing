@@ -68,6 +68,10 @@ Quizzing::Application.routes.draw do
   patch 'toggle_attendance/:id' => 'student_teams#toggle', as: :toggle
   patch 'toggle_division/:id' => 'divisions#toggle_division', as: :toggle_division
   patch 'toggle_quiz_question/:id' => 'categories#toggle_quiz_question', as: :toggle_quiz_question
+  patch 'toggle_organization/:id' => 'organizations#toggle_organization', as: :toggle_organization
+  patch 'toggle_team/:id' => 'teams#toggle_team', as: :toggle_team
+  patch 'toggle_student/:id' =>'students#toggle_student', as: :toggle_student
+  patch 'toggle_coach/:id' => 'coaches#toggle_coach', as: :toggle_coach
   # patch 'toggle_student/:id' => 'students#toggle', as: :toggle
 
   # post "student_teams/:id" => 'students#create_student_team', as: :create_student_team

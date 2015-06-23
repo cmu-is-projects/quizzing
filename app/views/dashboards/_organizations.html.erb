@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col m8"><i class="fa fa-home small"></i> Organizations</div>
           <div class="col m4">
-            <p class="subtitle"> Total: <%=@organizations.size%> </p> 
+            <p class="subtitle"> Total: <%= @organizations.size%> </p> 
           </div>
         </div>
       </span>
@@ -20,15 +20,35 @@
         <% @organizations.each do |o| %>
           <% if count < 5 %>
             <tr>
-              <td><%=o.name%></td>
-              <td></td>
+              <td><%= o.name %></td>
+              <% if o.active == true %>
+               <td><%= link_to toggle_organization_path(o, active: false), remote: true, method: 'patch' do %>
+                <i class="mdi-toggle-check-box tiny"></i>
+              <% end %>
+              </td>
+            <% else %>
+              <td><%= link_to toggle_organization_path(o, active: true), remote: true, method: 'patch' do %>
+                <i class="mdi-navigation-cancel tiny"></i>
+                <% end %>
+              </td>
+            <% end %>
             </tr>
           <% else %>
              <tr class="more-organizations">
               <td><%=o.name%></td>
-              <td></td>
+              <% if o.active == true %>
+               <td><%= link_to toggle_organization_path(o, active: false), remote: true, method: 'patch' do %>
+                <i class="mdi-toggle-check-box tiny"></i>
+                <% end %>
+                </td>
+              <% else %>
+              <td><%= link_to toggle_organization_path(o, active: true), remote: true, method: 'patch' do %>
+                <i class="mdi-navigation-cancel tiny"></i>
+                <% end %>
+              </td>
+            <% end %>
             </tr>
-          <%end %>
+          <% end %>
           <% count += 1 %>          
         <% end %>
         <% if @organizations.length >= 6 %> 
