@@ -1,5 +1,9 @@
 <div class="container">
   <br>
+
+  <h4><%= "#{@event.start_date.strftime('%B, %Y')} Event Schedule" %> </h4>
+
+  <br>
   <div class ="row">
     <%= form_tag schedule_path(@event), method: :get do  %>
       <div class ="row">
