@@ -25,14 +25,34 @@
                 <td><%=s.first_name%></td>
                 <td><%=s.last_name%></td>
                 <td><%=s.grade%></td>
-                <td></td>
+                <% if s.active == true %>
+                  <td><%= link_to toggle_student_path(s, active: false), remote: true, method: 'patch' do %>
+                  <i class="mdi-toggle-check-box tiny"></i>
+                  <% end %>
+                  </td>
+                <% else %>
+                  <td><%= link_to toggle_student_path(s, active: true), remote: true, method: 'patch' do %>
+                    <i class="mdi-navigation-cancel tiny"></i>
+                    <% end %>
+                  </td>
+                <% end %>
               </tr>
             <% else %>
               <tr class="more-students">
                 <td><%=s.first_name%></td>
                 <td><%=s.last_name%></td>
                 <td><%=s.grade%></td>
-                <td></td>
+                <% if s.active == true %>
+                  <td><%= link_to toggle_student_path(s, active: false), remote: true, method: 'patch' do %>
+                  <i class="mdi-toggle-check-box tiny"></i>
+                  <% end %>
+                  </td>
+                <% else %>
+                  <td><%= link_to toggle_student_path(s, active: true), remote: true, method: 'patch' do %>
+                    <i class="mdi-navigation-cancel tiny"></i>
+                    <% end %>
+                  </td>
+                <% end %>
               </tr>
             <% end %>
             <% count += 1 %>
