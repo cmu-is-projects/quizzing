@@ -96,9 +96,9 @@ group :test do
 end
 
 # Database gems
-gem 'pg' # for everything...
+#gem 'pg' # for everything...
 # group :development, :test do
-   # gem 'sqlite3'
+    gem 'sqlite3'
 # end
 # group :production do
 #   gem 'pg'
@@ -111,5 +111,5 @@ gem 'lazy_high_charts'
 gem 'sidekiq'
 
 # Use pgsearch for search awesomeness
-gem 'pg_search'
+# gem 'pg_search'
 

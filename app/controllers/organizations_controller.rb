@@ -22,6 +22,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations/new
   def new
     @organization = Organization.new
+    @coach = Coach.new
+    user = @coach.build_user
   end
 
   # GET /organizations/1/edit
@@ -35,7 +37,8 @@ class OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
+        save_coach_for_organization
+        format.html { redirect_to settings_path, notice: "#{@organization.name} was created" }
         format.json { render action: 'show', status: :created, location: @organization }
       else
         format.html { render action: 'new' }
@@ -77,5 +80,27 @@ class OrganizationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
       params.require(:organization).permit(:name, :short_name, :street_1, :street_2, :city, :state, :zip, :latitutde, :longitude, :active, :coach_ids => [])
+      # params.require(:coach).permit(:first_name, :last_name, :phone, :active, :user_attributes => [:username, :email])
+    end
+
+      def setup_coach_for_organization
+        @coach = Coach.new
+        @coach.first_name = params[:coach][:first_name] unless params[:coach][:first_name].nil?
+        @coach.last_name = params[:coach][:last_name] unless params[:coach][:last_name].nil?
+        @coach.phone = params[:coach][:phone] unless params[:coach][:phone].nil?
+        @coach.active = true
+        @coach.save!
+
+        @coach.user = User.new
+        @coach.user.username = params[:coach][:user_attributes][:username]
+        @coach.user.email = params[:coach][:user_attributes][:email]
+        @coach.user.role = "coach"
+        @coach.user.password = SETTINGS[:default_password]
+        @coach.user.password_confirmation = SETTINGS[:default_password]
+        @coach.user.active_after = Time.now
+        @coach.user.active = true
+        @coach.user.save!
+        @coach.update_attribute(:user_id, @coach.user.id)
+        @organization.update_attribute(:primary_contact_id, @coach.id)
     end
 end

@@ -1,30 +1,92 @@
-<%= simple_form_for(@organization) do |f| %>
-  <fieldset>
+  <!-- primary contact id? -->
+
+  <div class="row">
+    <%= nested_form_for(@organization, class: 'col 10') do |f| %>
     <% if @organization.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
-
-        <ul>
+    <div id="error_explanation">
+      <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
+      <ul>
         <% @organization.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+        <li><%= msg %></li>
         <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-      <%= f.input :name %><br>
-      <%= f.input :short_name %><br>
-      <%= f.input :street_1 %><br>
-      <%= f.input :street_2 %><br>
-      <%= f.input :city %><br>
-      <%= f.input :state %><br>
-      <%= f.input :zip %><br>
-      <%= f.input :active %><br>
-
-    <div class="form-actions">
-      <%= f.submit nil, class: 'button' %>
-      <%= link_to 'Cancel', organizations_path, :class => 'button secondary' %>
+      </ul>
     </div>
+    <% end %>
+    <div class="row">
+      <div class="input-field col 10">
+        <%= f.text_field :name, :required => true %>
+        <label for="organization_name"> Organization Name </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col 10">
+        <%= f.text_field :short_name %>
+        <label for="organization_short_name"> Short Name </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col 10">
+        <%= f.text_field :street_1, :required => true %>
+        <label for="organization_street_1"> Address 1 </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col 10">
+        <%= f.text_field :street_2 %>
+        <label for="organization_street_2"> Address 2 </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col 10">
+        <%= f.text_field :city %>
+        <label for="organization_city"> City </label>
+      </div>
+      <div class="input-field col 10">
+        <%= f.text_field :state %>
+        <label for="organization_state"> State </label>
+      </div>
+      <div class="input-field col 10">
+        <%= f.text_field :zip, :required => true %>
+        <label for="organization_zip"> Zip </label>
+      </div>
+    </div>
+    <h5>Create Coach</h5>
+    <%= form_for(@coach, class: 'col 10') do |c| %>
+    <div class="row">
+      <div class="input-field col 10">
+        <%= c.text_field :first_name, :required => true %>
+        <label for="coach_first_name"> Coach First Name </label>
+      </div>
+      <div class="input-field col 10">
+        <%= c.text_field :last_name, :required => true %>
+        <label for="coach_last_name"> Coach Last Name </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col 10">
+        <%= c.text_field :phone %>
+        <label for="coach_phone"> Coach Phone </label>
+      </div>
+    </div>
+    <%= c.fields_for(:user, class: 'col 10') do |user_form| %>
+    <div class="row">
+      <div class="input-field col 10">
+        <%= user_form.text_field :email, :required => true %>
+        <label for="user_email"> Coach Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col 10">
+        <%= user_form.text_field :username, :required => true %>
+        <label for="user_username">Coach Username</label>
+      </div>
+    </div>
+    <% end %>
+  <% end %> 
 
-  </fieldset>
-<% end %>
+  <div class="form-actions">
+    <%= f.submit nil, class: 'btn large', value: 'Submit' %>
+    <%= link_to 'Back', settings_path, :class => 'button secondary' %>
+  </div>
+  <% end %> 
+</div>
