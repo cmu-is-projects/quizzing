@@ -28,9 +28,30 @@
 
       <div class="card-reveal">
         <span class="card-title black-text">Team Members<i class="mdi-navigation-close right"></i></span>
-        <% @students.each do |s| %>
-          <%= link_to s.proper_name, student_path(s.id) %> <br />
-        <% end %>
+
+        <table>
+          <thead>
+            <tr>
+                <th>Name</th>
+                <th>Positiion</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @students_by_position.each do |s| %>
+              <tr>
+                <td><%= link_to s.proper_name, student_path(s.id) %> <br /></td>
+                <td><%= s.indiv_standing.position %></td>
+              </tr>
+            <%end%>
+          </tbody>
+        </table>
+            
+
+
+
+
+
       </div>
 
     </div>

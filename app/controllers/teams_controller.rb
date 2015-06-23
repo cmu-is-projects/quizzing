@@ -29,6 +29,7 @@ class TeamsController < ApplicationController
     @teams =Team.all
     @team_standing = TeamStanding.for_team(@team)
     @students = @team.current_students
+    @students_by_position = @students.sort_by {|s| s.indiv_standing.position} 
     @quiz_year = QuizYear.new
     @completed_events = @quiz_year.completed_events
     @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events 
