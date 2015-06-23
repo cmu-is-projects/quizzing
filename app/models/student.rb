@@ -10,7 +10,6 @@ class Student < ActiveRecord::Base
   pg_search_scope :search_by_name,
                   :against => [:first_name, :last_name],
                   :using =>[:tsearch, :dmetaphone]
-                  #dmetaphone doesn't work
 
   # Relationships
   has_many :student_quizzes
