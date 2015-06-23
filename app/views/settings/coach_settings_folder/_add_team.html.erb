@@ -1,0 +1,26 @@
+<div id="students">
+<a class="waves-effect waves-light btn">Add Team</a>
+  <div class="card blue-grey lighten-5">
+    <div class="subtitle card-content black-text">
+		<%=form_for @team do |f| %>
+			<div class ="row">
+		      <div class ="input-field col 10">
+		        <%= f.text_field :division %>
+		        <!-- <input id="setting_area_name" name="setting[area_name]" type="text"/> -->
+		        <label for="team_division">Division</label>
+		      </div>
+		    </div>
+		    <div class ="row">
+		      <div class ="input-field col 10">
+		        <%= f.text_field :name %>
+		        <!-- <input id="setting_area_name" name="setting[area_name]" type="text"/> -->
+		        <label for="team_name">Last Name</label>
+		      </div>
+		    </div>
+		    <div class="form-actions">
+			  <%= f.submit nil, class: 'btn small', value: 'Submit' %>
+			</div>
+		<% end %>
+    </div>
+  </div>
+</div>

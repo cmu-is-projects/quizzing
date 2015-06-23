@@ -3,6 +3,10 @@ class SettingsController < ApplicationController
 		@setting = Setting.first
 		@divisions = Division.all 
 		@categories = Category.all
+		@students = Student.all
+		@teams = Team.all
+		@student = Student.first
+		@team = Team.first
 	end
 
 	def edit
