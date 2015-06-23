@@ -127,6 +127,57 @@ $(document).ready(function() {
     });
   });
 
+//for students index page 
+$(document).ready(function() {
+    $('tr.more_junior_students').hide();
+    $('a.more_junior_students').click(function(event) {
+        event.preventDefault();
+        $('tr.more_junior_students').fadeToggle('fast', function() {
+          if( $('tr.more_junior_students').is(':visible') ) {
+           $('a.more_junior_students').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more_junior_students').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
+$(document).ready(function() {
+    $('tr.more_senior_students').hide();
+    $('a.more_senior_students').click(function(event) {
+        event.preventDefault();
+        $('tr.more_senior_students').fadeToggle('fast', function() {
+          if( $('tr.more_senior_students').is(':visible') ) {
+           $('a.more_senior_students').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more_senior_students').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
+$(document).ready(function() {
+    $('tr.more_seniorb_students').hide();
+    $('a.more_seniorb_students').click(function(event) {
+        event.preventDefault();
+        $('tr.more_seniorb_students').fadeToggle('fast', function() {
+          if( $('tr.more_seniorb_students').is(':visible') ) {
+           $('a.more_seniorb_students').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more_seniorb_students').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
+
+//standing
 $(document).ready(function() {
     $('tr.more-top-students').hide();
     $('a.more-top-students').click(function(event) {

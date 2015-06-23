@@ -7,19 +7,36 @@
 		      <table class="responsive-table">
 		        <thead>
 		          <tr>
-		            <th data-field="id">Name</th>
-		            <th data-field="name">Team</th>
-		            <th data-field="price">Grade</th>
+		            <th>Name</th>
+		            <th>Team</th>
+		            <th>Grade</th>
 		          </tr>
 		        </thead>
 		        <tbody>
-		          <% @juniors.each do |student| %>
-		            <tr>
-		              <td><%= link_to student.proper_name, student_path(student) %></td>
-		              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
-		              <td><%=student.grade%></td>
-		            </tr>
-		          <% end %>
+		        	<% count=0 %> 
+		          	<% @juniors.each do |student| %>
+		          	<% if count <10 %>
+			            <tr>
+			              <td><%= link_to student.proper_name, student_path(student) %></td>
+			              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+			              <td><%=student.grade%></td>
+			            </tr>
+	            	<% else %>
+			            <tr class="more_junior_students">
+			              <td><%= link_to student.proper_name, student_path(student) %></td>
+			              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+			              <td><%=student.grade%></td>
+			            </tr>
+		         	<% end %>
+		         	<% count += 1 %> 
+		         	<%end %>
+					<% if @juniors.length >= 10 %> 
+						<tr>
+						  <td></td>
+						  <td></td>
+						  <td style="text-align: right;"><a class="more_junior_students" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+						</tr>
+					<% end %>
 		        </tbody>
 		      </table>
 		      <br>
@@ -76,13 +93,30 @@
 		          </tr>
 		        </thead>
 		        <tbody>
-		          <% @seniors.each do |student| %>
-		            <tr>
-		              <td><%= link_to student.proper_name, student_path(student) %></td>
-		              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
-		              <td><%=student.grade%></td>
-		            </tr>
-		          <% end %>
+		        	<% count=0 %> 
+		          	<% @seniors.each do |student| %>
+		          	<% if count <10 %>
+			            <tr>
+			              <td><%= link_to student.proper_name, student_path(student) %></td>
+			              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+			              <td><%=student.grade%></td>
+			            </tr>
+	            	<% else %>
+			            <tr class="more_senior_students">
+			              <td><%= link_to student.proper_name, student_path(student) %></td>
+			              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+			              <td><%=student.grade%></td>
+			            </tr>
+		         	<% end %>
+		         	<% count += 1 %> 
+		         	<%end %>
+					<% if @seniors.length >= 10 %> 
+						<tr>
+						  <td></td>
+						  <td></td>
+						  <td style="text-align: right;"><a class="more_senior_students" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+						</tr>
+					<% end %>
 		        </tbody>
 		      </table>
 		      <br>
@@ -139,13 +173,30 @@
 		          </tr>
 		        </thead>
 		        <tbody>
-		          <% @seniorb.each do |student| %>
-		            <tr>
-		              <td><%= link_to student.proper_name, student_path(student) %></td>
-		              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
-		              <td><%=student.grade%></td>
-		            </tr>
-		          <% end %>
+		        	<% count=0 %> 
+		          	<% @seniorb.each do |student| %>
+		          	<% if count <10 %>
+			            <tr>
+			              <td><%= link_to student.proper_name, student_path(student) %></td>
+			              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+			              <td><%=student.grade%></td>
+			            </tr>
+	            	<% else %>
+			            <tr class="more_seniorb_students">
+			              <td><%= link_to student.proper_name, student_path(student) %></td>
+			              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+			              <td><%=student.grade%></td>
+			            </tr>
+		         	<% end %>
+		         	<% count += 1 %> 
+		         	<%end %>
+					<% if @seniorb.length >= 10 %> 
+						<tr>
+						  <td></td>
+						  <td></td>
+						  <td style="text-align: right;"><a class="more_seniorb_students" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+						</tr>
+					<% end %>
 		        </tbody>
 		      </table>
 		      <br>
