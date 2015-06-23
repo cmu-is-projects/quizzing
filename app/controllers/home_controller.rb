@@ -56,7 +56,7 @@ class HomeController < ApplicationController
 
   def area_admin_dashboard
     @organizations = Organization.alphabetical.all
-    @coaches = Coach.alphabetical.active.all
+    @coaches = Coach.alphabetical.all
     @juniors = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.first_name}
     @all_junior_teams = Team.for_juniors
     @seniors = IndivStanding.for_seniors.map{|j| j.student}.sort_by! {|n| n.first_name}

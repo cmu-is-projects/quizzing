@@ -60,6 +60,13 @@ class CoachesController < ApplicationController
     redirect_to coaches_url
   end
 
+  def toggle_coach
+    @coach = Coach.find(params[:id])
+    @coach.active = params[:active] unless params[:active].nil?
+    @coach.save!
+    @coaches = Coach.alphabetical.all
+  end
+
   private
     def set_coach
       @coach = Coach.find(params[:id])

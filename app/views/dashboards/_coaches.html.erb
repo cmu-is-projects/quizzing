@@ -21,12 +21,33 @@
             <% if count < 5 %>
               <tr>
                 <td><%=c.proper_name%></td>
-                <td></td>
+                <% if c.active == true %>
+                  <td><%= link_to toggle_coach_path(c, active: false), remote: true, method: 'patch' do %>
+                  <i class="mdi-toggle-check-box tiny"></i>
+                  <% end %>
+                  </td>
+                <% else %>
+                  <td><%= link_to toggle_coach_path(c, active: true), remote: true, method: 'patch' do %>
+                    <i class="mdi-navigation-cancel tiny"></i>
+                    <% end %>
+                  </td>
+                <% end %>
               </tr>
             <% else %>
               <tr class="more-coaches">
                 <td><%=c.proper_name%></td>
-                <td></td>
+                <% if c.active == true %>
+                  <td><%= link_to toggle_coach_path(c, active: false), remote: true, method: 'patch' do %>
+                  <i class="mdi-toggle-check-box tiny"></i>
+                  <% end %>
+                  </td>
+                <% else %>
+                  <td><%= link_to toggle_coach_path(c, active: true), remote: true, method: 'patch' do %>
+                    <i class="mdi-navigation-cancel tiny"></i>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
               </tr>
             <% end %>
             <% count += 1%>
