@@ -5,18 +5,28 @@
 		<%=form_for @team do |f| %>
 			<div class ="row">
 		      <div class ="input-field col 10">
-		        <%= f.text_field :division %>
-		        <!-- <input id="setting_area_name" name="setting[area_name]" type="text"/> -->
+		        <%= f.select :division_id, options_from_collection_for_select(@divisions, 'id', 'name')%>
+		        <%#= select_tag :division_id, options_from_collection_for_select(@divisions, 'id', 'name', selected: @division_id), id: 'division_switch' %>
 		        <label for="team_division">Division</label>
 		      </div>
 		    </div>
 		    <div class ="row">
 		      <div class ="input-field col 10">
 		        <%= f.text_field :name %>
-		        <!-- <input id="setting_area_name" name="setting[area_name]" type="text"/> -->
-		        <label for="team_name">Last Name</label>
+		        <label for="team_name">Team Name</label>
 		      </div>
 		    </div>
+		    <div class ="row">
+		      <div class ="input-field col 10">
+		        <%= select_tag :student_id, options_from_collection_for_select(@add_teams, 'id', 'proper_name')%>
+		        <%= select_tag :student_id, options_from_collection_for_select(@add_teams, 'id', 'proper_name')%>
+		        <%= select_tag :student_id, options_from_collection_for_select(@add_teams, 'id', 'proper_name')%>
+		        <%= select_tag :student_id, options_from_collection_for_select(@add_teams, 'id', 'proper_name')%>
+		        <%= select_tag :student_id, options_from_collection_for_select(@add_teams, 'id', 'proper_name')%>
+		        <label for="team_students">Add students</label>
+		      </div>
+		    </div>
+
 		    <div class="form-actions">
 			  <%= f.submit nil, class: 'btn small', value: 'Submit' %>
 			</div>

@@ -7,6 +7,20 @@ class SettingsController < ApplicationController
 		@teams = Team.all
 		@student = Student.first
 		@team = Team.first
+		@add_teams = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.first_name}
+		# if params[:division_id].nil?
+  #     		@division_id = Division.first.id
+	 #    else
+	 #      @division_id = params[:division_id]
+	 #    end
+	 #    @division = Division.find(@division_id)
+	 #    if @division.name == "juniors"
+	 #      @add_teams = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.first_name}
+	 #    elsif @division.name == "seniors"
+	 #      @add_teams = IndivStanding.for_seniors.map{|j| j.student}.sort_by! {|n| n.first_name}
+	 #    elsif @division.name == "seniorb"
+	 #      @add_teams = IndivStanding.for_seniorb.map{|j| j.student}.sort_by! {|n| n.first_name}
+	 #    end
 	end
 
 	def edit
@@ -47,6 +61,6 @@ class SettingsController < ApplicationController
 
 
 	def setting_params
-      params.require(:setting).permit(:drop_lowest_score, :roster_lock_date, :roster_lock_toggle, :auto_promote_students, :area_name, :admin_name, :admin_email, :intro)
+      params.require(:setting).permit(:drop_lowest_score, :roster_lock_date, :roster_lock_toggle, :auto_promote_students, :area_name, :admin_name, :admin_email, :intro, :division_id)
     end
 end
