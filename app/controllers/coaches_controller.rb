@@ -14,12 +14,23 @@ class CoachesController < ApplicationController
     @senior_teams = Team.for_seniors(1000, @coach.organization)
     @seniorb_teams = Team.for_seniorb(1000, @coach.organization)
     @coaches = Coach.alphabetical.active.all
+    @organizations = Organization.alphabetical.all
     @top_juniors = IndivStanding.for_juniors(10, @coach.organization)
     @top_seniors = IndivStanding.for_seniors(10, @coach.organization)
     @top_seniorb = IndivStanding.for_seniorb(10, @coach.organization)
     @improved_juniors = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("juniors"))
     @improved_seniors = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("seniors"))
     @improved_seniorb = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("seniorb"))
+
+    #for area admin!!!
+    @organizations = Organization.alphabetical.all
+    @coaches = Coach.alphabetical.active.all
+    @juniors = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.first_name}
+    @all_junior_teams = Team.for_juniors
+    @seniors = IndivStanding.for_seniors.map{|j| j.student}.sort_by! {|n| n.first_name}
+    @all_senior_teams = Team.for_seniors
+    @seniorb = IndivStanding.for_seniorb.map{|j| j.student}.sort_by! {|n| n.first_name}
+    @all_seniorb_teams = Team.for_seniorb
   end
 
   def show

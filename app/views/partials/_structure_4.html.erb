@@ -1,0 +1,26 @@
+<!-- Top Row- 12cols, next row divided into 8col and 4col-->
+<!-- 8col is called primary, 4col is called secondary -->
+<div class="container"> 
+
+  <div class= "row">
+    <%= render partial: "#{header}" unless header.blank? %>
+  </div> 
+
+  <div class="row">
+    <!-- render a set of options, if they exist -->
+    <%= render partial: "#{content}", 
+        locals: {model_name: model_name} unless content.blank? %>
+  </div>
+
+  <div class="row">
+    <div class="col s8">
+      <!-- primary partial gets displayed here in main div -->
+      <%= render partial: "#{left8}" %>   
+    </div>
+
+    <div class="col s4">
+    	<%= render partial: "#{right4}" %>
+    </div>
+  </div>
+  
+</div>

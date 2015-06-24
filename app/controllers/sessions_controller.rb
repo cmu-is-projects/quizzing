@@ -22,7 +22,13 @@ class SessionsController < ApplicationController
         set_session_vars_after_login(user)
         # connect_to_db(session[:subdomain])
         current_user
-        send_to_landing_page(session[:subdomain])
+
+        if user_changed_settings?(user)
+          send_to_landing_page(session[:subdomain])
+        else
+          redirect_to edit_setting_path(Setting.first)
+        end
+
       else
         handle_failed_attempt
       end
