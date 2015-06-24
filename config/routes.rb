@@ -51,6 +51,7 @@ Quizzing::Application.routes.draw do
 
   # named routes
   get 'home' => 'home#home', as: :home
+  get 'home/coaches' => 'home#home', as: :coach_list
   #get "standings/individual" => "standings#individual", as: :indiv_standings
   #get "standings/team" => "standings#team", as: :team_standings
   patch 'active/:id' => 'students#active', as: :active

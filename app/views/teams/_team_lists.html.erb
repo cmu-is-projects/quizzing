@@ -1,8 +1,8 @@
 <div id="division1" class="row">
   <div class="col s8">
-    <h5>All Teams</h5>
-      <div class="card blue-grey lighten-5">
-        <div class="card-content black-text">
+    <div class="card">
+      <div class="card-content black-text">
+        <h5>All Teams</h5>
           <div class="divider"></div>
           <table class="responsive-table">
             <thead>
@@ -13,12 +13,27 @@
             </thead>
 
             <tbody>
+            <% count =0 %> 
             <% @junior_teams.each do |team| %>
-              <tr>
-                <td><%= link_to team.name, team_path(team) %></td>
-                <td><%= team.organization.name %></td>
-              </tr>
-            <%end%>
+              <% if count<10 %> 
+                <tr>
+                  <td><%= link_to team.name, team_path(team) %></td>
+                  <td><%= team.organization.name %></td>
+                </tr>
+              <% else %>
+                <tr class="more_junior_teams">
+                  <td><%= link_to team.name, team_path(team) %></td>
+                  <td><%= team.organization.name %></td>
+                </tr>
+              <% end %>
+              <%count += 1 %>
+              <%end %>
+              <% if @junior_teams.length >= 10 %> 
+                <tr>
+                  <td></td>
+                  <td style="text-align: right;"><a class="more_junior_teams" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
@@ -26,9 +41,9 @@
   </div>
 
   <div class="col s4">
-    <h5>Top Teams</h5>
-    <div class="card blue-grey lighten-5">
+    <div class="card">
       <div class="card-content black-text">
+        <h5><i id="top-team-star-icon"class="fa fa-star-o"></i> Top Teams</h5>
         <div class="divider"></div>
           <table class="responsive-table">
             <thead>
@@ -49,6 +64,9 @@
             </tbody>
           </table>
           <br>
+          <div align="right"><%= link_to team_standings_path  do %> 
+          More <i class="fa fa-angle-double-right"></i>
+          <% end %></div>
       </div>
     </div>
   </div>
@@ -58,9 +76,9 @@
 
 <div id="division2" class="row">
   <div class="col s8">
-    <h5>All Teams</h5>
-      <div class="card blue-grey lighten-5">
-        <div class="card-content black-text">
+    <div class="card">
+      <div class="card-content black-text">
+        <h5>All Teams</h5>
           <div class="divider"></div>
           <table class="responsive-table">
             <thead>
@@ -71,12 +89,27 @@
             </thead>
 
             <tbody>
+            <% count =0 %> 
             <% @senior_teams.each do |team| %>
-              <tr>
-                <td><%= link_to team.name, team_path(team) %></td>
-                <td><%= team.organization.name %></td>
-              </tr>
-            <%end%>
+              <% if count<10 %> 
+                <tr>
+                  <td><%= link_to team.name, team_path(team) %></td>
+                  <td><%= team.organization.name %></td>
+                </tr>
+              <% else %>
+                <tr class="more_senior_teams">
+                  <td><%= link_to team.name, team_path(team) %></td>
+                  <td><%= team.organization.name %></td>
+                </tr>
+              <% end %>
+              <%count += 1 %>
+              <%end %>
+              <% if @senior_teams.length >= 10 %> 
+                <tr>
+                  <td></td>
+                  <td style="text-align: right;"><a class="more_senior_teams" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
@@ -84,9 +117,9 @@
   </div>
 
   <div class="col s4">
-    <h5>Top Teams</h5>
-    <div class="card blue-grey lighten-5">
+    <div class="card">
       <div class="card-content black-text">
+        <h5><i id="top-team-star-icon"class="fa fa-star-o"></i> Top Teams</h5>
         <div class="divider"></div>
           <table class="responsive-table">
             <thead>
@@ -107,6 +140,9 @@
             </tbody>
           </table>
           <br>
+          <div align="right"><%= link_to team_standings_path  do %> 
+          More <i class="fa fa-angle-double-right"></i>
+          <% end %></div>
       </div>
     </div>
   </div>
@@ -116,9 +152,9 @@
 <!--  -->
 <div id="division3" class="row">
   <div class="col s8">
-    <h5>All Teams</h5>
-      <div class="card blue-grey lighten-5">
-        <div class="card-content black-text">
+    <div class="card">
+      <div class="card-content black-text">
+          <h5>All Teams</h5>
           <div class="divider"></div>
           <table class="responsive-table">
             <thead>
@@ -129,12 +165,27 @@
             </thead>
 
             <tbody>
+            <% count =0 %> 
             <% @seniorb_teams.each do |team| %>
-              <tr>
-                <td><%= link_to team.name, team_path(team) %></td>
-                <td><%= team.organization.name %></td>
-              </tr>
-            <%end%>
+              <% if count<10 %> 
+                <tr>
+                  <td><%= link_to team.name, team_path(team) %></td>
+                  <td><%= team.organization.name %></td>
+                </tr>
+              <% else %>
+                <tr class="more_seniorb_teams">
+                  <td><%= link_to team.name, team_path(team) %></td>
+                  <td><%= team.organization.name %></td>
+                </tr>
+              <% end %>
+              <%count += 1 %>
+              <%end %>
+              <% if @seniorb_teams.length >= 10 %> 
+                <tr>
+                  <td></td>
+                  <td style="text-align: right;"><a class="more_seniorb_teams" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
@@ -143,9 +194,9 @@
 
 
   <div class="col s4">
-    <h5>Top Teams</h5>
-    <div class="card blue-grey lighten-5">
+    <div class="card">
       <div class="card-content black-text">
+        <h5><i id="top-team-star-icon"class="fa fa-star-o"></i> Top Teams</h5>
         <div class="divider"></div>
           <table class="responsive-table">
             <thead>
@@ -166,6 +217,9 @@
             </tbody>
           </table>
           <br>
+          <div align="right"><%= link_to team_standings_path  do %> 
+          More <i class="fa fa-angle-double-right"></i>
+          <% end %></div>
       </div>
     </div>
   </div>

@@ -9,12 +9,12 @@ class StudentsController < ApplicationController
     else
       @students = Student.all
     end
-    @juniors = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.last_name}.first(10)
-    @seniors = IndivStanding.for_seniors.map{|j| j.student}.sort_by! {|n| n.last_name}.first(10)
-    @seniorb = IndivStanding.for_seniorb.map{|j| j.student}.sort_by! {|n| n.last_name}.first(10)
-    @junior_standings = IndivStanding.for_juniors(7)
-    @senior_standings = IndivStanding.for_seniors(7)
-    @seniorb_standings = IndivStanding.for_seniorb(7)
+    @juniors = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.last_name}
+    @seniors = IndivStanding.for_seniors.map{|j| j.student}.sort_by! {|n| n.last_name}
+    @seniorb = IndivStanding.for_seniorb.map{|j| j.student}.sort_by! {|n| n.last_name}
+    @junior_standings = IndivStanding.for_juniors(5)
+    @senior_standings = IndivStanding.for_seniors(5)
+    @seniorb_standings = IndivStanding.for_seniorb(5)
   end
 
   # GET /students/1
