@@ -170,10 +170,10 @@ $(document).on('click', "a.more-teams", function( event ) {
  }); 
 });
 
-var orgVisible;
-var coachVisible;
-var studentVisible;
-var teamVisible;
+var orgVisible = false;
+var coachVisible = false;
+var studentVisible = false;
+var teamVisible = false;
 
 
 $(document).ajaxStart(function(){
