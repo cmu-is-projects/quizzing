@@ -283,6 +283,16 @@ class TeamsController < ApplicationController
     end
   end
 
+  def toggle_team
+    @team = Team.find(params[:id])
+    @team.active = params[:active] unless params[:active].nil?
+    @team.save!
+    @all_junior_teams = Team.for_juniors
+    @all_senior_teams = Team.for_seniors
+    @all_seniorb_teams = Team.for_seniorb
+    @changed = @team.division.id
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team

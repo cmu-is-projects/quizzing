@@ -21,16 +21,7 @@ class CoachesController < ApplicationController
     @improved_juniors = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("juniors"))
     @improved_seniors = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("seniors"))
     @improved_seniorb = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("seniorb"))
-
-    #for area admin!!!
-    @organizations = Organization.alphabetical.all
-    @coaches = Coach.alphabetical.active.all
-    @juniors = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.first_name}
-    @all_junior_teams = Team.for_juniors
-    @seniors = IndivStanding.for_seniors.map{|j| j.student}.sort_by! {|n| n.first_name}
-    @all_senior_teams = Team.for_seniors
-    @seniorb = IndivStanding.for_seniorb.map{|j| j.student}.sort_by! {|n| n.first_name}
-    @all_seniorb_teams = Team.for_seniorb
+    render template: 'dashboards/coach_dashboard'
   end
 
   def show
@@ -72,6 +63,13 @@ class CoachesController < ApplicationController
   def destroy
     @coach.destroy
     redirect_to coaches_url
+  end
+
+  def toggle_coach
+    @coach = Coach.find(params[:id])
+    @coach.active = params[:active] unless params[:active].nil?
+    @coach.save!
+    @coaches = Coach.alphabetical.all
   end
 
   private
