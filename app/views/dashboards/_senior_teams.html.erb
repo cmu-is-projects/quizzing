@@ -1,4 +1,4 @@
-<div id="teams">
+<div id="senior_teams">
   <div class="card blue-grey lighten-5">
     <div class="subtitle card-content black-text">
       <span class="card-title black-text">
@@ -10,7 +10,7 @@
         </div>
       </span>
       <div class="divider"></div>
-      <table>
+      <table class ="teamTable">
         <thead>
           <th>Name</th>
           <th>Division</th>
@@ -24,12 +24,12 @@
                 <td><%=t.name%></td>
                 <td><%=get_division_name_for_views(t.division)%></td>
                 <% if t.active == true %>
-                  <td><%= link_to toggle_team_path(t, active: false), remote: true, method: 'patch' do %>
+                  <td id="active"><%= link_to toggle_team_path(t, active: false), id: 'active',remote: true, method: 'patch' do %>
                   <i class="mdi-toggle-check-box tiny"></i>
                   <% end %>
                   </td>
                 <% else %>
-                  <td><%= link_to toggle_team_path(t, active: true), remote: true, method: 'patch' do %>
+                  <td id="active"><%= link_to toggle_team_path(t, active: true), id: 'active',remote: true, method: 'patch' do %>
                     <i class="mdi-navigation-cancel tiny"></i>
                     <% end %>
                   </td>
@@ -40,12 +40,12 @@
                 <td><%=t.name%></td>
                 <td><%=get_division_name_for_views(t.division)%></td>
                 <% if t.active == true %>
-                  <td><%= link_to toggle_team_path(t, active: false), remote: true, method: 'patch' do %>
+                  <td><%= link_to toggle_team_path(t, active: false), id: 'active', remote: true, method: 'patch' do %>
                   <i class="mdi-toggle-check-box tiny"></i>
                   <% end %>
                   </td>
                 <% else %>
-                  <td><%= link_to toggle_team_path(t, active: true), remote: true, method: 'patch' do %>
+                  <td id="active"><%= link_to toggle_team_path(t, active: true), id: 'active', remote: true, method: 'patch' do %>
                     <i class="mdi-navigation-cancel tiny"></i>
                     <% end %>
                   </td>
@@ -65,4 +65,4 @@
       </table>
     </div>
   </div>
-</div>
+  </div>

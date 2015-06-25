@@ -1,7 +1,7 @@
 <% if @changed == 1 %>
-$('div#teams').replaceWith('<%= j render(:partial => "dashboards/teams", :locals => {:team_type => @all_junior_teams}) %>');
+$('div#junior_teams').replaceWith('<%= j render(:partial => "dashboards/junior_teams", :locals => {:team_type => @all_junior_teams}) %>');
 <% elsif @changed == 2 %>
-$('div#teams').replaceWith('<%= j render(:partial => "dashboards/teams", :locals => {:team_type => @all_senior_teams}) %>');
+$('div#senior_teams').replaceWith('<%= j render(:partial => "dashboards/senior_teams", :locals => {:team_type => @all_senior_teams}) %>');
 <% else %>
-$('div#teams').replaceWith('<%= j render(:partial => "dashboards/teams", :locals => {:team_type => @all_seniorb_teams}) %>');
+$('div#seniorb_teams').replaceWith('<%= j render(:partial => "dashboards/seniorb_teams", :locals => {:team_type => @all_seniorb_teams}) %>');
 <% end %>
