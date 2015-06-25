@@ -1,7 +1,16 @@
-<%= render partial: "partials/structure_3", locals: {
-	model_name: "student",
-	header: nil, 
-	left6: "student_details_card", 
-	right6: "top_five",
-	content: "performances"} %>
+<%if @student.current_team.class == NullTeam %>	
+	<%= render partial: "partials/structure_3", locals: {
+		model_name: "student",
+		header: nil, 
+		left6: "student_details_card", 
+		right6: nil,
+		content: nil} %>
+<%else%>
+	<%= render partial: "partials/structure_3", locals: {
+		model_name: "student",
+		header: nil, 
+		left6: "student_details_card", 
+		right6: "top_five",
+		content: "performances"} %>
+<%end%>
 
