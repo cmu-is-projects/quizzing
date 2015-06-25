@@ -5,7 +5,7 @@
 		<%=form_for @team do |f| %>
 			<div class ="row">
 		      <div class ="input-field col 10">
-		        <%= f.select :division_id, options_from_collection_for_select(@divisions, 'id', 'name')%>
+		       <%= f.collection_select(:division_id, Division.all, :id, :name) %>
 		        <%#= select_tag :division_id, options_from_collection_for_select(@divisions, 'id', 'name', selected: @division_id), id: 'division_switch' %>
 		        <label for="team_division">Division</label>
 		      </div>
