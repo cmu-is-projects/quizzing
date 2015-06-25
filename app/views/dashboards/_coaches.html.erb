@@ -21,8 +21,8 @@
           <% @coaches.each do |c| %>
             <% if count < 5 %>
               <tr>
-                <td><%=c.first_name.humanize%></td>
-                <td><%=c.last_name.humanize%></td>
+                <td><%= best_in_place c, :first_name, :as => :input, :display_as => :first_name %></td>
+                <td><%= best_in_place c, :last_name, :as => :input, :display_as => :last_name %></td>
                 <% if c.active == true %>
                   <td><%= link_to toggle_coach_path(c, active: false), remote: true, method: 'patch' do %>
                   <i class="mdi-toggle-check-box tiny"></i>
@@ -37,7 +37,8 @@
               </tr>
             <% else %>
               <tr class="more-coaches">
-                <td><%=c.proper_name%></td>
+                <td><%= best_in_place c, :first_name, :as => :input, :display_as => :first_name %></td>
+                <td><%= best_in_place c, :last_name, :as => :input, :display_as => :last_name %></td>
                 <% if c.active == true %>
                   <td><%= link_to toggle_coach_path(c, active: false), remote: true, method: 'patch' do %>
                   <i class="mdi-toggle-check-box tiny"></i>
@@ -56,6 +57,7 @@
           <%end%>
           <% if @coaches.length >= 6 %> 
             <tr>
+              <td></td>
               <td></td>
               <td align="right"><a class="more-coaches" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
             </tr>

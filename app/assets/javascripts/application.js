@@ -17,7 +17,6 @@
 //= require materialize-sprockets
 //= require best_in_place
 //= require_tree .
-//= require highcharts/highstock
 //= require highcharts/highcharts                                                           
 //= require highcharts/highcharts-more
 
@@ -35,7 +34,7 @@ $(function() {
 
 $(document).ready(function() {
   /* Activating Best In Place */
-  jQuery(".best_in_place").best_in_place();
+  // jQuery(".best_in_place").best_in_place();
   $(".button-collapse").sideNav();
 });
 
