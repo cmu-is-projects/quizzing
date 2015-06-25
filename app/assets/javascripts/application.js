@@ -16,9 +16,7 @@
 //= require jquery_nested_form
 //= require materialize-sprockets
 //= require best_in_place
-//= require highcharts/highstock
 //= require highcharts/highcharts                                                           
-//= require highcharts/highcharts-more
 //= require functionality
 //= require_tree .
 
