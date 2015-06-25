@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
 
   private
   def handle_failed_attempt
-    flash.now.alert = "Username or password is invalid"
+    flash.now[:error] = "Username or password is invalid"
     render "new"
   end
 end
