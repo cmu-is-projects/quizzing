@@ -1,6 +1,6 @@
 require 'bundler/capistrano'
 
-server 'cmuisprojects.org', :web, :app, :db, primary: true
+server 'biblequizstats.net', :web, :app, :db, primary: true
 
 set :application, 'quizzing'
 set :user, 'quizzing'
