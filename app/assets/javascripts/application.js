@@ -21,6 +21,7 @@
 //= require highcharts/highcharts                                                           
 //= require highcharts/highcharts-more
 
+
 //from datatables
 // $(document).ready( function () {
 //     $('#table_id').DataTable();
