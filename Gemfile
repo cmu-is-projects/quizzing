@@ -114,4 +114,3 @@ gem 'sidekiq'
 gem 'pg_search'
 
 gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
-

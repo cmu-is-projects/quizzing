@@ -21,6 +21,14 @@ GIT
       sass (~> 3.3)
 
 GIT
+  remote: git://github.com/seuros/capistrano-sidekiq.git
+  revision: 94e08ab46461a8c692929cc77de66099eb3a20e2
+  specs:
+    capistrano-sidekiq (0.5.3)
+      capistrano
+      sidekiq
+
+GIT
   remote: git://github.com/zpaulovics/datetimepicker-rails.git
   revision: c5405f3486b57a52416caf93b79fc09d56930a82
   branch: master
@@ -315,6 +323,7 @@ DEPENDENCIES
   better_errors (= 2.0.0)
   binding_of_caller (= 0.7.2)
   capistrano (= 2.13.5)
+  capistrano-sidekiq!
   capybara
   chronic
   coffee-rails (~> 4.0.0)
