@@ -6,7 +6,7 @@ class SettingsController < ApplicationController
 		@students = Student.all
 		@teams = Team.all
 		@student = Student.first
-		@team = Team.first
+		@team = Team.new
 		@add_teams = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.first_name}
 		# if params[:division_id].nil?
   #     		@division_id = Division.first.id

@@ -143,9 +143,9 @@ class TeamsController < ApplicationController
 
     unless current_user.coach.nil?
       @team_organization = current_user.coach.organization
-      @team_name = @team.organization.short_name + " " + (@team.organization.teams.count+1).to_s
+      #@team_name = @team.organization.short_name + " " + (@team.organization.teams.count+1).to_s
       @team.organization = @team_organization
-      @team.name = @team_name
+      #@team.name = @team_name
     end
     
     respond_to do |format|
@@ -293,6 +293,7 @@ class TeamsController < ApplicationController
     def team_params
       params.require(:team).permit(:active,
                                    :division_id,
+                                   :name,
                                    :students,
                                    team_coaches: [:coach_id],
                                    team_coaches_attributes: [:coach_id],
