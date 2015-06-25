@@ -5,11 +5,11 @@
     
     <ul class ="left">
       <li class ="bold"> <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a></li>
-      <li class ="bold"><a class="page-title">Western PA</a></li>
+      <li class ="bold"><a class="page-title"><%= current_settings.area_name %></a></li>
     </ul>
 
     <ul class="right">
-        <li id="toggle-search"><i class="fa fa-search right left"></i>  Search </li>
+        <li id="toggle-search"><i class="fa fa-search right left"></i>&nbsp;&nbsp;&nbsp;Search </li>
         <% if logged_in? %>
           <li><%= link_to logout_path do %>
     		    <i class="fa fa-sign-out right left"></i>Logout

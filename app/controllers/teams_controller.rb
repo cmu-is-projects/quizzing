@@ -117,10 +117,10 @@ class TeamsController < ApplicationController
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
-    @ineligable_students = StudentTeam.all.where(active: true).where("team_id != :t", {t: @team.id}).pluck(:student_id)
+    @ineligable_students = StudentTeam.all.where(present: true).where("team_id != :t", {t: @team.id}).pluck(:student_id)
     @students = Student.all.where('id NOT IN (?)', @ineligable_students)
 
-    @student_teams = @team.student_teams.where(active: true).to_a
+    @student_teams = @team.student_teams.where(present: true).to_a
     (0..(4-@student_teams.size)).each do
       @student_teams << @team.student_teams.build
     end
@@ -281,6 +281,16 @@ class TeamsController < ApplicationController
       format.html { redirect_to teams_url }
       format.json { head :no_content }
     end
+  end
+
+  def toggle_team
+    @team = Team.find(params[:id])
+    @team.active = params[:active] unless params[:active].nil?
+    @team.save!
+    @all_junior_teams = Team.for_juniors
+    @all_senior_teams = Team.for_seniors
+    @all_seniorb_teams = Team.for_seniorb
+    @changed = @team.division.id
   end
 
   private

@@ -158,6 +158,16 @@ class StudentsController < ApplicationController
     end
   end
 
+  def toggle_student
+    @student = Student.find(params[:id])
+    @student.active = params[:active] unless params[:active].nil?
+    @student.save!
+    @junior_students = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.first_name}
+    @senior_students = IndivStanding.for_seniors.map{|j| j.student}.sort_by! {|n| n.first_name}
+    @seniorb_students = IndivStanding.for_seniorb.map{|j| j.student}.sort_by! {|n| n.first_name}
+    @changed = IndivStanding.find_by("student_id = ?", @student.id).division_id
+  end
+
   # def create_student_team
     
   # end
