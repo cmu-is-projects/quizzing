@@ -79,6 +79,7 @@ $(document).ready(function() {
 });
 
 
+
 $(document).ready(function() {
   $('tr.more-top-students').hide();
   $('a.more-top-students').click(function(event) {
@@ -111,70 +112,142 @@ $(document).ready(function() {
   });
 });
 
+//area admin dashboard 'more'/'less' functionality
+
 $(document).ready(function() {
   $('tr.more-organizations').hide();
-  $('a.more-organizations').click(function(event) {
-    event.preventDefault();
-    $('tr.more-organizations').fadeToggle('fast', function() {
-      if( $('tr.more-organizations').is(':visible') ) {
-       $('a.more-organizations').html('Less <i class="fa fa-angle-double-up"></i>')
-     }
-     else {
-       $('a.more-organizations').html('More <i class="fa fa-angle-double-down"></i>')
-     }           
-   });
-    
-  });
-});
-
-
-$(document).ready(function() {
   $('tr.more-coaches').hide();
-  $('a.more-coaches').click(function(event) {
-    event.preventDefault();
-    $('tr.more-coaches').fadeToggle('fast', function() {
-      if( $('tr.more-coaches').is(':visible') ) {
-       $('a.more-coaches').html('Less <i class="fa fa-angle-double-up"></i>')
-     }
-     else {
-       $('a.more-coaches').html('More <i class="fa fa-angle-double-down"></i>')
-     }           
-   });
-    
-  });
-});
-
-$(document).ready(function() {
   $('tr.more-students').hide();
-  $('a.more-students').click(function(event) {
-    event.preventDefault();
-    $('tr.more-students').fadeToggle('fast', function() {
-      if( $('tr.more-students').is(':visible') ) {
-       $('a.more-students').html('Less <i class="fa fa-angle-double-up"></i>')
-     }
-     else {
-       $('a.more-students').html('More <i class="fa fa-angle-double-down"></i>')
-     }           
-   });
-    
-  });
-});
-
-$(document).ready(function() {
   $('tr.more-teams').hide();
-  $('a.more-teams').click(function(event) {
-    event.preventDefault();
-    $('tr.more-teams').fadeToggle('fast', function() {
-      if( $('tr.more-teams').is(':visible') ) {
-       $('a.more-teams').html('Less <i class="fa fa-angle-double-up"></i>')
-     }
-     else {
-       $('a.more-teams').html('More <i class="fa fa-angle-double-down"></i>')
-     }           
-   }); 
-  });
 });
 
+
+$(document).on('click', 'a.more-organizations', function(event) {
+  event.preventDefault();
+  $('tr.more-organizations').fadeToggle('fast', function() {
+    if( $('tr.more-organizations').is(':visible') ) {
+     $('a.more-organizations').html('Less <i class="fa fa-angle-double-up"></i>')
+   }
+   else {
+     $('a.more-organizations').html('More <i class="fa fa-angle-double-down"></i>')
+   }           
+ });
+});
+
+$(document).on('click','a.more-coaches', function(event) {
+  event.preventDefault();
+  $('tr.more-coaches').fadeToggle('fast', function() {
+    if( $('tr.more-coaches').is(':visible') ) {
+     $('a.more-coaches').html('Less <i class="fa fa-angle-double-up"></i>')
+   }
+   else {
+     $('a.more-coaches').html('More <i class="fa fa-angle-double-down"></i>')
+   }           
+ });
+});
+
+$(document).on('click','a.more-students',function(event) {
+  event.preventDefault();
+  $('tr.more-students').fadeToggle('fast', function() {
+    if( $('tr.more-students').is(':visible') ) {
+     $('a.more-students').html('Less <i class="fa fa-angle-double-up"></i>')
+   }
+   else {
+     $('a.more-students').html('More <i class="fa fa-angle-double-down"></i>')
+   }           
+ });
+});
+
+$(document).on('click', "a.more-teams", function( event ) {
+  event.preventDefault();
+  $('tr.more-teams').fadeToggle('fast', function() {
+    if( $('tr.more-teams').is(':visible') ) {
+     $('a.more-teams').html('Less <i class="fa fa-angle-double-up"></i>')
+   }
+   else {
+     $('a.more-teams').html('More <i class="fa fa-angle-double-down"></i>')
+   }           
+ }); 
+});
+
+var orgVisible;
+var coachVisible;
+var studentVisible;
+var teamVisible;
+
+
+$(document).ajaxStart(function(){
+    if( $('tr.more-organizations').is(':visible')){ 
+      orgVisible = true;
+    }
+    else {
+      orgVisible = false;
+    }
+}).ajaxStop(function(){
+    if(orgVisible == true){
+      $('tr.more-organizations').show()
+      $('a.more-organizations').html('Less <i class="fa fa-angle-double-up"></i>')
+    }
+    else{
+      $('tr.more-organizations').hide()
+      $('a.more-organizations').html('More <i class="fa fa-angle-double-down"></i>')
+    }
+});
+
+$(document).ajaxStart(function(){
+    if( $('tr.more-coaches').is(':visible')){ 
+      coachVisible = true;
+    }
+    else {
+      coachVisible = false;
+    }
+}).ajaxStop(function(){
+    if(coachVisible == true){
+      $('tr.more-coaches').show()
+      $('a.more-coaches').html('Less <i class="fa fa-angle-double-up"></i>')
+    }
+    else{
+      $('tr.more-coaches').hide()
+      $('a.more-coaches').html('More <i class="fa fa-angle-double-down"></i>')
+    }
+});
+
+$(document).ajaxStart(function(){
+    if( $('tr.more-students').is(':visible')){ 
+      studentVisible = true;
+    }
+    else {
+      studentVisible = false;
+    }
+}).ajaxStop(function(){
+    if(studentVisible == true){
+      $('tr.more-students').show()
+      $('a.more-students').html('Less <i class="fa fa-angle-double-up"></i>')
+    }
+    else{
+      $('tr.more-students').hide()
+      $('a.more-students').html('More <i class="fa fa-angle-double-down"></i>')
+    }
+});
+
+
+$(document).ajaxStart(function(){
+    if( $('tr.more-teams').is(':visible')){ 
+      teamVisible = true;
+    }
+    else {
+      teamVisible = false;
+    }
+}).ajaxStop(function(){
+    if(teamVisible == true){
+      $('tr.more-teams').show()
+      $('a.more-teams').html('Less <i class="fa fa-angle-double-up"></i>')
+    }
+    else{
+      $('tr.more-teams').hide()
+      $('a.more-teams').html('More <i class="fa fa-angle-double-down"></i>')
+    }
+});
 
 $(document).ready(function() {
   $('select').material_select();
