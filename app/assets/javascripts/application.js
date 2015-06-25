@@ -16,10 +16,10 @@
 //= require jquery_nested_form
 //= require materialize-sprockets
 //= require best_in_place
-//= require_tree .
 //= require highcharts/highstock
 //= require highcharts/highcharts                                                           
 //= require highcharts/highcharts-more
+//= require_tree .
 
 //from datatables
 // $(document).ready( function () {
