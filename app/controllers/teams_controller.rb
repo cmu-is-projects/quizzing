@@ -116,10 +116,10 @@ class TeamsController < ApplicationController
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
-    @ineligable_students = StudentTeam.all.where(active: true).where("team_id != :t", {t: @team.id}).pluck(:student_id)
+    @ineligable_students = StudentTeam.all.where(present: true).where("team_id != :t", {t: @team.id}).pluck(:student_id)
     @students = Student.all.where('id NOT IN (?)', @ineligable_students)
 
-    @student_teams = @team.student_teams.where(active: true).to_a
+    @student_teams = @team.student_teams.where(present: true).to_a
     (0..(4-@student_teams.size)).each do
       @student_teams << @team.student_teams.build
     end
