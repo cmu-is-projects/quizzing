@@ -4,25 +4,25 @@
 gem 'rails', '4.0.13'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0.0'
+gem 'sass-rails', '5.0.3'
 
 # Use Materialize for css
 gem 'materialize-sass', github: 'mkhairi/materialize-sass'
 
 # Use Font Awesome for icons
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '4.3.2.1'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '2.7.1'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '4.0.1'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '3.1.2'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '1.5.3'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -30,38 +30,38 @@ group :doc do
 end
 
 # Use a gem for handling pagination
-gem 'will_paginate'
+gem 'will_paginate', '3.0.7'
 
 # Use a gem for handling date validation
-gem 'validates_timeliness'
+gem 'validates_timeliness', '3.0.14'
 
 # Use simple_form to clean up form views
-gem 'simple_form'
+gem 'simple_form', '3.1.0'
 
-gem "nested_form"
+gem "nested_form", '0.3.2'
 
 # Use geocoder to get latitude and longitude data
-gem 'geocoder'
+gem 'geocoder', '1.2.8'
 
 # Use gem to handle Canadian postal codes too
 # gem 'validates_as_postal_code'
 # gem 'going_postal'
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '3.1.10'
 
 # Date Picker for simple form
-gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
-gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'momentjs-rails', '2.10.3',  :github => 'derekprior/momentjs-rails'
+gem 'datetimepicker-rails', '4.7.16', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
 # Use jquery for datepicker
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '5.0.5'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
 #date converting
-gem 'chronic'
+gem 'chronic', '0.10.2'
 gem 'time_date_helpers', '0.0.2'
 
 gem 'best_in_place', github: 'cmu-is-projects/best_in_place'
@@ -96,7 +96,7 @@ group :test do
 end
 
 # Database gems
-gem 'pg' # for everything...
+gem 'pg', '0.18.2' # for everything...
 # group :development, :test do
    # gem 'sqlite3'
 # end
@@ -105,12 +105,13 @@ gem 'pg' # for everything...
 # end
 
 # Gem made to use high charts easily
-gem 'lazy_high_charts'
+gem 'lazy_high_charts', '1.5.4'
 
 # Use Sidekiq for async rake task processing
-gem 'sidekiq'
+gem 'sidekiq', '3.3.4'
 
 # Use pgsearch for search awesomeness
-gem 'pg_search'
+gem 'pg_search', '1.0.3'
 
-
+# Capistrano support for Sidekiq
+gem 'capistrano-sidekiq', '0.5.3', github: 'seuros/capistrano-sidekiq'
