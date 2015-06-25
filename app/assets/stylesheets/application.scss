@@ -11,6 +11,8 @@
  *= require_self
  *= require_tree .
  *= require jquery-ui
+ *= require bootstrap-slider
+
 
  */
 
@@ -19,3 +21,5 @@
 $primary-color: color("blue", "lighten-2") !default;
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+

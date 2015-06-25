@@ -113,3 +113,4 @@ gem 'sidekiq'
 # Use pgsearch for search awesomeness
 # gem 'pg_search'
 
+gem 'bootstrap-slider-rails'

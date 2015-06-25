@@ -20,6 +20,7 @@
 //= require highcharts/highstock
 //= require highcharts/highcharts                                                           
 //= require highcharts/highcharts-more
+//= require bootstrap-slider
 
 //from datatables
 // $(document).ready( function () {
@@ -127,4 +128,3 @@ $(document).ready(function() {
       $(this).closest("form").submit();
     });
   });
-
