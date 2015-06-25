@@ -276,4 +276,102 @@ $(document).ready(function(){
 $('#modal1').openModal();
 
 $('#modal1').closeModal();
+
+//for team index page 
+$(document).ready(function() {
+    $('tr.more_junior_teams').hide();
+    $('a.more_junior_teams').click(function(event) {
+        event.preventDefault();
+        $('tr.more_junior_teams').fadeToggle('fast', function() {
+          if( $('tr.more_junior_teams').is(':visible') ) {
+           $('a.more_junior_teams').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more_junior_teams').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
         
+    });
+  });
+
+$(document).ready(function() {
+    $('tr.more_senior_teams').hide();
+    $('a.more_senior_teams').click(function(event) {
+        event.preventDefault();
+        $('tr.more_senior_teams').fadeToggle('fast', function() {
+          if( $('tr.more_senior_teams').is(':visible') ) {
+           $('a.more_senior_teams').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more_senior_teams').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
+$(document).ready(function() {
+    $('tr.more_seniorb_teams').hide();
+    $('a.more_seniorb_teams').click(function(event) {
+        event.preventDefault();
+        $('tr.more_seniorb_teams').fadeToggle('fast', function() {
+          if( $('tr.more_seniorb_teams').is(':visible') ) {
+           $('a.more_seniorb_teams').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more_seniorb_teams').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
+//for students index page 
+$(document).ready(function() {
+    $('tr.more_junior_students').hide();
+    $('a.more_junior_students').click(function(event) {
+        event.preventDefault();
+        $('tr.more_junior_students').fadeToggle('fast', function() {
+          if( $('tr.more_junior_students').is(':visible') ) {
+           $('a.more_junior_students').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more_junior_students').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
+$(document).ready(function() {
+    $('tr.more_senior_students').hide();
+    $('a.more_senior_students').click(function(event) {
+        event.preventDefault();
+        $('tr.more_senior_students').fadeToggle('fast', function() {
+          if( $('tr.more_senior_students').is(':visible') ) {
+           $('a.more_senior_students').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more_senior_students').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
+$(document).ready(function() {
+    $('tr.more_seniorb_students').hide();
+    $('a.more_seniorb_students').click(function(event) {
+        event.preventDefault();
+        $('tr.more_seniorb_students').fadeToggle('fast', function() {
+          if( $('tr.more_seniorb_students').is(':visible') ) {
+           $('a.more_seniorb_students').html('Less <i class="fa fa-angle-double-up"></i>')
+          }
+          else {
+           $('a.more_seniorb_students').html('More <i class="fa fa-angle-double-down"></i>')
+          }           
+        });
+        
+    });
+  });
+
