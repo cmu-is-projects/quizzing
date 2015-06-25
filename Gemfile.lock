@@ -323,7 +323,7 @@ DEPENDENCIES
   better_errors (= 2.0.0)
   binding_of_caller (= 0.7.2)
   capistrano (= 2.13.5)
-  capistrano-sidekiq!
+  capistrano-sidekiq (= 0.5.3)!
   capybara
   chronic (= 0.10.2)
   coffee-rails (= 4.0.1)
