@@ -1,7 +1,7 @@
 <% if @changed == 1 %>
-$('div#students').replaceWith('<%= j render(:partial => "dashboards/students", :locals => {:student_type => @junior_students}) %>');
+$('div#junior_students').replaceWith('<%= j render(:partial => "dashboards/junior_students", :locals => {:student_type => @junior_students}) %>');
 <% elsif @changed == 2 %>
-$('div#students').replaceWith('<%= j render(:partial => "dashboards/students", :locals => {:student_type => @senior_students}) %>');
+$('div#senior_students').replaceWith('<%= j render(:partial => "dashboards/senior_students", :locals => {:student_type => @senior_students}) %>');
 <% else %>
-$('div#students').replaceWith('<%= j render(:partial => "dashboards/students", :locals => {:student_type => @seniorb_students}) %>');
+$('div#seniorb_students').replaceWith('<%= j render(:partial => "dashboards/seniorb_students", :locals => {:student_type => @seniorb_students}) %>');
 <% end %>
