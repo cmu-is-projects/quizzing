@@ -18,11 +18,11 @@
 		    </div>
 		    <div class ="row">
 		      <div class ="input-field col 10">
-		        <%= select_tag :student_id, options_from_collection_for_select(@add_teams, 'id', 'proper_name')%>
-		        <%= select_tag :student_id, options_from_collection_for_select(@add_teams, 'id', 'proper_name')%>
-		        <%= select_tag :student_id, options_from_collection_for_select(@add_teams, 'id', 'proper_name')%>
-		        <%= select_tag :student_id, options_from_collection_for_select(@add_teams, 'id', 'proper_name')%>
-		        <%= select_tag :student_id, options_from_collection_for_select(@add_teams, 'id', 'proper_name')%>
+				<%= select_tag :student_id, options_from_collection_for_select(@students_on_team, 'id', 'proper_name')%>
+		        <%= select_tag :student_id, options_from_collection_for_select(@students_on_team, 'id', 'proper_name')%>
+		        <%= select_tag :student_id, options_from_collection_for_select(@students_on_team, 'id', 'proper_name')%>
+		        <%= select_tag :student_id, options_from_collection_for_select(@students_on_team, 'id', 'proper_name')%>
+		        <%= select_tag :student_id, options_from_collection_for_select(@students_on_team, 'id', 'proper_name')%>
 		        <label for="team_students">Add students</label>
 		      </div>
 		    </div>
