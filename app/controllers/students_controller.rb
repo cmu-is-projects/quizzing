@@ -31,20 +31,22 @@ class StudentsController < ApplicationController
     @events = @year_quizzes.map{ |e| EventQuizzer.new(@student, e)}
     @performance = @events.map{|p| p.total_points}
     # @top_student = IndivStanding.find_top_student(@student).first.student
-    @top_student = IndivStanding.find_top_student(@student).student
-    @top_scores = EventSummary.for_division(@student_division).chronological.map{|e| e.max_student_points}
-    @average_scores = EventSummary.for_division(@student_division).chronological.map{|e| e.avg_student_points}
-    @top_four = IndivStanding.show_top_four(@student)
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(:text => "Student Performance")
-      f.xAxis(:categories => @x_axis)
-      f.series(:name => @student.proper_name + " Performance", :color => "#0d47a1", :yAxis => 0, :data => @performance)
-      f.series(:name => "Top " + @student.current_team.division.name.capitalize[0...-1] + " Student Scores", :color => "#00bcd4", :yAxis => 0, :data => @top_scores)
-      f.series(:name => "Average Score for Event", :yAxis => 0, :color => "#a6b8ba", :data => @average_scores)
-      f.yAxis [
-        {:title => {:text => "Quiz Scores", :margin => 70}, :min => 0, :max => 540 }
-      ]
-      f.chart({:defaultSeriesType=>"line"})
+    if @student_division.class != NullDivision
+      @top_student = IndivStanding.find_top_student(@student).student
+      @top_scores = EventSummary.for_division(@student_division).chronological.map{|e| e.max_student_points}
+      @average_scores = EventSummary.for_division(@student_division).chronological.map{|e| e.avg_student_points}
+      @top_four = IndivStanding.show_top_four(@student)
+      @chart = LazyHighCharts::HighChart.new('graph') do |f|
+        f.title(:text => "Student Performance")
+        f.xAxis(:categories => @x_axis)
+        f.series(:name => @student.proper_name + " Performance", :color => "#0d47a1", :yAxis => 0, :data => @performance)
+        f.series(:name => "Top " + @student.current_team.division.name.capitalize[0...-1] + " Student Scores", :color => "#00bcd4", :yAxis => 0, :data => @top_scores)
+        f.series(:name => "Average Score for Event", :yAxis => 0, :color => "#a6b8ba", :data => @average_scores)
+        f.yAxis [
+          {:title => {:text => "Quiz Scores", :margin => 70}, :min => 0, :max => 540 }
+        ]
+        f.chart({:defaultSeriesType=>"line"})
+      end
     end 
 
     # @win_chart = LazyHighCharts::HighChart.new('graph') do |f|

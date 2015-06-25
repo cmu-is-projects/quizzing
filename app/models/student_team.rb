@@ -16,9 +16,9 @@ class StudentTeam < ActiveRecord::Base
 
   accepts_nested_attributes_for :student
 
-  validates_presence_of :student_id, :team_id
+  # validates_presence_of :student_id, :team_id
   validate :student_is_active_in_system
-  validate :team_is_active_in_system
+  # validate :team_is_active_in_system
 
   before_create :remove_student_from_previous_team_assignment
 

@@ -5,13 +5,19 @@ class SettingsController < ApplicationController
 		@categories = Category.all
 		@students = Student.all
 		@teams = Team.all
-		@student = Student.first
-		@team = Team.first
-		@add_teams = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.first_name}
+		@students_on_team = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.first_name}
+		@students = Student.all
+		@student = Student.new
+		@team = Team.new
+		@student_teams = @team.student_teams.where(present: true).to_a
+	    (0..4).each do
+	      @student_teams << @team.student_teams.build 
+	    end
+
 		# if params[:division_id].nil?
   #     		@division_id = Division.first.id
 	 #    else
-	 #      @division_id = params[:division_id]
+	 #    	@division_id = params[:division_id]
 	 #    end
 	 #    @division = Division.find(@division_id)
 	 #    if @division.name == "juniors"
@@ -61,6 +67,6 @@ class SettingsController < ApplicationController
 
 
 	def setting_params
-      params.require(:setting).permit(:drop_lowest_score, :roster_lock_date, :roster_lock_toggle, :auto_promote_students, :area_name, :admin_name, :admin_email, :intro, :division_id)
+      params.require(:setting).permit(:drop_lowest_score, :roster_lock_date, :roster_lock_toggle, :auto_promote_students, :area_name, :admin_name, :admin_email, :intro, :division_id, :team_id)
     end
 end

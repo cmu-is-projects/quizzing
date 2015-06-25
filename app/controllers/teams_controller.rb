@@ -91,13 +91,12 @@ class TeamsController < ApplicationController
     @organizations = Organization.all
     @students = Student.all
     @team = Team.new
-
     if current_user.coach.nil?
       @team_organization = Organization.all.first
     else
       @team_organization = current_user.coach.organization
     end
-    @team_name = @team_organization.short_name + " " + (@team_organization.teams.count+1).to_s
+    #@team_name = @team_organization.short_name + " " + (@team_organization.teams.count+1).to_s
   end
 
   # GET /teams/1/edit
@@ -116,10 +115,10 @@ class TeamsController < ApplicationController
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
-    @ineligable_students = StudentTeam.all.where(active: true).where("team_id != :t", {t: @team.id}).pluck(:student_id)
+    @ineligable_students = StudentTeam.all.where(present: true).where("team_id != :t", {t: @team.id}).pluck(:student_id)
     @students = Student.all.where('id NOT IN (?)', @ineligable_students)
 
-    @student_teams = @team.student_teams.where(active: true).to_a
+    @student_teams = @team.student_teams.where(present: true).to_a
     (0..(4-@student_teams.size)).each do
       @student_teams << @team.student_teams.build
     end
@@ -132,6 +131,7 @@ class TeamsController < ApplicationController
   # POST /teams
   # POST /teams.json
   def create
+    puts "IN CREATE ACTION"
     if(current_user.role == "guest")
       redirect_to login_url and return
     end
@@ -143,13 +143,27 @@ class TeamsController < ApplicationController
 
     unless current_user.coach.nil?
       @team_organization = current_user.coach.organization
-      @team_name = @team.organization.short_name + " " + (@team.organization.teams.count+1).to_s
-      @team.organization = @team_organization
-      @team.name = @team_name
+      #@team_name = @team.organization.short_name + " " + (@team.organization.teams.count+1).to_s
+      @team.organization_id = @team_organization.id
+      #@team.name = @team_name
     end
+
+    puts "TEAM IS #{@team.valid?} -- #{@team.to_yaml}"
     
     respond_to do |format|
       if @team.save
+        params[:team][:student_teams_attributes].each do |sta|
+          st = StudentTeam.new
+          puts "PREVIEW -- #{@team.id} :: #{sta[1][1]}"
+        # @team.student_teams.each do |st|
+          st.team_id = 86
+          st.student_id = sta[1][1]
+          if st.save
+            puts "StudentTeam ID: #{st.id}"
+          else
+            puts "FAIL"
+          end
+        end
         format.html { redirect_to edit_team_url(@team), notice: 'Team was successfully created.' }
         format.json { render action: 'show', status: :created, location: @team }
       else
@@ -291,12 +305,13 @@ class TeamsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     # TODO: Remove editing of name, division, and organization
     def team_params
-      params.require(:team).permit(:active,
+      params.require(:team).permit(:id, :active,
                                    :division_id,
+                                   :name,
                                    :students,
                                    team_coaches: [:coach_id],
                                    team_coaches_attributes: [:coach_id],
-                                    student_teams_attributes: [:student_id]
+                                   student_teams_attributes: [:student_id, :team_id]
                                    )
     end
 end
