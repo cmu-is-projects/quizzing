@@ -8,6 +8,15 @@
         <%= "#{get_division_name_for_views(@team.division)}" %>&nbsp;&nbsp;
       </span></p>
       <div class="divider"></div>
+        <% if @team.team_coaches.exists? %>
+        <p><span class="card-title black-text">
+          Coach:&nbsp;&nbsp;&nbsp;
+          <% @team.team_coaches.coach.each do |c|%>
+            <%= c.name %>&nbsp;&nbsp;
+          <%end %>
+          </span></p>
+          <div class="divider"></div>
+        <%end%>
       <br />
       <table class="responsive-table">
         <tr>
@@ -27,7 +36,7 @@
       </div>
 
       <div class="card-reveal">
-        <span class="card-title black-text"><%= @team.name %> Team Members<i class="mdi-navigation-close right"></i></span>
+        <span class="card-title black-text"><bold><%= @team.name %></bold> Team Members<i class="mdi-navigation-close right"></i></span>
         <table>
           <thead>
             <tr>
