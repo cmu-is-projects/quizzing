@@ -96,16 +96,8 @@ group :test do
 end
 
 # Database gems
-<<<<<<< HEAD
-#gem 'pg' # for everything...
-=======
 gem 'pg', '0.18.2' # for everything...
-# group :development, :test do
-    gem 'sqlite3'
-# end
-# group :production do
-#   gem 'pg'
-# end
+
 
 # Gem made to use high charts easily
 gem 'lazy_high_charts', '1.5.4'
