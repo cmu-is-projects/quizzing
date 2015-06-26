@@ -1,6 +1,7 @@
 class CoachesController < ApplicationController
   before_action :set_coach, only: [:show, :edit, :update, :destroy]
   before_action :check_login
+  respond_to :html, :json
   # before_action :verify_user_is_area_admin, only: [:new, :create, :edit, :update, :destroy]
 
   def index
@@ -54,7 +55,8 @@ class CoachesController < ApplicationController
 
   def update
     if @coach.update(coach_params)
-      redirect_to @coach, notice: "#{@coach.proper_name} was edited in the system."
+      respond_with @coach
+      # redirect_to @coach, notice: "#{@coach.proper_name} was edited in the system."
     else
       render action: 'edit'
     end

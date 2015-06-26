@@ -19,8 +19,8 @@
         <% count = 0 %>
         <% @organizations.each do |o| %>
           <% if count < 5 %>
-            <tr>
-              <td><%= o.name %></td>
+            <tr> 
+              <td><%= best_in_place o, :name, :as => :input, :display_as => :name %></td>
               <% if o.active == true %>
                <td><%= link_to toggle_organization_path(o, active: false), remote: true, method: 'patch' do %>
                 <i class="mdi-toggle-check-box tiny"></i>
@@ -35,7 +35,7 @@
             </tr>
           <% else %>
              <tr class="more-organizations">
-              <td><%=o.name%></td>
+              <td><%= best_in_place o, :name, :as => :input, :display_as => :name %></td>
               <% if o.active == true %>
                <td><%= link_to toggle_organization_path(o, active: false), remote: true, method: 'patch' do %>
                 <i class="mdi-toggle-check-box tiny"></i>
