@@ -1,7 +1,8 @@
-    <div id = "edit_area_division" class="card blue-grey">
-        <div class="card-content white-text">
-            <span class="card-title">Edit Area Divisions</span>
-            <p>By editing the settings below, you can choose which divisions are active in your area as well as setting the grade range for each. </p>
+    <!-- #TODO: Division model needs logic created for start_grade/end_grade --> 
+    <div id = "edit_area_division" class="card blue-grey lighten-5">
+        <div class="card-content black-text">
+            <span class="card-title black-text">Edit Area Divisions</span>
+            <p>By editing the settings below, you can choose which divisions are active in your area. Click on start grade and end grade to edit it. </p>
         </div>
         <div class="card-action" id="edit_card">
           <table>
@@ -12,21 +13,23 @@
                 <th>End Grade</th>
                 <th>Active</th>
               </tr>
-
             </thead>
             <tbody>
               <% @divisions.each do |division| %>
                 <tr>
-                  <td><%= division.name.humanize %></td>
-                  <td><%= division.start_grade %></td>
-                  <td><%= division.end_grade %></td>
+                  <td><%= get_division_name_for_views(division) %></td>
+                  <td>
+                    <%= best_in_place division, :start_grade, :as => :select, :selected => division.start_grade, :collection => {"1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7", "8" => "8", "9" => "9", "10" => "10", "11" => "11", "12" => "12" } %>
+                  </td>
+                  <td><%= best_in_place division, :end_grade, :as => :select, :selected => division.end_grade, :collection => {"1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7", "8" => "8", "9" => "9", "10" => "10", "11" => "11", "12" => "12" } %>
+                  </td>
                   <% if division.active == true %>
-                  <td><%= link_to toggle_division_path(division, active: false), remote: true, method: 'patch' do %>
+                  <td><%= link_to toggle_division_path(division, active: false, start_grade: division.start_grade, end_grade: division.end_grade), remote: true, method: 'patch' do %>
                     <i class="mdi-toggle-check-box tiny"></i>
                     <% end %>
                   </td>
                   <% elsif division.active == false %>
-                  <td><%= link_to toggle_division_path(division, active: true), remote: true, method: 'patch' do %>
+                  <td><%= link_to toggle_division_path(division, active: true, start_grade: division.start_grade, end_grade: division.end_grade), remote: true, method: 'patch' do %>
                     <i class="mdi-navigation-cancel tiny"></i>
                     <% end %>
                   </td>

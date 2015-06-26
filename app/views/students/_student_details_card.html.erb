@@ -2,32 +2,45 @@
   <div class="card-content black-text">
     <span class="card-title black-text"><h4><%= @student.proper_name %></h4></span>
     <div class="divider"></div>
-    <p><span class="card-title black-text">
-      Current Team:&nbsp;&nbsp;&nbsp;
-      <%= link_to @student.current_team.name, team_path(@student.current_team) %>
-    </span></p>
-    <p><span class="card-title black-text">
-      Division:&nbsp;&nbsp;&nbsp;
-      <%= "#{get_division_name_for_views(@student.current_team.division)}" %>&nbsp;&nbsp;
-      <%= "(grade #{@student.grade})" %>
-    </span></p>
+      <%if @student.current_team.class == NullTeam %>
+        <p><span class="card-title black-text">
+          Current Team:&nbsp;&nbsp;&nbsp;
+          N/A
+        </span></p>
+        <p><span class="card-title black-text">
+          Division:&nbsp;&nbsp;&nbsp;
+          N/A
+        <i><font size = "2"><br>*Student has not yet been assigned to a team</font></i>
+        </span></p>
+      <%else%>
+        <p><span class="card-title black-text">
+          Current Team:&nbsp;&nbsp;&nbsp;
+          <%= link_to @student.current_team.name, team_path(@student.current_team) %>
+        </span></p>
+        <p><span class="card-title black-text">
+          Division:&nbsp;&nbsp;&nbsp;
+          <%= "#{get_division_name_for_views(@student.current_team.division)}" %>
+          &nbsp;&nbsp;
+          <%= "(grade #{@student.grade})" %>
+        </span></p>
+      <%end%>
     <div class="divider"></div>
     <br />
     <table class="responsive-table">
       <tr>
-        <td align="right" width="50"><font size = "5">&nbsp;<%= @student.indiv_standing.total_points%></font></td>
+        <td align="right" width="50"><font size = "5">&nbsp;<%= @student_standing.total_points%></font></td>
         <td><p class="small">&nbsp;&nbsp;total points</p></td>
       </tr>
       <tr>
-        <td align="right" width="50"><font size = "5">&nbsp;<%= @student.indiv_standing.lowest_score%></font></td>
+        <td align="right" width="50"><font size = "5">&nbsp;<%= @student_standing.lowest_score%></font></td>
         <td><p class="small">&nbsp;&nbsp;lowest score</p></td>
       </tr>
       <tr>
-        <td align="right" width="50"><font size = "5">&nbsp;<%= @student.indiv_standing.adjusted_points%></font></td>
+        <td align="right" width="50"><font size = "5">&nbsp;<%= @student_standing.adjusted_points%></font></td>
         <td><p class="small">&nbsp;&nbsp;adjusted points</p></td>
       </tr>
       <tr>
-        <td align="right" width="50"><font size = "5">&nbsp;<%= number_with_precision @student.indiv_standing.accuracy%></font></td>
+        <td align="right" width="50"><font size = "5">&nbsp;<%= number_with_precision @student_standing.accuracy%></font></td>
         <td><p class="small">&nbsp;&nbsp;accuracy rate</p></td>
       </tr>
     </table>

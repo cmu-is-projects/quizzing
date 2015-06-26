@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @upcoming_events = Event.upcoming.chronological.to_a
     @past_events = Event.past.chronological.to_a
 
-    @coaches = Coach.all
+    @coaches = Coach.all.alphabetical
 
     @divisions = Division.all.active
 

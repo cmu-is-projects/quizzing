@@ -8,14 +8,23 @@
         <%= "#{get_division_name_for_views(@team.division)}" %>&nbsp;&nbsp;
       </span></p>
       <div class="divider"></div>
+        <% if @team.team_coaches.exists? %>
+        <p><span class="card-title black-text">
+          Coach:&nbsp;&nbsp;&nbsp;
+          <% @team.team_coaches.coach.each do |c|%>
+            <%= c.name %>&nbsp;&nbsp;
+          <%end %>
+          </span></p>
+          <div class="divider"></div>
+        <%end%>
       <br />
       <table class="responsive-table">
         <tr>
-          <td align="right" width="50"><font size = "5">&nbsp;<%= @team.team_standing.total_points%></font></td>
+          <td align="right" width="50"><font size = "5">&nbsp;<%= @team_standing.total_points%></font></td>
           <td><p class="small">&nbsp;&nbsp;total points</p></td>
         </tr>
         <tr>
-          <td align="right" width="50"><font size = "5">&nbsp;<%= number_with_precision @team.team_standing.accuracy%></font></td>
+          <td align="right" width="50"><font size = "5">&nbsp;<%= number_with_precision @team_standing.accuracy%></font></td>
           <td><p class="small">&nbsp;&nbsp;accuracy rate</p></td>
         </tr>
       </table>
@@ -27,7 +36,7 @@
       </div>
 
       <div class="card-reveal">
-        <span class="card-title black-text"><%= @team.name %> Team Members<i class="mdi-navigation-close right"></i></span>
+        <span class="card-title black-text"><bold><%= @team.name %></bold> Team Members<i class="mdi-navigation-close right"></i></span>
         <table>
           <thead>
             <tr>

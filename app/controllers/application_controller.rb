@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   include DatabaseSwitcher
   
   # check which database to use...
-
   before_action :determine_correct_database #if Rails.env.production?
   before_action :current_settings
 

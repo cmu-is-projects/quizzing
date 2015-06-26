@@ -1,9 +1,9 @@
 class EnableFuzzyStrMatch < ActiveRecord::Migration
 	def up
-		execute "CREATE EXTENSION fuzzystrmatch"
+		# execute "CREATE EXTENSION fuzzystrmatch"
 	end
 
 	def down
-		execute "DROP EXTENSION fuzzystrmatch"
+		# execute "DROP EXTENSION fuzzystrmatch"
 	end
 end

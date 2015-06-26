@@ -15,9 +15,10 @@ class TeamsController < ApplicationController
     @top_standings = TeamStanding.for_juniors(5)
     @inactive_teams = @teams.inactive.sort_by! {|n| n.name}
     @divisions = @teams.active.map {|d| d.division}.uniq
-    @junior_teams = TeamStanding.for_juniors.map{|j| j.team}.sort_by! {|n| n.name}
-    @senior_teams = TeamStanding.for_seniors.map{|j| j.team}.sort_by! {|n| n.name}
-    @seniorb_teams = TeamStanding.for_seniorb.map{|j| j.team}.sort_by! {|n| n.name}
+    @junior_teams = Team.all.where(division_id: 1).to_a
+    @senior_teams = Team.all.where(division_id: 2).to_a
+    @seniorb_teams = Team.all.where(division_id: 3).to_a
+    #@seniorb_teams = TeamStanding.for_seniorb.map{|j| j.team}.sort_by! {|n| n.name}
     @junior_standings = TeamStanding.for_juniors(5)
     @senior_standings = TeamStanding.for_seniors(5)
     @seniorb_standings = TeamStanding.for_seniorb(5)
@@ -28,6 +29,9 @@ class TeamsController < ApplicationController
   def show
     @teams =Team.all
     @team_standing = TeamStanding.for_team(@team)
+    if @team_standing.nil?
+      @team_standing = NullTeamStanding.new
+    end
     @students = @team.current_students
     @students_by_seat = @team.student_teams.by_seat
     @quiz_year = QuizYear.new
@@ -92,13 +96,12 @@ class TeamsController < ApplicationController
     @organizations = Organization.all
     @students = Student.all
     @team = Team.new
-
     if current_user.coach.nil?
       @team_organization = Organization.all.first
     else
       @team_organization = current_user.coach.organization
     end
-    @team_name = @team_organization.short_name + " " + (@team_organization.teams.count+1).to_s
+    #@team_name = @team_organization.short_name + " " + (@team_organization.teams.count+1).to_s
   end
 
   # GET /teams/1/edit
@@ -133,6 +136,7 @@ class TeamsController < ApplicationController
   # POST /teams
   # POST /teams.json
   def create
+    puts "IN CREATE ACTION"
     if(current_user.role == "guest")
       redirect_to login_url and return
     end
@@ -144,13 +148,27 @@ class TeamsController < ApplicationController
 
     unless current_user.coach.nil?
       @team_organization = current_user.coach.organization
-      @team_name = @team.organization.short_name + " " + (@team.organization.teams.count+1).to_s
-      @team.organization = @team_organization
-      @team.name = @team_name
+      #@team_name = @team.organization.short_name + " " + (@team.organization.teams.count+1).to_s
+      @team.organization_id = @team_organization.id
+      #@team.name = @team_name
     end
+
+    puts "TEAM IS #{@team.valid?} -- #{@team.to_yaml}"
     
     respond_to do |format|
       if @team.save
+        params[:team][:student_teams_attributes].each do |sta|
+          st = StudentTeam.new
+          puts "PREVIEW -- #{@team.id} :: #{sta[1][1]}"
+        # @team.student_teams.each do |st|
+          st.team_id = 86
+          st.student_id = sta[1][1]
+          if st.save
+            puts "StudentTeam ID: #{st.id}"
+          else
+            puts "FAIL"
+          end
+        end
         format.html { redirect_to edit_team_url(@team), notice: 'Team was successfully created.' }
         format.json { render action: 'show', status: :created, location: @team }
       else
@@ -198,7 +216,7 @@ class TeamsController < ApplicationController
     }
 
     unless @team.student_teams.nil?
-      @team.student_teams.active.pluck(:student_id).each do |id|
+      @team.student_teams.present.pluck(:student_id).each do |id|
         @team_ss << id
       end
     end
@@ -302,12 +320,13 @@ class TeamsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     # TODO: Remove editing of name, division, and organization
     def team_params
-      params.require(:team).permit(:active,
+      params.require(:team).permit(:id, :active,
                                    :division_id,
+                                   :name,
                                    :students,
                                    team_coaches: [:coach_id],
                                    team_coaches_attributes: [:coach_id],
-                                    student_teams_attributes: [:student_id]
+                                   student_teams_attributes: [:student_id, :team_id]
                                    )
     end
 end

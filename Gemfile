@@ -97,12 +97,7 @@ end
 
 # Database gems
 gem 'pg', '0.18.2' # for everything...
-# group :development, :test do
-   # gem 'sqlite3'
-# end
-# group :production do
-#   gem 'pg'
-# end
+
 
 # Gem made to use high charts easily
 gem 'lazy_high_charts', '1.5.4'
@@ -110,8 +105,9 @@ gem 'lazy_high_charts', '1.5.4'
 # Use Sidekiq for async rake task processing
 gem 'sidekiq', '3.3.4'
 
-# Use pgsearch for search awesomeness
+
 gem 'pg_search', '1.0.3'
 
 # Capistrano support for Sidekiq
 gem 'capistrano-sidekiq', '0.5.3', github: 'seuros/capistrano-sidekiq'
+

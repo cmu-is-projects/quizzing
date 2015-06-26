@@ -11,7 +11,6 @@
  *= require_self
  *= require_tree .
  *= require jquery-ui
-
  */
 
 @import 'materialize';
@@ -19,3 +18,5 @@
 $primary-color: color("blue", "lighten-2") !default;
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+
