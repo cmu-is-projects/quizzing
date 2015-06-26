@@ -17,7 +17,6 @@
 //= require materialize-sprockets
 //= require best_in_place
 //= require highcharts/highcharts                                                           
-//= require functionality
 //= require_tree .
 
 
