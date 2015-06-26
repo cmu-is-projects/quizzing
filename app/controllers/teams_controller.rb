@@ -28,6 +28,9 @@ class TeamsController < ApplicationController
   def show
     @teams =Team.all
     @team_standing = TeamStanding.for_team(@team)
+    if @team_standing.nil?
+      @team_standing = NullTeamStanding.new
+    end
     @students = @team.current_students
     @quiz_year = QuizYear.new
     @completed_events = @quiz_year.completed_events
@@ -211,7 +214,7 @@ class TeamsController < ApplicationController
     }
 
     unless @team.student_teams.nil?
-      @team.student_teams.active.pluck(:student_id).each do |id|
+      @team.student_teams.present.pluck(:student_id).each do |id|
         @team_ss << id
       end
     end
