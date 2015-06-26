@@ -1,10 +1,16 @@
 class CoachesController < ApplicationController
   before_action :set_coach, only: [:show, :edit, :update, :destroy]
   before_action :check_login
+  respond_to :html, :json
   # before_action :verify_user_is_area_admin, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @coach = current_user.coach
+    if current_user.coach.nil?
+      @coach = Coach.first
+    else
+      @coach = current_user.coach
+    end
+    # @coach = current_user.coach
     @junior_teams = Team.for_juniors(1000, @coach.organization)
     @senior_teams = Team.for_seniors(1000, @coach.organization)
     @seniorb_teams = Team.for_seniorb(1000, @coach.organization)
@@ -16,16 +22,7 @@ class CoachesController < ApplicationController
     @improved_juniors = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("juniors"))
     @improved_seniors = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("seniors"))
     @improved_seniorb = ResultCalculator.find_most_improved(@coach.organization, Division.find_by_name("seniorb"))
-
-    #for area admin!!!
-    @organizations = Organization.alphabetical.all
-    @coaches = Coach.alphabetical.active.all
-    @juniors = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.first_name}
-    @all_junior_teams = Team.for_juniors
-    @seniors = IndivStanding.for_seniors.map{|j| j.student}.sort_by! {|n| n.first_name}
-    @all_senior_teams = Team.for_seniors
-    @seniorb = IndivStanding.for_seniorb.map{|j| j.student}.sort_by! {|n| n.first_name}
-    @all_seniorb_teams = Team.for_seniorb
+    render template: 'dashboards/coach_dashboard'
   end
 
   def show
@@ -58,7 +55,8 @@ class CoachesController < ApplicationController
 
   def update
     if @coach.update(coach_params)
-      redirect_to @coach, notice: "#{@coach.proper_name} was edited in the system."
+      respond_with @coach
+      # redirect_to @coach, notice: "#{@coach.proper_name} was edited in the system."
     else
       render action: 'edit'
     end
@@ -67,6 +65,13 @@ class CoachesController < ApplicationController
   def destroy
     @coach.destroy
     redirect_to coaches_url
+  end
+
+  def toggle_coach
+    @coach = Coach.find(params[:id])
+    @coach.active = params[:active] unless params[:active].nil?
+    @coach.save!
+    @coaches = Coach.alphabetical.all
   end
 
   private

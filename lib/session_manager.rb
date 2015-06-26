@@ -38,12 +38,32 @@ module SessionManager
     set_organization_id(user)
   end
 
-  def send_to_landing_page(subdomain=nil)
+  def user_changed_settings?(user)
+    return true if user.is_coach?
+    setting = Setting.first
+    status = true
+    status = false if setting.area_name == 'YOUR AREA NAME HERE'
+    status = false if setting.admin_name == 'YOUR NAME HERE'
+    status = false if setting.admin_email == 'asdf@example.com'
+    status = false if setting.intro == 'Please update your info'
+    return status
+  end
+
+  def send_to_landing_page(subdomain=nil, user=nil)
     # if subdomain.nil?
     #   redirect_to overall_home_path, notice: "Logged in!"
     # else
-      redirect_to home_path, notice: "Logged in!"
+      # redirect_to home_path, notice: "Logged in!"
     # end  
+    if(user.role? :coach) 
+     redirect_to '/coach_dashboard', notice: "Logged in!"
+    
+    elsif (user.role? :area_admin) 
+      redirect_to '/area_admin_dashboard', notice: "Logged in!"
+    
+    else
+      redirect_to home_path, notice: "Logged in!"
+    end
   end
 
   def clear_session_data

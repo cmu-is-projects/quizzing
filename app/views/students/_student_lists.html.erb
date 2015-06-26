@@ -1,25 +1,42 @@
 <div id= "division1" class="row">
 	<div class="col s8">
+	<div class="card">
+	  <div class="card-content black-text">
 		<h5>All Students</h5>
-		<div class="card blue-grey lighten-5">
-		  <div class="card-content black-text">
 		    <div class="divider"></div>
 		      <table class="responsive-table">
 		        <thead>
 		          <tr>
-		            <th data-field="id">Name</th>
-		            <th data-field="name">Team</th>
-		            <th data-field="price">Grade</th>
+		            <th>Name</th>
+		            <th>Team</th>
+		            <th>Grade</th>
 		          </tr>
 		        </thead>
 		        <tbody>
-		          <% @juniors.each do |student| %>
-		            <tr>
-		              <td><%= link_to student.proper_name, student_path(student) %></td>
-		              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
-		              <td><%=student.grade%></td>
-		            </tr>
-		          <% end %>
+		        	<% count=0 %> 
+		          	<% @juniors.each do |student| %>
+		          	<% if count <10 %>
+			            <tr>
+			              <td><%= link_to student.proper_name, student_path(student) %></td>
+			              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+			              <td><%=student.grade%></td>
+			            </tr>
+	            	<% else %>
+			            <tr class="more_junior_students">
+			              <td><%= link_to student.proper_name, student_path(student) %></td>
+			              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+			              <td><%=student.grade%></td>
+			            </tr>
+		         	<% end %>
+		         	<% count += 1 %> 
+		         	<%end %>
+					<% if @juniors.length >= 10 %> 
+						<tr>
+						  <td></td>
+						  <td></td>
+						  <td style="text-align: right;"><a class="more_junior_students" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+						</tr>
+					<% end %>
 		        </tbody>
 		      </table>
 		      <br>
@@ -28,9 +45,9 @@
 	</div>
 
 	<div class="col s4">
-		<h5>Top Students</h5>
-		<div class="card blue-grey lighten-5">
-		  <div class="card-content black-text">
+		<div class="card">
+	  		<div class="card-content black-text">
+  				<h5><i id="top-team-star-icon"class="fa fa-star-o"></i> Top Students</h5>
 		    <div class="divider"></div>
 		      <table class="responsive-table">
 		        <thead>
@@ -50,7 +67,12 @@
 		          <% end %>
 		        </tbody>
 		      </table>
-		      <br>
+	      	<br>
+			<div align="right">
+				<%= link_to indiv_standings_path  do %>
+					More <i class="fa fa-angle-double-right"></i>
+				<% end %>
+			</div>
 		  </div>
 		</div>
 	</div>
@@ -58,9 +80,9 @@
 
 <div id= "division2" class="row">
 	<div class="col s8">
+	<div class="card">
+	  <div class="card-content black-text">
 		<h5>All Students</h5>
-		<div class="card blue-grey lighten-5">
-		  <div class="card-content black-text">
 		    <div class="divider"></div>
 		      <table class="responsive-table">
 		        <thead>
@@ -71,13 +93,30 @@
 		          </tr>
 		        </thead>
 		        <tbody>
-		          <% @seniors.each do |student| %>
-		            <tr>
-		              <td><%= link_to student.proper_name, student_path(student) %></td>
-		              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
-		              <td><%=student.grade%></td>
-		            </tr>
-		          <% end %>
+		        	<% count=0 %> 
+		          	<% @seniors.each do |student| %>
+		          	<% if count <10 %>
+			            <tr>
+			              <td><%= link_to student.proper_name, student_path(student) %></td>
+			              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+			              <td><%=student.grade%></td>
+			            </tr>
+	            	<% else %>
+			            <tr class="more_senior_students">
+			              <td><%= link_to student.proper_name, student_path(student) %></td>
+			              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+			              <td><%=student.grade%></td>
+			            </tr>
+		         	<% end %>
+		         	<% count += 1 %> 
+		         	<%end %>
+					<% if @seniors.length >= 10 %> 
+						<tr>
+						  <td></td>
+						  <td></td>
+						  <td style="text-align: right;"><a class="more_senior_students" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+						</tr>
+					<% end %>
 		        </tbody>
 		      </table>
 		      <br>
@@ -86,9 +125,9 @@
 	</div>
 
 	<div class="col s4">
-		<h5>Top Students</h5>
-		<div class="card blue-grey lighten-5">
-		  <div class="card-content black-text">
+		<div class="card">
+	  		<div class="card-content black-text">
+  				<h5><i id="top-team-star-icon"class="fa fa-star-o"></i> Top Students</h5>
 		    <div class="divider"></div>
 		      <table class="responsive-table">
 		        <thead>
@@ -109,6 +148,11 @@
 		        </tbody>
 		      </table>
 		      <br>
+			<div align="right">
+				<%= link_to indiv_standings_path  do %>
+					More <i class="fa fa-angle-double-right"></i>
+				<% end %>
+			</div>
 		  </div>
 		</div>
 	</div>
@@ -116,9 +160,9 @@
 
 <div id= "division3" class="row">
 	<div class="col s8">
+	<div class="card">
+	  <div class="card-content black-text">
 		<h5>All Students</h5>
-		<div class="card blue-grey lighten-5">
-		  <div class="card-content black-text">
 		    <div class="divider"></div>
 		      <table class="responsive-table">
 		        <thead>
@@ -129,13 +173,30 @@
 		          </tr>
 		        </thead>
 		        <tbody>
-		          <% @seniorb.each do |student| %>
-		            <tr>
-		              <td><%= link_to student.proper_name, student_path(student) %></td>
-		              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
-		              <td><%=student.grade%></td>
-		            </tr>
-		          <% end %>
+		        	<% count=0 %> 
+		          	<% @seniorb.each do |student| %>
+		          	<% if count <10 %>
+			            <tr>
+			              <td><%= link_to student.proper_name, student_path(student) %></td>
+			              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+			              <td><%=student.grade%></td>
+			            </tr>
+	            	<% else %>
+			            <tr class="more_seniorb_students">
+			              <td><%= link_to student.proper_name, student_path(student) %></td>
+			              <td><%= link_to student.current_team.name, team_path(student.current_team) %></td>
+			              <td><%=student.grade%></td>
+			            </tr>
+		         	<% end %>
+		         	<% count += 1 %> 
+		         	<%end %>
+					<% if @seniorb.length >= 10 %> 
+						<tr>
+						  <td></td>
+						  <td></td>
+						  <td style="text-align: right;"><a class="more_seniorb_students" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+						</tr>
+					<% end %>
 		        </tbody>
 		      </table>
 		      <br>
@@ -144,9 +205,9 @@
 	</div>
 
 	<div class="col s4">
-		<h5>Top Students</h5>
-		<div class="card blue-grey lighten-5">
-		  <div class="card-content black-text">
+		<div class="card">
+	  		<div class="card-content black-text">
+  				<h5><i id="top-team-star-icon"class="fa fa-star-o"></i> Top Students</h5>
 		    <div class="divider"></div>
 		      <table class="responsive-table">
 		        <thead>
@@ -166,7 +227,12 @@
 		          <% end %>
 		        </tbody>
 		      </table>
-		      <br>
+	  	      	<br>
+				<div align="right">
+					<%= link_to indiv_standings_path  do %>
+						More <i class="fa fa-angle-double-right"></i>
+					<% end %>
+				</div>
 		  </div>
 		</div>
 	</div>

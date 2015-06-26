@@ -34,6 +34,16 @@ Quizzing::Application.routes.draw do
   get "update_indiv_standings" => "settings#update_indiv_standings", as: :update_indiv_standings
   get "update_team_standings" => "settings#update_team_standings", as: :update_team_standings
 
+  # dashboards and settings
+
+  get "coach_dashboard" => "coaches#index", as: :coach_dashboard
+  get "area_admin_dashboard" => "home#area_admin_dashboard", as: :area_admin_dashboard
+  get "admin_dashboard" => "home#index", as: :admin_dashboard
+
+  # get "coach_settings" => "coaches#index", as: :coach_settings
+  # get "area_admin_settings" => "home#index", as: :area_admin_settings
+  # get "admin_settings" => "home#index", as: :admin_settings
+
   # Search stuff
   get "search" => "searches#index", as: :search_students
 
@@ -51,6 +61,7 @@ Quizzing::Application.routes.draw do
 
   # named routes
   get 'home' => 'home#home', as: :home
+  get 'home/coaches' => 'home#home', as: :coach_list
   #get "standings/individual" => "standings#individual", as: :indiv_standings
   #get "standings/team" => "standings#team", as: :team_standings
   patch 'active/:id' => 'students#active', as: :active
@@ -58,6 +69,10 @@ Quizzing::Application.routes.draw do
   patch 'toggle_attendance/:id' => 'student_teams#toggle', as: :toggle
   patch 'toggle_division/:id' => 'divisions#toggle_division', as: :toggle_division
   patch 'toggle_quiz_question/:id' => 'categories#toggle_quiz_question', as: :toggle_quiz_question
+  patch 'toggle_organization/:id' => 'organizations#toggle_organization', as: :toggle_organization
+  patch 'toggle_team/:id' => 'teams#toggle_team', as: :toggle_team
+  patch 'toggle_student/:id' =>'students#toggle_student', as: :toggle_student
+  patch 'toggle_coach/:id' => 'coaches#toggle_coach', as: :toggle_coach
   # patch 'toggle_student/:id' => 'students#toggle', as: :toggle
 
   # post "student_teams/:id" => 'students#create_student_team', as: :create_student_team

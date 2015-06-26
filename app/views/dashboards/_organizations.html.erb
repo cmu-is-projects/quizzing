@@ -1,0 +1,64 @@
+<div id="organizations">
+  <div class="card blue-grey lighten-5">
+    <div class="subtitle card-content black-text">
+      <span class="card-title black-text">
+        <div class="row">
+          <div class="col m8"><i class="fa fa-home small"></i> Organizations</div>
+          <div class="col m4">
+            <p class="total center"> Total: <%= @organizations.size %> </p> 
+          </div>
+        </div>
+      </span>
+      <div class="divider"></div>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Active</th>
+        </thead>
+        <tbody>
+        <% count = 0 %>
+        <% @organizations.each do |o| %>
+          <% if count < 5 %>
+            <tr> 
+              <td><%= best_in_place o, :name, :as => :input, :display_as => :name %></td>
+              <% if o.active == true %>
+               <td><%= link_to toggle_organization_path(o, active: false), remote: true, method: 'patch' do %>
+                <i class="mdi-toggle-check-box tiny"></i>
+              <% end %>
+              </td>
+            <% else %>
+              <td><%= link_to toggle_organization_path(o, active: true), remote: true, method: 'patch' do %>
+                <i class="mdi-navigation-cancel tiny"></i>
+                <% end %>
+              </td>
+            <% end %>
+            </tr>
+          <% else %>
+             <tr class="more-organizations">
+              <td><%= best_in_place o, :name, :as => :input, :display_as => :name %></td>
+              <% if o.active == true %>
+               <td><%= link_to toggle_organization_path(o, active: false), remote: true, method: 'patch' do %>
+                <i class="mdi-toggle-check-box tiny"></i>
+                <% end %>
+                </td>
+              <% else %>
+              <td><%= link_to toggle_organization_path(o, active: true), remote: true, method: 'patch' do %>
+                <i class="mdi-navigation-cancel tiny"></i>
+                <% end %>
+              </td>
+            <% end %>
+            </tr>
+          <% end %>
+          <% count += 1 %>          
+        <% end %>
+        <% if @organizations.length >= 6 %> 
+          <tr>
+            <td></td>
+            <td align="left"><a class="more-organizations" href="#"> More <i class="fa fa-angle-double-down"></i></a></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

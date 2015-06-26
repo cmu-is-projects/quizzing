@@ -10,7 +10,8 @@ class PasswordResetsController < ApplicationController
       password_reset.send_email(session[:subdomain])
       redirect_to cmuis_home_path, notice: "Email sent with password reset instructions."
     else
-      redirect_to new_password_reset_path, alert: "This email is not registered in the system."
+      flash[:error] = "This email is not registered in the system."
+      redirect_to login_path 
     end
   end
 
@@ -24,7 +25,7 @@ class PasswordResetsController < ApplicationController
     @user = password_reset.user
     if password_reset.expired?
       msg = (@user.token_type == 'new' ? 'new password' : 'password reset')
-      redirect_to new_password_reset_path, alert: "Your #{msg} token has expired. Please reset your password again."
+      redirect_to login_path, alert: "Your #{msg} token has expired. Please reset your password again."
     elsif @user.update_attributes(reset_params)
       # log the user into system after updating
       set_session_vars_after_login(@user)
