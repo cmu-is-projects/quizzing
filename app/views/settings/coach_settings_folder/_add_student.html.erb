@@ -1,0 +1,37 @@
+<div id="students">
+<a class="waves-effect waves-light btn">Add Student</a>
+  <div class="card blue-grey lighten-5">
+    <div class="subtitle card-content black-text">
+		<%=form_for @student do |f| %>
+			<div class ="row">
+		      <div class ="input-field col 10">
+		        <%= f.text_field :first_name %>
+		        <label for="student_first_name">First Name</label>
+		      </div>
+		    </div>
+		    <div class ="row">
+		      <div class ="input-field col 10">
+		        <%= f.text_field :last_name %>
+		        <label for="student_last_name">Last Name</label>
+		      </div>
+		    </div>
+		    <div class ="row">
+		      <div class ="input-field col 10">
+		        <%= f.text_field :grade %>
+		        <label for="student_grade">Grade</label>
+		      </div>
+		    </div>
+
+		    <div class="form-actions">
+			  <%= f.submit nil, class: 'btn small', value: 'Submit' %>
+			</div>
+		<% end %>
+    </div>
+  </div>
+</div>
+<!-- ALL THE AJAX STUFF TO DO
+1. Have the card drop down from the button
+2. When the form submits it should stay on the same dashboard page
+3. When the form submits it should reload the roster on the same dashboard page to include that student
+4. It should reload the Add Team form to include that student in the students to add
+-->

@@ -1,0 +1,26 @@
+<div class="container">
+<h3>Coach Settings</h3> 
+  <div class="row">
+    <!-- Junior Teams Column -->
+    <div class="col 6 m6" >
+      <%= render(:partial => "dashboards/junior_students", :locals => {:student_type => @students})%>
+    </div>
+
+    <!-- Stats Column -->
+    <div class="col 6 m6">
+      <%= render(:partial => "dashboards/junior_teams", :locals => {:team_type => @teams})%>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Junior Teams Column -->
+    <div class="col 6 m6" >
+      <%= render(:partial => "settings/coach_settings_folder/add_student")%>
+    </div>
+
+    <!-- Stats Column -->
+    <div class="col 6 m6">
+      <%= render(:partial => "settings/coach_settings_folder/add_team")%>
+    </div>
+  </div>
+
+</div>

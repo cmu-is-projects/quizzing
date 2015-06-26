@@ -34,7 +34,7 @@
     <i class="small fa fa-trophy"></i>  Standings
     <% end %></li>
 
-    <% if (logged_in?) && ((current_user.role? :coach) || (current_user.role? :area_admin)) %>
+    <% if (logged_in?) && ((current_user.role? :coach) || (current_user.role? :area_admin))%>
       <li class="bold"><%= link_to settings_path do %>
         <i class="small mdi-action-settings"></i>   Settings
       <% end %></li>

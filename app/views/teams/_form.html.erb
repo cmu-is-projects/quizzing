@@ -40,9 +40,7 @@
 	      [s.last_name+", "+s.first_name,
 	      s.id]},
 	    include_blank: true%>
-        <%= builder.input :team_id, 
-	    as: :hidden, 
-	    input_html: {value: @team.id}%>
+        <%= builder.input :team_id, as: :hidden, input_html: {value: @team.id}%>
       <% end %>
 
       <b>Team coach:</b>

@@ -1,0 +1,52 @@
+<div id="students">
+<a class="waves-effect waves-light btn">Add Team</a>
+  <div class="card blue-grey lighten-5">
+    <div class="subtitle card-content black-text">
+		<%=form_for @team do |f| %>
+			<div class ="row">
+		      <div class ="input-field col 10">
+		        <%= f.collection_select(:division_id, Division.all, :id, :name) %>
+		        <%# f.select(:division_id, Division.all.map{|d| [d.name,d.id]}) %>
+		        <label for="team_division">Division</label>
+		      </div>
+		    </div>
+		    <!-- There needs to be field that automatically generates this form -->
+		    <div class ="row">
+		      <div class ="input-field col 10">
+		        <%= f.text_field :name %>
+		        <label for="team_name">Team Name</label>
+		      </div>
+		    </div>
+		    <div class ="row">
+		      <div class ="input-field col 10">
+		      	<!-- #TODO This form is NOT WORKING. Something going is going on in the team create controller that isn't printing out any statements. Currently you can add a team if you leave the students blank but if you try prepopulating with students it WILL break! And @students_on_team is currently just juniors -->
+		      	<%= f.fields_for :student_teams, @student_teams do |student_team_fields| %>
+		      		<%#= student_team_fields.hidden_field :team_id, :value => @team.id %>
+		      		<%= student_team_fields.collection_select(:student_id, @students_on_team, :id, :name, include_blank: true)%>
+        			<%#= student_team_fields.input :team_id, as: :hidden, input_html: {value: @team.id}%>
+      			<% end %>
+
+		      	<%#= select_tag :student_id, options_from_collection_for_select(@students_on_team, 'id', 'proper_name')%>
+		        <%#= select_tag :student_id, options_from_collection_for_select(@students_on_team, 'id', 'proper_name')%>
+		        <%#= select_tag :student_id, options_from_collection_for_select(@students_on_team, 'id', 'proper_name')%>
+		        <%#= select_tag :student_id, options_from_collection_for_select(@students_on_team, 'id', 'proper_name')%>
+		        <%#= select_tag :student_id, options_from_collection_for_select(@students_on_team, 'id', 'proper_name')%>
+		        <label for="team_students">Add students</label>
+		      </div>
+		    </div>
+
+		    <div class="form-actions">
+			  <%= f.submit nil, class: 'btn small', value: 'Submit' %>
+			</div>
+		<% end %>
+    </div>
+  </div>
+</div>
+
+<!-- AJAX STUFF TODO
+1. When division is changed it should reload the form so that the team name is automatically populated based on the method in the team_controller.
+2. When division is changed it should reload the form so that the students are generated based on the division.
+3. When the form is submitted it should reload the roster.
+4. when the form is submitted it should reload the form.
+5. The form should drop down from the button.
+ -->

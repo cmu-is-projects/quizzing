@@ -3,6 +3,30 @@ class SettingsController < ApplicationController
 		@setting = Setting.first
 		@divisions = Division.alphabetical.all 
 		@categories = Category.alphabetical.all
+		@students = Student.all
+		@teams = Team.all
+		@students_on_team = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.first_name}
+		@students = Student.all
+		@student = Student.new
+		@team = Team.new
+		@student_teams = @team.student_teams.where(present: true).to_a
+	    (0..4).each do
+	      @student_teams << @team.student_teams.build 
+	    end
+
+	 # if params[:division_id].nil?
+   #     	@division_id = Division.first.id
+	 #    else
+	 #    	@division_id = params[:division_id]
+	 #    end
+	 #    @division = Division.find(@division_id)
+	 #    if @division.name == "juniors"
+	 #      @add_teams = IndivStanding.for_juniors.map{|j| j.student}.sort_by! {|n| n.first_name}
+	 #    elsif @division.name == "seniors"
+	 #      @add_teams = IndivStanding.for_seniors.map{|j| j.student}.sort_by! {|n| n.first_name}
+	 #    elsif @division.name == "seniorb"
+	 #      @add_teams = IndivStanding.for_seniorb.map{|j| j.student}.sort_by! {|n| n.first_name}
+	 #    end
 	end
 
 	def edit
@@ -41,8 +65,7 @@ class SettingsController < ApplicationController
 		end
 	end
 
-
 	def setting_params
-      params.require(:setting).permit(:drop_lowest_score, :roster_lock_date, :roster_lock_toggle, :auto_promote_students, :area_name, :admin_name, :admin_email, :intro)
+      params.require(:setting).permit(:drop_lowest_score, :roster_lock_date, :roster_lock_toggle, :auto_promote_students, :area_name, :admin_name, :admin_email, :intro, :division_id, :team_id)
     end
 end
