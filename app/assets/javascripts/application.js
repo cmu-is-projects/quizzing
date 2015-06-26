@@ -16,9 +16,8 @@
 //= require jquery_nested_form
 //= require materialize-sprockets
 //= require best_in_place
-//= require highcharts/highcharts                                                           
+//= require highcharts/highcharts                                                          
 //= require_tree .
-
 
 //from datatables
 // $(document).ready( function () {
@@ -372,7 +371,4 @@ $(document).ready(function() {
         
     });
   });
-
-
-       
 

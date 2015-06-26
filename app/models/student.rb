@@ -11,6 +11,7 @@ class Student < ActiveRecord::Base
                   :against => [:first_name, :last_name],
                   :using =>[:tsearch, :dmetaphone]
 
+
   # Relationships
   has_many :student_quizzes
   has_many :quizzes, through: :student_quizzes

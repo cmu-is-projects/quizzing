@@ -13,10 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150623014335) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-  enable_extension "fuzzystrmatch"
-
   create_table "categories", force: true do |t|
     t.string  "name"
     t.boolean "active"
@@ -106,7 +102,7 @@ ActiveRecord::Schema.define(version: 20150623014335) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "pg_search_documents", ["searchable_id", "searchable_type"], name: "index_pg_search_documents_on_searchable_id_and_searchable_type", using: :btree
+  add_index "pg_search_documents", ["searchable_id", "searchable_type"], name: "index_pg_search_documents_on_searchable_id_and_searchable_type"
 
   create_table "quiz_teams", force: true do |t|
     t.integer "quiz_id"
