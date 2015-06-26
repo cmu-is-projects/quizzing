@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
         current_user
 
         if user_changed_settings?(user)
-          send_to_landing_page(session[:subdomain])
+          send_to_landing_page(session[:subdomain], user)
         else
           redirect_to edit_setting_path(Setting.first)
         end
