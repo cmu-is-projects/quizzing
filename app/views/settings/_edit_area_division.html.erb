@@ -17,7 +17,7 @@
             <tbody>
               <% @divisions.each do |division| %>
                 <tr>
-                  <td><%= division.name.humanize %></td>
+                  <td><%= get_division_name_for_views(division) %></td>
                   <td>
                     <%= best_in_place division, :start_grade, :as => :select, :selected => division.start_grade, :collection => {"1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7", "8" => "8", "9" => "9", "10" => "10", "11" => "11", "12" => "12" } %>
                   </td>

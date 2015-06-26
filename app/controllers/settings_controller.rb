@@ -1,8 +1,8 @@
 class SettingsController < ApplicationController
 	def index
 		@setting = Setting.first
-		@divisions = Division.all 
-		@categories = Category.all
+		@divisions = Division.alphabetical.all 
+		@categories = Category.alphabetical.all
 	end
 
 	def edit
