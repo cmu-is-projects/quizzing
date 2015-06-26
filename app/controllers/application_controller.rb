@@ -1,10 +1,12 @@
 class ApplicationController < ActionController::Base
   include ExceptionManager
   include DatabaseSwitcher
+  include SubdomainManager
   
   # check which database to use...
   before_action :determine_correct_database #if Rails.env.production?
   before_action :current_settings
+  before_action :determine_subdomain_switched
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -57,6 +59,15 @@ class ApplicationController < ActionController::Base
 
   def verify_user_is_coach
     redirect_to home_path, alert: "You need to be a coach to access this page." unless current_user.is_coach?
+  end
+
+  def determine_subdomain_switched
+    if logged_in? && subdomain_switched?(request.subdomain)
+      flash.keep[:alert] = "You have been logged out from the previous area site."
+      clear_session_data
+      reset_session
+      @current_user = nil
+    end
   end
 
   def current_settings
