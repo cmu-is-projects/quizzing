@@ -49,12 +49,21 @@ module SessionManager
     return status
   end
 
-  def send_to_landing_page(subdomain=nil)
+  def send_to_landing_page(subdomain=nil, user=nil)
     # if subdomain.nil?
     #   redirect_to overall_home_path, notice: "Logged in!"
     # else
-      redirect_to home_path, notice: "Logged in!"
+      # redirect_to home_path, notice: "Logged in!"
     # end  
+    if(user.role? :coach) 
+     redirect_to '/coach_dashboard', notice: "Logged in!"
+    
+    elsif (user.role? :area_admin) 
+      redirect_to '/area_admin_dashboard', notice: "Logged in!"
+    
+    else
+      redirect_to home_path, notice: "Logged in!"
+    end
   end
 
   def clear_session_data
