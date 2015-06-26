@@ -4,8 +4,6 @@ class DivisionsController < ApplicationController
 	def toggle_division
 		@division =Division.find(params[:id])
 		@division.active = params[:active] unless params[:active].nil?
-		@division.start_grade = params[:start_grade] unless params[:start_grade].nil?
-		@division.end_grade = params[:end_grade] unless params[:end_grade].nil?
 		@division.save!
 		@divisions = Division.all 
 	end
@@ -19,12 +17,7 @@ class DivisionsController < ApplicationController
 		@divisions = Division.all 	
 		@setting = Setting.first
 		respond_with @division 
-		redirect_to 
-		# render "settings/_edit_area_division"
-		# respond_to do |format|
-		# 	format.js
-		# end
-		# redirect_to settings_url	
+		# redirect_to	
 	end
 
 	def division_params
