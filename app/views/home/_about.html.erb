@@ -7,6 +7,42 @@
 
 <% if current_user.role?(:admin) %>
 	<div class="row">
-    	<%= link_to 'See all coaches', coach_list_path, class: "btn waves-effect waves-light " %>
+ 		<a class="waves-effect waves-light btn modal-trigger" href="#coachlist">See All Coaches</a>
 	</div>
 <% end %>
+
+
+  <!-- Modal Trigger -->
+ 
+
+  <!-- Modal Structure -->
+  <div id="coachlist" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>List of All Coaches</h4>
+
+		<table>
+			<thead>
+			  <tr>
+			      <th data-field="id">Name</th>
+			      <th data-field="name">Email</th>
+			      <th data-field="price">Phone Number</th>
+			  </tr>
+			</thead>
+
+			<tbody>
+				<% @coaches.each do |c| %>
+					<tr>
+						<td><%= c.proper_name %></td>
+						<td><%= c.user.email %></td>
+						<td><%= c.phone %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+            
+    </div>
+
+  </div>
+
+
+
