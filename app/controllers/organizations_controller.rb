@@ -71,6 +71,13 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def toggle_organization
+    @organization = Organization.find(params[:id])
+    @organization.active = params[:active] unless params[:active].nil?
+    @organization.save!
+    @organizations = Organization.alphabetical.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization

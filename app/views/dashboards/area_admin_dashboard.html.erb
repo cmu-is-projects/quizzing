@@ -1,0 +1,67 @@
+<div class="container">
+<h3> Welcome, <%= current_settings.admin_name %> </h3> 
+  <div class="row">
+    <!-- Junior Teams Column -->
+    <div class="col 6 m6" >
+      <%= render(:partial => "dashboards/organizations") %>
+    </div>
+
+    <!-- Stats Column -->
+    <div class="col 6 m6">
+      <%= render(:partial => "dashboards/coaches")%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s2"><a class="active" href="#division1">Junior</a></li>
+        <li class="tab col s2"><a href="#division2">Senior </a></li>
+        <li class="tab col s2"><a href="#division3">Senior B</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="division1" class="col s12">
+      <div class="row">
+        <!-- Junior Teams Column -->
+        <div class="col 6 m6" >
+            <%= render(:partial => "dashboards/junior_students", :locals => {:student_type => @juniors})%>
+        </div>
+
+        <!-- Stats Column -->
+        <div class="col 6 m6">
+          <%= render(:partial => "dashboards/junior_teams", :locals => {:team_type => @all_junior_teams})%>
+        </div>
+      </div>
+    </div>
+
+    <div id="division2" class="col s12">
+      <div class="row">
+       <!-- Senior Teams Column -->
+        <div class="col 6 m6" >
+          <%= render(:partial => "dashboards/senior_students", :locals => {:student_type => @seniors})%>
+        </div>
+
+        <!-- Stats Column -->
+        <div class="col 6 m6">
+          <%= render(:partial => "dashboards/senior_teams", :locals => {:team_type => @all_senior_teams})%>
+        </div>
+      </div>
+    </div>
+
+    <div id="division3" class="col s12">
+      <div class="row">
+       <!-- Senior Teams Column -->
+        <div class="col 6 m6" >
+          <%= render(:partial => "dashboards/seniorb_students", :locals => {:student_type => @seniorb})%>
+        </div>
+
+        <!-- Stats Column -->
+        <div class="col 6 m6">
+          <%= render(:partial => "dashboards/seniorb_teams", :locals => {:team_type => @all_seniorb_teams})%>
+        </div>
+      </div>
+    </div>
+
+</div>

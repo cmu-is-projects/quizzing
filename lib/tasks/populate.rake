@@ -19,7 +19,7 @@ namespace :db do
 
     # Connect to database of choice...
     include DatabaseSwitcher
-    db_selected = 'quizzing_dev'
+    db_selected = 'quizzing'
     if connect_to_db(db_selected)
       puts "Connected to #{db_selected}"
     else

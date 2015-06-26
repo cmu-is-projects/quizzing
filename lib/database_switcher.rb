@@ -21,7 +21,7 @@ module DatabaseSwitcher
   def verify_subdomain(subdomain)
     allowed_subdomains = SETTINGS[:database_list]
     if subdomain.blank?
-      return "quizzing_dev"
+      return "quizzing"
     elsif allowed_subdomains.include?(subdomain)
       return subdomain
     else

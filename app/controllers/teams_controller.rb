@@ -12,15 +12,15 @@ class TeamsController < ApplicationController
     @current_user = @current_user
     @teams = Team.all
     @active_teams = @teams.active.sort_by! {|n| n.name}
-    @top_standings = TeamStanding.for_juniors(7)
+    @top_standings = TeamStanding.for_juniors(5)
     @inactive_teams = @teams.inactive.sort_by! {|n| n.name}
     @divisions = @teams.active.map {|d| d.division}.uniq
-    @junior_teams = TeamStanding.for_juniors.map{|j| j.team}.sort_by! {|n| n.name}.first(10)
-    @senior_teams = TeamStanding.for_seniors.map{|j| j.team}.sort_by! {|n| n.name}.first(10)
-    @seniorb_teams = TeamStanding.for_seniorb.map{|j| j.team}.sort_by! {|n| n.name}.first(10)
-    @junior_standings = TeamStanding.for_juniors(7)
-    @senior_standings = TeamStanding.for_seniors(7)
-    @seniorb_standings = TeamStanding.for_seniorb(7)
+    @junior_teams = TeamStanding.for_juniors.map{|j| j.team}.sort_by! {|n| n.name}
+    @senior_teams = TeamStanding.for_seniors.map{|j| j.team}.sort_by! {|n| n.name}
+    @seniorb_teams = TeamStanding.for_seniorb.map{|j| j.team}.sort_by! {|n| n.name}
+    @junior_standings = TeamStanding.for_juniors(5)
+    @senior_standings = TeamStanding.for_seniors(5)
+    @seniorb_standings = TeamStanding.for_seniorb(5)
   end
 
   # GET /teams/1
@@ -29,6 +29,7 @@ class TeamsController < ApplicationController
     @teams =Team.all
     @team_standing = TeamStanding.for_team(@team)
     @students = @team.current_students
+    @students_by_seat = @team.student_teams.by_seat
     @quiz_year = QuizYear.new
     @completed_events = @quiz_year.completed_events
     @upcoming_events = @quiz_year.this_yr_events - @quiz_year.completed_events 
@@ -116,10 +117,10 @@ class TeamsController < ApplicationController
     @coaches = Coach.all
     @divisions = Division.all
     @organizations = Organization.all
-    @ineligable_students = StudentTeam.all.where(active: true).where("team_id != :t", {t: @team.id}).pluck(:student_id)
+    @ineligable_students = StudentTeam.all.where(present: true).where("team_id != :t", {t: @team.id}).pluck(:student_id)
     @students = Student.all.where('id NOT IN (?)', @ineligable_students)
 
-    @student_teams = @team.student_teams.where(active: true).to_a
+    @student_teams = @team.student_teams.where(present: true).to_a
     (0..(4-@student_teams.size)).each do
       @student_teams << @team.student_teams.build
     end
@@ -280,6 +281,16 @@ class TeamsController < ApplicationController
       format.html { redirect_to teams_url }
       format.json { head :no_content }
     end
+  end
+
+  def toggle_team
+    @team = Team.find(params[:id])
+    @team.active = params[:active] unless params[:active].nil?
+    @team.save!
+    @all_junior_teams = Team.for_juniors
+    @all_senior_teams = Team.for_seniors
+    @all_seniorb_teams = Team.for_seniorb
+    @changed = @team.division.id
   end
 
   private

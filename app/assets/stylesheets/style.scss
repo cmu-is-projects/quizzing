@@ -181,6 +181,11 @@ p.subtitle {
   
 }
 
+p.total {
+  font-size: 16px;
+}
+
+
 .center {
   text-align: center;
 }
@@ -233,7 +238,9 @@ td.right{
    }
 
   div#edit_card {
-  background-color: #eceff1;
+  background-color: #FFF;
 }
 
-
+.toast {
+  background-color: #EFEFEF;
+}

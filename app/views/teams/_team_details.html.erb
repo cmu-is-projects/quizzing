@@ -23,14 +23,27 @@
       <div class="divider"></div>
 
       <div class="card-content">
-        <span class="card-title activator black-text hoverable">Team Members <i class="fa fa-angle-double-up"></i></i></span>
+        <span class="card-title activator black-text">Team Members <i class="fa fa-angle-double-up"></i></i></span>
       </div>
 
       <div class="card-reveal">
-        <span class="card-title black-text">Team Members<i class="mdi-navigation-close right"></i></span>
-        <% @students.each do |s| %>
-          <%= link_to s.proper_name, student_path(s.id) %> <br />
-        <% end %>
+        <span class="card-title black-text"><%= @team.name %> Team Members<i class="mdi-navigation-close right"></i></span>
+        <table>
+          <thead>
+            <tr>
+                <th>Seating</th>
+                <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @students_by_seat.each do |s| %>
+              <tr>
+                <td><%= s.seat%></td>
+                <td><%= link_to  s.student.proper_name, student_path(s.student.id) %> </td>
+              </tr>
+            <%end%>
+          </tbody>
+        </table>
       </div>
 
     </div>
