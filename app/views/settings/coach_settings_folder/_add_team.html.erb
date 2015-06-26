@@ -19,7 +19,7 @@
 		    </div>
 		    <div class ="row">
 		      <div class ="input-field col 10">
-
+		      	<!-- #TODO This form is NOT WORKING. Something going is going on in the team create controller that isn't printing out any statements. Currently you can add a team if you leave the students blank but if you try prepopulating with students it WILL break! And @students_on_team is currently just juniors -->
 		      	<%= f.fields_for :student_teams, @student_teams do |student_team_fields| %>
 		      		<%#= student_team_fields.hidden_field :team_id, :value => @team.id %>
 		      		<%= student_team_fields.collection_select(:student_id, @students_on_team, :id, :name, include_blank: true)%>
