@@ -16,4 +16,4 @@ mailer_user: 'biblequizstats.net'
 mailer_password: 'Iwryftytlhe'
 
 # constants
-database_list: ['quizzing_dev', 'westpa', 'pgh', 'erie', 'altoona', 'ovd', 'central', 'greatlakes', 'pnw', 'cmd', 'westcanada', 'metro', 'centralcanada']
+database_list: ['quizzing', 'westpa', 'pgh', 'erie', 'altoona', 'ovd', 'central', 'greatlakes', 'pnw', 'cmd', 'westcanada', 'metro', 'centralcanada']
