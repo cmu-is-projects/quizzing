@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include ExceptionManager
+  include SessionManager
   include DatabaseSwitcher
   include SubdomainManager
   
