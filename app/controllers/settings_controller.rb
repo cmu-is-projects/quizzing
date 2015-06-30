@@ -51,9 +51,13 @@ class SettingsController < ApplicationController
 
 	def update_indiv_standings
 		area = request.subdomain
+		area = session[:subdomain] if area.nil?
+		puts "AREA: #{area}"
 		unless area.nil?
 			IndivWorker.perform_async(area)
 			redirect_to settings_url, notice: 'Individual standings are now being updated.'
+		else
+			redirect_to settings_url, alert: 'Individual standings could not be updated.'
 		end
 	end
 
